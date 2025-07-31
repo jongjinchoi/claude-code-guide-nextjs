@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import styles from './Dashboard.module.css';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -318,113 +319,99 @@ export default function DashboardPage() {
   };
 
   if (loading) {
-    return <div className="container">로딩 중...</div>;
+    return <div className={styles.loadingContainer}>로딩 중...</div>;
   }
 
   return (
     <>
-      <style jsx>{`
-        @keyframes pulse {
-          0% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.05); }
-          100% { opacity: 0.8; transform: scale(1); }
-        }
-      `}</style>
-      <div className="container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: 0 }}>가이드 추적 대시보드</h1>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div className={styles.dashboardContainer}>
+      <div className={styles.dashboardHeader}>
+        <h1 className={styles.dashboardTitle}>가이드 추적 대시보드</h1>
+        <div className={styles.headerRight}>
           {isRealtime && (
-            <span style={{
-              padding: '0.5rem 1rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              borderRadius: '4px',
-              fontSize: '0.875rem',
-              animation: 'pulse 1s ease-in-out'
-            }}>
+            <span className={styles.realtimeIndicator}>
               🔄 실시간 업데이트
             </span>
           )}
-          <span style={{ color: '#666', fontSize: '0.875rem' }}>
+          <span className={styles.lastUpdate}>
             마지막 업데이트: {lastUpdate.toLocaleTimeString('ko-KR')}
           </span>
         </div>
       </div>
       
       {todayMetrics && (
-        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>오늘의 지표</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
-            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>오늘의 지표</h2>
+          <div className={styles.metricsGrid}>
+            <div className={styles.metricCard}>
               <h3>오늘 세션</h3>
-              <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.total_sessions}</p>
+              <p className={styles.metricValue}>{todayMetrics.total_sessions}</p>
             </div>
-            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+            <div className={styles.metricCard}>
               <h3>오늘 완료</h3>
-              <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.completions}</p>
+              <p className={styles.metricValue}>{todayMetrics.completions}</p>
             </div>
-            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+            <div className={styles.metricCard}>
               <h3>오늘 완료율</h3>
-              <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.completion_rate}%</p>
+              <p className={styles.metricValue}>{todayMetrics.completion_rate}%</p>
             </div>
-            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+            <div className={styles.metricCard}>
               <h3>평균 소요시간</h3>
-              <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.avg_completion_minutes?.toFixed(1) || 0}분</p>
+              <p className={styles.metricValue}>{todayMetrics.avg_completion_minutes?.toFixed(1) || 0}분</p>
             </div>
-            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+            <div className={styles.metricCard}>
               <h3>즉시 이탈</h3>
-              <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.immediate_bounces}</p>
+              <p className={styles.metricValue}>{todayMetrics.immediate_bounces}</p>
             </div>
           </div>
         </div>
       )}
 
-      <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-        <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>전체 통계</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-          <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>전체 통계</h2>
+        <div className={styles.metricsGrid}>
+          <div className={styles.metricCard}>
             <h3>총 세션</h3>
-            <p style={{ fontSize: '2rem', margin: 0 }}>{stats.totalSessions}</p>
+            <p className={styles.metricValue}>{stats.totalSessions}</p>
           </div>
-          <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+          <div className={styles.metricCard}>
             <h3>완료된 세션</h3>
-            <p style={{ fontSize: '2rem', margin: 0 }}>{stats.completedSessions}</p>
+            <p className={styles.metricValue}>{stats.completedSessions}</p>
           </div>
-          <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+          <div className={styles.metricCard}>
             <h3>완료율</h3>
-            <p style={{ fontSize: '2rem', margin: 0 }}>{stats.completionRate.toFixed(1)}%</p>
+            <p className={styles.metricValue}>{stats.completionRate.toFixed(1)}%</p>
           </div>
-          <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+          <div className={styles.metricCard}>
             <h3>평균 완료 시간</h3>
-            <p style={{ fontSize: '2rem', margin: 0 }}>{stats.avgCompletionTime.toFixed(1)}분</p>
+            <p className={styles.metricValue}>{stats.avgCompletionTime.toFixed(1)}분</p>
           </div>
-          <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+          <div className={styles.metricCard}>
             <h3>에러율</h3>
-            <p style={{ fontSize: '2rem', margin: 0 }}>{stats.errorRate.toFixed(1)}%</p>
+            <p className={styles.metricValue}>{stats.errorRate.toFixed(1)}%</p>
           </div>
         </div>
       </div>
 
       {stepFunnel.length > 0 && (
-        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>단계별 퍼널 (최근 7일)</h2>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>단계별 퍼널 (최근 7일)</h2>
+          <table className={styles.table}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #ccc' }}>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>단계</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>도달 사용자</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>이탈자</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>이탈률</th>
+              <tr className={styles.tableHeader}>
+                <th>단계</th>
+                <th>도달 사용자</th>
+                <th>이탈자</th>
+                <th>이탈률</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tableBody}>
               {stepFunnel.map((step) => (
-                <tr key={step.step} style={{ borderBottom: '1px solid #eee' }}>
-                  <td style={{ padding: '0.5rem' }}>단계 {step.step}</td>
-                  <td style={{ padding: '0.5rem' }}>{step.users_reached}</td>
-                  <td style={{ padding: '0.5rem' }}>{step.dropped_off || '-'}</td>
-                  <td style={{ padding: '0.5rem' }}>{step.dropout_rate || '-'}%</td>
+                <tr key={step.step} className={styles.tableRow}>
+                  <td className={styles.tableCell}>단계 {step.step}</td>
+                  <td className={styles.tableCell}>{step.users_reached}</td>
+                  <td className={styles.tableCell}>{step.dropped_off || '-'}</td>
+                  <td className={styles.tableCell}>{step.dropout_rate || '-'}%</td>
                 </tr>
               ))}
             </tbody>
@@ -433,26 +420,26 @@ export default function DashboardPage() {
       )}
 
       {osPerformance.length > 0 && (
-        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>OS별 성능 (최근 7일)</h2>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>OS별 성능 (최근 7일)</h2>
+          <table className={styles.table}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #ccc' }}>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>OS</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>시도</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>완료</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>성공률</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>평균 시간</th>
+              <tr className={styles.tableHeader}>
+                <th>OS</th>
+                <th>시도</th>
+                <th>완료</th>
+                <th>성공률</th>
+                <th>평균 시간</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tableBody}>
               {osPerformance.map((os) => (
-                <tr key={os.os} style={{ borderBottom: '1px solid #eee' }}>
-                  <td style={{ padding: '0.5rem' }}>{os.os}</td>
-                  <td style={{ padding: '0.5rem' }}>{os.total_attempts}</td>
-                  <td style={{ padding: '0.5rem' }}>{os.completions}</td>
-                  <td style={{ padding: '0.5rem' }}>{os.success_rate}%</td>
-                  <td style={{ padding: '0.5rem' }}>{os.avg_time_minutes?.toFixed(1) || '-'}분</td>
+                <tr key={os.os} className={styles.tableRow}>
+                  <td className={styles.tableCell}>{os.os}</td>
+                  <td className={styles.tableCell}>{os.total_attempts}</td>
+                  <td className={styles.tableCell}>{os.completions}</td>
+                  <td className={styles.tableCell}>{os.success_rate}%</td>
+                  <td className={styles.tableCell}>{os.avg_time_minutes?.toFixed(1) || '-'}분</td>
                 </tr>
               ))}
             </tbody>
@@ -461,28 +448,28 @@ export default function DashboardPage() {
       )}
 
       {pagePerformance.length > 0 && (
-        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>페이지별 성과 (최근 7일)</h2>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>페이지별 성과 (최근 7일)</h2>
+          <table className={styles.table}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #ccc' }}>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>페이지</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>고유 세션</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>총 조회수</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>평균 체류시간</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>이탈 수</th>
+              <tr className={styles.tableHeader}>
+                <th>페이지</th>
+                <th>고유 세션</th>
+                <th>총 조회수</th>
+                <th>평균 체류시간</th>
+                <th>이탈 수</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tableBody}>
               {pagePerformance.map((page) => (
-                <tr key={page.page_path} style={{ borderBottom: '1px solid #eee' }}>
-                  <td style={{ padding: '0.5rem' }}>{page.page_path}</td>
-                  <td style={{ padding: '0.5rem' }}>{page.unique_sessions}</td>
-                  <td style={{ padding: '0.5rem' }}>{page.total_views}</td>
-                  <td style={{ padding: '0.5rem' }}>
+                <tr key={page.page_path} className={styles.tableRow}>
+                  <td className={styles.tableCell}>{page.page_path}</td>
+                  <td className={styles.tableCell}>{page.unique_sessions}</td>
+                  <td className={styles.tableCell}>{page.total_views}</td>
+                  <td className={styles.tableCell}>
                     {page.avg_time_seconds ? `${Math.round(page.avg_time_seconds)}초` : '-'}
                   </td>
-                  <td style={{ padding: '0.5rem' }}>{page.bounce_count}</td>
+                  <td className={styles.tableCell}>{page.bounce_count}</td>
                 </tr>
               ))}
             </tbody>
@@ -491,22 +478,22 @@ export default function DashboardPage() {
       )}
 
       {buttonUsage.length > 0 && (
-        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>버튼 활용도 TOP 10 (최근 7일)</h2>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>버튼 활용도 TOP 10 (최근 7일)</h2>
+          <table className={styles.table}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #ccc' }}>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>카테고리</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>버튼 이름</th>
-                <th style={{ padding: '0.5rem', textAlign: 'left' }}>클릭 수</th>
+              <tr className={styles.tableHeader}>
+                <th>카테고리</th>
+                <th>버튼 이름</th>
+                <th>클릭 수</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tableBody}>
               {buttonUsage.slice(0, 10).map((button, index) => (
-                <tr key={index} style={{ borderBottom: '1px solid #eee' }}>
-                  <td style={{ padding: '0.5rem' }}>{button.button_category || '-'}</td>
-                  <td style={{ padding: '0.5rem' }}>{button.button_name}</td>
-                  <td style={{ padding: '0.5rem' }}>{button.click_count}</td>
+                <tr key={index} className={styles.tableRow}>
+                  <td className={styles.tableCell}>{button.button_category || '-'}</td>
+                  <td className={styles.tableCell}>{button.button_name}</td>
+                  <td className={styles.tableCell}>{button.click_count}</td>
                 </tr>
               ))}
             </tbody>
@@ -564,39 +551,39 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-        <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>최근 세션</h2>
-        <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>최근 세션</h2>
+        <div className={styles.tableWrapper}>
+        <table className={styles.table}>
           <thead>
-            <tr style={{ borderBottom: '2px solid #ccc' }}>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>시간</th>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>OS</th>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>브라우저</th>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>현재 단계</th>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>최고 단계</th>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>완료</th>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>에러</th>
-              <th style={{ padding: '0.5rem', textAlign: 'left' }}>소요 시간</th>
+            <tr className={styles.tableHeader}>
+              <th>시간</th>
+              <th>OS</th>
+              <th>브라우저</th>
+              <th>현재 단계</th>
+              <th>최고 단계</th>
+              <th>완료</th>
+              <th>에러</th>
+              <th>소요 시간</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={styles.tableBody}>
             {sessions.map((session) => (
-              <tr key={session.session_id} style={{ borderBottom: '1px solid #eee' }}>
-                <td style={{ padding: '0.5rem' }}>
+              <tr key={session.session_id} className={styles.tableRow}>
+                <td className={styles.tableCell}>
                   {new Date(session.created_at).toLocaleString('ko-KR')}
                 </td>
-                <td style={{ padding: '0.5rem' }}>{session.os}</td>
-                <td style={{ padding: '0.5rem' }}>{session.browser}</td>
-                <td style={{ padding: '0.5rem' }}>{session.current_step || 0}</td>
-                <td style={{ padding: '0.5rem' }}>{session.highest_step_reached || 0}</td>
-                <td style={{ padding: '0.5rem' }}>
+                <td className={styles.tableCell}>{session.os}</td>
+                <td className={styles.tableCell}>{session.browser}</td>
+                <td className={styles.tableCell}>{session.current_step || 0}</td>
+                <td className={styles.tableCell}>{session.highest_step_reached || 0}</td>
+                <td className={styles.tableCell}>
                   {session.is_completed ? '✅' : '❌'}
                 </td>
-                <td style={{ padding: '0.5rem' }}>
+                <td className={styles.tableCell}>
                   {session.errors && session.errors.length > 0 ? `⚠️ ${session.errors.length}` : '-'}
                 </td>
-                <td style={{ padding: '0.5rem' }}>
+                <td className={styles.tableCell}>
                   {session.total_time_seconds 
                     ? `${Math.round(session.total_time_seconds / 60)}분`
                     : '-'}
