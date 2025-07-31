@@ -1,20 +1,22 @@
 # robots.txt for Claude Code Guide
-# Last updated: 2025-07-17
+# Last updated: 2025-08-01
 
 # Allow all crawlers
 User-agent: *
 Allow: /
+
+# Next.js specific
 Disallow: /api/
-Disallow: /*.json$
-Disallow: /temp/
-Disallow: /private/
-Disallow: /admin/
-# JavaScript and CSS are needed for proper rendering
-Allow: /*.js$
-Allow: /js/
-Allow: /*.css$
-Allow: /css/
-Disallow: /dev-server.log
+Disallow: /_next/
+Disallow: /dashboard
+Disallow: /dashboard-login
+
+# Allow static assets
+Allow: /images/
+Allow: /_next/static/
+Allow: /_next/image
+
+# Development files
 Disallow: /.git/
 Disallow: /.env
 Disallow: /node_modules/
