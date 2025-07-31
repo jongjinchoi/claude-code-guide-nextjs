@@ -330,9 +330,9 @@ export default function DashboardPage() {
           100% { opacity: 0.8; transform: scale(1); }
         }
       `}</style>
-      <div className="container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h1>가이드 추적 대시보드</h1>
+      <div className="container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '2rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: 0 }}>가이드 추적 대시보드</h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           {isRealtime && (
             <span style={{
@@ -353,26 +353,26 @@ export default function DashboardPage() {
       </div>
       
       {todayMetrics && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h2>오늘의 지표</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>오늘의 지표</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>오늘 세션</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.total_sessions}</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>오늘 완료</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.completions}</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>오늘 완료율</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.completion_rate}%</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>평균 소요시간</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.avg_completion_minutes?.toFixed(1) || 0}분</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>즉시 이탈</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{todayMetrics.immediate_bounces}</p>
             </div>
@@ -380,8 +380,8 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div style={{ marginBottom: '2rem' }}>
-        <h2>전체 통계</h2>
+      <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+        <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>전체 통계</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
           <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
             <h3>총 세션</h3>
@@ -407,8 +407,8 @@ export default function DashboardPage() {
       </div>
 
       {stepFunnel.length > 0 && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h2>단계별 퍼널 (최근 7일)</h2>
+        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>단계별 퍼널 (최근 7일)</h2>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #ccc' }}>
@@ -433,8 +433,8 @@ export default function DashboardPage() {
       )}
 
       {osPerformance.length > 0 && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h2>OS별 성능 (최근 7일)</h2>
+        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>OS별 성능 (최근 7일)</h2>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #ccc' }}>
@@ -461,8 +461,8 @@ export default function DashboardPage() {
       )}
 
       {pagePerformance.length > 0 && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h2>페이지별 성과 (최근 7일)</h2>
+        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>페이지별 성과 (최근 7일)</h2>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #ccc' }}>
@@ -491,8 +491,8 @@ export default function DashboardPage() {
       )}
 
       {buttonUsage.length > 0 && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h2>버튼 활용도 TOP 10 (최근 7일)</h2>
+        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>버튼 활용도 TOP 10 (최근 7일)</h2>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #ccc' }}>
@@ -515,26 +515,26 @@ export default function DashboardPage() {
       )}
 
       {feedbackSummary && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h2>사용자 만족도 (최근 7일)</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>사용자 만족도 (최근 7일)</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>전체 피드백</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{feedbackSummary.total_feedback}</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>평균 점수</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{feedbackSummary.avg_score?.toFixed(1) || 0}/5</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>만족도</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{feedbackSummary.satisfaction_rate}%</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>긍정적 피드백</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{feedbackSummary.positive_count}</p>
             </div>
-            <div style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>텍스트 포함</h3>
               <p style={{ fontSize: '2rem', margin: 0 }}>{feedbackSummary.with_text_count}</p>
             </div>
@@ -543,9 +543,9 @@ export default function DashboardPage() {
       )}
 
       {feedbackByEmoji.length > 0 && (
-        <div style={{ marginBottom: '2rem' }}>
-          <h2>이모지별 피드백 분포</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem' }}>
+        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>이모지별 피드백 분포</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.5rem' }}>
             {feedbackByEmoji.map((feedback) => (
               <div key={feedback.emoji} style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
                 <div style={{ fontSize: '2rem' }}>
@@ -564,8 +564,9 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <h2>최근 세션</h2>
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+        <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>최근 세션</h2>
+        <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '2px solid #ccc' }}>
@@ -604,6 +605,7 @@ export default function DashboardPage() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
     </>
