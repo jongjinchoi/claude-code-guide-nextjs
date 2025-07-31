@@ -1,0 +1,52 @@
+/* About page styles */
+.about-page .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+}
+
+/* Content sections */
+.about-content section {
+    margin-bottom: var(--space-8);
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+}
+
+/* Additional dark mode styles */
+[data-theme="dark"] .about-content h2 {
+    color: #F5F5F5;
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+    .about-page .container {
+        padding: 0 var(--space-2);
+    }
+    
+    .about-content section {
+        margin-bottom: var(--space-5);
+    }
+    
+    .about-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-3);
+    }
+}
+
+@media (max-width: 480px) {
+    .about-content h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* 모바일 가로 모드 */
+@media (max-width: 767px) and (orientation: landscape) {
+    .about-page .container {
+        padding: 0 var(--space-4);
+    }
+}

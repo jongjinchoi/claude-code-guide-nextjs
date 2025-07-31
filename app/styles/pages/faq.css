@@ -1,0 +1,338 @@
+/* FAQ Page Styles */
+
+/* FAQ Page specific container */
+.faq-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+/* FAQ Page specific main content */
+.faq-page .main-content {
+    max-width: 900px;
+    margin: 0 auto var(--space-8);
+}
+
+/* FAQ page body */
+.faq-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+/* FAQ 페이지 전용 wrapper */
+.guide-header-wrapper {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--space-4);
+}
+
+/* FAQ intro section */
+.faq-intro {
+    text-align: center;
+    margin: var(--space-5) 0;
+    padding: 0 var(--space-3);
+}
+
+.faq-intro h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.faq-intro p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* FAQ section 스타일 - guide-steps.css와 완전히 동일하게 */
+.faq-section {
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.06), rgba(204, 120, 92, 0.02));
+    border: 1px solid #CC785C;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-3);
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.faq-section:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+/* Expanded state */
+.faq-section.is-expanded .faq-header {
+    border-bottom: 1px solid rgba(204, 120, 92, 0.3);
+}
+
+
+
+/* Dark mode support */
+[data-theme="dark"] .faq-section {
+    background: rgba(204, 120, 92, 0.08);
+    border-color: rgba(204, 120, 92, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .faq-header {
+    background: rgba(204, 120, 92, 0.1);
+}
+
+[data-theme="dark"] .faq-content-section {
+    background: var(--background);
+}
+
+/* FAQ header 스타일 */
+.faq-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.25), rgba(204, 120, 92, 0.15));
+    border-bottom: 1px solid rgba(204, 120, 92, 0.2);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.faq-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #CC785C;
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.faq-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    margin-right: auto;
+    color: var(--text-primary);
+}
+
+.faq-tag {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* 카테고리별 색상 시스템 (배경색 제거, 텍스트 색상만) */
+.faq-tag.urgent {
+    color: #dc2626;
+}
+
+.faq-tag.comfort {
+    color: #059669;
+}
+
+.faq-tag.knowledge {
+    color: #2563eb;
+}
+
+/* 다크모드 지원 */
+[data-theme="dark"] .faq-tag.urgent {
+    color: #f87171;
+}
+
+[data-theme="dark"] .faq-tag.comfort {
+    color: #34d399;
+}
+
+[data-theme="dark"] .faq-tag.knowledge {
+    color: #60a5fa;
+}
+
+.faq-content-section {
+    display: none;
+    padding: var(--space-5);
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.08), rgba(204, 120, 92, 0.03));
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.faq-section.is-expanded .faq-content-section {
+    display: block;
+}
+
+/* FAQ Item 스타일은 FAQItem.module.css에서 관리됨 */
+
+.faq-category-icon {
+    margin-right: var(--space-2);
+}
+
+/* Terminal 스타일은 다음과 같이 관리됨:
+ * - FAQ 페이지: FAQTerminal.module.css 사용
+ * - Guide 페이지: globals.css 사용
+ * - faq.css의 터미널 스타일은 중복으로 제거됨 */
+
+/* Loading spinner 스타일은 FAQTerminal.module.css에서 관리됨 */
+
+/* Solution steps styles moved to components/solution-steps.css */
+
+/* Common issues */
+.common-issue {
+    position: relative;
+    padding-left: var(--space-4);
+}
+
+.common-issue::before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.25rem;
+}
+
+/* Keyboard Keys - 가이드 페이지와 동일 */
+kbd {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.875rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    line-height: 1.4;
+    color: #1a1a1a;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+}
+
+/* Enter 키 스타일 - FAQ 페이지 전용 */
+.page-wrapper--faq kbd.enter-key {
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 2px 24px 2px 8px;
+}
+
+.page-wrapper--faq kbd.enter-key::after {
+    content: "↵";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* FAQ Terminal Simulation Styles */
+.faq-terminal-simulation {
+    margin-bottom: var(--space-3);
+}
+
+.terminal-line {
+    margin-bottom: 4px;
+}
+
+.terminal-welcome strong {
+    font-weight: 700;
+}
+
+.terminal-prompt {
+    color: #CC785C;
+    font-weight: 600;
+}
+
+.terminal-description,
+.terminal-info {
+    color: #6b7280;
+}
+
+.terminal-tip {
+    margin-top: var(--space-3);
+    padding: var(--space-2);
+    background: rgba(204, 120, 92, 0.05);
+    border-radius: var(--radius-sm);
+}
+
+.faq-command-box {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2);
+    background: rgba(204, 120, 92, 0.03);
+    border-radius: var(--radius-sm);
+}
+
+.faq-command-prompt {
+    color: #CC785C;
+    font-weight: 600;
+    margin-right: var(--space-1);
+}
+
+.faq-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: #CC785C;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+}
+
+.faq-command-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.faq-command-table td {
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+    font-size: 0.875rem;
+}
+
+.faq-command-key {
+    font-weight: 600;
+    color: #CC785C;
+    width: 30%;
+}
+
+.faq-command-desc {
+    color: var(--text-secondary);
+}
+
+.faq-valign-top {
+    vertical-align: top;
+}
+
+/* Dark mode for FAQ terminal simulation */
+[data-theme="dark"] .terminal-tip {
+    background: rgba(204, 120, 92, 0.1);
+}
+
+[data-theme="dark"] .faq-command-box {
+    background: rgba(204, 120, 92, 0.08);
+}
+
+[data-theme="dark"] .faq-command-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* OS Specific styles */
+.os-specific {
+    display: none;
+}
+
+.os-specific.active {
+    display: block;
+}

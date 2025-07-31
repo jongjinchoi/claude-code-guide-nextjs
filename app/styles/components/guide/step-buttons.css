@@ -1,0 +1,396 @@
+/* Guide Step Button Styles */
+
+/* ============================= */
+/* Result Buttons Container */
+/* ============================= */
+.result-buttons {
+    margin: var(--space-4) 0;
+    padding: var(--space-3);
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.result-buttons p {
+    margin-bottom: var(--space-3);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* ============================= */
+/* Result Buttons Layout */
+/* ============================= */
+.result-buttons .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.result-btn {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    line-height: 1.5;
+    min-height: 52px;
+    margin-bottom: var(--space-2);
+}
+
+.result-btn:last-child {
+    margin-bottom: 0;
+}
+
+.result-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.result-btn:focus {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+}
+
+/* ============================= */
+/* Success Button */
+/* ============================= */
+.result-btn.success {
+    background: var(--success-light);
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.result-btn.success:hover:not(:disabled) {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--success-light);
+}
+
+.result-btn.success:hover:not(:disabled) .icon {
+    color: white;
+}
+
+.result-btn.success .icon {
+    color: var(--success-color);
+    font-size: 1.25rem;
+}
+
+/* ============================= */
+/* Error Button */
+/* ============================= */
+.result-btn.error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: var(--error-color);
+}
+
+.result-btn.error:hover:not(:disabled) {
+    background: var(--error-color);
+    border-color: var(--error-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.result-btn.error:hover:not(:disabled) .icon {
+    color: white;
+}
+
+.result-btn.error .icon {
+    color: var(--error-color);
+    font-size: 1.25rem;
+}
+
+/* ============================= */
+/* Resolution Button */
+/* ============================= */
+.result-btn.resolution {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: var(--text-primary);
+}
+
+.result-btn.resolution:hover:not(:disabled) {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(204, 120, 92, 0.3);
+}
+
+.result-btn.resolution:hover:not(:disabled) .icon {
+    color: white;
+}
+
+.result-btn.resolution .icon {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+/* ============================= */
+/* Button Text Content */
+/* ============================= */
+.result-btn .btn-text {
+    flex: 1;
+}
+
+.result-btn .main-text {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.result-btn .sub-text {
+    font-size: 0.875rem;
+    color: inherit;
+    opacity: 0.9;
+}
+
+/* ============================= */
+/* Loading State */
+/* ============================= */
+.result-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.result-btn.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ============================= */
+/* Dark Mode Styles */
+/* ============================= */
+[data-theme="dark"] .result-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #E5E5E5;
+}
+
+[data-theme="dark"] .result-btn.success {
+    background: var(--success-light);
+    border-color: var(--success-color);
+}
+
+[data-theme="dark"] .result-btn.success:hover:not(:disabled) {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+    box-shadow: 0 4px 12px var(--success-light);
+}
+
+[data-theme="dark"] .result-btn.success:hover:not(:disabled) .icon {
+    color: white;
+}
+
+[data-theme="dark"] .result-btn.error {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+[data-theme="dark"] .result-btn.error:hover:not(:disabled) {
+    background: var(--error-color);
+    border-color: var(--error-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+[data-theme="dark"] .result-btn.error:hover:not(:disabled) .icon {
+    color: white;
+}
+
+[data-theme="dark"] .result-btn.resolution {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+[data-theme="dark"] .result-btn.resolution:hover:not(:disabled) {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(204, 120, 92, 0.3);
+}
+
+[data-theme="dark"] .result-btn.resolution:hover:not(:disabled) .icon {
+    color: white;
+}
+
+[data-theme="dark"] .result-btn .sub-text {
+    color: inherit;
+}
+
+[data-theme="dark"] .result-btn.loading::after {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top-color: #E09B7A;
+}
+
+/* ============================= */
+/* Mobile Responsive */
+/* ============================= */
+@media (max-width: 768px) {
+    .result-buttons {
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+        padding: var(--space-3) 0;
+    }
+
+    .result-btn {
+        padding: var(--space-3);
+        font-size: 0.875rem;
+        min-height: 48px;
+    }
+
+    .result-btn .icon {
+        font-size: 1.125rem;
+    }
+
+    .result-btn .main-text {
+        font-size: 0.875rem;
+    }
+
+    .result-btn .sub-text {
+        font-size: 0.8125rem;
+    }
+}
+
+/* ============================= */
+/* Tablet Responsive */
+/* ============================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .result-btn {
+        padding: var(--space-3) var(--space-4);
+        font-size: 0.9375rem;
+    }
+}
+
+/* ============================= */
+/* High Contrast Support */
+/* ============================= */
+@media (prefers-contrast: high) {
+    .result-btn {
+        border-width: 3px;
+    }
+
+    .result-btn.success {
+        border-color: var(--success-color);
+    }
+
+    .result-btn.error {
+        border-color: var(--error-color);
+    }
+
+    .result-btn.resolution {
+        border-color: var(--primary-color);
+    }
+}
+
+/* ============================= */
+/* Reduced Motion Support */
+/* ============================= */
+@media (prefers-reduced-motion: reduce) {
+    .result-btn {
+        transition: none;
+    }
+
+    .result-btn:hover:not(:disabled) {
+        transform: none;
+    }
+
+    .result-btn.loading::after {
+        animation: none;
+    }
+}
+
+/* ============================= */
+/* Focus Visible Support */
+/* ============================= */
+@supports selector(:focus-visible) {
+    .result-btn:focus {
+        outline: none;
+    }
+
+    .result-btn:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 2px;
+    }
+}
+
+/* ============================= */
+/* Selected Button State */
+/* ============================= */
+.result-btn.is-selected {
+    background: #FEE2E2 !important;
+    border-color: #CC785C !important;
+    position: relative;
+}
+
+.result-btn.is-selected:hover {
+    background: #FECDD3 !important;
+    color: #7C4A3A !important;
+}
+
+.result-btn.is-selected .selected-indicator {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 24px;
+    height: 24px;
+    background: #CC785C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.result-btn.is-selected .selected-label {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #CC785C;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ============================= */
+/* Disabled Button State */
+/* ============================= */
+.result-btn.is-disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+.result-btn.is-disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}

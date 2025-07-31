@@ -1,0 +1,209 @@
+/* Page Header Component Styles */
+
+/* 🔵 Base styles - 모든 헤더가 공유 */
+.pageHeader {
+  width: 100%;
+  position: relative;
+  background: var(--background);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.title i {
+  color: var(--primary-color);
+  margin-right: var(--space-2);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background: rgba(204, 120, 92, 0.1);
+  color: var(--primary-color);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+  border: 1px solid rgba(204, 120, 92, 0.2);
+  box-shadow: 0 2px 8px rgba(204, 120, 92, 0.1);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.badge i {
+  font-size: 0.875rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* 🟢 Hero variant - About 페이지 스타일 */
+.hero {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  background: var(--background);
+  border-bottom: none;
+}
+
+.hero .title {
+  font-size: 3rem;
+  margin-bottom: var(--space-3);
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-4);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero .controls {
+  justify-content: center;
+}
+
+/* 🟢 Compact variant - Guide/FAQ 페이지 스타일 */
+.compact {
+  padding: var(--space-3) 0;
+}
+
+.compact .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.compact .title {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.compact .controls {
+  position: relative;
+}
+
+/* 📱 Tablet responsive */
+@media (max-width: 1024px) {
+  .hero .title {
+    font-size: 2.5rem;
+  }
+  
+  .hero .subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .compact .title {
+    font-size: 1.5rem;
+  }
+}
+
+/* 📱 Mobile responsive */
+@media (max-width: 767px) {
+  .pageHeader {
+    padding: var(--space-4) var(--space-3);
+  }
+  
+  .hero {
+    padding: var(--space-6) var(--space-3);
+  }
+  
+  .hero .title {
+    font-size: 2rem;
+  }
+  
+  .hero .subtitle {
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .hero .badge {
+    font-size: 0.75rem;
+    padding: 6px var(--space-2);
+  }
+  
+  /* Compact variant on mobile */
+  .compact .content {
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: center;
+    padding: 0 var(--space-3);
+  }
+  
+  .compact .title {
+    font-size: 1.25rem;
+  }
+  
+  .compact .controls {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 📱 Small mobile */
+@media (max-width: 480px) {
+  .hero .title {
+    font-size: 1.75rem;
+  }
+  
+  .hero .subtitle {
+    font-size: 0.875rem;
+  }
+  
+  .compact .title {
+    font-size: 1.125rem;
+  }
+  
+  .title i {
+    font-size: 0.875em;
+  }
+}
+
+/* 🌗 Dark mode adjustments */
+:global([data-theme="dark"]) .pageHeader {
+  background: var(--background);
+  border-bottom-color: var(--border-color);
+}
+
+:global([data-theme="dark"]) .hero {
+  background: var(--background);
+}
+
+:global([data-theme="dark"]) .badge {
+  background: rgba(204, 120, 92, 0.15);
+}

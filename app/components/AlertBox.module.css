@@ -1,0 +1,94 @@
+/* Alert Box Component Styles */
+
+/* Base alert box styles */
+.alertBox {
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    margin: var(--space-3) 0;
+    transition: var(--transition);
+}
+
+/* Variants */
+.alertBoxDefault,
+.alertBoxWarning {
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+}
+
+.alertBoxInfo {
+    background: #dbeafe;
+    border: 1px solid #60a5fa;
+}
+
+.alertBoxSuccess {
+    background: #d1fae5;
+    border: 1px solid #34d399;
+}
+
+.alertBoxError {
+    background: #fee2e2;
+    border: 1px solid #f87171;
+}
+
+/* Alert box title */
+.alertBoxTitle {
+    font-weight: 600;
+    margin: 0 0 var(--space-1) 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.alertBoxIcon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+/* Alert box content */
+.alertBoxContent {
+    color: var(--text-secondary);
+}
+
+.alertBoxContent p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.alertBoxContent p + p {
+    margin-top: var(--space-2);
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .alertBox {
+    color: #E5E5E5;
+}
+
+[data-theme="dark"] .alertBoxDefault,
+[data-theme="dark"] .alertBoxWarning {
+    background: #3a3a3a;
+    border-color: #666666;
+}
+
+[data-theme="dark"] .alertBoxInfo {
+    background: #1a3a52;
+    border-color: #2563eb;
+}
+
+[data-theme="dark"] .alertBoxSuccess {
+    background: #1a3a2e;
+    border-color: #16a34a;
+}
+
+[data-theme="dark"] .alertBoxError {
+    background: #3a1a1a;
+    border-color: #dc2626;
+}
+
+[data-theme="dark"] .alertBoxTitle {
+    color: #F5F5F5;
+}
+
+[data-theme="dark"] .alertBoxContent {
+    color: #D1D5DB;
+}

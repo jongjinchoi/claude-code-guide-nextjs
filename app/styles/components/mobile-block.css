@@ -1,0 +1,479 @@
+/* Mobile Block System */
+.mobile-block-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    /* SEO: 검색엔진에서 이 콘텐츠를 인덱싱하지 않도록 숨김 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* iOS Safe Area 대응 */
+    padding-top: max(var(--space-6), env(safe-area-inset-top));
+    padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
+    padding-left: max(var(--space-4), env(safe-area-inset-left));
+    padding-right: max(var(--space-4), env(safe-area-inset-right));
+    box-sizing: border-box;
+}
+
+.mobile-block-overlay.active {
+    display: flex;
+}
+
+.mobile-block-content {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-block-icon {
+    font-size: 4rem;
+    color: #CC785C;
+    margin-bottom: var(--space-4);
+}
+
+.mobile-block-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.mobile-block-message {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+}
+
+.mobile-block-recommendations {
+    background: rgba(204, 120, 92, 0.1);
+    border: 1px solid rgba(204, 120, 92, 0.2);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    margin-bottom: var(--space-4);
+    text-align: left;
+}
+
+.mobile-block-recommendations h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #CC785C;
+    margin-bottom: var(--space-2);
+    text-align: center;
+}
+
+.mobile-block-recommendations ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-block-recommendations li {
+    padding: var(--space-1) 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    position: relative;
+    padding-left: var(--space-3);
+}
+
+.mobile-block-recommendations li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #CC785C;
+    font-weight: bold;
+}
+
+.mobile-block-footer {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    margin-top: var(--space-3);
+}
+
+/* Dark theme support */
+[data-theme="dark"] .mobile-block-content {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .mobile-block-recommendations {
+    background: rgba(204, 120, 92, 0.15);
+    border-color: rgba(204, 120, 92, 0.3);
+}
+
+/* Hide main content when mobile block is active */
+body.mobile-blocked .main-content,
+body.mobile-blocked header,
+body.mobile-blocked footer {
+    display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .mobile-block-overlay {
+        /* iPhone 11 Pro 실제 기기 최적화 - 더 큰 여백 */
+        padding: 120px var(--space-4) 140px var(--space-4);
+        /* iOS Safe Area 보강 */
+        padding-top: max(120px, env(safe-area-inset-top, 0px) + 80px);
+        padding-bottom: max(140px, env(safe-area-inset-bottom, 0px) + 100px);
+    }
+    
+    .mobile-block-content {
+        padding: var(--space-4);
+        margin: 0;
+        border-radius: var(--radius-xl);
+        max-width: 300px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+    
+    .mobile-block-icon {
+        font-size: 2.5rem;
+        margin-bottom: var(--space-3);
+    }
+    
+    .mobile-block-title {
+        font-size: 1.2rem;
+        margin-bottom: var(--space-2);
+        line-height: 1.4;
+    }
+    
+    .mobile-block-message {
+        font-size: 0.85rem;
+        margin-bottom: var(--space-3);
+        line-height: 1.5;
+    }
+    
+    .mobile-block-recommendations {
+        margin-bottom: var(--space-3);
+    }
+    
+    .mobile-block-footer {
+        font-size: 0.8rem;
+        margin-top: var(--space-2);
+    }
+}
+
+/* Mobile Warning Modal for restricted links */
+.mobile-warning-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-warning-modal.active {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.mobile-warning-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.mobile-warning-content {
+    position: relative;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-warning-modal.active .mobile-warning-content {
+    transform: translateY(0);
+}
+
+.mobile-warning-icon {
+    font-size: 3rem;
+    color: #CC785C;
+    margin-bottom: var(--space-3);
+}
+
+.mobile-warning-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.mobile-warning-message {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+}
+
+.mobile-warning-email-section {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    width: 100%;
+    max-width: 400px;
+}
+
+.mobile-warning-email-input {
+    flex: 1;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.mobile-warning-email-input:focus {
+    outline: none;
+    border-color: #CC785C;
+    box-shadow: 0 0 0 3px rgba(204, 120, 92, 0.1);
+}
+
+.mobile-warning-email-input.error {
+    border-color: var(--error-color);
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.mobile-warning-button.email-send {
+    background: #CC785C;
+    color: white;
+    flex-shrink: 0;
+    padding: var(--space-2) var(--space-3);
+    flex-direction: row;
+    gap: var(--space-2);
+}
+
+.mobile-warning-button.email-send i {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.mobile-warning-button.email-send:hover {
+    background: #b8674f;
+    transform: translateY(-1px);
+}
+
+.mobile-warning-button.email-send.sent {
+    background: var(--success-color);
+}
+
+.mobile-warning-actions {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-bottom: var(--space-3);
+    width: 100%;
+    max-width: 400px;
+}
+
+.mobile-warning-button {
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    min-width: 100px;
+    flex: 1;
+}
+
+.mobile-warning-button i {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+
+.mobile-warning-button.copy-link {
+    background: #CC785C;
+    color: white;
+}
+
+.mobile-warning-button.copy-link:hover {
+    background: #b8674f;
+    transform: translateY(-1px);
+}
+
+.mobile-warning-button.copy-link.copied {
+    background: var(--success-color);
+}
+
+.mobile-warning-button.close {
+    background: transparent;
+    color: #CC785C;
+    border: 2px solid #CC785C;
+}
+
+.mobile-warning-button.close:hover {
+    background: rgba(204, 120, 92, 0.1);
+    transform: translateY(-1px);
+}
+
+.mobile-warning-button.primary {
+    background: transparent;
+    color: #CC785C;
+    border: 2px solid #CC785C;
+}
+
+.mobile-warning-button.primary:hover {
+    background: rgba(204, 120, 92, 0.1);
+    transform: translateY(-1px);
+}
+
+.mobile-warning-hint {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    margin: 0;
+}
+
+/* Dark mode for mobile warning modal */
+[data-theme="dark"] .mobile-warning-content {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .mobile-warning-email-input {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .mobile-warning-email-input:focus {
+    border-color: #E09B7A;
+    box-shadow: 0 0 0 3px rgba(224, 155, 122, 0.1);
+}
+
+[data-theme="dark"] .mobile-warning-button.close {
+    border-color: #E09B7A;
+    color: #E09B7A;
+}
+
+[data-theme="dark"] .mobile-warning-button.close:hover {
+    background: rgba(224, 155, 122, 0.1);
+    transform: translateY(-1px);
+}
+
+[data-theme="dark"] .mobile-warning-button.primary {
+    background: transparent;
+    color: #E09B7A;
+    border: 2px solid #E09B7A;
+}
+
+[data-theme="dark"] .mobile-warning-button.primary:hover {
+    background: rgba(224, 155, 122, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Tablet landscape and portrait responsive for warning modal */
+@media (max-width: 1024px) {
+    .mobile-warning-email-section {
+        width: 100%;
+        max-width: 100%;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+    
+    .mobile-warning-button.email-send {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .mobile-warning-actions {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Tablet portrait responsive for warning modal */
+@media (max-width: 768px) {
+    .mobile-warning-email-section {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+    
+    .mobile-warning-button.email-send {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .mobile-warning-content {
+        padding: var(--space-4);
+    }
+}
+
+/* Mobile responsive for warning modal buttons */
+@media (max-width: 480px) {
+    .mobile-warning-button {
+        min-width: 90px;
+        padding: 12px 16px;
+        font-size: 0.8125rem;
+    }
+    
+    .mobile-warning-button i {
+        font-size: 1.25rem;
+    }
+    
+    .mobile-warning-actions {
+        gap: 10px;
+    }
+    
+    .mobile-warning-email-section {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .mobile-warning-button.email-send {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .mobile-warning-email-input {
+        width: 100%;
+    }
+    
+    .mobile-warning-actions {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,145 @@
+/* Code blocks components */
+.code-block {
+    position: relative;
+    background: #f8f9fa;
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    margin: var(--space-3) 0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    border: 1px solid #e5e7eb;
+    overflow-x: auto;
+}
+
+.code-block code {
+    color: #1f2937;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Dark mode code blocks */
+[data-theme="dark"] .code-block {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+[data-theme="dark"] .code-block code {
+    color: #f8f8f2;
+}
+
+.btn-copy {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-sm);
+    color: #4b5563;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode copy button */
+[data-theme="dark"] .btn-copy {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-copy:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(204, 120, 92, 0.3);
+}
+
+.btn-copy i {
+    font-size: 0.875rem;
+}
+
+.btn-copy.is-copied {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+}
+
+/* Terminal example variants */
+.terminal-example.success {
+    background: #ffffff;
+    border: 1px solid #10b981;
+    box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+}
+
+.terminal-example.error {
+    background: #f8f9fa;
+    border: 1px solid var(--error-color);
+}
+
+.terminal-example.success .terminal-content .output {
+    color: #374151;
+}
+
+.terminal-example.error .terminal-content .output {
+    color: #374151;
+}
+
+.terminal-content .success-text {
+    color: #374151;
+}
+
+.terminal-content .error-text {
+    color: #374151;
+}
+
+/* Dark mode terminal variants */
+[data-theme="dark"] .terminal-example.success {
+    background: #1a1a1a;
+    color: inherit;
+}
+
+[data-theme="dark"] .terminal-example.error {
+    background: #1a1a1a;
+    color: inherit;
+}
+
+[data-theme="dark"] .terminal-example.success .terminal-content .output,
+[data-theme="dark"] .terminal-example.error .terminal-content .output {
+    color: #d1d5db; /* 밝은 회색으로 변경 */
+}
+
+[data-theme="dark"] .terminal-content .success-text {
+    color: #4ade80;
+}
+
+[data-theme="dark"] .terminal-content .error-text {
+    color: #f87171;
+}
+
+/* Result Buttons - Moved to guide/step-buttons.css for centralized management */
+
+/* Troubleshooting Styles - Moved to troubleshooting.css for better organization */
+
+@media (max-width: 768px) {
+    
+    .code-block {
+        font-size: 0.75rem;
+    }
+    
+    .btn-copy {
+        position: static;
+        margin-top: var(--space-2);
+        width: fit-content;
+    }
+}

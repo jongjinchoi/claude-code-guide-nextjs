@@ -1,0 +1,118 @@
+/* CTASection Component Styles */
+
+/* CTA section */
+.ctaSection {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(204, 120, 92, 0.12), rgba(204, 120, 92, 0.06));
+  border: 2px solid rgba(204, 120, 92, 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-top: var(--space-8);
+  box-shadow: 0 2px 12px rgba(204, 120, 92, 0.1);
+}
+
+.ctaSection h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.ctaSubtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.ctaInfo {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  margin-bottom: var(--space-4);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.ctaInfo span {
+  background: var(--background);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.ctaInfoLabel {
+  font-weight: 500;
+  margin-right: var(--space-1);
+}
+
+/* Dark Mode */
+[data-theme="dark"] .ctaSection {
+  background: rgba(224, 155, 122, 0.08);
+  border: 1px solid rgba(224, 155, 122, 0.2);
+  box-shadow: 0 2px 12px rgba(224, 155, 122, 0.15);
+}
+
+[data-theme="dark"] .ctaSection h2 {
+  color: #F5F5F5;
+}
+
+[data-theme="dark"] .ctaSubtitle {
+  color: #C4C4C4;
+}
+
+[data-theme="dark"] .ctaInfo {
+  color: #B4B4B4;
+}
+
+[data-theme="dark"] .ctaInfo span {
+  background: #404040;
+  border-color: #666666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: var(--space-6) var(--space-4);
+    margin-top: var(--space-5);
+  }
+  
+  .ctaSection h2 {
+    font-size: 1.5rem;
+  }
+  
+  .ctaSubtitle {
+    font-size: 1rem;
+  }
+  
+  .ctaInfo {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  .ctaInfo span {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaSection {
+    padding: var(--space-3);
+  }
+}
+
+/* 모바일 가로 모드 */
+@media (max-width: 767px) and (orientation: landscape) {
+  .ctaSection {
+    padding: var(--space-4) var(--space-3);
+  }
+  
+  .ctaSection h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-2);
+  }
+  
+  .ctaSubtitle {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-3);
+  }
+}

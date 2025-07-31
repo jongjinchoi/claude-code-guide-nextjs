@@ -1,0 +1,331 @@
+/* Terminal Dark Mode Styles */
+
+/* ============================= */
+/* Dark Mode Terminal Base */
+/* ============================= */
+[data-theme="dark"] .terminal-example {
+    background: #1a1a1a;
+    border-color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .terminal-header {
+    border-color: #333;
+    background: #1a1a1a;
+}
+
+[data-theme="dark"] .terminal-title {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content {
+    background: #1a1a1a;
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content .output {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content .prompt {
+    color: #569cd6;
+}
+
+[data-theme="dark"] .terminal-content .command {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .terminal-content .comment {
+    color: #808080;
+}
+
+[data-theme="dark"] .terminal-content .cursor {
+    background: #ffffff;
+}
+
+[data-theme="dark"] .terminal-content .prompt .cursor {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* ============================= */
+/* Dark Mode Success Terminal */
+/* ============================= */
+[data-theme="dark"] .terminal-example.success {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+[data-theme="dark"] .terminal-example.success .terminal-content .output {
+    color: #ffffff;
+}
+
+/* ============================= */
+/* Dark Mode Claude Terminal Interface */
+/* ============================= */
+[data-theme="dark"] .terminal-example.claude-terminal {
+    background: #404040;
+    border-color: #555;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-header {
+    border-color: #333;
+    background: #404040;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-title {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-header-bar {
+    background: #404040;
+    border-color: #555;
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-content {
+    background: #404040;
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .output {
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .prompt {
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .command {
+    color: #ffffff;
+}
+
+/* ============================= */
+/* Dark Mode Special Content Boxes */
+/* ============================= */
+[data-theme="dark"] .terminal-example .permission-box {
+    background: transparent;
+    border-color: #666;
+}
+
+[data-theme="dark"] .terminal-example .welcome-box {
+    background: transparent;
+    border-color: #666;
+}
+
+[data-theme="dark"] .terminal-example .input-box {
+    background: #404040;
+    border-color: #666;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .permission-box {
+    background: #404040;
+    border-color: #666;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .welcome-box {
+    background: #404040;
+    border-color: #666;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .input-box {
+    background: #404040;
+    border-color: #666;
+}
+
+/* ============================= */
+/* Dark Mode Text Styling */
+/* ============================= */
+[data-theme="dark"] .terminal-example .output.hint {
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example .permission-box .output.hint {
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example .permission-box .output.hint:first-child {
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example .output.hint.shortcuts-hint {
+    color: #999 !important;
+}
+
+[data-theme="dark"] .terminal-example .output.link {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+[data-theme="dark"] .terminal-example .star {
+    color: #ff00ff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 0.25rem;
+}
+
+[data-theme="dark"] .terminal-example .option {
+    color: #d4d4d4;
+    background: #555;
+}
+
+[data-theme="dark"] .terminal-example .option-inactive {
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example .option-selected {
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example .option-unselected {
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example .input-text {
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example .hint {
+    color: #999;
+}
+
+/* ============================= */
+/* Dark Mode Terminal State Colors */
+/* ============================= */
+[data-theme="dark"] .terminal-content .output.warn {
+    color: #f59e0b;
+}
+
+[data-theme="dark"] .terminal-content .output.error {
+    color: #ef4444;
+}
+
+[data-theme="dark"] .terminal-content .output.success {
+    color: #10b981;
+}
+
+/* ============================= */
+/* Dark Mode Windows Terminal Overrides */
+/* ============================= */
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example {
+    background: #000000;
+    border-color: #333;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-header {
+    background: #000000;
+    border-color: #333;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-title {
+    color: #C0C0C0;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-content {
+    background: #000000;
+    color: #C0C0C0;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-content .output {
+    color: #E0E0E0;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-content .prompt {
+    color: #C0C0C0;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-content .command {
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-content .cursor {
+    background: #C0C0C0;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example.claude-terminal {
+    background: #000000;
+    border-color: #333;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example.claude-terminal .terminal-header-bar {
+    background: #000000;
+    border-bottom-color: #333;
+    color: #C0C0C0;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example.claude-terminal .terminal-content {
+    background: #000000;
+    color: #C0C0C0;
+}
+
+/* ============================= */
+/* Dark Mode Windows Special Colors */
+/* ============================= */
+[data-theme="dark"] body[data-current-os="windows"] .terminal-content .output.warn {
+    color: #FFFF00;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-content .output.error {
+    color: #FF0000;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example .star {
+    color: #FF00FF;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example .option {
+    color: #FFFFFF;
+    background: #333333;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example .option-inactive {
+    color: #808080;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example .hint {
+    color: #808080;
+}
+
+[data-theme="dark"] body[data-current-os="windows"] .terminal-example .input-text {
+    color: #C0C0C0;
+}
+
+/* ============================= */
+/* Dark Mode Terminal Animation */
+/* ============================= */
+[data-theme="dark"] .terminal-content .cursor {
+    animation: blink-dark 1s infinite;
+}
+
+@keyframes blink-dark {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* ============================= */
+/* Dark Mode Accessibility */
+/* ============================= */
+@media (prefers-reduced-motion: reduce) {
+    [data-theme="dark"] .terminal-content .cursor {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* ============================= */
+/* Dark Mode High Contrast Support */
+/* ============================= */
+@media (prefers-contrast: high) {
+    [data-theme="dark"] .terminal-example {
+        border-color: #ffffff;
+        border-width: 2px;
+    }
+    
+    [data-theme="dark"] .terminal-content .output {
+        color: #ffffff;
+    }
+    
+    [data-theme="dark"] .terminal-content .prompt {
+        color: #00ffff;
+    }
+}

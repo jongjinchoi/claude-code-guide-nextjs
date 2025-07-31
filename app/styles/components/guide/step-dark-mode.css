@@ -1,0 +1,289 @@
+/* Dark Mode Styles for Guide Steps */
+
+/* ============================= */
+/* Dark Mode Step Sections */
+/* ============================= */
+[data-theme="dark"] .step-section {
+    background: #1F1F1F;
+    border-color: #555555;
+}
+
+[data-theme="dark"] .step-section.is-active {
+    background: #2A2A2A;
+    border-color: rgba(224, 155, 122, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .step-section.is-active .step-header {
+    background: rgba(224, 155, 122, 0.12);
+}
+
+[data-theme="dark"] .step-content {
+    background: #2A2A2A;
+    border-top-color: rgba(224, 155, 122, 0.2);
+}
+
+[data-theme="dark"] .step-section.is-active .step-content {
+    background: rgba(224, 155, 122, 0.05);
+}
+
+/* ============================= */
+/* Dark Mode Headers and Text */
+/* ============================= */
+[data-theme="dark"] .step-header {
+    background: transparent;
+}
+
+[data-theme="dark"] .step-header h2 {
+    color: #E5E5E5;
+}
+
+[data-theme="dark"] .step-content h3 {
+    color: #F5F5F5;
+}
+
+[data-theme="dark"] .step-content p {
+    color: #C4C4C4;
+}
+
+/* ============================= */
+/* Dark Mode Step Numbers and Tags */
+/* ============================= */
+[data-theme="dark"] .step-number {
+    background: #666666;
+    color: #E5E5E5;
+}
+
+[data-theme="dark"] .step-section.is-active .step-number {
+    background: #E09B7A;
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .step-tag {
+    background: #E09B7A;
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .completed-text {
+    color: #E09B7A;
+}
+
+[data-theme="dark"] .btn-read-only {
+    background: #E09B7A;
+    color: #1a1a1a;
+}
+
+/* ============================= */
+/* Dark Mode Buttons */
+/* ============================= */
+[data-theme="dark"] .btn-back-to-summary,
+[data-theme="dark"] .btn-view-full-content {
+    background: rgba(204, 120, 92, 0.1);
+    color: #E5E5E5;
+    border-color: #CC785C;
+}
+
+[data-theme="dark"] .btn-back-to-summary:hover,
+[data-theme="dark"] .btn-view-full-content:hover {
+    background: #CC785C;
+    color: white;
+}
+
+/* ============================= */
+/* Dark Mode UI Components */
+/* ============================= */
+[data-theme="dark"] .simple-list-box {
+    background: rgba(30, 30, 30, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .terminal-guide-box {
+    background: rgba(42, 42, 42, 0.8);
+    border-color: rgba(68, 68, 68, 0.8);
+}
+
+[data-theme="dark"] .terminal-guide-box h4 {
+    color: #F5F5F5;
+}
+
+[data-theme="dark"] .warning-notice {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+[data-theme="dark"] .warning-notice h4 {
+    color: #F59E0B;
+}
+
+[data-theme="dark"] .warning-notice p {
+    color: #E5E5E5;
+}
+
+[data-theme="dark"] .install-note {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #E5E5E5;
+}
+
+/* ============================= */
+/* Dark Mode Keyboard Keys */
+/* ============================= */
+[data-theme="dark"] kbd {
+    background: #404040;
+    color: #E5E5E5;
+    border-color: #666666;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] kbd.enter-key {
+    background: #404040;
+    color: #E5E5E5;
+    border-color: #666666;
+}
+
+[data-theme="dark"] kbd.enter-key::after {
+    color: #B4B4B4;
+}
+
+/* ============================= */
+/* Dark Mode Inactive States */
+/* ============================= */
+[data-theme="dark"] .step-section:not(.is-active):not(.is-completed) {
+    opacity: 1;
+    background: #3A3A3A;
+    border-color: #666666;
+}
+
+[data-theme="dark"] .step-section:not(.is-active):not(.is-completed) .step-header {
+    background: #3A3A3A;
+}
+
+[data-theme="dark"] .step-section:not(.is-active):not(.is-completed) .step-header h2 {
+    color: #E5E5E5;
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .step-section:not(.is-active):not(.is-completed) .time-estimate {
+    color: #B4B4B4;
+}
+
+[data-theme="dark"] .step-section:not(.is-active):not(.is-completed) .step-number {
+    background: #757575;
+    color: #FFFFFF;
+}
+
+/* ============================= */
+/* Dark Mode Terminal */
+/* ============================= */
+[data-theme="dark"] .terminal-example {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+[data-theme="dark"] .terminal-header {
+    border-color: #333;
+}
+
+[data-theme="dark"] .terminal-title {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content .output {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content .prompt {
+    color: #569cd6;
+}
+
+[data-theme="dark"] .terminal-content .cursor {
+    background: #ffffff;
+}
+
+[data-theme="dark"] .terminal-content .prompt .cursor {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* ============================= */
+/* Dark Mode Claude Terminal */
+/* ============================= */
+[data-theme="dark"] .terminal-example.claude-terminal {
+    background: #404040;
+    border-color: #555;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-header {
+    border-color: #333;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-title {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-header-bar {
+    background: #404040;
+    border-color: #555;
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .terminal-content {
+    background: #404040;
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .permission-box,
+[data-theme="dark"] .terminal-example.claude-terminal .welcome-box,
+[data-theme="dark"] .terminal-example.claude-terminal .input-box {
+    background: #404040;
+    border-color: #666;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .output,
+[data-theme="dark"] .terminal-example.claude-terminal .prompt,
+[data-theme="dark"] .terminal-example.claude-terminal .input-text {
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .option {
+    background: #555;
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .option-inactive {
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example.claude-terminal .hint {
+    color: #999;
+}
+
+/* ============================= */
+/* Dark Mode Permission and Welcome Boxes */
+/* ============================= */
+[data-theme="dark"] .terminal-example .permission-box,
+[data-theme="dark"] .terminal-example .welcome-box {
+    background: transparent;
+    border-color: #666;
+}
+
+[data-theme="dark"] .terminal-example .output.hint {
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example .output.link {
+    color: #60a5fa;
+}
+
+[data-theme="dark"] .terminal-example .option-selected {
+    color: #d4d4d4;
+}
+
+[data-theme="dark"] .terminal-example .option-unselected {
+    color: #999;
+}
+
+[data-theme="dark"] .terminal-example .input-text {
+    color: #999;
+}

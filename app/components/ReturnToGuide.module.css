@@ -1,0 +1,110 @@
+/* Return to Guide Button */
+.returnToGuide {
+    position: fixed;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    background: var(--primary-color);
+    color: white;
+    padding: var(--space-2) var(--space-3);
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.3s ease-out forwards;
+}
+
+.returnToGuideContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.returnToGuideMain {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.returnToGuide:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.returnToGuideIcon {
+    width: 20px;
+    height: 20px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.returnToGuideText {
+    color: white;
+    font-weight: 500;
+}
+
+/* Current Step Info */
+.currentStepInfo {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    font-weight: 400;
+    white-space: nowrap;
+    padding-top: var(--space-1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hide on mobile devices */
+@media (max-width: 768px) {
+    .returnToGuide {
+        bottom: var(--space-3);
+        right: var(--space-3);
+        padding: var(--space-2);
+    }
+    
+    .returnToGuideText {
+        display: none;
+    }
+    
+    .returnToGuideIcon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .currentStepInfo {
+        font-size: 0.75rem;
+        padding-top: 6px;
+    }
+}
+
+/* Dark mode */
+[data-theme="dark"] .returnToGuide {
+    background: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .returnToGuide:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .currentStepInfo {
+    color: rgba(255, 255, 255, 0.8);
+    border-top-color: rgba(255, 255, 255, 0.15);
+}

@@ -1,0 +1,148 @@
+/* Windows Terminal Styles */
+
+/* ============================= */
+/* Windows Terminal - Black Background like real cmd */
+/* ============================= */
+body[data-current-os="windows"] .terminal-example {
+    background: #000000;
+    border-color: #333;
+}
+
+body[data-current-os="windows"] .terminal-header {
+    background: #000000;
+    border-color: #333;
+}
+
+body[data-current-os="windows"] .terminal-title {
+    color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .terminal-content {
+    background: #000000;
+    color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .terminal-content .output {
+    color: #E0E0E0;  /* Brighter gray for better readability */
+}
+
+body[data-current-os="windows"] .terminal-content .prompt {
+    color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .terminal-content .command {
+    color: #FFFFFF;
+}
+
+body[data-current-os="windows"] .terminal-content .comment {
+    color: #808080;
+}
+
+body[data-current-os="windows"] .terminal-content .cursor {
+    background: #C0C0C0;
+}
+
+/* ============================= */
+/* Windows Success Terminal */
+/* ============================= */
+body[data-current-os="windows"] .terminal-example.success {
+    background: #000000;
+    border-color: #333;
+}
+
+body[data-current-os="windows"] .terminal-example.success .terminal-content .output {
+    color: #FFFFFF;  /* White for success outputs */
+}
+
+/* ============================= */
+/* Windows Claude Terminal */
+/* ============================= */
+body[data-current-os="windows"] .terminal-example.claude-terminal {
+    background: #000000;
+    border-color: #333;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .terminal-header-bar {
+    background: #000000;
+    border-bottom-color: #333;
+    color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .terminal-content {
+    background: #000000;
+    color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .output {
+    color: #E0E0E0;  /* Brighter gray for better readability */
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .prompt {
+    color: #C0C0C0;
+}
+
+/* ============================= */
+/* Windows Special Boxes */
+/* ============================= */
+body[data-current-os="windows"] .terminal-example.claude-terminal .permission-box {
+    border-color: #808080 !important;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .welcome-box {
+    border-color: #808080 !important;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .input-box {
+    background: #000000;
+    border-color: #808080;
+}
+
+/* ============================= */
+/* Windows Text Colors */
+/* ============================= */
+body[data-current-os="windows"] .terminal-example.claude-terminal .option {
+    color: #FFFFFF;
+    background: #333333;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .option-inactive {
+    color: #808080;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .hint {
+    color: #808080;
+}
+
+body[data-current-os="windows"] .terminal-example.claude-terminal .input-text {
+    color: #C0C0C0;
+}
+
+/* ============================= */
+/* Windows Warning and Error Colors */
+/* ============================= */
+body[data-current-os="windows"] .terminal-content .output.warn {
+    color: #FFFF00;  /* Bright yellow for Windows cmd */
+}
+
+body[data-current-os="windows"] .terminal-content .output.error {
+    color: #FF0000;  /* Bright red for Windows cmd */
+}
+
+/* ============================= */
+/* Windows Special Elements */
+/* ============================= */
+body[data-current-os="windows"] .terminal-example .star {
+    color: #FF00FF;  /* Bright magenta for Windows */
+}
+
+body[data-current-os="windows"] .terminal-example .option-selected {
+    color: #FFFFFF;
+}
+
+body[data-current-os="windows"] .terminal-example .option-unselected {
+    color: #808080;
+}
+
+body[data-current-os="windows"] .terminal-example .input-text {
+    color: #C0C0C0;
+}

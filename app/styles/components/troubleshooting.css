@@ -1,0 +1,254 @@
+/* Troubleshooting Component Styles */
+
+/* ============================= */
+/* Base Troubleshooting Container */
+/* ============================= */
+.troubleshooting {
+    display: none;
+    background: rgba(249, 250, 251, 0.6);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+    font-size: 0.875rem;
+}
+
+.troubleshooting.is-active {
+    display: block;
+}
+
+.troubleshooting h3 {
+    color: var(--warning-color);
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 1.125rem;
+}
+
+.troubleshooting-content h4 {
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.troubleshooting-content p,
+.mac-solution p,
+.mac-type-selector p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* ============================= */
+/* Mac Type Selector */
+/* ============================= */
+.mac-type-selector {
+    margin-bottom: var(--space-4);
+}
+
+.mac-buttons {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+.mac-type-btn {
+    padding: var(--space-2) var(--space-3);
+    background: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.mac-type-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.mac-type-btn.is-active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Mac Solution Display */
+.mac-solution {
+    margin-top: var(--space-3);
+}
+
+/* ============================= */
+/* Troubleshooting Resolution */
+/* ============================= */
+.troubleshooting-resolution {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.troubleshooting-resolution h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+    font-size: 0.9375rem;
+}
+
+/* Resolution Check Box */
+.resolution-check {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid #10b981;
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+.resolution-check:hover {
+    background: rgba(16, 185, 129, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.resolution-check.is-resolved,
+.resolution-check:disabled {
+    background: rgba(16, 185, 129, 0.2);
+    cursor: default;
+    opacity: 0.8;
+}
+
+.resolution-check.is-resolved:hover,
+.resolution-check:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Resolution Check Icon */
+.resolution-check-icon {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.resolution-check.is-resolved .resolution-check-icon {
+    background: #10b981;
+    color: white;
+}
+
+/* Resolution Check Content */
+.resolution-check-content {
+    flex-grow: 1;
+}
+
+.resolution-check-title {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #059669;
+    margin-bottom: 2px;
+}
+
+.resolution-check-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* ============================= */
+/* Selected Label for Resolution */
+/* ============================= */
+.resolution-selected-label {
+    margin-top: var(--space-2);
+    text-align: center;
+    color: #059669;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.resolution-selected-label i {
+    margin-right: 6px;
+}
+
+/* ============================= */
+/* Dark Mode Support */
+/* ============================= */
+[data-theme="dark"] .troubleshooting {
+    background: rgba(30, 41, 59, 0.3);
+    border-color: rgba(51, 65, 85, 0.5);
+}
+
+[data-theme="dark"] .mac-type-btn {
+    background: #2A2A2A;
+    border-color: #444;
+}
+
+[data-theme="dark"] .mac-type-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .resolution-check {
+    background: rgba(212, 149, 120, 0.15);
+}
+
+[data-theme="dark"] .resolution-check:hover {
+    background: rgba(212, 149, 120, 0.2);
+}
+
+[data-theme="dark"] .resolution-check.is-resolved {
+    background: rgba(212, 149, 120, 0.25);
+}
+
+/* ============================= */
+/* Responsive Design */
+/* ============================= */
+@media (max-width: 768px) {
+    .mac-buttons {
+        flex-direction: column;
+    }
+    
+    .mac-type-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .resolution-check {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .resolution-check-icon {
+        margin-bottom: var(--space-2);
+    }
+}
+
+@media (max-width: 480px) {
+    .troubleshooting {
+        margin: var(--space-3) 0;
+        padding: var(--space-3);
+    }
+    
+    .troubleshooting h3 {
+        font-size: 1rem;
+    }
+    
+    .resolution-check-title {
+        font-size: 0.875rem;
+    }
+    
+    .resolution-check-desc {
+        font-size: 0.75rem;
+    }
+}

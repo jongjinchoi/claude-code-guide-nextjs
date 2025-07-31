@@ -1,0 +1,230 @@
+/* FAQ Terminal Component Styles */
+
+/* 기본 터미널 박스 */
+.terminalExample {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: var(--radius-sm);
+    padding: var(--space-3);
+    margin: var(--space-2) 0;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Windows 터미널 스타일 */
+.terminalWindows {
+    background: #000000 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+.terminalWindows .terminalHeader {
+    border-bottom-color: #333333 !important;
+}
+
+.terminalWindows .terminalTitle {
+    color: #cccccc !important;
+}
+
+/* Windows 터미널 내부 모든 텍스트를 흰색으로 */
+.terminalWindows .terminalContent {
+    color: #ffffff !important;
+}
+
+.terminalWindows .terminalContent * {
+    color: #ffffff !important;
+}
+
+/* Windows 터미널에서도 경고와 에러는 원래 색상 유지 */
+.terminalWindows .terminalContent :global(.warn) {
+    color: #fbbf24 !important;
+}
+
+.terminalWindows .terminalContent :global(.error) {
+    color: #ef4444 !important;
+}
+
+/* Windows 터미널 내부 텍스트 색상 */
+.terminalWindows .terminalContent :global(.output) {
+    color: #ffffff !important;
+    display: block;
+}
+
+.terminalWindows .terminalContent :global(.prompt) {
+    color: #ffffff !important;
+    display: inline;
+    font-weight: 600;
+}
+
+.terminalWindows .terminalContent :global(.command) {
+    color: #ffffff !important;
+}
+
+.terminalWindows .terminalContent :global(.comment) {
+    color: #888888 !important;
+    display: block;
+}
+
+.terminalWindows .terminalContent :global(.cursor) {
+    background: #ffffff !important;
+}
+
+.terminalWindows .terminalContent :global(.prompt) :global(.cursor) {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* 터미널 헤더 */
+.terminalHeader {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: var(--space-1);
+    margin-bottom: var(--space-2);
+}
+
+.terminalTitle {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* 터미널 콘텐츠 */
+.terminalContent {
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* 터미널 라인 */
+.terminalLine {
+    margin-bottom: 4px;
+}
+
+/* 터미널 요소들 */
+.terminalContent .output {
+    color: #000000;
+    display: block;
+}
+
+.terminalContent .prompt {
+    color: #000000;
+    display: inline;
+    font-weight: 600;
+}
+
+.terminalContent .command {
+    color: #000000;
+}
+
+.terminalContent .comment {
+    color: #6b7280;
+    display: block;
+}
+
+/* 경고 및 에러 스타일 */
+.terminalContent :global(.warn) {
+    color: #fbbf24;
+}
+
+.terminalContent :global(.error) {
+    color: #ef4444;
+}
+
+/* 커서 애니메이션 */
+.terminalContent .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: #000000;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+}
+
+/* prompt 내의 커서는 다르게 처리 */
+.terminalContent .prompt .cursor {
+    background: #000000;
+    color: #ffffff;
+    padding: 0 2px;
+    width: auto;
+    height: auto;
+    animation: none;
+}
+
+/* 다크모드 지원 */
+[data-theme="dark"] .terminalExample {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+[data-theme="dark"] .terminalHeader {
+    border-color: #333;
+}
+
+[data-theme="dark"] .terminalTitle {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminalContent .output {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminalContent .prompt {
+    color: #569cd6;
+}
+
+[data-theme="dark"] .terminalContent .command {
+    color: #ccc;
+}
+
+[data-theme="dark"] .terminalContent .comment {
+    color: #6a9955;
+}
+
+[data-theme="dark"] .terminalContent .cursor {
+    background: #ffffff;
+}
+
+[data-theme="dark"] .terminalContent .prompt .cursor {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* 커서 애니메이션 */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* 로딩 스피너 애니메이션 */
+.loadingSpinner {
+    display: inline-block;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+.loadingSpinner::before {
+    content: "⠸";
+    animation: spinner 1s infinite;
+}
+
+/* 전역 클래스로도 접근 가능하도록 추가 */
+.terminalExample :global(.loading-spinner) {
+    display: inline-block;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+.terminalExample :global(.loading-spinner)::before {
+    content: "⠸";
+    animation: spinner 1s infinite;
+}
+
+@keyframes spinner {
+    0% { content: "⠸"; }
+    12.5% { content: "⠼"; }
+    25% { content: "⠴"; }
+    37.5% { content: "⠦"; }
+    50% { content: "⠧"; }
+    62.5% { content: "⠇"; }
+    75% { content: "⠏"; }
+    87.5% { content: "⠋"; }
+    100% { content: "⠸"; }
+}

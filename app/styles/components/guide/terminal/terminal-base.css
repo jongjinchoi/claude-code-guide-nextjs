@@ -1,0 +1,225 @@
+/* Terminal Base Styles */
+
+/* ============================= */
+/* Terminal Container */
+/* ============================= */
+.terminal-example {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: var(--radius-sm);
+    padding: var(--space-3);
+    margin: var(--space-2) 0;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ============================= */
+/* Terminal Header */
+/* ============================= */
+.terminal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: var(--space-1);
+    margin-bottom: var(--space-2);
+}
+
+.terminal-title {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* ============================= */
+/* Terminal Content */
+/* ============================= */
+.terminal-content {
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.terminal-content .output {
+    color: #000000;
+    display: block;
+}
+
+.terminal-content .prompt {
+    color: #000000;
+    display: inline;
+    font-weight: 600;
+}
+
+.terminal-content .command {
+    color: #000000;
+}
+
+.terminal-content .comment {
+    color: #6b7280;
+}
+
+/* ============================= */
+/* Terminal Cursor */
+/* ============================= */
+.terminal-content .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: #000000;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+}
+
+.terminal-content .prompt .cursor {
+    background: #000000;
+    color: #ffffff;
+    padding: 0 2px;
+    width: auto;
+    height: auto;
+    animation: none;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* ============================= */
+/* Terminal Variants */
+/* ============================= */
+
+/* Success terminal examples */
+.terminal-example.success {
+    background: #ffffff;
+}
+
+/* Claude Terminal Interface */
+.terminal-example.claude-terminal {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 0;
+    overflow: hidden;
+}
+
+.terminal-example.claude-terminal .terminal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: var(--space-1);
+    margin-bottom: var(--space-2);
+}
+
+.terminal-example.claude-terminal .terminal-header-bar {
+    background: #f9fafb;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.terminal-example.claude-terminal .terminal-content {
+    background: #ffffff;
+    color: #1f2937;
+    padding: var(--space-3);
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* ============================= */
+/* Special Content Boxes */
+/* ============================= */
+.terminal-example .permission-box {
+    border: 1px solid #92400e;
+    border-radius: 4px;
+    padding: var(--space-3);
+    margin: var(--space-3) 0;
+    background: transparent;
+}
+
+.terminal-example .welcome-box {
+    border: 1px solid #ec4899;
+    border-radius: 4px;
+    padding: var(--space-3);
+    margin: var(--space-3) 0;
+    background: transparent;
+}
+
+.terminal-example .input-box {
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: var(--space-3) 0;
+    background: transparent;
+}
+
+/* ============================= */
+/* Terminal Text Styling */
+/* ============================= */
+.terminal-example .output.hint {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: var(--space-2);
+}
+
+.terminal-example .permission-box .output.hint {
+    color: #f97316;
+}
+
+.terminal-example .permission-box .output.hint:first-child {
+    color: #f97316;
+    margin-bottom: var(--space-2);
+}
+
+.terminal-example .output.hint.shortcuts-hint {
+    color: #6b7280 !important;
+}
+
+.terminal-example .output.link {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.terminal-example .star {
+    color: #ec4899;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 0.25rem;
+}
+
+.terminal-example .option-selected {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.terminal-example .option-unselected {
+    color: #6b7280;
+}
+
+.terminal-example .input-text {
+    color: #6b7280;
+    margin-left: 0.25rem;
+}
+
+/* ============================= */
+/* Terminal State Colors */
+/* ============================= */
+
+/* Warning and Error colors */
+.terminal-content .output.warn {
+    color: #f59e0b;
+}
+
+.terminal-content .output.error {
+    color: #ef4444;
+}
+
+/* Success colors */
+.terminal-content .output.success {
+    color: #10b981;
+}
+
+/* ============================= */
+/* Section Separator */
+/* ============================= */
+.terminal-section-separator {
+    height: 1px;
+    background: var(--border-color);
+    margin: var(--space-4) 0;
+}

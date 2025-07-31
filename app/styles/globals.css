@@ -1,0 +1,221 @@
+/* Import base styles */
+@import './base/reset.css';
+@import './base/variables.css';
+@import './base/page-wrapper.css';
+@import './components/copyright.css';
+@import './components/mobile-block.css';
+@import './components/tooltips.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Additional base styles not covered in reset.css */
+  
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: var(--primary-color);
+    color: white;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .container-max {
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+  .transition-base {
+    transition: var(--transition);
+  }
+
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+}
+
+/* FAQ Page Specific Styles - All FAQ styles moved to dedicated CSS files */
+
+
+
+/* OS Specific styles */
+.os-specific {
+  display: none;
+}
+
+.os-specific.active {
+  display: block;
+}
+
+/* Terminal Example Styles */
+.terminal-example {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin: var(--space-2) 0;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.terminal-header {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: var(--space-1);
+  margin-bottom: var(--space-2);
+}
+
+.terminal-title {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.terminal-content {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.terminal-content .output {
+  color: #000000;
+  display: inline;
+}
+
+.terminal-content .prompt {
+  color: #000000;
+  display: inline;
+  font-weight: 600;
+}
+
+.terminal-content .command {
+  color: #000000;
+}
+
+.terminal-content .comment {
+  color: #6b7280;
+  display: inline;
+}
+
+.terminal-content .cursor {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background: #000000;
+  animation: blink 1s infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+.terminal-content .output.warn {
+  color: #f59e0b;
+}
+
+.terminal-content .output.error {
+  color: #dc2626;
+}
+
+/* Dark mode terminal */
+[data-theme="dark"] .terminal-example {
+  background: #1a1a1a;
+  border-color: #333;
+}
+
+[data-theme="dark"] .terminal-header {
+  border-color: #333;
+}
+
+[data-theme="dark"] .terminal-title {
+  color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content .output {
+  color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content .prompt {
+  color: #569cd6;
+}
+
+[data-theme="dark"] .terminal-content .command {
+  color: #ccc;
+}
+
+[data-theme="dark"] .terminal-content .comment {
+  color: #6a9955;
+}
+
+[data-theme="dark"] .terminal-content .cursor {
+  background: #ffffff;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Loading spinner animation */
+.loading-spinner {
+  display: inline-block;
+  font-family: monospace;
+  font-weight: normal;
+}
+
+.loading-spinner::before {
+  content: "⠸";
+  animation: spinner 1s infinite;
+}
+
+@keyframes spinner {
+  0% { content: "⠸"; }
+  12.5% { content: "⠼"; }
+  25% { content: "⠴"; }
+  37.5% { content: "⠦"; }
+  50% { content: "⠧"; }
+  62.5% { content: "⠇"; }
+  75% { content: "⠏"; }
+  87.5% { content: "⠋"; }
+  100% { content: "⠸"; }
+}
+
+/* Solution steps styles moved to components/solution-steps.css */
+
+/* Common issues */
+.common-issue {
+  position: relative;
+  padding-left: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.common-issue::before {
+  content: "💡";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.25rem;
+}
+
+
+/* Utility Classes */
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+/* Return to Guide Button - Moved to ReturnToGuide.module.css */

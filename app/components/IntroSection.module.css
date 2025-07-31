@@ -1,0 +1,175 @@
+/* IntroSection Component Styles */
+.introSection {
+  margin-bottom: var(--space-8);
+}
+
+/* Variant: Primary (default for About page) */
+.introSectionPrimary {
+  background: linear-gradient(135deg, rgba(204, 120, 92, 0.08), rgba(204, 120, 92, 0.03));
+  border: 1px solid rgba(204, 120, 92, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+/* Variant: Minimal */
+.introSectionMinimal {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.introSection h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+/* Only show default icon when with-icon class is present and no custom icon */
+.introSection h2.withIcon:not(:has(i))::before {
+  content: '\f544';
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  animation: robotFloat 2s ease-in-out infinite;
+}
+
+/* Custom icon styling */
+.introSection h2 i {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  animation: robotFloat 2s ease-in-out infinite;
+}
+
+@keyframes robotFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.introContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.introContent p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.introContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* Beginner tip box */
+.beginnerTip {
+  background: rgba(204, 120, 92, 0.08);
+  border: 1px solid rgba(204, 120, 92, 0.3);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  margin-top: var(--space-6);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.beginnerTip strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .introSectionPrimary {
+  background: rgba(224, 155, 122, 0.08);
+  border: 1px solid rgba(224, 155, 122, 0.3);
+}
+
+[data-theme="dark"] .introSection h2 {
+  color: #F5F5F5;
+}
+
+[data-theme="dark"] .introSection h2.withIcon:not(:has(i))::before,
+[data-theme="dark"] .introSection h2 i {
+  color: #E09B7A;
+}
+
+[data-theme="dark"] .introContent p {
+  color: #C4C4C4;
+}
+
+[data-theme="dark"] .beginnerTip {
+  background: rgba(224, 155, 122, 0.08);
+  border-color: rgba(224, 155, 122, 0.2);
+  color: #C4C4C4;
+}
+
+[data-theme="dark"] .beginnerTip strong {
+  color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .introSection {
+    margin-bottom: var(--space-6);
+  }
+  
+  .introSectionPrimary {
+    padding: var(--space-4);
+  }
+  
+  .introSection h2.withIcon:not(:has(i))::before,
+  .introSection h2 i {
+    font-size: 1.25rem;
+  }
+  
+  .introSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-4);
+  }
+  
+  .introContent p {
+    font-size: 1rem;
+  }
+  
+  .beginnerTip {
+    padding: var(--space-3);
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .introSectionPrimary {
+    padding: var(--space-3);
+  }
+  
+  .introSection h2 {
+    font-size: 1.25rem;
+  }
+  
+  .introContent p {
+    font-size: 0.9375rem;
+  }
+}
+
+/* 모바일 가로 모드 */
+@media (max-width: 767px) and (orientation: landscape) {
+  .introSection {
+    margin-bottom: var(--space-4);
+  }
+  
+  .introSection h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+  }
+}

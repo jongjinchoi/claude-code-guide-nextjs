@@ -1,0 +1,90 @@
+/* Tooltip component */
+.tooltip {
+    position: relative;
+    display: inline;
+    border-bottom: 1px dotted var(--primary-color);
+    color: var(--primary-color);
+    cursor: help;
+}
+
+.tooltip::after {
+    content: "?";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 16px;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 280px;
+    background-color: var(--background);
+    color: var(--text-primary);
+    text-align: left;
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -140px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color);
+}
+
+/* 화면 상단에 가까운 툴팁은 아래쪽에 표시 */
+.faq-answer-content .tooltip-text {
+    bottom: auto;
+    top: 125%;
+}
+
+.faq-answer-content .tooltip-text::after {
+    top: auto;
+    bottom: 100%;
+    border-color: transparent transparent var(--background) transparent;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--background) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+[data-theme="dark"] .tooltip-text::after {
+    border-color: var(--background) transparent transparent transparent;
+}
+
+[data-theme="dark"] .faq-answer-content .tooltip-text::after {
+    border-color: transparent transparent var(--background) transparent;
+}
+
+@media (max-width: 768px) {
+    .tooltip-text {
+        width: 220px;
+        margin-left: -110px;
+        font-size: 0.8rem;
+        padding: var(--space-2);
+    }
+}

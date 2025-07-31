@@ -1,0 +1,248 @@
+/* IntroStep Component - 1단계 전용 스타일 */
+
+/* 기본 컨테이너 */
+.introStep {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* 확인사항 섹션 */
+.checkSection {
+  padding: var(--space-5) var(--space-4);
+  background: rgba(248, 250, 252, 0.6);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--radius-lg);
+}
+
+.checkSection h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.checkSection p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.checkList {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+
+.checkList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checkList li {
+  position: relative;
+  padding-left: var(--space-4);
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.checkList li:last-child {
+  margin-bottom: 0;
+}
+
+.checkList li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--success-color);
+  font-weight: 600;
+}
+
+.checkList strong {
+  color: var(--text-primary);
+}
+
+/* 터미널 가이드 섹션 */
+.terminalGuide {
+  padding: var(--space-5) var(--space-4);
+  background: rgba(249, 250, 251, 0.6);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: var(--radius-lg);
+}
+
+.terminalGuide h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.terminalGuide p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.terminalGuideBox {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.terminalGuideBox h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+/* 열기/닫기 방법 리스트 */
+.openMethodList,
+.closeMethodList {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.openMethodList ul,
+.closeMethodList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.openMethodList li,
+.closeMethodList li {
+  position: relative;
+  padding-left: var(--space-3);
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.openMethodList li:last-child,
+.closeMethodList li:last-child {
+  margin-bottom: 0;
+}
+
+.openMethodList li::before,
+.closeMethodList li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+/* 키보드 키 스타일 */
+.introStep kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* .enterKey 스타일 제거 - 일반 kbd와 동일하게 표시 */
+
+/* 코드 스타일 */
+.introStep code {
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+/* 터미널 구분선 */
+.terminalSeparator {
+  height: 1px;
+  background: var(--border-color);
+  margin: var(--space-4) 0;
+}
+
+/* 단일 버튼 영역 */
+.singleButton {
+  padding: var(--space-5) var(--space-4);
+  background: rgba(251, 251, 251, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  border-radius: var(--radius-lg);
+}
+
+.singleButton p {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+/* 다크모드 */
+[data-theme="dark"] .checkSection {
+  background: rgba(30, 41, 59, 0.3);
+  border-color: rgba(51, 65, 85, 0.5);
+}
+
+[data-theme="dark"] .terminalGuide {
+  background: rgba(30, 41, 59, 0.3);
+  border-color: rgba(51, 65, 85, 0.5);
+}
+
+[data-theme="dark"] .singleButton {
+  background: rgba(30, 41, 59, 0.2);
+  border-color: rgba(51, 65, 85, 0.4);
+}
+
+[data-theme="dark"] .checkList,
+[data-theme="dark"] .terminalGuideBox {
+  background: var(--dark-bg-primary);
+  border-color: var(--dark-border);
+}
+
+[data-theme="dark"] .openMethodList,
+[data-theme="dark"] .closeMethodList {
+  background: var(--dark-bg-secondary);
+  border-color: var(--dark-border);
+}
+
+
+[data-theme="dark"] .introStep kbd {
+  background: var(--dark-bg-secondary);
+  border-color: var(--dark-border);
+  color: var(--dark-text-primary);
+}
+
+[data-theme="dark"] .introStep code {
+  background: var(--dark-bg-secondary);
+  color: var(--dark-text-primary);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .introStep {
+    gap: var(--space-3);
+  }
+  
+  .checkSection,
+  .terminalGuide,
+  .singleButton {
+    padding: var(--space-4) var(--space-3);
+  }
+  
+  .terminalGuideBox {
+    padding: var(--space-3);
+  }
+  
+  .introStep h3 {
+    font-size: 1.125rem;
+  }
+}

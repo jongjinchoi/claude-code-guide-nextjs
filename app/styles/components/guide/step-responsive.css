@@ -1,0 +1,224 @@
+/* Responsive Design for Guide Steps */
+
+/* ============================= */
+/* Mobile Responsive - 768px and below */
+/* ============================= */
+@media (max-width: 768px) {
+    .step-section {
+        margin-bottom: var(--space-3);
+        border-radius: var(--radius-sm);
+    }
+
+    .step-header {
+        padding: var(--space-3);
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-2);
+        min-height: 80px;
+    }
+
+    .step-header h2 {
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    .step-content {
+        padding: var(--space-3);
+    }
+
+    .step-content h3 {
+        font-size: 1.125rem;
+        margin-bottom: var(--space-2);
+    }
+
+    .step-content p {
+        font-size: 0.875rem; /* 14px on mobile */
+        line-height: 1.6;
+    }
+
+    /* Terminal examples on mobile */
+    .terminal-example {
+        font-size: 0.75rem;
+        padding: var(--space-2);
+        margin: var(--space-2) 0;
+    }
+
+    .terminal-content {
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+
+    /* Buttons on mobile */
+    .btn-view-full-content,
+    .btn-back-to-summary {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 0.875rem;
+    }
+
+    /* OS switcher on mobile */
+    .os-switcher {
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .os-switcher button {
+        width: 100%;
+        padding: 12px 16px;
+    }
+}
+
+/* ============================= */
+/* Tablet Responsive - 769px to 1024px */
+/* ============================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .step-section {
+        margin-bottom: var(--space-3);
+    }
+
+    .step-header {
+        padding: var(--space-4);
+    }
+
+    .step-content {
+        padding: var(--space-4);
+    }
+
+    .terminal-example {
+        font-size: 0.8125rem;
+    }
+
+    .terminal-content {
+        font-size: 0.8125rem;
+    }
+}
+
+/* ============================= */
+/* Large Screen Optimizations - 1200px and above */
+/* ============================= */
+@media (min-width: 1200px) {
+    .step-section {
+        max-width: none;
+        margin-bottom: var(--space-4);
+    }
+
+    .step-header {
+        padding: var(--space-3) var(--space-5);
+    }
+
+    .step-content {
+        padding: var(--space-5);
+    }
+
+    .step-content h3 {
+        font-size: 1.375rem;
+    }
+
+    .terminal-example {
+        font-size: 0.9375rem;
+    }
+
+    .terminal-content {
+        font-size: 0.9375rem;
+        line-height: 1.7;
+    }
+}
+
+/* ============================= */
+/* Print Styles */
+/* ============================= */
+@media print {
+    .step-section {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        margin-bottom: var(--space-3);
+    }
+
+    .step-section.is-active {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .terminal-example {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .btn-view-full-content,
+    .btn-back-to-summary {
+        display: none;
+    }
+
+    .os-switcher {
+        display: none;
+    }
+}
+
+/* ============================= */
+/* High DPI / Retina Displays */
+/* ============================= */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .terminal-example {
+        border-width: 0.5px;
+    }
+
+    .step-section {
+        border-width: 0.5px;
+    }
+
+    kbd {
+        border-width: 0.5px;
+    }
+}
+
+/* ============================= */
+/* Reduced Motion Support */
+/* ============================= */
+@media (prefers-reduced-motion: reduce) {
+    .step-section {
+        transition: none;
+        transform: none;
+    }
+
+    .step-section.is-active {
+        transform: none;
+        transition: none;
+    }
+
+    .terminal-content .cursor {
+        animation: none;
+        opacity: 1;
+    }
+
+    .btn-view-full-content,
+    .btn-back-to-summary {
+        transition: none;
+    }
+}
+
+/* ============================= */
+/* Container Queries Support */
+/* ============================= */
+@container (max-width: 600px) {
+    .step-content {
+        padding: var(--space-2);
+    }
+
+    .terminal-example {
+        padding: var(--space-2);
+        font-size: 0.75rem;
+    }
+}
+
+@container (min-width: 800px) {
+    .step-content {
+        padding: var(--space-5);
+    }
+
+    .terminal-example {
+        padding: var(--space-4);
+    }
+}

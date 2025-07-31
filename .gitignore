@@ -20,6 +20,23 @@
 # production
 /build
 
+# backup folders and files
+/app/lib/modules-backup
+*.backup
+**/backup/
+**/_backup/
+cleanup-backup-*
+
+# Development documentation
+CLAUDE.md
+*_REPORT.md
+*_SUMMARY.md
+*_GUIDE.md
+*_ANALYSIS.md
+*_SYSTEM.md
+*_REFERENCE.md
+table-structure-report.md
+
 # misc
 .DS_Store
 *.pem
@@ -29,6 +46,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
 # env files (can opt-in for committing if needed)
 .env*

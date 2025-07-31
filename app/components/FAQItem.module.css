@@ -1,0 +1,72 @@
+/* FAQ Item Component */
+.faqItem {
+    background: rgba(249, 250, 251, 0.5);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    transition: var(--transition);
+}
+
+.faqItem:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faqItem:last-child {
+    margin-bottom: 0;
+}
+
+.faqItem h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+}
+
+.faqItem p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-2);
+}
+
+.faqItem p:last-child {
+    margin-bottom: 0;
+}
+
+.faqItem ul {
+    margin-left: var(--space-4);
+    list-style: disc;
+    color: var(--text-secondary);
+}
+
+.faqItem ul li {
+    margin-bottom: var(--space-1);
+}
+
+.faqItem strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Dark mode styles */
+:global([data-theme="dark"]) .faqItem {
+    background: rgba(26, 26, 26, 0.5);
+    border-color: rgba(68, 68, 68, 0.8);
+}
+
+:global([data-theme="dark"]) .faqItem:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme="dark"]) .faqItem h4 {
+    color: var(--text-primary);
+}
+
+:global([data-theme="dark"]) .faqItem p,
+:global([data-theme="dark"]) .faqItem ul {
+    color: var(--text-secondary);
+}
+
+:global([data-theme="dark"]) .faqItem strong {
+    color: var(--text-primary);
+}

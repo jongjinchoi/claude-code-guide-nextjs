@@ -1,0 +1,187 @@
+/* FeatureCard Component Styles */
+
+/* Feature Card Container */
+.featureCard {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  transition: var(--transition);
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.recommended {
+  border-color: var(--primary-color);
+  background: rgba(204, 120, 92, 0.02);
+  position: relative;
+}
+
+.advanced {
+  background: white;
+  border: 1px solid var(--border-color);
+}
+
+/* Recommendation Badge */
+.recommendationBadge {
+  background: var(--primary-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  position: absolute;
+  top: -16px;
+  right: 12px;
+  z-index: 10;
+}
+
+/* Feature Header */
+.featureHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.featureTitleWrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Feature Icon */
+.featureIcon {
+  font-size: 1.5rem;
+  margin-right: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(204, 120, 92, 0.1);
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+/* Feature Title */
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+
+/* Feature Description */
+.featureDescription {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+/* Feature Example/Simple */
+.featureExample,
+.featureSimple {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* Dark Mode */
+:global([data-theme="dark"]) .featureCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:global([data-theme="dark"]) .featureCard:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+:global([data-theme="dark"]) .recommended {
+  background: rgba(204, 120, 92, 0.08);
+  border-color: var(--primary-color);
+}
+
+:global([data-theme="dark"]) .advanced {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:global([data-theme="dark"]) .featureIcon {
+  background: rgba(204, 120, 92, 0.2);
+}
+
+:global([data-theme="dark"]) .featureExample,
+:global([data-theme="dark"]) .featureSimple {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .featureCard {
+    padding: var(--space-3);
+  }
+  
+  .featureIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+  
+  .featureTitle {
+    font-size: 1.125rem;
+  }
+  
+  .recommendationBadge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    top: -12px;
+    right: 10px;
+  }
+}
+
+/* 모바일 가로 모드 */
+@media (max-width: 767px) and (orientation: landscape) {
+  .featureCard {
+    padding: var(--space-2);
+  }
+  
+  .featureHeader {
+    margin-bottom: var(--space-2);
+  }
+  
+  .featureIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.125rem;
+    margin-right: var(--space-1);
+  }
+  
+  .featureTitle {
+    font-size: 1rem;
+  }
+  
+  .featureDescription {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-1);
+  }
+  
+  .featureExample,
+  .featureSimple {
+    padding: var(--space-1);
+    font-size: 0.8rem;
+  }
+}

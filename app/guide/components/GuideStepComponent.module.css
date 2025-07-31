@@ -1,0 +1,261 @@
+/* GuideStepComponent - 2~6단계 공통 스타일 */
+
+/* 기본 컨테이너 */
+.guideStep {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+
+/* 설치/설정 섹션 */
+.installSection {
+  padding: var(--space-5) var(--space-4);
+  background: rgba(248, 250, 252, 0.6);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--radius-lg);
+}
+
+.installSection h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.installSection p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.installNote {
+  font-size: 0.875rem;
+  color: #6b7280;
+  background: #f9fafb;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-3);
+}
+
+/* 코드 블록 */
+.codeBlock {
+  position: relative;
+  background: #1f2937;
+  border-radius: var(--radius-md);
+  margin: var(--space-3) 0;
+  overflow: hidden;
+}
+
+.codeBlock pre {
+  margin: 0;
+  padding: var(--space-3);
+  overflow-x: auto;
+}
+
+.codeBlock code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: #e5e7eb;
+  line-height: 1.5;
+}
+
+.copyButton {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  color: #9ca3af;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* 확인 섹션 */
+.verifySection {
+  padding: var(--space-5) var(--space-4);
+  background: rgba(249, 250, 251, 0.6);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: var(--radius-lg);
+}
+
+.verifySection h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.verifySection p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+/* 터미널 예시 */
+.terminalExample {
+  background: #1a1a1a;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: var(--space-3) 0;
+}
+
+.terminalHeader {
+  background: #2d2d2d;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid #444;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.terminalContent {
+  padding: var(--space-3);
+}
+
+.terminalContent pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: #10b981;
+  line-height: 1.5;
+}
+
+/* 결과 버튼 섹션 */
+.resultButtons {
+  padding: var(--space-5) var(--space-4);
+  background: rgba(251, 251, 251, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  border-radius: var(--radius-lg);
+}
+
+.resultButtons p {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.resultButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  margin-bottom: var(--space-2);
+  background: white;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.resultButton:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  background: #fef3f2;
+}
+
+.resultButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.resultButton i {
+  font-size: 1.5rem;
+}
+
+.resultButton.success i {
+  color: var(--success-color);
+}
+
+.resultButton.error i {
+  color: var(--error-color);
+}
+
+.resultButton strong {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.resultButton span {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+
+/* 다크모드 */
+[data-theme="dark"] .installSection {
+  background: rgba(30, 41, 59, 0.3);
+  border-color: rgba(51, 65, 85, 0.5);
+}
+
+[data-theme="dark"] .verifySection {
+  background: rgba(30, 41, 59, 0.3);
+  border-color: rgba(51, 65, 85, 0.5);
+}
+
+[data-theme="dark"] .resultButtons {
+  background: rgba(30, 41, 59, 0.2);
+  border-color: rgba(51, 65, 85, 0.4);
+}
+
+
+[data-theme="dark"] .resultButton {
+  background: var(--dark-bg-secondary);
+  border-color: var(--dark-border);
+}
+
+[data-theme="dark"] .resultButton:hover:not(:disabled) {
+  background: rgba(240, 108, 65, 0.1);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .installNote {
+  background: var(--dark-bg-secondary);
+  color: var(--dark-text-secondary);
+}
+
+
+/* OS 변형 */
+.guideStep[data-os="windows"] .terminalHeader span::before {
+  content: "명령 프롬프트";
+}
+
+.guideStep[data-os="mac"] .terminalHeader span::before {
+  content: "터미널";
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .guideStep {
+    gap: var(--space-3);
+  }
+  
+  .installSection,
+  .verifySection,
+  .resultButtons {
+    padding: var(--space-4) var(--space-3);
+  }
+  
+  .guideStep h3 {
+    font-size: 1.125rem;
+  }
+  
+  .resultButton {
+    padding: var(--space-2);
+  }
+  
+  .resultButton i {
+    font-size: 1.25rem;
+  }
+}

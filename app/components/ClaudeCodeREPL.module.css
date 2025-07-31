@@ -1,0 +1,288 @@
+/* Claude Code REPL Component Styles */
+
+/* Main container */
+.replContainer {
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: var(--radius-sm);
+    padding: var(--space-3);
+    margin: var(--space-2) 0;
+    font-family: SF Mono, Monaco, Consolas, Courier New, monospace;
+    box-shadow: 0 1px 3px #0000000d;
+}
+
+/* Header */
+.replHeader {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: var(--space-1);
+    margin-bottom: var(--space-2);
+}
+
+.replTitle {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: normal;
+}
+
+/* Welcome Box */
+.welcomeBox {
+    border: 1px solid rgba(204, 120, 92, .5);
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 20px;
+    background: #fffbf880;
+}
+
+/* REPL Lines */
+.replLine {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.replLine:last-child {
+    margin-bottom: 0;
+}
+
+/* Text styles */
+.replPrompt {
+    color: #CC785C;
+    font-weight: 600;
+}
+
+.replWelcome {
+    color: #000;
+    font-weight: 700;
+}
+
+.replDescription {
+    color: #6b7280;
+    font-style: italic;
+}
+
+.replInfo {
+    color: #6b7280;
+}
+
+.replOutput {
+    color: #000;
+    font-family: SF Mono, Monaco, Consolas, Courier New, monospace;
+}
+
+/* Tip section */
+.replTip {
+    margin-bottom: 20px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Command Input Box */
+.commandInputBox {
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.5);
+    margin-bottom: 16px;
+    font-family: SF Mono, Monaco, Consolas, Courier New, monospace;
+}
+
+.commandInputBox .replPrompt {
+    color: #000;
+    font-weight: 600;
+}
+
+.replCommand {
+    color: #000;
+}
+
+.replComment {
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* Cursor */
+.replCursor {
+    background: #000;
+    width: 8px;
+    height: 16px;
+    display: inline-block;
+    margin-left: 1px;
+    animation: replBlink 1s infinite;
+}
+
+@keyframes replBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Command List Table */
+.commandList {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.commandList td {
+    padding: 8px 0;
+    vertical-align: top;
+    font-size: 14px;
+}
+
+.commandName {
+    color: #6b7280;
+    width: 30%;
+    font-family: SF Mono, Monaco, Consolas, Courier New, monospace;
+}
+
+.commandDescription {
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.highlightedCommand {
+    color: #8b5cf6;
+}
+
+/* Footer */
+.replFooter {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .replContainer {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+[data-theme="dark"] .replHeader {
+    border-bottom-color: #333;
+}
+
+[data-theme="dark"] .replTitle {
+    color: #ccc;
+}
+
+[data-theme="dark"] .welcomeBox {
+    background: rgba(40, 40, 40, 0.8);
+    border-color: rgba(224, 155, 122, 0.4);
+}
+
+[data-theme="dark"] .replOutput {
+    color: #e5e5e5;
+}
+
+[data-theme="dark"] .replPrompt {
+    color: #E09B7A;
+}
+
+[data-theme="dark"] .replWelcome {
+    color: #e5e5e5;
+}
+
+[data-theme="dark"] .replDescription {
+    color: #9ca3af;
+}
+
+[data-theme="dark"] .replInfo {
+    color: #9ca3af;
+}
+
+[data-theme="dark"] .replTip {
+    color: #e5e5e5;
+}
+
+[data-theme="dark"] .commandInputBox {
+    background: rgba(40, 40, 40, 0.8);
+    border-color: #374151;
+}
+
+[data-theme="dark"] .commandInputBox .replPrompt {
+    color: #e5e5e5;
+}
+
+[data-theme="dark"] .replCommand {
+    color: #e5e5e5;
+}
+
+[data-theme="dark"] .replComment {
+    color: #9ca3af;
+}
+
+[data-theme="dark"] .commandDescription {
+    color: #e5e5e5;
+}
+
+[data-theme="dark"] .replFooter {
+    color: #e5e5e5;
+}
+
+[data-theme="dark"] .replCursor {
+    background: #fff;
+}
+
+/* Windows mode styles - 명령 프롬프트 스타일 */
+[data-current-os="windows"] .replContainer {
+    background: #000000;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+[data-current-os="windows"] .replHeader {
+    border-bottom-color: #333333;
+}
+
+[data-current-os="windows"] .replTitle {
+    color: #cccccc;
+}
+
+[data-current-os="windows"] .welcomeBox {
+    background: rgba(40, 40, 40, 0.8);
+    border-color: rgba(204, 204, 204, 0.3);
+}
+
+[data-current-os="windows"] .replPrompt,
+[data-current-os="windows"] .replWelcome,
+[data-current-os="windows"] .replDescription,
+[data-current-os="windows"] .replInfo,
+[data-current-os="windows"] .replOutput {
+    color: #ffffff;
+}
+
+[data-current-os="windows"] .replDescription,
+[data-current-os="windows"] .replInfo {
+    color: #cccccc;
+}
+
+[data-current-os="windows"] .commandInputBox {
+    background: rgba(40, 40, 40, 0.8);
+    border-color: #555555;
+}
+
+[data-current-os="windows"] .commandInputBox .replPrompt {
+    color: #ffffff;
+}
+
+[data-current-os="windows"] .replCommand {
+    color: #ffffff;
+}
+
+[data-current-os="windows"] .replCursor {
+    background: #ffffff;
+}
+
+[data-current-os="windows"] .commandName,
+[data-current-os="windows"] .commandDescription {
+    color: #cccccc;
+}
+
+[data-current-os="windows"] .replTip {
+    color: #cccccc;
+}
+
+[data-current-os="windows"] .replFooter {
+    color: #cccccc;
+}
+
+[data-current-os="windows"] .replComment {
+    color: #999999;
+}

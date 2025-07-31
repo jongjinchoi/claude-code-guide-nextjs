@@ -1,0 +1,177 @@
+/* OS-Specific Step Variants */
+
+/* ============================= */
+/* OS Specific Content Display */
+/* ============================= */
+
+/* Mac is default, show Mac content by default */
+.step-section.os-specific[data-os="mac"] {
+    display: block;
+}
+
+.step-section.os-specific[data-os="windows"] {
+    display: none;
+}
+
+/* When Windows is active */
+body[data-current-os="windows"] .step-section.os-specific[data-os="mac"] {
+    display: none;
+}
+
+body[data-current-os="windows"] .step-section.os-specific[data-os="windows"] {
+    display: block;
+}
+
+/* ============================= */
+/* OS-Specific Elements Inside Sections */
+/* ============================= */
+.os-specific:not(.step-section)[data-os="mac"] {
+    display: block;
+}
+
+.os-specific:not(.step-section)[data-os="windows"] {
+    display: none;
+}
+
+body[data-current-os="windows"] .os-specific:not(.step-section)[data-os="mac"] {
+    display: none;
+}
+
+body[data-current-os="windows"] .os-specific:not(.step-section)[data-os="windows"] {
+    display: block;
+}
+
+/* ============================= */
+/* Special Handling for List Items */
+/* ============================= */
+li.os-specific[data-os="mac"] {
+    display: list-item !important;
+    list-style: inherit !important;
+}
+
+li.os-specific[data-os="windows"] {
+    display: none;
+}
+
+body[data-current-os="windows"] li.os-specific[data-os="mac"] {
+    display: none;
+}
+
+body[data-current-os="windows"] li.os-specific[data-os="windows"] {
+    display: list-item !important;
+    list-style: inherit !important;
+}
+
+/* ============================= */
+/* Common UI Components */
+/* ============================= */
+
+/* Simple List Box - 공통 리스트 박스 스타일 */
+.simple-list-box {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    margin: var(--space-3) 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.simple-list-box ul {
+    padding-left: var(--space-3);
+    list-style: disc !important;
+    margin: 0;
+}
+
+.simple-list-box li {
+    margin-bottom: var(--space-2);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* Terminal Guide */
+.terminal-guide {
+    margin: var(--space-4) 0;
+}
+
+.terminal-guide-box {
+    background: rgba(249, 250, 251, 0.5);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin: var(--space-3) 0;
+}
+
+.terminal-guide-box h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+}
+
+/* Install Note */
+.install-note {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: var(--radius);
+    padding: var(--space-2);
+    margin: var(--space-2) 0;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+/* Warning Notice */
+.warning-notice {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    margin: var(--space-3) 0;
+}
+
+.warning-notice h4 {
+    color: var(--warning-color);
+    margin-bottom: var(--space-2);
+}
+
+.warning-notice p {
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.warning-notice p:last-child {
+    margin-bottom: 0;
+}
+
+/* Keyboard Keys */
+kbd {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.875rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    line-height: 1.4;
+    color: #1a1a1a;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+}
+
+kbd.enter-key {
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-right: 20px;
+}
+
+kbd.enter-key::after {
+    content: "↵";
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.875rem;
+    color: #6b7280;
+}

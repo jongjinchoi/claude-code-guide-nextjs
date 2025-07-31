@@ -1,0 +1,96 @@
+:root {
+  /* Colors - Light Theme */
+  --primary-color: #CC785C;
+  --primary-hover: #B56A4F;
+  --primary-light: rgba(204, 120, 92, 0.1);
+  --secondary-color: #f3f4f6;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --text-muted: #9ca3af;
+  --border-color: #e5e7eb;
+  --border-light: rgba(229, 231, 235, 0.5);
+  --success-color: #D49578;
+  --success-light: rgba(212, 149, 120, 0.1);
+  --success-dark: #C48566;
+  --info-color: #2196F3;
+  --info-light: rgba(33, 150, 243, 0.1);
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --color-danger: #ef4444;
+  --color-danger-dark: #dc2626;
+  --background: #ffffff;
+  --bg-secondary: #f9fafb;
+  --surface: #f9fafb;
+  --card-bg: #f9fafb;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Spacing (8px grid) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 56px;
+  --space-8: 64px;
+  --space-12: 96px;
+  
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', '맑은 고딕', Roboto, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
+  
+  /* Border radius */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  
+  /* Transitions */
+  --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: all 0.2s ease;
+  
+  /* Layout */
+  --container-width: 800px;
+  --nav-height: 72px;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --primary-color: #CC785C;
+  --primary-hover: #B56A4F;
+  --primary-light: rgba(204, 120, 92, 0.1);
+  --secondary-color: #1a1a1a;
+  --text-primary: #f5f3f0;
+  --text-secondary: #a8a29e;
+  --text-tertiary: #78716c;
+  --text-muted: #78716c;
+  --border-color: #2a2a2a;
+  --border-light: rgba(42, 42, 42, 0.5);
+  --success-color: #CC785C;
+  --success-light: rgba(204, 120, 92, 0.1);
+  --success-dark: #B56A4F;
+  --info-color: #42A5F5;
+  --info-light: rgba(66, 165, 245, 0.1);
+  --warning-color: #fbbf24;
+  --error-color: #f87171;
+  --color-danger: #f87171;
+  --color-danger-dark: #ef4444;
+  --background: #0a0a0a;
+  --bg-secondary: #141414;
+  --surface: #141414;
+  --card-bg: #141414;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: rgba(0, 0, 0, 0.5);
+}
+
+/* Font size scaling */
+[data-font-size="small"] { --font-size-base: 14px; }
+[data-font-size="large"] { --font-size-base: 18px; }
+[data-font-size="xlarge"] { --font-size-base: 20px; }

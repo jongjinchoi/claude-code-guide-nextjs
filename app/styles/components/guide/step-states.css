@@ -1,0 +1,153 @@
+/* Guide Step State Management */
+
+/* ============================= */
+/* Active State */
+/* ============================= */
+.step-section.is-active {
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.06), rgba(204, 120, 92, 0.02));
+    border-color: #CC785C;
+    opacity: 1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.step-section.is-active .step-header {
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.25), rgba(204, 120, 92, 0.15));
+    border-bottom: 1px solid rgba(204, 120, 92, 0.2);
+}
+
+.step-section.is-active .step-content {
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.12), rgba(204, 120, 92, 0.05));
+}
+
+.step-section.is-active .step-number {
+    background: #CC785C;
+}
+
+/* ============================= */
+/* Completed State */
+/* ============================= */
+.step-section.is-completed {
+    background: transparent;
+    border-color: #CC785C;
+    opacity: 1;
+}
+
+.step-section.is-completed .step-header {
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.15), rgba(204, 120, 92, 0.08));
+    border-bottom: 1px solid rgba(204, 120, 92, 0.1);
+}
+
+.step-section.is-completed .step-number {
+    background: var(--success-color);
+}
+
+/* ============================= */
+/* Inactive State */
+/* ============================= */
+.step-section:not(.is-active):not(.is-completed) {
+    opacity: 0.6;
+    background: #f5f5f5;
+    border-color: #e5e7eb;
+}
+
+.step-section:not(.is-active):not(.is-completed) .step-header {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* ============================= */
+/* Expanded State Management */
+/* ============================= */
+/* Default: hide content */
+.step-section .step-content {
+    display: none;
+}
+
+/* Show content when expanded (not completed) */
+.step-section.is-expanded:not(.is-completed) .step-content {
+    display: block;
+}
+
+/* Hide content when completed and expanded (show summary instead) */
+.step-section.is-completed.is-expanded .step-content {
+    display: none;
+}
+
+/* Show full content when explicitly requested */
+.step-section.is-completed.is-expanded.is-show-full .step-content {
+    display: block;
+}
+
+/* ============================= */
+/* Step Summary for Completed Steps */
+/* ============================= */
+.step-summary {
+    padding: var(--space-4) var(--space-5);
+    display: none;
+    background: transparent;
+}
+
+.step-section.is-completed.is-expanded:not(.is-show-full) .step-summary {
+    display: block;
+}
+
+.step-section.is-completed:not(.is-expanded) .step-summary {
+    display: none;
+}
+
+.step-section.is-completed.is-expanded.is-show-full .step-summary {
+    display: none;
+}
+
+.step-summary-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.step-summary-icon {
+    color: var(--success-color);
+    font-size: 1.5rem;
+}
+
+.step-summary-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ============================= */
+/* View Controls */
+/* ============================= */
+.btn-view-full-content,
+.btn-back-to-summary {
+    background: transparent;
+    border: 1px solid #CC785C;
+    color: #CC785C;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.btn-view-full-content:hover,
+.btn-back-to-summary:hover {
+    background: #CC785C;
+    color: white;
+}
+
+.btn-back-to-summary {
+    margin-bottom: var(--space-3);
+}
+
+.btn-view-full-content i,
+.btn-back-to-summary i {
+    font-size: 0.75rem;
+}

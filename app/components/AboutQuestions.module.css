@@ -1,0 +1,223 @@
+/* AboutQuestions Component Styles */
+.aboutQuestions {
+  margin-bottom: var(--space-12);
+  background: transparent;
+}
+
+.aboutQuestions h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.aboutQuestionsContainer {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* About Question Item - 기본 스타일 */
+.aboutQuestionItem {
+  background: rgba(249, 250, 251, 0.5);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.aboutQuestionItem:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .aboutQuestionItem {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .aboutQuestionItem:hover {
+  background: rgba(59, 130, 246, 0.02);
+}
+
+/* About Question Item - Compact 스타일 */
+.aboutQuestionItemCompact {
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.aboutQuestionItemCompact:last-child {
+  border-bottom: none;
+}
+
+.aboutQuestionItemCompact:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .aboutQuestionItemCompact:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Duplicate styles removed - use .aboutQuestionItem */
+
+/* About Question Button */
+.aboutQuestion {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: var(--transition-fast);
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.aboutQuestion:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .aboutQuestion:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.aboutQuestion span {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.aboutQuestion i {
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+  font-size: 0.875rem;
+  margin-left: var(--space-2);
+}
+
+/* Q&A 스타일 */
+.questionQ {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-right: var(--space-1);
+}
+
+.answerA {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-right: var(--space-1);
+}
+
+/* About Answer */
+.aboutAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(204, 120, 92, 0.02);
+}
+
+.aboutAnswer.isActive {
+  max-height: 1000px;
+}
+
+[data-theme="dark"] .aboutAnswer {
+  background: rgba(204, 120, 92, 0.08);
+}
+
+.aboutAnswerContent {
+  padding: var(--space-4) var(--space-5);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.aboutAnswerContent p {
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.7;
+}
+
+.aboutAnswerContent p:last-child {
+  margin-bottom: 0;
+}
+
+.aboutAnswerContent div {
+  margin-bottom: var(--space-3);
+}
+
+.aboutAnswerContent div:last-child {
+  margin-bottom: 0;
+}
+
+/* 내부 HTML 스타일 */
+.aboutAnswerContent ul {
+  margin: var(--space-2) 0;
+  padding-left: var(--space-4);
+}
+
+.aboutAnswerContent li {
+  margin-bottom: var(--space-1);
+}
+
+.aboutAnswerContent strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.aboutAnswerContent strong.answerA {
+  color: var(--primary-color);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .aboutQuestions h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .aboutQuestion {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .aboutQuestion span {
+    font-size: 0.9375rem;
+  }
+  
+  .aboutQuestion i {
+    font-size: 0.75rem;
+  }
+  
+  .aboutAnswerContent {
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.875rem;
+  }
+}
+
+/* 모바일 가로 모드 */
+@media (max-width: 767px) and (orientation: landscape) {
+  .aboutQuestions {
+    margin-bottom: var(--space-6);
+  }
+  
+  .aboutQuestions h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+  }
+  
+  .aboutQuestionsContainer {
+    gap: var(--space-2);
+  }
+  
+  .aboutQuestion {
+    padding: var(--space-2) var(--space-3);
+  }
+  
+  .aboutAnswerContent {
+    padding: var(--space-2) var(--space-3);
+  }
+}

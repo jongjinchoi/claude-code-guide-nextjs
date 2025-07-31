@@ -1,0 +1,294 @@
+/* Navigation component */
+.navMinimal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    padding-left: calc(40px + var(--space-4)); /* Copyright 사이드바 공간 확보 */
+    background: var(--background);
+    /* border-bottom: 1px solid var(--border-color); */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: var(--transition);
+    height: var(--nav-height);
+    box-sizing: border-box;
+}
+
+.navLogo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 600;
+    font-size: 22px; /* 고정 크기로 변경 */
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    user-select: none;
+}
+
+.navLogo:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.navLogo:active {
+    transform: translateY(0);
+}
+
+
+.navLogo i {
+    font-size: 28px; /* 고정 크기로 변경 */
+    color: var(--primary-color);
+}
+
+.navItems {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.navItems a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 16px; /* 고정 크기로 변경 */
+    padding: var(--space-1) var(--space-2);
+    transition: var(--transition-fast);
+    text-decoration: none;
+    position: relative;
+}
+
+.navItems a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.navItems a:hover {
+    color: var(--text-primary);
+}
+
+.navItems a.isActive {
+    color: var(--primary-color);
+}
+
+.navItems a.isActive::after {
+    width: 100%;
+}
+
+/* 햄버거 메뉴 버튼 */
+.navHamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: var(--transition-fast);
+}
+
+.navHamburger i {
+    font-size: 20px;
+    color: var(--text-primary);
+}
+
+.navHamburger:hover {
+    opacity: 0.8;
+}
+
+/* 모바일 메뉴 오버레이 */
+.mobileMenuOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobileMenuOverlay.isActive {
+    display: block;
+    opacity: 1;
+}
+
+/* 모바일 메뉴 패널 */
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    background: var(--background);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobileMenu.isActive {
+    right: 0;
+}
+
+.mobileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobileMenuClose {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 24px;
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.mobileMenu-close:hover {
+    color: var(--text-primary);
+}
+
+.mobileMenuItems {
+    flex: 1;
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.mobileMenuItems a {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: var(--radius);
+    transition: var(--transition-fast);
+}
+
+.mobileMenuItems a:hover {
+    background: var(--bg-secondary);
+    color: var(--primary-color);
+}
+
+.mobileMenuItems a.isActive {
+    background: rgba(204, 120, 92, 0.1);
+    color: var(--primary-color);
+}
+
+/* 다크모드 모바일 메뉴 */
+[data-theme="dark"] .mobileMenu {
+    background: #1a1a1a;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .mobileMenuItems a:hover {
+    background: #2a2a2a;
+}
+
+[data-theme="dark"] .mobileMenuItems a.active {
+    background: rgba(224, 155, 122, 0.15);
+    color: #E09B7A;
+}
+
+/* Tablet specific navigation */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navMinimal {
+        padding: var(--space-3) var(--space-4);
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .navMinimal {
+        padding: var(--space-2) var(--space-3);
+        padding-left: calc(30px + var(--space-3)); /* 모바일 Copyright 사이드바 공간 */
+        height: 60px; /* 모바일 네비게이션 높이 줄이기 */
+    }
+    
+    .navLogo {
+        font-size: 18px; /* 고정 크기로 변경 */
+    }
+    
+    .navLogo i {
+        font-size: 22px; /* 고정 크기로 변경 */
+    }
+    
+    /* 데스크톱 메뉴 숨기기 */
+    .navItems {
+        display: none;
+    }
+    
+    /* 햄버거 메뉴 표시 */
+    .navHamburger {
+        display: block;
+    }
+}
+
+/* 더 작은 모바일 화면 (360px 이하) */
+@media (max-width: 480px) {
+    .navMinimal {
+        padding: 10px 12px;
+        padding-left: calc(28px + 12px);
+        height: 56px;
+    }
+    
+    .navLogo {
+        font-size: 16px;
+        gap: 8px;
+    }
+    
+    .navLogo i {
+        font-size: 20px;
+    }
+    
+    .navItems {
+        gap: 8px;
+    }
+    
+    .navItems a {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+}
+
+/* 매우 작은 화면 (360px) */
+@media (max-width: 360px) {
+    .navMinimal {
+        padding: 8px 10px;
+        padding-left: calc(26px + 10px);
+        height: 52px;
+    }
+    
+    .navLogo {
+        font-size: 15px;
+        gap: 6px;
+    }
+    
+    .navLogo i {
+        font-size: 18px;
+    }
+    
+    .navItems {
+        gap: 6px;
+    }
+    
+    .navItems a {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+}

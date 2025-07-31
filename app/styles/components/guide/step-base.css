@@ -1,0 +1,135 @@
+/* Guide Step Base Styles */
+
+/* ============================= */
+/* Step Section Base Structure */
+/* ============================= */
+
+.step-section {
+    background: #f5f5f5;
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-3);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+/* ============================= */
+/* Step Header */
+/* ============================= */
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 32px 40px;
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    min-height: 105px;
+}
+
+.step-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    margin-right: auto;
+    color: var(--text-primary);
+}
+
+/* ============================= */
+/* Step Number Badge */
+/* ============================= */
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #9ca3af;
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* ============================= */
+/* Step Tags and Labels */
+/* ============================= */
+.step-tag {
+    background: #CC785C;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 14px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.step-tag.progress-tag {
+    background: #CC785C;
+}
+
+.time-estimate {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-left: var(--space-1);
+}
+
+/* ============================= */
+/* Step Content Area */
+/* ============================= */
+.step-content {
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(204, 120, 92, 0.08), rgba(204, 120, 92, 0.03));
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.step-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+}
+
+.step-content p {
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+    color: var(--text-secondary);
+}
+
+.step-content li {
+    font-size: 0.9375rem; /* 15px - same as p */
+    line-height: 1.6;
+    margin-bottom: var(--space-2);
+    color: var(--text-secondary);
+}
+
+/* ============================= */
+/* Completed Text */
+/* ============================= */
+.completed-text {
+    color: #CC785C;
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-left: var(--space-2);
+}
+
+.btn-read-only {
+    display: inline-block;
+    background: #CC785C;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: default;
+    line-height: 1;
+    font-family: inherit;
+}
