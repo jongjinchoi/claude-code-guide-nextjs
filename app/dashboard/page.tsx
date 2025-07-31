@@ -184,29 +184,37 @@ export default function DashboardPage() {
 
   const fetchSessions = async () => {
     try {
-      const { data, error } = await supabase
+      // Fetch recent sessions for display (limited to 100)
+      const { data: sessionsData, error: sessionsError } = await supabase
         .from('guide_sessions')
         .select('*')
         .order('created_at', { ascending: false })
         .limit(100);
 
-      if (error) throw error;
+      if (sessionsError) throw sessionsError;
 
-      setSessions(data || []);
+      setSessions(sessionsData || []);
+      
+      // Fetch all sessions for statistics (no limit)
+      const { data: allSessionsData, error: statsError } = await supabase
+        .from('guide_sessions')
+        .select('*');
+        
+      if (statsError) throw statsError;
       
       // 통계 계산
-      if (data && data.length > 0) {
-        const completed = data.filter(s => s.is_completed);
-        const withErrors = data.filter(s => s.errors && s.errors.length > 0);
+      if (allSessionsData && allSessionsData.length > 0) {
+        const completed = allSessionsData.filter(s => s.is_completed);
+        const withErrors = allSessionsData.filter(s => s.errors && s.errors.length > 0);
         
         setStats({
-          totalSessions: data.length,
+          totalSessions: allSessionsData.length,
           completedSessions: completed.length,
-          completionRate: (completed.length / data.length) * 100,
+          completionRate: (completed.length / allSessionsData.length) * 100,
           avgCompletionTime: completed.length > 0 
             ? completed.reduce((sum, s) => sum + (s.total_time_seconds || 0), 0) / completed.length / 60
             : 0,
-          errorRate: (withErrors.length / data.length) * 100
+          errorRate: (withErrors.length / allSessionsData.length) * 100
         });
       }
     } catch (error) {
