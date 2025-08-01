@@ -92,6 +92,7 @@ export default function DashboardPage() {
     avgCompletionTime: 0,
     errorRate: 0
   });
+  const [totalVisitors, setTotalVisitors] = useState<number>(0);
 
   useEffect(() => {
     fetchAllData();
@@ -175,7 +176,8 @@ export default function DashboardPage() {
       fetchPagePerformance(),
       fetchButtonUsage(),
       fetchFeedbackSummary(),
-      fetchFeedbackByEmoji()
+      fetchFeedbackByEmoji(),
+      fetchTotalVisitors()
     ]);
   };
 
@@ -314,6 +316,21 @@ export default function DashboardPage() {
     }
   };
 
+  const fetchTotalVisitors = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('counters')
+        .select('count')
+        .eq('name', 'total_visitors')
+        .single();
+
+      if (error) throw error;
+      setTotalVisitors(data?.count || 0);
+    } catch (error) {
+      console.error('Error fetching total visitors:', error);
+    }
+  };
+
   if (loading) {
     return <div className={styles.loadingContainer}>로딩 중...</div>;
   }
@@ -324,6 +341,10 @@ export default function DashboardPage() {
       <div className={styles.dashboardHeader}>
         <h1 className={styles.dashboardTitle}>가이드 추적 대시보드</h1>
         <div className={styles.headerRight}>
+          <div className={styles.totalVisitors}>
+            <span className={styles.visitorLabel}>전체 방문자</span>
+            <span className={styles.visitorCount}>{totalVisitors.toLocaleString()}</span>
+          </div>
           {isRealtime && (
             <span className={styles.realtimeIndicator}>
               🔄 실시간 업데이트
