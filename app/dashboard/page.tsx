@@ -109,7 +109,6 @@ export default function DashboardPage() {
           table: 'guide_sessions' 
         },
         (payload) => {
-          console.log('Guide session 변경:', payload);
           // 새로운 세션이나 완료 시 데이터 새로고침
           fetchSessions();
           fetchTodayMetrics();
@@ -129,7 +128,6 @@ export default function DashboardPage() {
           table: 'user_feedback' 
         },
         (payload) => {
-          console.log('새 피드백:', payload);
           fetchFeedbackSummary();
           fetchFeedbackByEmoji();
         }
@@ -143,7 +141,6 @@ export default function DashboardPage() {
           table: 'page_analytics' 
         },
         (payload) => {
-          console.log('새 페이지뷰:', payload);
           fetchPagePerformance();
         }
       )
@@ -156,7 +153,6 @@ export default function DashboardPage() {
           table: 'user_events' 
         },
         (payload) => {
-          console.log('새 이벤트:', payload);
           if (payload.new && (payload.new as any).event_type === 'button_click') {
             fetchButtonUsage();
           }

@@ -38,9 +38,6 @@ export default function FAQPage() {
   // URL에서 OS 읽기 (Guide 페이지와 동일한 패턴)
   const currentOS = (searchParams.get('os') || 'mac') as 'mac' | 'windows';
   
-  // 디버깅용 로그
-  console.log('FAQ Page - Current OS:', currentOS);
-  
   // OS 전환 핸들러 (Guide 페이지와 동일한 패턴)
   const handleOSChange = (newOS: 'mac' | 'windows') => {
     router.push(`/faq?os=${newOS}`);

@@ -69,7 +69,6 @@ export default function ReturnToGuide() {
 
   const handleReturnToGuide = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log('🔄 Returning to guide with URL:', returnUrl);
     router.push(returnUrl);
   };
 

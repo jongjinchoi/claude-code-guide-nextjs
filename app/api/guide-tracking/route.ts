@@ -168,7 +168,7 @@ export async function POST(request: NextRequest) {
         break;
 
       default:
-        console.warn('Unknown tracking action:', action);
+        // Unknown tracking action - ignore silently
     }
 
     return NextResponse.json({ success: true });

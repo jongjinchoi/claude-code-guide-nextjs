@@ -20,11 +20,8 @@ export default function HeaderControls({
 
   // OS Toggle Handler
   const handleOSToggle = (os: 'mac' | 'windows') => {
-    console.log('HeaderControls - OS 변경 요청:', os);
-    
     // Call parent callback if provided
     if (onOSChange) {
-      console.log('HeaderControls - onOSChange 콜백 호출');
       onOSChange(os);
     }
   };

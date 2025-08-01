@@ -76,10 +76,8 @@ export default function GuidePage() {
 
   // URL 변경 시 expandedStep 업데이트
   useEffect(() => {
-    console.log('URL 변경 감지:', { doneParam, current: searchParams.get('current') });
     // done=1-6이고 current가 없으면 모든 단계를 닫은 상태로 유지
     if (doneParam === '1-6' && !searchParams.get('current')) {
-      console.log('가이드 완료 상태 감지! 모달 표시');
       setExpandedStep(0);
       // 6단계 모두 완료 시 스크롤
       const modalClosed = sessionStorage.getItem('completion-modal-closed') === 'true';
@@ -234,8 +232,7 @@ export default function GuidePage() {
   };
   
   const handleCodeCopy = (stepId: string, codeType: string) => {
-    // 코드 복사 추적 (analytics.js에서 처리하지만 추가 정보 기록)
-    console.log(`Code copied - Step: ${stepId}, Type: ${codeType}`);
+    // 코드 복사 추적 (analytics.js에서 처리)
   };
   
   const steps = guideSteps[os];
@@ -313,7 +310,6 @@ export default function GuidePage() {
       {showCompletionModal && (
         <CompletionModal
           onClose={() => {
-            console.log('모달 닫기');
             setShowCompletionModal(false);
             // 세션에 모달 닫힘 상태 저장
             if (typeof window !== 'undefined') {
@@ -321,10 +317,10 @@ export default function GuidePage() {
             }
           }}
           onEmojiSelect={(emoji) => {
-            console.log('이모지 선택:', emoji);
+            // 이모지 선택 처리
           }}
           onFeedbackSubmit={(feedback) => {
-            console.log('피드백 제출:', feedback);
+            // 피드백 제출 처리
           }}
           totalTime={Math.round((Date.now() - (typeof window !== 'undefined' && sessionStorage.getItem('guide-start-time') ? parseInt(sessionStorage.getItem('guide-start-time')!) : Date.now())) / 60000) || 10}
         />

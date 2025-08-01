@@ -27,10 +27,7 @@ export default function DashboardLoginPage() {
       
       if (response.ok) {
         setStep('code');
-        // 개발 환경에서는 코드를 콘솔에 표시
-        if (data.code) {
-          console.log('인증 코드:', data.code);
-        }
+        // 인증 코드 발송 성공
       } else {
         setError(data.error || '인증 코드 발송에 실패했습니다.');
       }

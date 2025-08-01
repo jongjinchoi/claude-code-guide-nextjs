@@ -46,8 +46,7 @@ async function sendEmail(email: string, code: string): Promise<boolean> {
       return false;
     }
   } else {
-    // 개발 환경에서는 콘솔에 출력
-    console.log(`[DEV] 인증 코드 발송: ${email} - ${code}`);
+    // 개발 환경 - 인증 코드 발송 성공
     return true;
   }
 }
