@@ -26,6 +26,12 @@
 **/backup/
 **/_backup/
 cleanup-backup-*
+project-backup-*
+*.bak
+*.old
+*.orig
+*~
+*.tmp
 
 # Development documentation
 CLAUDE.md
@@ -47,6 +53,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 *.log
+dev.log
+server.log
+nohup.out
 
 # env files (can opt-in for committing if needed)
 .env*
