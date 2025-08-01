@@ -188,12 +188,12 @@ export default function DashboardPage() {
 
   const fetchSessions = async () => {
     try {
-      // Fetch recent sessions for display (limited to 100)
+      // Fetch recent sessions for display (limited to 15)
       const { data: sessionsData, error: sessionsError } = await supabase
         .from('guide_sessions')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(100);
+        .limit(15);
 
       if (sessionsError) throw sessionsError;
 
@@ -274,6 +274,7 @@ export default function DashboardPage() {
         .select('*');
 
       if (error) throw error;
+      console.log('Page performance data:', data); // 임시 디버깅
       setPagePerformance(data || []);
     } catch (error) {
       console.error('Error fetching page performance:', error);
@@ -576,7 +577,7 @@ export default function DashboardPage() {
       )}
 
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>최근 세션</h2>
+        <h2 className={styles.sectionTitle}>최근 세션 (최근 15개)</h2>
         <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <thead>
