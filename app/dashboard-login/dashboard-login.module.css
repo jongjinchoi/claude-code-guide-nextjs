@@ -1,0 +1,292 @@
+/* Terminal Container */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Terminal Window */
+.terminal {
+  width: 100%;
+  max-width: 600px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+/* Terminal Header */
+.terminalHeader {
+  background-color: #2d2d2d;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #444;
+}
+
+.terminalButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.terminalButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.terminalButton.red {
+  background-color: #ff5f57;
+}
+
+.terminalButton.yellow {
+  background-color: #ffbd2e;
+}
+
+.terminalButton.green {
+  background-color: #28ca42;
+}
+
+.terminalTitle {
+  color: #999;
+  font-size: 0.875rem;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Terminal Body */
+.terminalBody {
+  padding: 2rem;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  color: #fff;
+}
+
+.prompt {
+  color: #28ca42;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.command {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.commandPrefix {
+  color: #999;
+  margin-right: 0.5rem;
+}
+
+.commandText {
+  color: #fff;
+}
+
+/* Form Styles */
+.form {
+  margin-top: 1rem;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  color: #999;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  background-color: #2d2d2d;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s;
+}
+
+.inputWrapper:focus-within {
+  border-color: #FF6B35;
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.2);
+}
+
+.inputPrefix {
+  color: #FF6B35;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.input {
+  background: none;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  flex: 1;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: #666;
+}
+
+/* Button Styles */
+.button {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: #FF6B35;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #ff8c5a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading State */
+.loading {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error Message */
+.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Success Message */
+.success {
+  color: #28ca42;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Terminal Output */
+.output {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+}
+
+.outputLine {
+  color: #999;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.outputLine.success {
+  color: #28ca42;
+}
+
+.outputLine.error {
+  color: #ef4444;
+}
+
+/* Cursor Animation */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background-color: #FF6B35;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Step Indicator */
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #999;
+  font-size: 0.875rem;
+}
+
+.step {
+  padding: 0.25rem 0.75rem;
+  background-color: #2d2d2d;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.step.active {
+  background-color: #FF6B35;
+  color: white;
+}
+
+.stepArrow {
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .terminal {
+    max-width: 100%;
+  }
+  
+  .terminalBody {
+    padding: 1.5rem;
+  }
+}

@@ -95,7 +95,12 @@ export default function DashboardPage() {
   const [totalVisitors, setTotalVisitors] = useState<number>(0);
 
   useEffect(() => {
-    fetchAllData();
+    const initializeDashboard = async () => {
+      await fetchAllData();
+      setLoading(false);
+    };
+    
+    initializeDashboard();
     
     // Supabase Realtime 구독 설정
     const channel = supabase.channel('dashboard-updates');
@@ -218,8 +223,6 @@ export default function DashboardPage() {
       }
     } catch (error) {
       console.error('Error fetching sessions:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -260,6 +263,7 @@ export default function DashboardPage() {
       setOSPerformance(data || []);
     } catch (error) {
       console.error('Error fetching OS performance:', error);
+      setOSPerformance([]); // 기본값 설정
     }
   };
 
@@ -273,6 +277,7 @@ export default function DashboardPage() {
       setPagePerformance(data || []);
     } catch (error) {
       console.error('Error fetching page performance:', error);
+      setPagePerformance([]); // 기본값 설정
     }
   };
 
@@ -320,14 +325,16 @@ export default function DashboardPage() {
     try {
       const { data, error } = await supabase
         .from('counters')
-        .select('count')
-        .eq('name', 'total_visitors')
+        .select('value')
+        .eq('name', 'visitors')
         .single();
 
       if (error) throw error;
-      setTotalVisitors(data?.count || 0);
+      const count = data?.value ? parseInt(data.value) : 0;
+      setTotalVisitors(count);
     } catch (error) {
       console.error('Error fetching total visitors:', error);
+      // 기본값 설정하지 않음 (0이 적절함)
     }
   };
 
