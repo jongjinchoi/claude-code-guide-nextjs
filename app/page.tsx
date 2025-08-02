@@ -16,6 +16,18 @@ export default function HomePage() {
         page_title: 'Claude Code Guide - Home'
       });
     }
+
+    // 방문자 카운터 증가 (중복 방지)
+    const hasVisited = sessionStorage.getItem('has_visited');
+    if (!hasVisited) {
+      fetch('/api/counter', { method: 'POST' })
+        .then(() => {
+          sessionStorage.setItem('has_visited', 'true');
+        })
+        .catch((error) => {
+          console.error('Failed to increment counter:', error);
+        });
+    }
   }, []);
 
   return (
