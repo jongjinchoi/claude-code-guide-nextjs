@@ -301,45 +301,59 @@
     "project": {
       "title": "Start Your First Project",
       "description": "Let's create your first project.",
-      "preCodeText": "Navigate to the folder where you want to save projects and run this command:",
-      "codeBlocks": [{
-        "code": "claude code new my-first-project",
-        "type": "project_creation",
-        "action": "create_first_project"
-      }],
-      "postCodeText": "💡 You can change the project name to whatever you like.",
-      "verifyText": "When the project is created, you'll see a message like this:",
-      "verifyCommand": "ls my-first-project",
+      "preCodeText": "Create a project folder for Claude Code:",
+      "codeBlocks": [
+        {
+          "code": "mkdir my-first-project",
+          "type": "project_creation",
+          "action": "create_directory"
+        },
+        {
+          "code": "cd my-first-project",
+          "type": "navigation",
+          "action": "change_directory"
+        }
+      ],
+      "postCodeText": "",
+      "verifyText": "",
+      "verifyCommand": "claude",
       "terminalExample": "project-created",
       "successButton": {
-        "title": "Project folder created",
-        "description": "A new folder has been created"
+        "title": "Claude Code started",
+        "description": "You can start chatting!"
       },
       "errorButton": {
-        "title": "Error occurred",
-        "description": "Project creation failed"
+        "title": "Not started or error",
+        "description": "Check the solutions below"
       }
     },
     "project-windows": {
       "title": "Start Your First Project",
       "description": "Let's create your first project.",
-      "preCodeText": "Navigate to the folder where you want to save projects and run this command:",
-      "codeBlocks": [{
-        "code": "claude code new my-first-project",
-        "type": "project_creation",
-        "action": "create_first_project"
-      }],
-      "postCodeText": "💡 You can change the project name to whatever you like.",
-      "verifyText": "When the project is created, you'll see a message like this:",
-      "verifyCommand": "dir my-first-project",
+      "preCodeText": "Create a project folder for Claude Code:",
+      "codeBlocks": [
+        {
+          "code": "mkdir my-first-project",
+          "type": "project_creation",
+          "action": "create_directory"
+        },
+        {
+          "code": "cd my-first-project",
+          "type": "navigation",
+          "action": "change_directory"
+        }
+      ],
+      "postCodeText": "",
+      "verifyText": "",
+      "verifyCommand": "claude",
       "terminalExample": "project-created",
       "successButton": {
-        "title": "Project folder created",
-        "description": "A new folder has been created"
+        "title": "Claude Code started",
+        "description": "You can start chatting!"
       },
       "errorButton": {
-        "title": "Error occurred",
-        "description": "Project creation failed"
+        "title": "Not started or error",
+        "description": "Check the solutions below"
       }
     }
   },

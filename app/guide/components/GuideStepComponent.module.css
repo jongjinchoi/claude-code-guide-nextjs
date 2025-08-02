@@ -36,10 +36,13 @@
 .installNote {
   font-size: 0.875rem;
   color: #6b7280;
-  background: #f9fafb;
+  background: rgba(59, 130, 246, 0.1);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
   margin-top: var(--space-3);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(59, 130, 246, 0.2);
 }
 
 /* 코드 블록 */

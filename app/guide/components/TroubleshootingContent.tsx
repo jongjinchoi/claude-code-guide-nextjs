@@ -234,7 +234,7 @@ export default function TroubleshootingContent({ stepId }: TroubleshootingConten
         <h4>📁 "Permission denied" 오류가 나타날 때:</h4>
         <p>권한 문제입니다. 홈 폴더에서 시작하세요:</p>
         <CodeBlock>cd ~</CodeBlock>
-        <CodeBlock>mkdir my-project && cd my-project</CodeBlock>
+        <CodeBlock>mkdir my-first-project && cd my-first-project</CodeBlock>
         <CodeBlock>claude</CodeBlock>
         <p className="install-note">💡 홈 폴더는 항상 권한이 있으니 거기서 시작하세요!</p>
         
@@ -269,7 +269,7 @@ export default function TroubleshootingContent({ stepId }: TroubleshootingConten
         <h4>📁 "Permission denied" 오류가 나타날 때:</h4>
         <p>권한 문제입니다. 사용자 폴더에서 시작하세요:</p>
         <CodeBlock>cd %USERPROFILE%</CodeBlock>
-        <CodeBlock>mkdir my-project && cd my-project</CodeBlock>
+        <CodeBlock>mkdir my-first-project && cd my-first-project</CodeBlock>
         <CodeBlock>claude</CodeBlock>
         <p className="install-note">💡 사용자 폴더는 항상 권한이 있으니 거기서 시작하세요!</p>
         

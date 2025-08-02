@@ -45,34 +45,83 @@ export default function TerminalExample({
         <span className="terminal-title">{displayTitle}</span>
       </div>
       <div className="terminal-content">
-        {lines.map((line, index) => {
-          switch (line.type) {
-            case 'prompt':
-              return (
-                <React.Fragment key={index}>
-                  <span className="prompt">{line.content}</span>
-                  {/* Check if next line is a command */}
-                  {lines[index + 1]?.type === 'command' && ' '}
-                </React.Fragment>
-              );
-            case 'command':
-              // Commands are inline with prompts, so they're rendered as text
-              return <React.Fragment key={index}>{line.content}</React.Fragment>;
-            case 'output':
-              return (
-                <span key={index} className={`output ${line.className || ''}`}>
-                  {line.content}
-                </span>
-              );
-            case 'cursor':
-              return <span key={index} className="cursor"></span>;
-            case 'raw':
-              // For raw content, render as-is
-              return <React.Fragment key={index}>{line.content}</React.Fragment>;
-            default:
-              return null;
-          }
-        })}
+        {(() => {
+          const elements: React.ReactNode[] = [];
+          let boxLines: React.ReactNode[] = [];
+          let inBox = false;
+          let currentBoxType = '';
+
+          lines.forEach((line, index) => {
+            const isPermissionBox = line.className?.includes('permission-box');
+            const isWelcomeBox = line.className?.includes('welcome-box');
+            const isAnyBox = isPermissionBox || isWelcomeBox;
+            
+            if (isAnyBox && !inBox) {
+              // Start of any box
+              inBox = true;
+              currentBoxType = isPermissionBox ? 'permission-box' : 'welcome-box';
+              boxLines = [];
+            }
+            
+            const element = (() => {
+              switch (line.type) {
+                case 'prompt':
+                  return (
+                    <React.Fragment key={index}>
+                      <span className="prompt">{line.content}</span>
+                      {lines[index + 1]?.type === 'command' && ' '}
+                    </React.Fragment>
+                  );
+                case 'command':
+                  return <React.Fragment key={index}>{line.content}</React.Fragment>;
+                case 'output':
+                  // If we're in any box, remove only the box classes but keep other classes
+                  let outputClassName = 'output';
+                  if (line.className) {
+                    const classes = line.className.split(' ');
+                    const filteredClasses = inBox 
+                      ? classes.filter(c => c !== 'permission-box' && c !== 'welcome-box')
+                      : classes;
+                    outputClassName = `output ${filteredClasses.join(' ')}`;
+                  }
+                  return (
+                    <span key={index} className={outputClassName.trim()}>
+                      {line.content}
+                    </span>
+                  );
+                case 'cursor':
+                  return <span key={index} className="cursor"></span>;
+                case 'raw':
+                  return <React.Fragment key={index}>{line.content}</React.Fragment>;
+                default:
+                  return null;
+              }
+            })();
+            
+            if (inBox) {
+              boxLines.push(element);
+              
+              // Check if this is the last box line
+              const nextIsAnyBox = lines[index + 1]?.className?.includes('permission-box') || 
+                                   lines[index + 1]?.className?.includes('welcome-box');
+              if (!nextIsAnyBox) {
+                // End of box
+                elements.push(
+                  <div key={`${currentBoxType}-${index}`} className={currentBoxType}>
+                    {boxLines}
+                  </div>
+                );
+                inBox = false;
+                boxLines = [];
+                currentBoxType = '';
+              }
+            } else {
+              elements.push(element);
+            }
+          });
+          
+          return elements;
+        })()}
         {children}
       </div>
     </div>
@@ -173,6 +222,79 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
+    
+    case 'project-created':
+      if (os === 'mac') {
+        return [
+          { type: 'output', content: `Last login: ${formatTerminalDate()} on ttys001` },
+          { type: 'prompt', content: '사용자명@MacBook-Pro ~ %' },
+          { type: 'command', content: 'claude' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Do you trust the files in this folder?', className: 'permission-box hint' },
+          { type: 'output', content: '', className: 'permission-box' },
+          { type: 'output', content: '/Users/username', className: 'permission-box' },
+          { type: 'output', content: 'Claude Code may read files in this folder. Reading untrusted files may', className: 'permission-box' },
+          { type: 'output', content: 'lead Claude Code to behave in unexpected ways.', className: 'permission-box' },
+          { type: 'output', content: 'With your permission Claude Code may execute files in this folder.', className: 'permission-box' },
+          { type: 'output', content: 'Executing untrusted code is unsafe.', className: 'permission-box' },
+          { type: 'output', content: 'https://docs.anthropic.com/xx/claude-code-security', className: 'permission-box link' },
+          { type: 'output', content: '▸ 1. Yes, proceed ', className: 'permission-box option-selected' },
+          { type: 'output', content: '2. No, exit', className: 'permission-box option-unselected' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Enter to confirm - Esc to exit' },
+          { type: 'output', content: '' },
+          { type: 'output', content: '* Welcome to Claude Code!', className: 'welcome-box' },
+          { type: 'output', content: '/help for help, /status for your current setup', className: 'welcome-box' },
+          { type: 'output', content: 'cmd: /Users/username', className: 'welcome-box' },
+          { type: 'output', content: '' },
+          { type: 'output', content: "What's new:" },
+          { type: 'output', content: '• Added support for native Windows (requires Git for Windows)' },
+          { type: 'output', content: '• Added support for Bedrock API keys through environment variable AWS_BEARER_TOKEN_BEDROCK' },
+          { type: 'output', content: '• Settings: /doctor can now help you identify and fix invalid setting files' },
+          { type: 'output', content: '• "--append-system-prompt" can now be used in interactive mode, not just --continue-session-from-file' },
+          { type: 'output', content: '• Increased auto-compact warning threshold from 60% to 80%' },
+          { type: 'output', content: '' },
+          { type: 'raw', content: <div className="input-box"><span className="prompt">&gt;</span> <span className="cursor">T</span><span className="input-text">ry "create a util logging.py that..."</span></div> },
+          { type: 'output', content: '' },
+          { type: 'output', content: '? for shortcuts' }
+        ];
+      } else {
+        return [
+          { type: 'output', content: 'Microsoft Windows [Version 10.0.19045.3693]' },
+          { type: 'output', content: '(c) Microsoft Corporation. All rights reserved.' },
+          { type: 'output', content: '' },
+          { type: 'prompt', content: 'C:\\Users\\사용자명\\my-first-project>' },
+          { type: 'command', content: 'claude' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Do you trust the files in this folder?', className: 'permission-box hint' },
+          { type: 'output', content: '', className: 'permission-box' },
+          { type: 'output', content: 'C:\\Users\\username\\my-first-project', className: 'permission-box' },
+          { type: 'output', content: 'Claude Code may read files in this folder. Reading untrusted files may', className: 'permission-box' },
+          { type: 'output', content: 'lead Claude Code to behave in unexpected ways.', className: 'permission-box' },
+          { type: 'output', content: 'With your permission Claude Code may execute files in this folder.', className: 'permission-box' },
+          { type: 'output', content: 'Executing untrusted code is unsafe.', className: 'permission-box' },
+          { type: 'output', content: 'https://docs.anthropic.com/xx/claude-code-security', className: 'permission-box link' },
+          { type: 'output', content: '▸ 1. Yes, proceed ', className: 'permission-box option-selected' },
+          { type: 'output', content: '2. No, exit', className: 'permission-box option-unselected' },
+          { type: 'output', content: '' },
+          { type: 'output', content: 'Enter to confirm - Esc to exit' },
+          { type: 'output', content: '' },
+          { type: 'output', content: '* Welcome to Claude Code!', className: 'welcome-box' },
+          { type: 'output', content: '/help for help, /status for your current setup', className: 'welcome-box' },
+          { type: 'output', content: 'cwd: C:\\Users\\username\\my-first-project', className: 'welcome-box' },
+          { type: 'output', content: '' },
+          { type: 'output', content: "What's new:" },
+          { type: 'output', content: '• Added support for native Windows (requires Git for Windows)' },
+          { type: 'output', content: '• Added support for Bedrock API keys through environment variable AWS_BEARER_TOKEN_BEDROCK' },
+          { type: 'output', content: '• Settings: /doctor can now help you identify and fix invalid setting files' },
+          { type: 'output', content: '• "--append-system-prompt" can now be used in interactive mode, not just --continue-session-from-file' },
+          { type: 'output', content: '• Increased auto-compact warning threshold from 60% to 80%' },
+          { type: 'output', content: '' },
+          { type: 'raw', content: <div className="input-box"><span className="prompt">&gt;</span> <span className="cursor">T</span><span className="input-text">ry "create a util logging.py that..."</span></div> },
+          { type: 'output', content: '' },
+          { type: 'output', content: '? for shortcuts' }
+        ];
+      }
     
     default:
       return [];

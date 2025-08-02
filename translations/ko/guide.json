@@ -301,45 +301,59 @@
     "project": {
       "title": "첫 프로젝트 시작",
       "description": "첫 번째 프로젝트를 만들어봅시다.",
-      "preCodeText": "프로젝트를 저장할 폴더로 이동 후 이 명령어를 실행하세요:",
-      "codeBlocks": [{
-        "code": "claude code new my-first-project",
-        "type": "project_creation",
-        "action": "create_first_project"
-      }],
-      "postCodeText": "💡 프로젝트 이름은 원하는 대로 변경할 수 있습니다.",
-      "verifyText": "프로젝트가 생성되면 다음과 같은 메시지가 나타납니다:",
-      "verifyCommand": "ls my-first-project",
+      "preCodeText": "Claude Code를 사용할 프로젝트 폴더를 만들어보세요:",
+      "codeBlocks": [
+        {
+          "code": "mkdir my-first-project",
+          "type": "project_creation",
+          "action": "create_directory"
+        },
+        {
+          "code": "cd my-first-project",
+          "type": "navigation",
+          "action": "change_directory"
+        }
+      ],
+      "postCodeText": "",
+      "verifyText": "",
+      "verifyCommand": "claude",
       "terminalExample": "project-created",
       "successButton": {
-        "title": "프로젝트 폴더가 생성됨",
-        "description": "새 폴더가 만들어졌습니다"
+        "title": "Claude Code가 시작됨",
+        "description": "대화를 시작할 수 있습니다!"
       },
       "errorButton": {
-        "title": "오류 발생",
-        "description": "프로젝트 생성 실패"
+        "title": "시작되지 않음 또는 오류",
+        "description": "아래 해결 방법을 확인하세요"
       }
     },
     "project-windows": {
       "title": "첫 프로젝트 시작",
       "description": "첫 번째 프로젝트를 만들어봅시다.",
-      "preCodeText": "프로젝트를 저장할 폴더로 이동 후 이 명령어를 실행하세요:",
-      "codeBlocks": [{
-        "code": "claude code new my-first-project",
-        "type": "project_creation",
-        "action": "create_first_project"
-      }],
-      "postCodeText": "💡 프로젝트 이름은 원하는 대로 변경할 수 있습니다.",
-      "verifyText": "프로젝트가 생성되면 다음과 같은 메시지가 나타납니다:",
-      "verifyCommand": "dir my-first-project",
+      "preCodeText": "Claude Code를 사용할 프로젝트 폴더를 만들어보세요:",
+      "codeBlocks": [
+        {
+          "code": "mkdir my-first-project",
+          "type": "project_creation",
+          "action": "create_directory"
+        },
+        {
+          "code": "cd my-first-project",
+          "type": "navigation",
+          "action": "change_directory"
+        }
+      ],
+      "postCodeText": "",
+      "verifyText": "",
+      "verifyCommand": "claude",
       "terminalExample": "project-created",
       "successButton": {
-        "title": "프로젝트 폴더가 생성됨",
-        "description": "새 폴더가 만들어졌습니다"
+        "title": "Claude Code가 시작됨",
+        "description": "대화를 시작할 수 있습니다!"
       },
       "errorButton": {
-        "title": "오류 발생",
-        "description": "프로젝트 생성 실패"
+        "title": "시작되지 않음 또는 오류",
+        "description": "아래 해결 방법을 확인하세요"
       }
     }
   },

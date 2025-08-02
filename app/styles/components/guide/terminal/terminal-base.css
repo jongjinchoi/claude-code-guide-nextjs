@@ -62,6 +62,7 @@
     width: 10px;
     height: 20px;
     background: #000000;
+    color: #ffffff;
     animation: blink 1s infinite;
     vertical-align: text-bottom;
     margin-left: 2px;
@@ -126,11 +127,21 @@
 /* Special Content Boxes */
 /* ============================= */
 .terminal-example .permission-box {
-    border: 1px solid #92400e;
-    border-radius: 4px;
+    border: 1px solid #ea580c;
+    border-radius: 6px;
     padding: var(--space-3);
     margin: var(--space-3) 0;
     background: transparent;
+}
+
+.terminal-example .permission-box .output {
+    color: #ea580c;
+    display: block;
+}
+
+.terminal-example .permission-box .output.option-selected,
+.terminal-example .permission-box .output.option-unselected {
+    display: inline;
 }
 
 .terminal-example .welcome-box {
@@ -176,11 +187,19 @@
     text-decoration: underline;
 }
 
-.terminal-example .star {
+.terminal-example .output.star, .terminal-example .star {
     color: #ec4899;
+    margin-right: .25rem;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-right: 0.25rem;
+}
+
+.terminal-example.success .terminal-content .welcome-box .output.star, .terminal-example .welcome-box .output.star {
+    margin-right: .25rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: inline;
+    color: #ec4899;
 }
 
 .terminal-example .option-selected {
@@ -188,13 +207,37 @@
     font-weight: 600;
 }
 
+.terminal-example.success .terminal-content .permission-box .output.option-selected {
+    color: #1f2937 !important;
+    font-weight: 600;
+}
+
+.terminal-example .permission-box .output.option-selected {
+    color: #1f2937 !important;
+    font-weight: 600;
+}
+
 .terminal-example .option-unselected {
     color: #6b7280;
+}
+
+.terminal-example.success .terminal-content .permission-box .output.option-unselected {
+    color: #6b7280 !important;
+}
+
+.terminal-example .permission-box .output.option-unselected {
+    color: #6b7280 !important;
 }
 
 .terminal-example .input-text {
     color: #6b7280;
     margin-left: 0.25rem;
+}
+
+.terminal-example .input-box .cursor {
+    background: #000000;
+    color: #ffffff;
+    padding: 0 2px;
 }
 
 /* ============================= */

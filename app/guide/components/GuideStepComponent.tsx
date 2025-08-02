@@ -78,20 +78,43 @@ export default function GuideStepComponent({
       
       {/* 확인 섹션 */}
       <div className={styles.verifySection}>
-        <h3>설치 완료 확인</h3>
-        <p>{content.verifyText}</p>
-        
-        <CodeBlock onCopy={handleCodeCopy}>
-          {content.verifyCommand}
-        </CodeBlock>
-        
-        <p>성공하면 이런 메시지가 나타납니다:</p>
-        
-        <TerminalExample 
-          variant="success"
-          os={os}
-          lines={createTerminalLines(os, content.terminalExample)}
-        />
+        {stepId === 'project' || stepId === 'project-windows' ? (
+          <>
+            <h3>Claude Code 시작하기</h3>
+            <p>이제 Claude Code를 시작해보세요:</p>
+            
+            <CodeBlock onCopy={handleCodeCopy}>
+              {content.verifyCommand}
+            </CodeBlock>
+            
+            <p>처음 실행하면 보안 확인 질문이 나타납니다. <kbd>1</kbd>을 입력하고 <kbd>Enter</kbd>를 눌러 계속 진행하세요:</p>
+            
+            <TerminalExample 
+              variant="success"
+              os={os}
+              lines={createTerminalLines(os, content.terminalExample)}
+            />
+            
+            <p className={styles.installNote}>💡 보안 질문이 나타나면 <kbd>1</kbd>을 입력하고 <kbd>Enter</kbd>를 누르세요. 이후 Claude Code와 대화를 시작할 수 있습니다!</p>
+          </>
+        ) : (
+          <>
+            <h3>설치 완료 확인</h3>
+            <p>{content.verifyText}</p>
+            
+            <CodeBlock onCopy={handleCodeCopy}>
+              {content.verifyCommand}
+            </CodeBlock>
+            
+            <p>성공하면 이런 메시지가 나타납니다:</p>
+            
+            <TerminalExample 
+              variant="success"
+              os={os}
+              lines={createTerminalLines(os, content.terminalExample)}
+            />
+          </>
+        )}
       </div>
       
       {/* 결과 버튼 섹션 */}
