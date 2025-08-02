@@ -1,0 +1,115 @@
+{
+  "login": {
+    "title": "Dashboard Login — Terminal",
+    "welcome": "Welcome to Claude Code Dashboard",
+    "step_indicator": {
+      "step1": "1. 이메일",
+      "step2": "2. 인증 코드"
+    },
+    "email_step": {
+      "label": "관리자 이메일 주소를 입력하세요:",
+      "placeholder": "admin@example.com",
+      "button": "인증 코드 받기",
+      "loading": "발송 중..."
+    },
+    "code_step": {
+      "label": "이메일로 받은 6자리 코드를 입력하세요:",
+      "placeholder": "123456",
+      "button": "로그인",
+      "loading": "확인 중...",
+      "restart": "다시 시작"
+    },
+    "messages": {
+      "code_sent": "✓ 인증 코드가 발송되었습니다",
+      "check_email": "→ 이메일을 확인하고 6자리 코드를 입력하세요",
+      "auth_success": "✓ 인증 성공!",
+      "redirecting": "→ 대시보드로 이동합니다..."
+    }
+  },
+  "main": {
+    "title": "가이드 추적 대시보드",
+    "visitor_label": "전체 방문자",
+    "realtime_indicator": "🔄 실시간 업데이트",
+    "last_update": "마지막 업데이트: {{time}}",
+    "loading": "로딩 중...",
+    "sections": {
+      "today_metrics": {
+        "title": "오늘의 지표",
+        "total_sessions": "오늘 세션",
+        "completions": "오늘 완료",
+        "completion_rate": "오늘 완료율",
+        "avg_completion_time": "평균 소요시간",
+        "immediate_bounces": "즉시 이탈"
+      },
+      "overall_stats": {
+        "title": "전체 통계",
+        "total_sessions": "총 세션",
+        "completed_sessions": "완료된 세션",
+        "completion_rate": "완료율",
+        "avg_completion_time": "평균 완료 시간",
+        "error_rate": "에러율"
+      },
+      "step_funnel": {
+        "title": "단계별 퍼널 (최근 7일)",
+        "headers": {
+          "step": "단계",
+          "users_reached": "도달 사용자",
+          "dropped_off": "이탈자",
+          "dropout_rate": "이탈률"
+        }
+      },
+      "os_performance": {
+        "title": "OS별 성능 (최근 7일)",
+        "headers": {
+          "os": "OS",
+          "attempts": "시도",
+          "completions": "완료",
+          "success_rate": "성공률",
+          "avg_time": "평균 시간"
+        }
+      },
+      "page_performance": {
+        "title": "페이지별 성과 (최근 7일)",
+        "headers": {
+          "page": "페이지",
+          "unique_sessions": "고유 세션",
+          "total_views": "총 조회수",
+          "avg_time": "평균 체류시간",
+          "bounce_count": "이탈 수"
+        }
+      },
+      "button_usage": {
+        "title": "버튼 활용도 TOP 10 (최근 7일)",
+        "headers": {
+          "category": "카테고리",
+          "button_name": "버튼 이름",
+          "click_count": "클릭 수"
+        }
+      },
+      "user_satisfaction": {
+        "title": "사용자 만족도 (최근 7일)",
+        "total_feedback": "전체 피드백",
+        "avg_score": "평균 점수",
+        "satisfaction": "만족도",
+        "positive_feedback": "긍정적 피드백",
+        "text_included": "텍스트 포함"
+      },
+      "emoji_feedback": {
+        "title": "이모지별 피드백 분포"
+      },
+      "recent_sessions": {
+        "title": "최근 세션 (최근 15개)",
+        "headers": {
+          "time": "시간",
+          "os": "OS",
+          "browser": "브라우저",
+          "current_step": "현재 단계",
+          "highest_step": "최고 단계",
+          "completed": "완료",
+          "errors": "에러",
+          "duration": "소요 시간"
+        }
+      }
+    }
+  }
+}

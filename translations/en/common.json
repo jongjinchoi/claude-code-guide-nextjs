@@ -1,0 +1,43 @@
+{
+  "navigation": {
+    "logo": "Claude Code",
+    "home": "Home",
+    "about": "About",
+    "guide": "Get Started",
+    "help": "Help",
+    "mobile_menu_open": "Open menu",
+    "mobile_menu_close": "Close menu"
+  },
+  "buttons": {
+    "start_now": "Start Now",
+    "what_is_claude_code": "What is Claude Code?",
+    "return_to_guide": "Return to Guide",
+    "currently_on_step": "Currently on step {{step}}",
+    "close": "Close",
+    "restart": "Restart",
+    "home": "Home",
+    "copy_link": "Copy Link",
+    "send_email": "Send via Email",
+    "login": "Login"
+  },
+  "toast": {
+    "general_message": "Message will be displayed"
+  },
+  "counter": {
+    "visitors_count": "{{count}} people are with you"
+  },
+  "header_controls": {
+    "font_size": {
+      "decrease": "Decrease font size",
+      "increase": "Increase font size"
+    },
+    "theme": {
+      "aria_label": "Change theme (current: {{current}} mode)",
+      "light_mode": "light",
+      "dark_mode": "dark",
+      "switch_to_dark": "Switch to dark mode",
+      "switch_to_light": "Switch to light mode"
+    }
+  },
+  "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI"
+}

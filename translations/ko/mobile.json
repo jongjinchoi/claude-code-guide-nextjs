@@ -1,0 +1,18 @@
+{
+  "warning": {
+    "title": "데스크톱이 필요합니다",
+    "message": "Claude Code는 터미널 명령어를 실행해야 합니다.\n데스크톱 이용을 추천합니다.",
+    "email_input": {
+      "placeholder": "이메일 주소 입력"
+    },
+    "buttons": {
+      "send_email": "이메일로 보내기",
+      "copy_link": "링크 복사",
+      "copied": "복사됨!",
+      "home": "홈으로",
+      "close": "닫기",
+      "email_sent": "이메일 열림!"
+    },
+    "hint": "링크를 복사하여 데스크톱 브라우저에서 열어보세요"
+  }
+}

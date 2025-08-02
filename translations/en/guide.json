@@ -1,0 +1,450 @@
+{
+  "header": {
+    "title": "Claude Code Guide",
+    "subtitle": "Just 6 steps to start coding with AI",
+    "badge": "Installation Guide"
+  },
+  "progress": {
+    "step": "Step {{current}}/{{total}}",
+    "complete": "Complete!"
+  },
+  "intro": {
+    "title": "Before You Start",
+    "os_selection": {
+      "question": "Which computer are you using?",
+      "mac": "I'm using Mac",
+      "windows": "I'm using Windows"
+    },
+    "requirements": {
+      "title": "What you'll need",
+      "internet": "Internet connection",
+      "claude_pro": "Claude Pro account ($20/month)",
+      "time": "About 30 minutes"
+    },
+    "tips": {
+      "title": "💡 Success Tips",
+      "tip1": "Take it slow. No need to rush!",
+      "tip2": "Use copy and paste",
+      "tip3": "Don't panic at errors. There's always a solution"
+    }
+  },
+  "steps": {
+    "start_tag": "Start here",
+    "time_estimate": "About {{time}}",
+    "titles": {
+      "mac": {
+        "step1": "Before You Start",
+        "step2": "Install Homebrew",
+        "step3": "Install Node.js",
+        "step4": "Install Claude Code",
+        "step5": "Connect Your Account",
+        "step6": "Start Your First Project"
+      },
+      "windows": {
+        "step1": "Before You Start",
+        "step2": "Install Git for Windows",
+        "step3": "Install Node.js",
+        "step4": "Install Claude Code",
+        "step5": "Connect Your Account",
+        "step6": "Start Your First Project"
+      }
+    }
+  },
+  "step_content": {
+    "start": {
+      "title": "Before You Start",
+      "checkSection": {
+        "title": "Pre-installation Checklist",
+        "description": "Please check the following items before installing Claude Code:",
+        "checkList": [
+          "Claude Pro Account - Pro plan ($20/month) or higher subscription required",
+          "About 30 minutes - For complete installation and setup",
+          "Internet Connection - Stable network environment"
+        ]
+      },
+      "terminalGuide": {
+        "title": "Terminal Usage Guide",
+        "description": "Terminal is a program that controls your computer by entering commands.",
+        "openTitle": "Opening Terminal",
+        "openMethods": [
+          "Press Command (Cmd) ⌘ + Space and type \"terminal\"",
+          "Applications → Utilities → Terminal",
+          "Search \"terminal\" in Launchpad"
+        ],
+        "exampleTitle": "This is what Terminal looks like when opened",
+        "closeTitle": "Closing Terminal",
+        "closeMethods": [
+          "Command (Cmd) ⌘ + Q to quit completely",
+          "Command (Cmd) ⌘ + W to close window only",
+          "Or type exit and press Enter ↵"
+        ]
+      },
+      "confirmSection": {
+        "prompt": "If you've reviewed the content, click the complete button:",
+        "button": {
+          "title": "I understand - Next step!",
+          "description": "I'm familiar with Terminal usage"
+        }
+      }
+    },
+    "start-windows": {
+      "title": "Before You Start",
+      "checkSection": {
+        "title": "Pre-installation Checklist",
+        "description": "Please check the following items before installing Claude Code:",
+        "checkList": [
+          "Claude Pro Account - Pro plan ($20/month) or higher subscription required",
+          "About 30 minutes - For complete installation and setup",
+          "Internet Connection - Stable network environment"
+        ]
+      },
+      "terminalGuide": {
+        "title": "Command Prompt Usage Guide",
+        "description": "Command Prompt is a program that controls your computer by entering commands.",
+        "openTitle": "Opening Command Prompt",
+        "openMethods": [
+          "Press Windows key + R, type \"cmd\" and press Enter ↵",
+          "Search \"Command Prompt\" or \"cmd\" in Start menu",
+          "Start menu → Windows System → Command Prompt"
+        ],
+        "exampleTitle": "This is what Command Prompt looks like when opened",
+        "closeTitle": "Closing Command Prompt",
+        "closeMethods": [
+          "Click the X button on the window",
+          "Or type exit and press Enter ↵"
+        ]
+      },
+      "confirmSection": {
+        "prompt": "If you've reviewed the content, click the complete button:",
+        "button": {
+          "title": "I understand - Next step!",
+          "description": "I'm familiar with Command Prompt usage"
+        }
+      }
+    },
+    "homebrew": {
+      "title": "Install Homebrew",
+      "description": "Homebrew is the easiest way to install programs on Mac.",
+      "preCodeText": "Paste this command in Terminal and press Enter:",
+      "codeBlocks": [{
+        "code": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
+        "type": "installation",
+        "action": "install_homebrew"
+      }],
+      "postCodeText": "💡 When prompted for your password, enter your Mac login password. It won't appear on screen, which is normal.",
+      "verifyText": "When installation is complete, run this command in Terminal:",
+      "verifyCommand": "brew --version",
+      "terminalExample": "homebrew-version",
+      "successButton": {
+        "title": "Version number appears",
+        "description": "Example: Homebrew 4.5.11"
+      },
+      "errorButton": {
+        "title": "\"command not found\" error",
+        "description": "zsh: command not found: brew"
+      }
+    },
+    "git-windows": {
+      "title": "Install Git for Windows",
+      "description": "Git for Windows enables you to use Git and Unix commands on Windows.",
+      "preCodeText": "Download and install Git for Windows from the link below:",
+      "codeBlocks": [{
+        "code": "https://gitforwindows.org/",
+        "type": "link",
+        "action": "download_git_windows"
+      }],
+      "postCodeText": "💡 Keep all options as default and click \"Next\" during installation.",
+      "verifyText": "When installation is complete, open a new Command Prompt and run this command:",
+      "verifyCommand": "git --version",
+      "terminalExample": "git-version",
+      "successButton": {
+        "title": "Version number appears",
+        "description": "Example: git version 2.43.0.windows.1"
+      },
+      "errorButton": {
+        "title": "'git' is not recognized",
+        "description": "Command not found"
+      }
+    },
+    "node": {
+      "title": "Install Node.js",
+      "description": "Node.js is required for Claude Code to work.",
+      "preCodeText": "Run this command in Terminal:",
+      "codeBlocks": [{
+        "code": "brew install node",
+        "type": "installation",
+        "action": "install_node"
+      }],
+      "postCodeText": "💡 You may see \"Downloading...\" messages during installation. Please wait.",
+      "verifyText": "When installation is complete, verify with this command:",
+      "verifyCommand": "node --version",
+      "terminalExample": "node-version",
+      "successButton": {
+        "title": "Version number appears",
+        "description": "Example: v20.11.0"
+      },
+      "errorButton": {
+        "title": "\"command not found\" error",
+        "description": "zsh: command not found: node"
+      }
+    },
+    "node-windows": {
+      "title": "Install Node.js",
+      "description": "Node.js is required for Claude Code to work.",
+      "preCodeText": "Download and install Node.js LTS version from the link below:",
+      "codeBlocks": [{
+        "code": "https://nodejs.org/",
+        "type": "link",
+        "action": "download_node"
+      }],
+      "postCodeText": "💡 Choose the \"LTS\" version. Keep all options as default during installation.",
+      "verifyText": "When installation is complete, open a new Command Prompt and run this command:",
+      "verifyCommand": "node --version",
+      "terminalExample": "node-version",
+      "successButton": {
+        "title": "Version number appears",
+        "description": "Example: v20.11.0"
+      },
+      "errorButton": {
+        "title": "'node' is not recognized",
+        "description": "Command not found"
+      }
+    },
+    "claude": {
+      "title": "Install Claude Code",
+      "description": "Install the Claude Code CLI.",
+      "preCodeText": "Run this command in Terminal:",
+      "codeBlocks": [{
+        "code": "npm install -g @anthropic-ai/claude-code",
+        "type": "installation",
+        "action": "install_claude_cli"
+      }],
+      "postCodeText": "💡 Warning messages may appear during installation, but you can ignore them.",
+      "verifyText": "When installation is complete, verify with this command:",
+      "verifyCommand": "claude --version",
+      "terminalExample": "claude-version",
+      "successButton": {
+        "title": "Version number appears",
+        "description": "Example: claude/0.1.18"
+      },
+      "errorButton": {
+        "title": "\"command not found\" error",
+        "description": "zsh: command not found: claude"
+      }
+    },
+    "claude-windows": {
+      "title": "Install Claude Code",
+      "description": "Install the Claude Code CLI.",
+      "preCodeText": "Run this command in Command Prompt:",
+      "codeBlocks": [{
+        "code": "npm install -g @anthropic-ai/claude-code",
+        "type": "installation",
+        "action": "install_claude_cli"
+      }],
+      "postCodeText": "💡 Warning messages may appear during installation, but you can ignore them.",
+      "verifyText": "When installation is complete, verify with this command:",
+      "verifyCommand": "claude --version",
+      "terminalExample": "claude-version",
+      "successButton": {
+        "title": "Version number appears",
+        "description": "Example: claude/0.1.18"
+      },
+      "errorButton": {
+        "title": "'claude' is not recognized",
+        "description": "Command not found"
+      }
+    },
+    "auth": {
+      "title": "Connect Your Account",
+      "description": "Connect your Claude Pro account.",
+      "preCodeText": "Run this command in Terminal:",
+      "codeBlocks": [{
+        "code": "claude auth login",
+        "type": "authentication",
+        "action": "claude_auth_login"
+      }],
+      "postCodeText": "💡 Your browser will automatically open and display the Claude login page.",
+      "verifyText": "When login is complete, verify with this command:",
+      "verifyCommand": "claude auth status",
+      "terminalExample": "auth-status",
+      "successButton": {
+        "title": "Email address appears",
+        "description": "Example: your.email@example.com"
+      },
+      "errorButton": {
+        "title": "\"Not authenticated\" message",
+        "description": "Not authenticated"
+      }
+    },
+    "auth-windows": {
+      "title": "Connect Your Account",
+      "description": "Connect your Claude Pro account.",
+      "preCodeText": "Run this command in Command Prompt:",
+      "codeBlocks": [{
+        "code": "claude auth login",
+        "type": "authentication",
+        "action": "claude_auth_login"
+      }],
+      "postCodeText": "💡 Your browser will automatically open and display the Claude login page.",
+      "verifyText": "When login is complete, verify with this command:",
+      "verifyCommand": "claude auth status",
+      "terminalExample": "auth-status",
+      "successButton": {
+        "title": "Email address appears",
+        "description": "Example: your.email@example.com"
+      },
+      "errorButton": {
+        "title": "\"Not authenticated\" message",
+        "description": "Not authenticated"
+      }
+    },
+    "project": {
+      "title": "Start Your First Project",
+      "description": "Let's create your first project.",
+      "preCodeText": "Navigate to the folder where you want to save projects and run this command:",
+      "codeBlocks": [{
+        "code": "claude code new my-first-project",
+        "type": "project_creation",
+        "action": "create_first_project"
+      }],
+      "postCodeText": "💡 You can change the project name to whatever you like.",
+      "verifyText": "When the project is created, you'll see a message like this:",
+      "verifyCommand": "ls my-first-project",
+      "terminalExample": "project-created",
+      "successButton": {
+        "title": "Project folder created",
+        "description": "A new folder has been created"
+      },
+      "errorButton": {
+        "title": "Error occurred",
+        "description": "Project creation failed"
+      }
+    },
+    "project-windows": {
+      "title": "Start Your First Project",
+      "description": "Let's create your first project.",
+      "preCodeText": "Navigate to the folder where you want to save projects and run this command:",
+      "codeBlocks": [{
+        "code": "claude code new my-first-project",
+        "type": "project_creation",
+        "action": "create_first_project"
+      }],
+      "postCodeText": "💡 You can change the project name to whatever you like.",
+      "verifyText": "When the project is created, you'll see a message like this:",
+      "verifyCommand": "dir my-first-project",
+      "terminalExample": "project-created",
+      "successButton": {
+        "title": "Project folder created",
+        "description": "A new folder has been created"
+      },
+      "errorButton": {
+        "title": "Error occurred",
+        "description": "Project creation failed"
+      }
+    }
+  },
+  "completion_modal": {
+    "close_button": "Close",
+    "title": "Congratulations!",
+    "subtitle": "Congratulations on completing Claude Code installation!",
+    "instruction": "Type <code>claude</code> in your terminal and start creating something!",
+    "docs_button": {
+      "icon": "fas fa-book",
+      "text": "View Official Docs"
+    },
+    "feedback": {
+      "question": "How was your experience today?",
+      "reason": "💡 If it was really helpful, please click <span class=\"highlight-text\">'Awesome!'</span>",
+      "emojis": {
+        "love": {
+          "emoji": "😍",
+          "label": "Awesome",
+          "hint": "↑ Click"
+        },
+        "good": {
+          "emoji": "😊",
+          "label": "Good"
+        },
+        "neutral": {
+          "emoji": "😐",
+          "label": "Average"
+        },
+        "sad": {
+          "emoji": "😕",
+          "label": "Disappointing"
+        }
+      },
+      "detail": {
+        "love": {
+          "title": "So glad to hear that! Would you like to leave a comment?",
+          "subtitle": "What did you like the most?",
+          "placeholder": "What did you enjoy?"
+        },
+        "sad": {
+          "title": "Sorry to hear that. Would you share your thoughts?",
+          "subtitle": "What could we improve?",
+          "placeholder": "What was disappointing?"
+        },
+        "default": {
+          "title": "Would you like to leave a comment?",
+          "subtitle": "Your valuable feedback means a lot to us",
+          "placeholder": "What did you like? Or what was disappointing?"
+        }
+      },
+      "submit_button": {
+        "icon": "fas fa-paper-plane",
+        "text": "Send Feedback to Creator",
+        "submitting": {
+          "icon": "fas fa-spinner fa-spin",
+          "text": "Submitting..."
+        }
+      },
+      "creator": {
+        "avatar_alt": "Creator profile",
+        "name": "👨‍💻 Creator: Jin",
+        "message": "I hope this guide was helpful!<br />Your feedback gives me great strength 🙏"
+      },
+      "success": {
+        "icon": "fas fa-check-circle",
+        "title": "Thank you!",
+        "message": "Creator Jin has received your valuable feedback 💌"
+      }
+    },
+    "share": {
+      "question": "Would you recommend this site to a friend?",
+      "url": "https://getclaudecode.com/",
+      "button": {
+        "icon": "fas fa-share",
+        "text": "Share"
+      },
+      "menu": {
+        "copy": {
+          "icon": "fas fa-copy",
+          "text": "Copy Link"
+        },
+        "twitter": {
+          "icon": "fab fa-twitter",
+          "text": "Twitter"
+        },
+        "facebook": {
+          "icon": "fab fa-facebook-f",
+          "text": "Facebook"
+        },
+        "linkedin": {
+          "icon": "fab fa-linkedin-in",
+          "text": "LinkedIn"
+        }
+      },
+      "meta": {
+        "title": "Claude Code Guide - Getting Started with Vibe Coding for Beginners",
+        "text": "Install Claude Code in 6 simple steps. Don't worry if terminals are new to you!"
+      }
+    },
+    "later_button": "Do Later"
+  },
+  "troubleshooting": {
+    "title": "Troubleshooting",
+    "common_issues": "Common Issues",
+    "try_this": "Try this:"
+  }
+}

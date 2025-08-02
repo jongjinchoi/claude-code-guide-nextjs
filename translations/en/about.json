@@ -1,0 +1,175 @@
+{
+  "title": "What is Claude Code?",
+  "subtitle": "AI coding tool that lets you code while chatting",
+  "badge": "AI Coding Assistant",
+  "header": {
+    "title": "What is Claude Code?",
+    "subtitle": "AI coding tool that lets you code while chatting",
+    "badge": "AI Coding Assistant"
+  },
+  "intro": {
+    "section_title": "What is Claude Code?",
+    "paragraphs": [
+      "Claude Code is the official CLI tool that lets you use Anthropic's AI assistant Claude in the terminal. You can get AI help throughout the entire development process, from writing code to debugging and refactoring.",
+      "Whether you're solving complex programming problems, learning new technologies, or improving existing code, Claude helps you in real-time. It's like having an experienced developer pair programming with you."
+    ],
+    "tip": {
+      "title": "In simple terms",
+      "content": "Claude Code is a program that lets you code while chatting with AI like texting. Just ask \"How do I build this?\" and the AI will create code and explain it to you."
+    },
+    "tooltips": {
+      "terminal": "The black screen on your computer where you type commands. Called Terminal on Mac and Command Prompt on Windows.",
+      "cli": "Short for Command Line Interface. A program you use by typing commands with your keyboard instead of clicking with a mouse.",
+      "debugging": "The process of finding and fixing errors (bugs) in a program.",
+      "refactoring": "The process of reorganizing working code to make it cleaner and more efficient.",
+      "pair_programming": "A method where two people write code together on one computer. One person writes code while the other reviews, helping each other develop."
+    }
+  },
+  "features": {
+    "section_title": "Key Features",
+    "cards": [
+      {
+        "icon": "💬",
+        "title": "Conversational Coding",
+        "description": "Describe code in natural language and Claude will understand and implement it. You can even request things like \"Make this function more efficient.\"",
+        "badge": "Beginner Friendly",
+        "example": {
+          "label": "Example",
+          "content": "\"Build a user login page\" → AI generates HTML, CSS, JavaScript code"
+        }
+      },
+      {
+        "icon": "🐛",
+        "title": "Smart Debugging",
+        "description": "Just show the error message and it will analyze the cause and suggest solutions. Even complex bugs can be tracked systematically.",
+        "badge": "Beginner Friendly",
+        "example": {
+          "label": "In simple terms",
+          "content": "Say \"My code isn't working\" and show the error screen, and it will explain why and fix it."
+        }
+      },
+      {
+        "icon": "📚",
+        "title": "Automated Documentation",
+        "description": "Automatically generates code explanations, comments, and README files. Creates documentation that's easy for team members to understand.",
+        "badge": "Beginner Friendly"
+      },
+      {
+        "icon": "📝",
+        "title": "Code Review & Improvement",
+        "description": "Analyzes code quality and suggests improvements. Applies best practices and latest patterns."
+      },
+      {
+        "icon": "🔧",
+        "title": "Refactoring Assistant",
+        "description": "Improves legacy code to modern patterns or restructures complex code to be more readable."
+      },
+      {
+        "icon": "🚀",
+        "title": "Test Code Generation",
+        "description": "Automatically generates unit tests for functions and classes. Creates comprehensive tests considering edge cases."
+      }
+    ],
+    "tooltips": {
+      "best_practices": "The most proven good coding methods in the industry",
+      "legacy_code": "Code written in old, outdated ways",
+      "unit_test": "Automated checks to verify small parts of code work correctly",
+      "edge_case": "Unexpected special situations"
+    }
+  },
+  "target_users": {
+    "section_title": "Recommended for",
+    "users": [
+      {
+        "icon": "👶",
+        "title": "First-time programmers",
+        "description": "AI provides friendly explanations and guidance"
+      },
+      {
+        "icon": "💼",
+        "title": "Office workers tired of repetitive Excel tasks",
+        "description": "Easily create automation programs for your work"
+      },
+      {
+        "icon": "🎨",
+        "title": "Those who need a portfolio website",
+        "description": "Create beautiful sites without knowing HTML/CSS"
+      },
+      {
+        "icon": "📚",
+        "title": "Developers learning new languages or frameworks",
+        "description": "Learn quickly and apply to real work"
+      },
+      {
+        "icon": "🚀",
+        "title": "Solo developers who need code reviews",
+        "description": "Get feedback anytime, 24/7"
+      }
+    ]
+  },
+  "faq": {
+    "section_title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "Can I use it without knowing how to code at all?",
+        "answer": "Yes! Claude Code is designed to be used by people who don't know coding. Just request in everyday language like \"Build me a website\" or \"Make a program that reads Excel files\" and AI will create the necessary code and explain how to use it."
+      },
+      {
+        "question": "Is Claude Code free?",
+        "answer": "To use Claude Code, you need a Claude Pro plan subscription ($20/month) or higher. You cannot use Claude Code with the free plan.",
+        "pricing": {
+          "label": "Subscription Plans",
+          "plans": [
+            "Pro Plan ($20/month) - Suitable for small projects",
+            "Max Plan ($100+/month) - Suitable for large projects"
+          ]
+        }
+      },
+      {
+        "question": "How long does installation take?",
+        "answer": "First-time installers usually take about 20-30 minutes. Anyone can install it by slowly following this guide. Don't worry if you get stuck - we provide solutions at each step!"
+      },
+      {
+        "question": "What can I build?",
+        "answer": "Things beginners can build:",
+        "examples": [
+          "📱 Personal websites or portfolios",
+          "📊 Excel automation programs",
+          "🤖 Simple chatbots or Discord bots",
+          "📝 Work automation scripts",
+          "🎮 Simple web games"
+        ],
+        "note": "AI will create the code and explain how to use it!"
+      },
+      {
+        "question": "What programming languages are supported?",
+        "answer": "Supports most major programming languages including Python, JavaScript, TypeScript, Java, C++, Go, Rust, and more. Also handles markup languages and query languages like HTML, CSS, SQL.",
+        "tip": "Beginner tip: HTML/CSS/JavaScript is easy for websites, Python is easy for automation!"
+      },
+      {
+        "question": "Do I need an internet connection?",
+        "answer": "Yes, Claude Code needs an internet connection to communicate with the Claude API. It cannot be used offline."
+      },
+      {
+        "question": "Is my code safe?",
+        "answer": "Anthropic takes user privacy and security seriously. Code sent through the API is not used for model training and is managed according to strict security policies."
+      }
+    ]
+  },
+  "cta": {
+    "title": "30 minutes is all you need",
+    "subtitle": "Start now and in 30 minutes you'll be coding while chatting with AI",
+    "time_estimate": "Mac 20-30 min • Windows 30-40 min",
+    "difficulty": "Difficulty: Easy",
+    "button": "Start Now"
+  },
+  "author": {
+    "name": "Jongjin Choi aka Jin",
+    "description": "Founder of Forbes-featured coworking space \"Hive Arena\"",
+    "story": "After 5 years of childcare, while exploring new opportunities, I fell in love with Claude Code and created a guide that anyone can easily start with. Made with ❤️",
+    "links": {
+      "visit": "Visit & Coffee Chat",
+      "email": "Email"
+    }
+  }
+}

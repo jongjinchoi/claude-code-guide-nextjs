@@ -1,0 +1,18 @@
+{
+  "warning": {
+    "title": "Desktop Required",
+    "message": "Claude Code requires terminal commands.\nPlease use a desktop computer.",
+    "email_input": {
+      "placeholder": "Enter email address"
+    },
+    "buttons": {
+      "send_email": "Send via Email",
+      "copy_link": "Copy Link",
+      "copied": "Copied!",
+      "home": "Home",
+      "close": "Close",
+      "email_sent": "Email opened!"
+    },
+    "hint": "Copy the link and open in your desktop browser"
+  }
+}

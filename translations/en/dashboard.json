@@ -1,0 +1,115 @@
+{
+  "login": {
+    "title": "Dashboard Login — Terminal",
+    "welcome": "Welcome to Claude Code Dashboard",
+    "step_indicator": {
+      "step1": "1. Email",
+      "step2": "2. Auth Code"
+    },
+    "email_step": {
+      "label": "Enter admin email address:",
+      "placeholder": "admin@example.com",
+      "button": "Get Auth Code",
+      "loading": "Sending..."
+    },
+    "code_step": {
+      "label": "Enter the 6-digit code from your email:",
+      "placeholder": "123456",
+      "button": "Login",
+      "loading": "Verifying...",
+      "restart": "Start Over"
+    },
+    "messages": {
+      "code_sent": "✓ Auth code sent",
+      "check_email": "→ Check your email and enter the 6-digit code",
+      "auth_success": "✓ Authentication successful!",
+      "redirecting": "→ Redirecting to dashboard..."
+    }
+  },
+  "main": {
+    "title": "Guide Tracking Dashboard",
+    "visitor_label": "Total Visitors",
+    "realtime_indicator": "🔄 Real-time Updates",
+    "last_update": "Last update: {{time}}",
+    "loading": "Loading...",
+    "sections": {
+      "today_metrics": {
+        "title": "Today's Metrics",
+        "total_sessions": "Today Sessions",
+        "completions": "Today Completions",
+        "completion_rate": "Today Completion Rate",
+        "avg_completion_time": "Avg. Time",
+        "immediate_bounces": "Immediate Bounces"
+      },
+      "overall_stats": {
+        "title": "Overall Statistics",
+        "total_sessions": "Total Sessions",
+        "completed_sessions": "Completed Sessions",
+        "completion_rate": "Completion Rate",
+        "avg_completion_time": "Avg. Completion Time",
+        "error_rate": "Error Rate"
+      },
+      "step_funnel": {
+        "title": "Step Funnel (Last 7 days)",
+        "headers": {
+          "step": "Step",
+          "users_reached": "Users Reached",
+          "dropped_off": "Dropped Off",
+          "dropout_rate": "Dropout Rate"
+        }
+      },
+      "os_performance": {
+        "title": "OS Performance (Last 7 days)",
+        "headers": {
+          "os": "OS",
+          "attempts": "Attempts",
+          "completions": "Completions",
+          "success_rate": "Success Rate",
+          "avg_time": "Avg. Time"
+        }
+      },
+      "page_performance": {
+        "title": "Page Performance (Last 7 days)",
+        "headers": {
+          "page": "Page",
+          "unique_sessions": "Unique Sessions",
+          "total_views": "Total Views",
+          "avg_time": "Avg. Time on Page",
+          "bounce_count": "Bounces"
+        }
+      },
+      "button_usage": {
+        "title": "Button Usage TOP 10 (Last 7 days)",
+        "headers": {
+          "category": "Category",
+          "button_name": "Button Name",
+          "click_count": "Clicks"
+        }
+      },
+      "user_satisfaction": {
+        "title": "User Satisfaction (Last 7 days)",
+        "total_feedback": "Total Feedback",
+        "avg_score": "Avg. Score",
+        "satisfaction": "Satisfaction",
+        "positive_feedback": "Positive Feedback",
+        "text_included": "With Text"
+      },
+      "emoji_feedback": {
+        "title": "Feedback by Emoji"
+      },
+      "recent_sessions": {
+        "title": "Recent Sessions (Last 15)",
+        "headers": {
+          "time": "Time",
+          "os": "OS",
+          "browser": "Browser",
+          "current_step": "Current Step",
+          "highest_step": "Highest Step",
+          "completed": "Completed",
+          "errors": "Errors",
+          "duration": "Duration"
+        }
+      }
+    }
+  }
+}

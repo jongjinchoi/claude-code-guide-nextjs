@@ -1,0 +1,28 @@
+{
+  "code_block": {
+    "copy_success": "Command copied!",
+    "copy_error": "Failed to copy"
+  },
+  "completion_modal": {
+    "feedback_error": "Failed to submit feedback. Please try again.",
+    "link_copy_success": "Link copied!"
+  },
+  "theme": {
+    "switch_message": "Switched to {{theme}} mode. Will persist for today.",
+    "light_theme": "light",
+    "dark_theme": "dark"
+  },
+  "auth": {
+    "email_not_allowed": "Email not allowed.",
+    "rate_limit": "Please try again later.",
+    "code_sent": "Verification code sent to your email.",
+    "send_error": "Error sending verification code.",
+    "invalid_code": "Invalid or expired verification code.",
+    "verify_success": "Verification successful",
+    "verify_error": "Error verifying code."
+  },
+  "mobile_detector": {
+    "copied": "Copied!",
+    "email_opened": "Email opened!"
+  }
+}

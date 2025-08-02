@@ -1,0 +1,28 @@
+{
+  "code_block": {
+    "copy_success": "명령어가 복사되었습니다!",
+    "copy_error": "복사에 실패했습니다"
+  },
+  "completion_modal": {
+    "feedback_error": "피드백 제출에 실패했습니다. 다시 시도해주세요.",
+    "link_copy_success": "링크가 복사되었습니다!"
+  },
+  "theme": {
+    "switch_message": "{{theme}} 모드로 전환되었습니다. 오늘 하루 동안 유지됩니다.",
+    "light_theme": "밝은",
+    "dark_theme": "어두운"
+  },
+  "auth": {
+    "email_not_allowed": "허용되지 않은 이메일입니다.",
+    "rate_limit": "잠시 후 다시 시도해주세요.",
+    "code_sent": "인증 코드가 이메일로 발송되었습니다.",
+    "send_error": "인증 코드 발송 중 오류가 발생했습니다.",
+    "invalid_code": "잘못된 인증 코드이거나 만료되었습니다.",
+    "verify_success": "인증 성공",
+    "verify_error": "인증 코드 확인 중 오류가 발생했습니다."
+  },
+  "mobile_detector": {
+    "copied": "복사됨!",
+    "email_opened": "이메일 열림!"
+  }
+}

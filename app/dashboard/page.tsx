@@ -396,11 +396,11 @@ export default function DashboardPage() {
         <h2 className={styles.sectionTitle}>전체 통계</h2>
         <div className={styles.metricsGrid}>
           <div className={styles.metricCard}>
-            <h3>총 세션</h3>
+            <h3>가이드 시작한 사람</h3>
             <p className={styles.metricValue}>{stats.totalSessions}</p>
           </div>
           <div className={styles.metricCard}>
-            <h3>완료된 세션</h3>
+            <h3>가이드 완료한 사람</h3>
             <p className={styles.metricValue}>{stats.completedSessions}</p>
           </div>
           <div className={styles.metricCard}>

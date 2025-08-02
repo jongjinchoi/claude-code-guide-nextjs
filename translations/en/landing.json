@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "badge": {
+      "icon": "fas fa-sparkles",
+      "text": "A New Start with AI"
+    },
+    "title": "No Coding? No Problem.\nScared of Terminal? It's OK.",
+    "subtitle": {
+      "icon": "fas fa-robot",
+      "prefix": "With ",
+      "highlight": "Claude Code",
+      "suffix": ", anyone can build what they want."
+    },
+    "cta": {
+      "primary": {
+        "text": "Start Now",
+        "icon": "fas fa-rocket"
+      },
+      "secondary": {
+        "text": "What is Claude Code?"
+      },
+      "subtitle": "Claude Pro account required ($20/month)"
+    }
+  },
+  "counter": {
+    "text": " people are with you",
+    "loading_placeholder": "✨"
+  },
+  "features_preview": [
+    {
+      "icon": "😌",
+      "title": "You can do it alone",
+      "description": "AI helps you in real-time"
+    },
+    {
+      "icon": "📋",
+      "title": "Just copy and paste",
+      "description": "No need to memorize commands"
+    },
+    {
+      "icon": "💬",
+      "title": "Easy error explanations",
+      "description": "Instant solutions when stuck"
+    }
+  ],
+  "floating_emojis": ["🤖", "💻", "✨", "🚀"]
+}

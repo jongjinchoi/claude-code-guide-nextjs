@@ -1,0 +1,43 @@
+{
+  "navigation": {
+    "logo": "Claude Code",
+    "home": "홈",
+    "about": "소개",
+    "guide": "시작하기",
+    "help": "도움말",
+    "mobile_menu_open": "메뉴 열기",
+    "mobile_menu_close": "메뉴 닫기"
+  },
+  "buttons": {
+    "start_now": "지금 시작하기",
+    "what_is_claude_code": "Claude Code가 뭔가요?",
+    "return_to_guide": "가이드로 돌아가기",
+    "currently_on_step": "현재 {{step}}단계 진행 중",
+    "close": "닫기",
+    "restart": "다시 시작",
+    "home": "홈으로",
+    "copy_link": "링크 복사",
+    "send_email": "이메일로 보내기",
+    "login": "로그인"
+  },
+  "toast": {
+    "general_message": "메시지가 표시됩니다"
+  },
+  "counter": {
+    "visitors_count": "{{count}}명이 여러분과 함께 하고 있어요"
+  },
+  "header_controls": {
+    "font_size": {
+      "decrease": "글자 작게",
+      "increase": "글자 크게"
+    },
+    "theme": {
+      "aria_label": "테마 변경 (현재: {{current}} 모드)",
+      "light_mode": "라이트",
+      "dark_mode": "다크",
+      "switch_to_dark": "다크 모드로 변경",
+      "switch_to_light": "라이트 모드로 변경"
+    }
+  },
+  "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI"
+}

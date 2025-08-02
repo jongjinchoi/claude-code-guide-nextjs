@@ -1,0 +1,582 @@
+{
+  "title": "Claude Code Help",
+  "header": {
+    "title": "Claude Code Help",
+    "subtitle": {
+      "mac": "New to Terminal? Don't worry!",
+      "windows": "New to Command Prompt? Don't worry!"
+    },
+    "badge": "FAQ & Troubleshooting"
+  },
+  "intro": {
+    "title": {
+      "mac": "New to Terminal? Don't worry!",
+      "windows": "New to Command Prompt? Don't worry!"
+    },
+    "description": "We'll help you solve any difficulties you might encounter while installing Claude Code"
+  },
+  "sections": [
+    {
+      "topic": "urgent",
+      "title": "I'm stuck right now!",
+      "tag_text": "Quick Fix",
+      "icon": "fa-solid fa-circle-exclamation",
+      "tag_class": "urgent",
+      "tag_icon": "fa-solid fa-bolt"
+    },
+    {
+      "topic": "normal",
+      "title": "Is this normal?",
+      "tag_text": "Reassurance",
+      "icon": "fa-solid fa-circle-question",
+      "tag_class": "normal",
+      "tag_icon": "fa-solid fa-check"
+    },
+    {
+      "topic": "basics",
+      "title": "Before you start",
+      "tag_text": "Basic Knowledge",
+      "icon": "fa-solid fa-graduation-cap",
+      "tag_class": "basics",
+      "tag_icon": "fa-solid fa-book"
+    }
+  ],
+  "urgent": {
+    "mac": {
+      "terminal_not_found": {
+        "title": "Where is Terminal? I can't find it!",
+        "description": "Here's the easiest way to find Terminal on Mac:",
+        "steps": [
+          "Press Command (Cmd) ⌘ + Space (Spotlight Search)",
+          "Type \"terminal\" or \"Terminal\"",
+          "Press Enter and Terminal will open!"
+        ],
+        "terminal_example": {
+          "title": "This is what Terminal looks like when opened",
+          "content": "Last login: Mon Jan 8 10:32:15 on ttys001"
+        },
+        "tip": "If you'll use it often, add Terminal to your Dock. Right-click the Terminal icon and select \"Options > Keep in Dock\"."
+      },
+      "password_invisible": {
+        "title": "Nothing shows when I type my password!",
+        "description": "This is normal! Terminal doesn't display anything when you type passwords for security reasons.",
+        "terminal_example": {
+          "title": "Password entry screen - Normal behavior",
+          "command": "sudo npm install -g claude",
+          "output": "Password:",
+          "comment": "← Nothing appears on screen when typing password (normal for security)"
+        },
+        "steps": [
+          "Just type your Mac login password",
+          "Nothing shows on screen but it's being entered",
+          "Press Enter when done"
+        ],
+        "tip": "If it says wrong password, try typing slowly again. Also check if Caps Lock is on!"
+      },
+      "permission_denied": {
+        "title": "I keep getting Permission denied errors",
+        "description": "It's a permissions issue. On Mac, you need admin rights to install things in system folders.",
+        "wrong_way": {
+          "title": "Wrong way - Permission error",
+          "command": "npm install -g claude",
+          "errors": [
+            "npm ERR! Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/claude'",
+            "npm ERR! The operation was rejected by your operating system.",
+            "npm ERR! It is likely you do not have the permissions to access this file as the current user"
+          ]
+        },
+        "right_way": {
+          "title": "Right way - Using sudo",
+          "command": "sudo npm install -g claude",
+          "output": "Password:",
+          "comment": "← Enter your Mac password here to proceed with installation"
+        },
+        "solution": "Adding sudo at the beginning runs the command with admin rights."
+      }
+    },
+    "windows": {
+      "cmd_not_found": {
+        "title": "Where is Command Prompt?",
+        "description": "Here are the easiest ways to open Command Prompt on Windows:",
+        "steps": [
+          "Method 1: Press Windows (Win) ⊞ + R, type \"cmd\" and press Enter",
+          "Method 2: Click Start → Search for \"cmd\" or \"Command Prompt\"",
+          "Method 3: Press Windows (Win) ⊞ + X and select \"Command Prompt\""
+        ],
+        "terminal_example": {
+          "title": "This is what Command Prompt looks like when opened",
+          "content": [
+            "Microsoft Windows [Version 10.0.22631.4169]",
+            "(c) Microsoft Corporation. All rights reserved."
+          ]
+        },
+        "tip": "If you use Command Prompt often, pin it to your taskbar for easy access."
+      },
+      "access_denied": {
+        "title": "I'm getting Access is denied errors",
+        "description": "On Windows, you sometimes need to run Command Prompt as administrator.",
+        "steps": [
+          "Right-click Command Prompt",
+          "Select \"Run as administrator\"",
+          "Click \"Yes\" when User Account Control appears",
+          "Try the command again"
+        ]
+      }
+    }
+  },
+  "normal": {
+    "installation_slow": {
+      "title": "Installation is taking too long (over 5 minutes)",
+      "description": "Installing programs involves downloading and configuring many files, so it takes time. Especially the first time.",
+      "terminal_example": {
+        "title": "Installation in progress - Taking a while",
+        "mac": {
+          "command": "sudo npm install -g @anthropic-ai/claude-code",
+          "outputs": [
+            "Password: # ← After entering password",
+            "",
+            "npm WARN deprecated har-validator@5.1.5: this library is no longer supported",
+            "npm WARN deprecated uuid@3.4.0: Please upgrade to version 7 or higher.",
+            "",
+            "⠧ Installing: express@4.18.2",
+            "⠧ Installing: lodash@4.17.21",
+            "⠧ Installing: moment@2.29.4",
+            "# ← Installing various packages one by one!"
+          ]
+        },
+        "windows": {
+          "command": "npm install -g @anthropic-ai/claude-code",
+          "outputs": [
+            "npm WARN deprecated har-validator@5.1.5: this library is no longer supported",
+            "npm WARN deprecated uuid@3.4.0: Please upgrade to version 7 or higher.",
+            "",
+            "[░░░░░░░░░░░░░░░░░░░░] | idealTree:claude-code: timing idealTree:node_modules/.staging",
+            "# ← Progress bar moves slowly",
+            "",
+            "[████░░░░░░░░░░░░░░░░] \\ fetchMetadata: sill resolveWithNewModule express@4.18.2",
+            "[████████░░░░░░░░░░░░] | fetchMetadata: timing metavuln:calculate:security-advisory",
+            "[████████████░░░░░░░░] / extract:lodash: verb lock using C:\\Users\\username\\AppData\\Roaming\\npm",
+            "# ← Downloading and installing each package"
+          ]
+        }
+      },
+      "tip": "Depending on internet speed, it can take 5-10 minutes. Go grab a coffee!"
+    },
+    "warn_messages": {
+      "title": "I got several WARN messages during installation",
+      "description": "npm shows various warnings during installation, but most can be ignored.",
+      "terminal_example": {
+        "title": "Warning messages during installation - Normal situation",
+        "mac_command": "npm install some-package",
+        "windows_command": "npm install some-package",
+        "windows_note": "# → For Command Prompt (cmd)",
+        "warnings": [
+          {
+            "text": "npm WARN deprecated package@1.0.0: This package is deprecated",
+            "comment": "→ Old version package warning (normal)"
+          },
+          {
+            "text": "npm WARN optional SKIPPING OPTIONAL DEPENDENCY",
+            "comment": "→ Skipping optional component (normal)"
+          },
+          {
+            "text": "npm WARN some-module@2.1.0 requires a peer dependency",
+            "comment": "→ Notification about additional packages needed (normal)"
+          }
+        ]
+      },
+      "tip": "WARN is just a warning. If it's not ERROR, installation is proceeding normally!"
+    },
+    "terminal_symbols": {
+      "title": {
+        "mac": "I see strange symbols or colors in Terminal",
+        "windows": "I see strange symbols or colors in Command Prompt"
+      },
+      "description": {
+        "mac": "Terminal uses various colors and symbols to distinguish information.",
+        "windows": "Command Prompt uses various colors and symbols to distinguish information."
+      },
+      "terminal_example": {
+        "title": {
+          "mac": "Terminal colors and symbols example",
+          "windows": "Command Prompt colors and symbols example"
+        },
+        "command": "npm install express",
+        "outputs": [
+          {
+            "text": "added 64 packages in 3s",
+            "comment": "→ Default color = Success/Complete"
+          },
+          {
+            "text": "npm WARN deprecated package@1.0.0: This package is deprecated",
+            "type": "warn",
+            "comment": "→ Yellow WARN = Warning (can ignore)"
+          },
+          {
+            "text": "npm ERR! code ENOENT\nnpm ERR! syscall open",
+            "type": "error"
+          },
+          {
+            "text": "npm ERR! path /Users/username/package.json",
+            "type": "error",
+            "os": "mac"
+          },
+          {
+            "text": "npm ERR! path C:\\Users\\username\\package.json",
+            "type": "error",
+            "os": "windows"
+          },
+          {
+            "comment": "→ Red ERR! = Error (needs attention)"
+          }
+        ],
+        "prompt_symbols": {
+          "mac": {
+            "symbol": "% or $",
+            "meaning": "Waiting for command input"
+          },
+          "windows": {
+            "symbol": ">",
+            "meaning": "Waiting for command input"
+          }
+        }
+      }
+    }
+  },
+  "basics": {
+    "copy_paste": {
+      "title": "How do I copy and paste?",
+      "description": {
+        "mac": "Copy/paste works a bit differently in Terminal:",
+        "windows": "Copy/paste works a bit differently in Command Prompt:"
+      },
+      "methods": {
+        "mac": {
+          "copy": "Select text then Command (Cmd) ⌘ + C",
+          "paste": "Command (Cmd) ⌘ + V"
+        },
+        "windows": {
+          "copy": "Select text then Control (Ctrl) + C or right-click",
+          "paste": "Control (Ctrl) + V or right-click"
+        }
+      }
+    },
+    "terminal_escape": {
+      "title": {
+        "mac": "I accidentally typed something weird in Terminal",
+        "windows": "I accidentally typed something weird in Command Prompt"
+      },
+      "description": {
+        "mac": "It's okay! Here's how to escape from Terminal:",
+        "windows": "It's okay! Here's how to escape from Command Prompt:"
+      },
+      "solutions": [
+        "Control (Ctrl) + C : Stop what's currently running",
+        "Control (Ctrl) + D : Exit the program",
+        "Type exit : Close Terminal/Command Prompt",
+        "Last resort: Just close and reopen the Terminal/Command Prompt window"
+      ],
+      "exit_example": {
+        "title": {
+          "mac": "Completely closing Terminal",
+          "windows": "Completely closing Command Prompt"
+        },
+        "command": "exit",
+        "result": {
+          "mac": "[Process completed]",
+          "windows": "# → Command Prompt window closes"
+        },
+        "comment": {
+          "mac": "→ Terminal window closes, or just this message remains depending on settings"
+        }
+      }
+    },
+    "basic_commands": {
+      "title": "What are commands like cd, ls?",
+      "description": {
+        "mac": "These are basic commands frequently used in Terminal:",
+        "windows": "These are basic commands frequently used in Command Prompt:"
+      },
+      "commands": {
+        "mac": {
+          "pwd": {
+            "name": "pwd",
+            "description": "Check current location",
+            "example": {
+              "command": "pwd",
+              "output": "/Users/yourname",
+              "comment": "→ Means you're in the /Users/yourname folder"
+            }
+          },
+          "ls": {
+            "name": "ls",
+            "description": "List files and folders",
+            "example": {
+              "command": "ls",
+              "output": "Desktop    Documents    Downloads    Pictures",
+              "comment": "→ Shows files and folders in current directory"
+            }
+          },
+          "cd": {
+            "name": "cd",
+            "description": "Move to another folder",
+            "example": {
+              "command": "cd Desktop",
+              "new_prompt": "username@MacBook-Pro Desktop %",
+              "comment": "→ Moved to Desktop folder! (notice the prompt changed)"
+            }
+          },
+          "cd_up": {
+            "name": "cd ..",
+            "description": "Go back to parent folder",
+            "example": {
+              "from_prompt": "username@MacBook-Pro Desktop %",
+              "command": "cd ..",
+              "to_prompt": "username@MacBook-Pro ~ %",
+              "comment": "→ Returned to home folder from Desktop"
+            }
+          },
+          "mkdir": {
+            "name": "mkdir",
+            "description": "Create new folder",
+            "example": {
+              "commands": ["mkdir my-project", "ls"],
+              "output": "Desktop    Documents    Downloads    Pictures    my-project",
+              "comment": "→ my-project folder was created!"
+            }
+          },
+          "clear": {
+            "name": "clear",
+            "description": "Clear the screen",
+            "example": {
+              "command": "clear",
+              "comment": "→ Terminal screen becomes clean! (previous content still available by scrolling)"
+            }
+          },
+          "cat": {
+            "name": "cat",
+            "description": "View file contents",
+            "example": {
+              "command": "cat package.json",
+              "output": "{\n  \"name\": \"my-project\",\n  \"version\": \"1.0.0\",\n  \"description\": \"My first project\"\n}",
+              "comment": "→ Shows the entire file contents"
+            }
+          },
+          "which": {
+            "name": "which",
+            "description": "Check program installation location",
+            "example": {
+              "commands": ["which node", "which npm"],
+              "outputs": ["/usr/local/bin/node", "/usr/local/bin/npm"],
+              "comment": "→ Node.js and npm are properly installed!"
+            }
+          },
+          "cp": {
+            "name": "cp",
+            "description": "Copy files",
+            "example": {
+              "commands": ["cp README.md README-backup.md", "ls *.md"],
+              "output": "README-backup.md    README.md",
+              "comment": "→ Copy of README.md was created"
+            }
+          },
+          "mv": {
+            "name": "mv",
+            "description": "Move or rename files",
+            "examples": [
+              {
+                "command": "mv old-name.txt new-name.txt",
+                "comment": "→ File was renamed"
+              },
+              {
+                "command": "mv file.txt Desktop/",
+                "comment": "→ file.txt was moved to Desktop folder"
+              }
+            ]
+          },
+          "touch": {
+            "name": "touch",
+            "description": "Create empty file",
+            "example": {
+              "commands": ["touch index.js", "ls *.js"],
+              "output": "index.js",
+              "comment": "→ Empty index.js file was created"
+            }
+          }
+        },
+        "windows": {
+          "cd": {
+            "name": "cd",
+            "description": "Check current location",
+            "example": {
+              "command": "cd",
+              "output": "C:\\Users\\username",
+              "comment": "→ Means you're in the C:\\Users\\username folder"
+            }
+          },
+          "dir": {
+            "name": "dir",
+            "description": "List files and folders",
+            "example": {
+              "command": "dir",
+              "output": [
+                "2025-07-16  10:30 AM    <DIR>          .",
+                "2025-07-16  10:30 AM    <DIR>          ..",
+                "2025-07-16  09:15 AM    <DIR>          Desktop",
+                "2025-07-15  02:30 PM    <DIR>          Documents",
+                "2025-07-14  05:45 PM    <DIR>          Downloads",
+                "2025-07-13  11:20 AM    <DIR>          Pictures"
+              ],
+              "comment": "→ Shows files and folders in current directory"
+            }
+          },
+          "cd_folder": {
+            "name": "cd",
+            "description": "Move to another folder",
+            "example": {
+              "command": "cd Desktop",
+              "new_prompt": "C:\\Users\\username\\Desktop>",
+              "comment": "→ Moved to Desktop folder! (notice the prompt changed)"
+            }
+          },
+          "cd_up": {
+            "name": "cd ..",
+            "description": "Go back to parent folder",
+            "example": {
+              "from_prompt": "C:\\Users\\username\\Desktop>",
+              "command": "cd ..",
+              "to_prompt": "C:\\Users\\username>",
+              "comment": "→ Returned to user folder from Desktop"
+            }
+          },
+          "mkdir": {
+            "name": "mkdir",
+            "description": "Create new folder",
+            "example": {
+              "commands": ["mkdir my-project", "dir"],
+              "output": [
+                "2025-07-16  10:35 AM    <DIR>          my-project",
+                "2025-07-16  10:30 AM    <DIR>          Desktop",
+                "2025-07-15  02:30 PM    <DIR>          Documents"
+              ],
+              "comment": "→ my-project folder was created!"
+            }
+          },
+          "cls": {
+            "name": "cls",
+            "description": "Clear the screen",
+            "example": {
+              "command": "cls",
+              "comment": "→ Command Prompt screen becomes clean!"
+            }
+          },
+          "type": {
+            "name": "type",
+            "description": "View file contents",
+            "example": {
+              "command": "type package.json",
+              "output": "{\n  \"name\": \"my-project\",\n  \"version\": \"1.0.0\",\n  \"description\": \"My first project\"\n}",
+              "comment": "→ Shows the entire file contents"
+            }
+          },
+          "where": {
+            "name": "where",
+            "description": "Check program installation location",
+            "example": {
+              "commands": ["where node", "where npm"],
+              "outputs": [
+                "C:\\Program Files\\nodejs\\node.exe",
+                "C:\\Program Files\\nodejs\\npm.cmd"
+              ],
+              "comment": "→ Node.js and npm are properly installed!"
+            }
+          },
+          "copy": {
+            "name": "copy",
+            "description": "Copy files",
+            "example": {
+              "commands": ["copy README.md README-backup.md", "dir *.md"],
+              "outputs": [
+                "        1 file(s) copied.",
+                "2025-07-16  10:40 AM         1,245 README-backup.md",
+                "2025-07-16  10:30 AM         1,245 README.md"
+              ],
+              "comment": "→ Copy of README.md was created"
+            }
+          },
+          "move_ren": {
+            "name": "move or ren",
+            "description": "Move or rename files",
+            "examples": [
+              {
+                "command": "ren old-name.txt new-name.txt",
+                "comment": "→ File was renamed"
+              },
+              {
+                "command": "move file.txt Desktop",
+                "output": "        1 file(s) moved.",
+                "comment": "→ file.txt was moved to Desktop folder"
+              }
+            ]
+          },
+          "echo": {
+            "name": "echo >",
+            "description": "Create empty file",
+            "example": {
+              "commands": ["echo. > index.js", "dir *.js"],
+              "output": "2025-07-16  10:45 AM             2 index.js",
+              "comment": "→ index.js file was created"
+            }
+          }
+        }
+      }
+    },
+    "api_key": {
+      "title": "What is an API Key and where do I get it?",
+      "description": "An API Key is like a password that lets Claude recognize you.",
+      "steps": [
+        "Go to console.anthropic.com",
+        "Sign up or log in",
+        "Click \"API Keys\" menu",
+        "Click \"Create Key\" button",
+        "Copy the generated key to a safe place"
+      ],
+      "warning": "API Key is shown only once! Make sure to save it somewhere safe."
+    }
+  },
+  "repl": {
+    "title": {
+      "mac": "Exit Claude Code - Keep Terminal open",
+      "windows": "Exit Claude Code - Keep Command Prompt open"
+    },
+    "description": "Press Enter to exit Claude Code"
+  },
+  "structured_data": {
+    "questions": [
+      {
+        "q": "I get command not found: claude error",
+        "a": "Claude Code may not be installed yet or PATH is not configured. Try reinstalling with 'npm install -g @anthropic-ai/claude-code'."
+      },
+      {
+        "q": "I get permission denied error",
+        "a": "On Mac/Linux, install with 'sudo npm install -g @anthropic-ai/claude-code'. On Windows, run Command Prompt as administrator."
+      },
+      {
+        "q": "Can I use Claude Code for free?",
+        "a": "Claude Code requires a Claude Pro subscription ($20/month). API usage is not charged separately."
+      },
+      {
+        "q": "Can I use it on Windows?",
+        "a": "Yes, it works on Windows 10 and above. We recommend installing Git for Windows first."
+      },
+      {
+        "q": "It says my Node.js version is too low",
+        "a": "Claude Code requires Node.js 18 or higher. Check your version with 'node --version' and install the latest LTS version from nodejs.org."
+      },
+      {
+        "q": "I can't log in (claude auth login)",
+        "a": "If the browser doesn't open automatically, copy the URL shown in the terminal and paste it into your browser. You need to log in with a Claude Pro account."
+      }
+    ]
+  }
+}

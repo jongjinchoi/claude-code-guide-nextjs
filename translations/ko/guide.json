@@ -1,0 +1,464 @@
+{
+  "header": {
+    "title": "Claude Code Guide",
+    "subtitle": "6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요",
+    "badge": "설치 가이드"
+  },
+  "progress": {
+    "step": "단계 {{current}}/{{total}}",
+    "complete": "완료!"
+  },
+  "intro": {
+    "title": "시작하기 전에",
+    "os_selection": {
+      "question": "어떤 컴퓨터를 사용하시나요?",
+      "mac": "Mac 사용 중",
+      "windows": "Windows 사용 중"
+    },
+    "requirements": {
+      "title": "준비물",
+      "internet": "인터넷 연결",
+      "claude_pro": "Claude Pro 계정 ($20/월)",
+      "time": "30분 정도의 시간"
+    },
+    "tips": {
+      "title": "💡 성공 팁",
+      "tip1": "천천히 따라하세요. 서두르지 마세요!",
+      "tip2": "복사-붙여넣기를 활용하세요",
+      "tip3": "에러가 나도 당황하지 마세요. 해결법이 있어요"
+    }
+  },
+  "steps": {
+    "start_tag": "여기에서 시작하세요",
+    "time_estimate": "약 {{time}}",
+    "titles": {
+      "mac": {
+        "step1": "시작하기 전에",
+        "step2": "Homebrew 설치",
+        "step3": "Node.js 설치",
+        "step4": "Claude Code 설치",
+        "step5": "계정 연결",
+        "step6": "첫 프로젝트 시작"
+      },
+      "windows": {
+        "step1": "시작하기 전에",
+        "step2": "Git for Windows 설치",
+        "step3": "Node.js 설치",
+        "step4": "Claude Code 설치",
+        "step5": "계정 연결",
+        "step6": "첫 프로젝트 시작"
+      }
+    }
+  },
+  "step_content": {
+    "start": {
+      "title": "시작하기 전에",
+      "checkSection": {
+        "title": "시작하기 전 확인사항",
+        "description": "Claude Code 설치를 시작하기 전에 아래 항목들을 확인해주세요:",
+        "checkList": [
+          "Claude Pro 계정 - Pro 플랜($20/월) 이상 구독 필수",
+          "30분 정도의 시간 - 설치 및 설정 완료까지",
+          "인터넷 연결 - 안정적인 네트워크 환경"
+        ]
+      },
+      "terminalGuide": {
+        "title": "터미널 사용 가이드",
+        "description": "터미널은 명령어를 입력하여 컴퓨터를 제어하는 프로그램입니다.",
+        "openTitle": "터미널 열기",
+        "openMethods": [
+          "Command (Cmd) ⌘ + Space를 누르고 \"terminal\" 입력",
+          "Applications → Utilities → Terminal",
+          "Launchpad에서 \"terminal\" 검색"
+        ],
+        "exampleTitle": "터미널을 열면 이렇게 보입니다",
+        "closeTitle": "터미널 종료하기",
+        "closeMethods": [
+          "Command (Cmd) ⌘ + Q로 완전 종료",
+          "Command (Cmd) ⌘ + W로 창만 닫기",
+          "또는 exit 입력 후 Enter ↵"
+        ]
+      },
+      "confirmSection": {
+        "prompt": "내용을 확인했다면 완료 버튼을 클릭하세요:",
+        "button": {
+          "title": "이해했습니다 - 다음 단계로!",
+          "description": "터미널 사용법을 숙지했습니다"
+        }
+      }
+    },
+    "start-windows": {
+      "title": "시작하기 전에",
+      "checkSection": {
+        "title": "시작하기 전 확인사항",
+        "description": "Claude Code 설치를 시작하기 전에 아래 항목들을 확인해주세요:",
+        "checkList": [
+          "Claude Pro 계정 - Pro 플랜($20/월) 이상 구독 필수",
+          "30분 정도의 시간 - 설치 및 설정 완료까지",
+          "인터넷 연결 - 안정적인 네트워크 환경"
+        ]
+      },
+      "terminalGuide": {
+        "title": "명령 프롬프트 사용 가이드",
+        "description": "명령 프롬프트는 명령어를 입력하여 컴퓨터를 제어하는 프로그램입니다.",
+        "openTitle": "명령 프롬프트 열기",
+        "openMethods": [
+          "Windows 키 + R을 누르고 \"cmd\" 입력 후 Enter ↵",
+          "시작 메뉴에서 \"명령 프롬프트\" 또는 \"cmd\" 검색",
+          "시작 메뉴 → Windows 시스템 → 명령 프롬프트"
+        ],
+        "exampleTitle": "명령 프롬프트를 열면 이렇게 보입니다",
+        "closeTitle": "명령 프롬프트 종료하기",
+        "closeMethods": [
+          "창의 X 버튼 클릭",
+          "또는 exit 입력 후 Enter ↵"
+        ]
+      },
+      "confirmSection": {
+        "prompt": "내용을 확인했다면 완료 버튼을 클릭하세요:",
+        "button": {
+          "title": "이해했습니다 - 다음 단계로!",
+          "description": "명령 프롬프트 사용법을 숙지했습니다"
+        }
+      }
+    },
+    "homebrew": {
+      "title": "Homebrew 설치",
+      "description": "Homebrew는 Mac에서 프로그램을 설치하는 가장 쉬운 방법입니다.",
+      "preCodeText": "이 명령어를 터미널에 붙여넣고 Enter를 누르세요:",
+      "codeBlocks": [{
+        "code": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
+        "type": "installation",
+        "action": "install_homebrew"
+      }],
+      "postCodeText": "💡 비밀번호를 물으면 Mac 로그인 비밀번호를 입력하세요. 화면에 표시되지 않아도 정상입니다.",
+      "verifyText": "설치가 완료되면 터미널에서 이 명령어를 실행해보세요:",
+      "verifyCommand": "brew --version",
+      "terminalExample": "homebrew-version",
+      "successButton": {
+        "title": "버전 번호가 나타남",
+        "description": "예시: Homebrew 4.5.11"
+      },
+      "errorButton": {
+        "title": "\"command not found\" 오류",
+        "description": "zsh: command not found: brew"
+      }
+    },
+    "git-windows": {
+      "title": "Git for Windows 설치",
+      "description": "Git for Windows는 Windows에서 Git과 Unix 명령어를 사용할 수 있게 해줍니다.",
+      "preCodeText": "아래 링크에서 Git for Windows를 다운로드하고 설치하세요:",
+      "codeBlocks": [{
+        "code": "https://gitforwindows.org/",
+        "type": "link",
+        "action": "download_git_windows"
+      }],
+      "postCodeText": "💡 설치 중 모든 옵션은 기본값으로 두고 \"Next\"를 클릭하세요.",
+      "verifyText": "설치가 완료되면 새 명령 프롬프트를 열고 이 명령어를 실행하세요:",
+      "verifyCommand": "git --version",
+      "terminalExample": "git-version",
+      "successButton": {
+        "title": "버전 번호가 나타남",
+        "description": "예시: git version 2.43.0.windows.1"
+      },
+      "errorButton": {
+        "title": "\"git\"은(는) 인식되지 않습니다",
+        "description": "명령어를 찾을 수 없음"
+      }
+    },
+    "node": {
+      "title": "Node.js 설치",
+      "description": "Node.js는 Claude Code가 작동하는 데 필요한 프로그램입니다.",
+      "preCodeText": "터미널에서 이 명령어를 실행하세요:",
+      "codeBlocks": [{
+        "code": "brew install node",
+        "type": "installation",
+        "action": "install_node"
+      }],
+      "postCodeText": "💡 설치 중에 \"Downloading...\" 메시지가 나타날 수 있습니다. 잠시 기다려주세요.",
+      "verifyText": "설치가 완료되면 이 명령어로 확인해보세요:",
+      "verifyCommand": "node --version",
+      "terminalExample": "node-version",
+      "successButton": {
+        "title": "버전 번호가 나타남",
+        "description": "예시: v20.11.0"
+      },
+      "errorButton": {
+        "title": "\"command not found\" 오류",
+        "description": "zsh: command not found: node"
+      }
+    },
+    "node-windows": {
+      "title": "Node.js 설치",
+      "description": "Node.js는 Claude Code가 작동하는 데 필요한 프로그램입니다.",
+      "preCodeText": "아래 링크에서 Node.js LTS 버전을 다운로드하고 설치하세요:",
+      "codeBlocks": [{
+        "code": "https://nodejs.org/",
+        "type": "link",
+        "action": "download_node"
+      }],
+      "postCodeText": "💡 \"LTS\" 버전을 선택하세요. 설치 중 모든 옵션은 기본값으로 두세요.",
+      "verifyText": "설치가 완료되면 새 명령 프롬프트를 열고 이 명령어를 실행하세요:",
+      "verifyCommand": "node --version",
+      "terminalExample": "node-version",
+      "successButton": {
+        "title": "버전 번호가 나타남",
+        "description": "예시: v20.11.0"
+      },
+      "errorButton": {
+        "title": "\"node\"은(는) 인식되지 않습니다",
+        "description": "명령어를 찾을 수 없음"
+      }
+    },
+    "claude": {
+      "title": "Claude Code 설치",
+      "description": "Claude Code CLI를 설치합니다.",
+      "preCodeText": "터미널에서 이 명령어를 실행하세요:",
+      "codeBlocks": [{
+        "code": "npm install -g @anthropic-ai/claude-code",
+        "type": "installation",
+        "action": "install_claude_cli"
+      }],
+      "postCodeText": "💡 설치 중에 경고 메시지가 나타날 수 있지만 무시해도 됩니다.",
+      "verifyText": "설치가 완료되면 이 명령어로 확인해보세요:",
+      "verifyCommand": "claude --version",
+      "terminalExample": "claude-version",
+      "successButton": {
+        "title": "버전 번호가 나타남",
+        "description": "예시: claude/0.1.18"
+      },
+      "errorButton": {
+        "title": "\"command not found\" 오류",
+        "description": "zsh: command not found: claude"
+      }
+    },
+    "claude-windows": {
+      "title": "Claude Code 설치",
+      "description": "Claude Code CLI를 설치합니다.",
+      "preCodeText": "명령 프롬프트에서 이 명령어를 실행하세요:",
+      "codeBlocks": [{
+        "code": "npm install -g @anthropic-ai/claude-code",
+        "type": "installation",
+        "action": "install_claude_cli"
+      }],
+      "postCodeText": "💡 설치 중에 경고 메시지가 나타날 수 있지만 무시해도 됩니다.",
+      "verifyText": "설치가 완료되면 이 명령어로 확인해보세요:",
+      "verifyCommand": "claude --version",
+      "terminalExample": "claude-version",
+      "successButton": {
+        "title": "버전 번호가 나타남",
+        "description": "예시: claude/0.1.18"
+      },
+      "errorButton": {
+        "title": "\"claude\"은(는) 인식되지 않습니다",
+        "description": "명령어를 찾을 수 없음"
+      }
+    },
+    "auth": {
+      "title": "계정 연결",
+      "description": "Claude Pro 계정을 연결합니다.",
+      "preCodeText": "터미널에서 이 명령어를 실행하세요:",
+      "codeBlocks": [{
+        "code": "claude auth login",
+        "type": "authentication",
+        "action": "claude_auth_login"
+      }],
+      "postCodeText": "💡 브라우저가 자동으로 열리고 Claude 로그인 페이지가 나타납니다.",
+      "verifyText": "로그인이 완료되면 이 명령어로 확인해보세요:",
+      "verifyCommand": "claude auth status",
+      "terminalExample": "auth-status",
+      "successButton": {
+        "title": "이메일 주소가 나타남",
+        "description": "예시: your.email@example.com"
+      },
+      "errorButton": {
+        "title": "\"Not authenticated\" 메시지",
+        "description": "인증되지 않음"
+      }
+    },
+    "auth-windows": {
+      "title": "계정 연결",
+      "description": "Claude Pro 계정을 연결합니다.",
+      "preCodeText": "명령 프롬프트에서 이 명령어를 실행하세요:",
+      "codeBlocks": [{
+        "code": "claude auth login",
+        "type": "authentication",
+        "action": "claude_auth_login"
+      }],
+      "postCodeText": "💡 브라우저가 자동으로 열리고 Claude 로그인 페이지가 나타납니다.",
+      "verifyText": "로그인이 완료되면 이 명령어로 확인해보세요:",
+      "verifyCommand": "claude auth status",
+      "terminalExample": "auth-status",
+      "successButton": {
+        "title": "이메일 주소가 나타남",
+        "description": "예시: your.email@example.com"
+      },
+      "errorButton": {
+        "title": "\"Not authenticated\" 메시지",
+        "description": "인증되지 않음"
+      }
+    },
+    "project": {
+      "title": "첫 프로젝트 시작",
+      "description": "첫 번째 프로젝트를 만들어봅시다.",
+      "preCodeText": "프로젝트를 저장할 폴더로 이동 후 이 명령어를 실행하세요:",
+      "codeBlocks": [{
+        "code": "claude code new my-first-project",
+        "type": "project_creation",
+        "action": "create_first_project"
+      }],
+      "postCodeText": "💡 프로젝트 이름은 원하는 대로 변경할 수 있습니다.",
+      "verifyText": "프로젝트가 생성되면 다음과 같은 메시지가 나타납니다:",
+      "verifyCommand": "ls my-first-project",
+      "terminalExample": "project-created",
+      "successButton": {
+        "title": "프로젝트 폴더가 생성됨",
+        "description": "새 폴더가 만들어졌습니다"
+      },
+      "errorButton": {
+        "title": "오류 발생",
+        "description": "프로젝트 생성 실패"
+      }
+    },
+    "project-windows": {
+      "title": "첫 프로젝트 시작",
+      "description": "첫 번째 프로젝트를 만들어봅시다.",
+      "preCodeText": "프로젝트를 저장할 폴더로 이동 후 이 명령어를 실행하세요:",
+      "codeBlocks": [{
+        "code": "claude code new my-first-project",
+        "type": "project_creation",
+        "action": "create_first_project"
+      }],
+      "postCodeText": "💡 프로젝트 이름은 원하는 대로 변경할 수 있습니다.",
+      "verifyText": "프로젝트가 생성되면 다음과 같은 메시지가 나타납니다:",
+      "verifyCommand": "dir my-first-project",
+      "terminalExample": "project-created",
+      "successButton": {
+        "title": "프로젝트 폴더가 생성됨",
+        "description": "새 폴더가 만들어졌습니다"
+      },
+      "errorButton": {
+        "title": "오류 발생",
+        "description": "프로젝트 생성 실패"
+      }
+    }
+  },
+  "completion_modal": {
+    "title": "축하합니다! 🎉",
+    "subtitle": "Claude Code 설치를 완료했습니다",
+    "feedback_prompt": "이 가이드는 어떠셨나요?",
+    "emojis": {
+      "love": "😍",
+      "good": "😊",
+      "neutral": "😐",
+      "sad": "😢"
+    },
+    "feedback_placeholder": "개선할 점이나 의견을 자유롭게 남겨주세요...",
+    "share_title": "친구들과 공유하기",
+    "next_steps": "이제 AI와 함께 코딩을 시작해보세요!"
+  },
+  "troubleshooting": {
+    "title": "문제 해결",
+    "common_issues": "일반적인 문제들",
+    "try_this": "이렇게 해보세요:"
+  },
+  "completion_modal": {
+    "close_button": "닫기",
+    "title": "축하합니다!",
+    "subtitle": "Claude Code 설치완료를 축하드립니다!",
+    "instruction": "터미널에 <code>claude</code> 입력하고 작게라도 만들어보세요!",
+    "docs_button": {
+      "icon": "fas fa-book",
+      "text": "공식문서 보기"
+    },
+    "feedback": {
+      "question": "오늘 경험은 어떠셨나요?",
+      "reason": "💡 정말 도움이 되셨다면 <span class=\"highlight-text\">최고예요!</span>를 눌러주세요!",
+      "emojis": {
+        "love": {
+          "emoji": "😍",
+          "label": "최고예요",
+          "hint": "↑ 클릭"
+        },
+        "good": {
+          "emoji": "😊",
+          "label": "좋아요"
+        },
+        "neutral": {
+          "emoji": "😐",
+          "label": "보통이에요"
+        },
+        "sad": {
+          "emoji": "😕",
+          "label": "아쉬워요"
+        }
+      },
+      "detail": {
+        "love": {
+          "title": "정말 기쁘네요! 한 마디 남겨주실래요?",
+          "subtitle": "어떤 점이 가장 좋으셨나요?",
+          "placeholder": "어떤 점이 좋았나요?"
+        },
+        "sad": {
+          "title": "아쉬우셨군요. 의견을 들려주실래요?",
+          "subtitle": "어떤 점을 개선하면 좋을까요?",
+          "placeholder": "어떤 점이 아쉬웠나요?"
+        },
+        "default": {
+          "title": "한 마디 남겨주실래요?",
+          "subtitle": "여러분의 소중한 의견이 큰 힘이 됩니다",
+          "placeholder": "어떤 점이 좋았나요? 또는 어떤 점이 아쉬웠나요?"
+        }
+      },
+      "submit_button": {
+        "icon": "fas fa-paper-plane",
+        "text": "제작자에게 피드백 남기기",
+        "submitting": {
+          "icon": "fas fa-spinner fa-spin",
+          "text": "제출 중..."
+        }
+      },
+      "creator": {
+        "avatar_alt": "제작자 프로필",
+        "name": "👨‍💻 제작자: 진(Jin)",
+        "message": "이 가이드가 도움이 되었기를 바랍니다!<br />여러분의 피드백이 큰 힘이 됩니다 🙏"
+      },
+      "success": {
+        "icon": "fas fa-check-circle",
+        "title": "감사합니다!",
+        "message": "제작자 진(Jin)이 여러분의 소중한 의견을 받았습니다 💌"
+      }
+    },
+    "share": {
+      "question": "이 사이트를 친구에게 추천하시겠어요?",
+      "url": "https://getclaudecode.com/",
+      "button": {
+        "icon": "fas fa-share",
+        "text": "공유하기"
+      },
+      "menu": {
+        "copy": {
+          "icon": "fas fa-copy",
+          "text": "링크 복사"
+        },
+        "twitter": {
+          "icon": "fab fa-twitter",
+          "text": "트위터"
+        },
+        "facebook": {
+          "icon": "fab fa-facebook-f",
+          "text": "페이스북"
+        },
+        "linkedin": {
+          "icon": "fab fa-linkedin-in",
+          "text": "링크드인"
+        }
+      },
+      "meta": {
+        "title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
+        "text": "Claude Code를 6단계로 간단하게 설치하세요. 터미널이 처음이어도 걱정 없습니다!"
+      }
+    },
+    "later_button": "나중에 하기"
+  }
+}
