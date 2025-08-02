@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './Button.module.css';
+import { SimplifiedAnalytics } from '@/app/lib/analytics/SimplifiedAnalytics';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'dark' | 'ghost';
@@ -15,6 +16,8 @@ interface ButtonProps {
   icon?: React.ReactNode;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  trackingName?: string;
+  trackingCategory?: string;
 }
 
 export function Button({
@@ -27,7 +30,9 @@ export function Button({
   className = '',
   icon,
   disabled = false,
-  type = 'button'
+  type = 'button',
+  trackingName,
+  trackingCategory = 'button'
 }: ButtonProps) {
   const classNames = [
     styles.btn,
@@ -36,6 +41,26 @@ export function Button({
     hero ? styles.btnHero : '',
     className
   ].filter(Boolean).join(' ');
+
+  const handleClick = async (e: React.MouseEvent) => {
+    // 추적
+    if (trackingName) {
+      await SimplifiedAnalytics.trackButtonClick(
+        trackingName,
+        trackingCategory,
+        {
+          variant,
+          size,
+          href: href || 'none'
+        }
+      );
+    }
+    
+    // 원래 onClick 핸들러 실행
+    if (onClick) {
+      onClick();
+    }
+  };
 
   const content = (
     <>
@@ -46,7 +71,7 @@ export function Button({
 
   if (href) {
     return (
-      <Link href={href} className={classNames} onClick={onClick}>
+      <Link href={href} className={classNames} onClick={handleClick}>
         {content}
       </Link>
     );
@@ -56,7 +81,7 @@ export function Button({
     <button
       type={type}
       className={classNames}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
     >
       {content}

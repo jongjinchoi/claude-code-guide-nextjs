@@ -67,6 +67,8 @@ export default function HomePage() {
               size="large"
               hero={true}
               className="btn-hero-primary"
+              trackingName="start_guide"
+              trackingCategory="home_hero"
               icon={<i className="fas fa-rocket"></i>}
             >
               지금 시작하기
@@ -79,6 +81,8 @@ export default function HomePage() {
             size="large"
             hero={true}
             className="btn-hero-secondary"
+            trackingName="learn_more"
+            trackingCategory="home_hero"
           >
             Claude Code가 뭔가요?
           </Button>

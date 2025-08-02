@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import '../../styles/components/CodeBlock.css';
 import { useToast } from '@/app/components/Toast';
+import { SimplifiedAnalytics } from '@/app/lib/analytics/SimplifiedAnalytics';
 
 interface CodeBlockProps {
   children: string;
@@ -85,6 +86,17 @@ export default function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockPro
           step_title: stepTitle
         });
       }
+      
+      // Supabase로도 코드 복사 추적
+      await SimplifiedAnalytics.trackCodeCopy(codeCategory, {
+        code_action: codeAction,
+        code_importance: codeImportance,
+        code_snippet: children.substring(0, 50),
+        code_length: children.length,
+        guide_step_number: stepNumber,
+        guide_step_name: stepId,
+        step_title: stepTitle
+      });
       
       showToast('명령어가 복사되었습니다!', 'success');
     } catch (err) {
