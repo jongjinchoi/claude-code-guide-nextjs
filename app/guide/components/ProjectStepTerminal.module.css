@@ -1,0 +1,323 @@
+/* ProjectStepTerminal 스타일 */
+.terminal {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin: var(--space-2) 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+}
+
+/* 터미널 헤더 */
+.terminalHeader {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: var(--space-1);
+  margin-bottom: var(--space-2);
+  padding: var(--space-3) var(--space-3) var(--space-1) var(--space-3);
+}
+
+/* Mac 스타일은 삭제 - 글로벌 CSS에서 처리 */
+
+.terminalTitle {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* 터미널 콘텐츠 */
+.terminalContent {
+  padding: 0 var(--space-3) var(--space-3) var(--space-3);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* 기본 출력 */
+.output {
+  color: #000000;
+  display: block;
+}
+
+/* 명령어 라인 */
+.commandLine {
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  color: #000000;
+  display: inline;
+  font-weight: 600;
+}
+
+.command {
+  color: #000000;
+}
+
+/* Permission 박스 */
+.permissionBox {
+  border: 1px solid #ea580c;
+  border-radius: 6px;
+  padding: var(--space-3);
+  margin: var(--space-3) 0;
+  background: transparent;
+}
+
+.permissionHint {
+  color: #f97316;
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.permissionText {
+  color: #000000;
+  display: block;
+}
+
+.permissionLink {
+  color: #3b82f6;
+  text-decoration: underline;
+  display: block;
+}
+
+.link {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.optionSelected {
+  color: #1f2937 !important;
+  font-weight: 600;
+  display: inline;
+}
+
+.optionUnselected {
+  color: #6b7280 !important;
+  display: inline;
+}
+
+/* Welcome 박스 */
+.welcomeBox {
+  border: 1px solid #ec4899;
+  border-radius: 4px;
+  padding: var(--space-3);
+  margin: var(--space-3) 0;
+  background: transparent;
+}
+
+.welcomeTitle {
+  color: #000000;
+  font-weight: 600;
+  display: block;
+}
+
+.welcomeText {
+  color: #000000;
+  display: block;
+}
+
+.asterisk {
+  color: #ec4899;
+  margin-right: .25rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: inline;
+}
+
+/* 입력 박스 */
+.inputBox {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: var(--space-3) 0;
+  background: transparent;
+}
+
+.inputPrompt {
+  color: #000000;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.cursor {
+  background: #000000;
+  color: #ffffff;
+  padding: 0 2px;
+  animation: blink 1s infinite;
+}
+
+.inputText {
+  color: #6b7280;
+  margin-left: 0.25rem;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Windows 스타일 - 검은색 배경 */
+body[data-current-os="windows"] .terminal {
+  background: #000000;
+  border-color: #333;
+}
+
+body[data-current-os="windows"] .terminalHeader {
+  background: #000000;
+  border-color: #333;
+}
+
+body[data-current-os="windows"] .terminalTitle {
+  color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .terminalContent {
+  background: #000000;
+  color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .output {
+  color: #E0E0E0;
+}
+
+body[data-current-os="windows"] .prompt {
+  color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .command {
+  color: #FFFFFF;
+}
+
+body[data-current-os="windows"] .permissionBox {
+  border-color: #808080;
+}
+
+body[data-current-os="windows"] .permissionHint {
+  color: #FFFF00;
+}
+
+body[data-current-os="windows"] .permissionText {
+  color: #E0E0E0;
+}
+
+body[data-current-os="windows"] .permissionLink {
+  color: #00FFFF;
+}
+
+body[data-current-os="windows"] .welcomeBox {
+  border-color: #808080;
+}
+
+body[data-current-os="windows"] .welcomeTitle {
+  color: #E0E0E0;
+}
+
+body[data-current-os="windows"] .welcomeText {
+  color: #E0E0E0;
+}
+
+body[data-current-os="windows"] .asterisk {
+  color: #FF00FF;
+}
+
+body[data-current-os="windows"] .optionSelected {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+
+body[data-current-os="windows"] .optionUnselected {
+  color: #808080;
+}
+
+body[data-current-os="windows"] .inputBox {
+  background: #000000;
+  border-color: #808080;
+}
+
+body[data-current-os="windows"] .inputPrompt {
+  color: #C0C0C0;
+}
+
+body[data-current-os="windows"] .cursor {
+  background: #C0C0C0;
+  color: #000000;
+}
+
+body[data-current-os="windows"] .inputText {
+  color: #C0C0C0;
+}
+
+/* 다크 모드 */
+[data-theme="dark"] .terminal {
+  background: #1a1a1a;
+  border-color: #10b981;
+}
+
+[data-theme="dark"] .terminalHeader {
+  background: #2a2a2a;
+  border-bottom-color: #3a3a3a;
+}
+
+[data-theme="dark"] .terminalTitle {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .terminalContent {
+  background: #1a1a1a;
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .prompt {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .command {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .permissionBox {
+  background: rgba(31, 41, 55, 0.8);
+  border-color: #374151;
+}
+
+[data-theme="dark"] .hint {
+  color: #34d399;
+}
+
+[data-theme="dark"] .link {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .optionSelected {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+[data-theme="dark"] .optionUnselected {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .welcomeBox {
+  background: rgba(31, 41, 55, 0.8);
+  border-left-color: #60a5fa;
+}
+
+[data-theme="dark"] .welcomeBox > div:first-child {
+  color: #e5e7eb;
+}
+
+[data-theme="dark"] .asterisk {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .inputBox {
+  background: rgba(31, 41, 55, 0.5);
+}
+
+[data-theme="dark"] .cursor {
+  background: #d1d5db;
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] .inputText {
+  color: #6b7280;
+}

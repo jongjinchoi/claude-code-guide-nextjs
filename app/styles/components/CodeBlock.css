@@ -1,7 +1,7 @@
 /* Code blocks components */
 .code-block {
     position: relative;
-    background: #f8f9fa;
+    background: #ffffff;
     border-radius: var(--radius);
     padding: var(--space-3);
     margin: var(--space-3) 0;
@@ -37,10 +37,10 @@
     align-items: center;
     gap: var(--space-1);
     padding: 6px 12px;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(204, 120, 92, 0.1);
+    border: 1px solid rgba(204, 120, 92, 0.3);
     border-radius: var(--radius-sm);
-    color: #4b5563;
+    color: #CC785C;
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;

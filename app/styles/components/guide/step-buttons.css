@@ -62,7 +62,7 @@
 /* Success Button */
 /* ============================= */
 .result-btn.success {
-    background: var(--success-light);
+    background: rgba(204, 120, 92, 0.08);
     border-color: var(--success-color);
     color: var(--success-color);
 }
@@ -88,7 +88,7 @@
 /* Error Button */
 /* ============================= */
 .result-btn.error {
-    background: rgba(239, 68, 68, 0.1);
+    background: rgba(239, 68, 68, 0.08);
     border-color: rgba(239, 68, 68, 0.3);
     color: var(--error-color);
 }

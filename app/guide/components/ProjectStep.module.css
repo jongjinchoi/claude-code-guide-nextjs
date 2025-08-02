@@ -1,0 +1,150 @@
+/* ProjectStep 컴포넌트 스타일 */
+.projectStep {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* 프로젝트 생성 섹션 */
+.createSection {
+  background: rgba(248, 250, 252, .6);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(226, 232, 240, .8);
+}
+
+.createSection h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.createSection p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+  line-height: 1.6;
+}
+
+/* 명령어 그룹 */
+.commandGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.commandBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.commandLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* 팁 메시지 */
+.tip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--info-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-top: var(--space-2);
+}
+
+
+.tip code {
+  background: var(--background);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 0.85em;
+}
+
+/* Claude Code 시작 섹션 */
+.startSection {
+  background: rgba(249, 250, 251, .6);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(229, 231, 235, .8);
+}
+
+.startSection h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.startSection p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+  line-height: 1.6;
+}
+
+/* 보안 노트 */
+.securityNote {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--warning-color);
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.securityNote kbd {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 0.875em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* 에러 상태 */
+.projectStep.hasError {
+  padding-bottom: var(--space-4);
+}
+
+/* 다크 모드 */
+[data-theme="dark"] .tip {
+  background: rgba(66, 165, 245, 0.1);
+}
+
+[data-theme="dark"] .tip code {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .securityNote {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+[data-theme="dark"] .securityNote kbd {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .createSection,
+  .startSection {
+    padding: var(--space-3);
+  }
+}
