@@ -56,11 +56,6 @@ export default function ProjectStep({
             <span className={styles.commandLabel}>1. 프로젝트 폴더 생성</span>
             <CodeBlock 
               onCopy={() => handleCodeCopy('project_creation', 'create_directory')}
-              codeCategory="project_creation"
-              codeAction="create_directory"
-              stepNumber={6}
-              stepId={stepId}
-              stepTitle="첫 프로젝트 시작"
             >
               mkdir my-first-project
             </CodeBlock>
@@ -70,11 +65,6 @@ export default function ProjectStep({
             <span className={styles.commandLabel}>2. 폴더로 이동</span>
             <CodeBlock 
               onCopy={() => handleCodeCopy('navigation', 'change_directory')}
-              codeCategory="navigation"
-              codeAction="change_directory"
-              stepNumber={6}
-              stepId={stepId}
-              stepTitle="첫 프로젝트 시작"
             >
               cd my-first-project
             </CodeBlock>
@@ -93,11 +83,6 @@ export default function ProjectStep({
         
         <CodeBlock 
           onCopy={() => handleCodeCopy('claude_start', 'start_claude')}
-          codeCategory="claude_start"
-          codeAction="start_claude"
-          stepNumber={6}
-          stepId={stepId}
-          stepTitle="첫 프로젝트 시작"
         >
           claude
         </CodeBlock>
