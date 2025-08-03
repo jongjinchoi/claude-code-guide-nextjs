@@ -66,7 +66,7 @@ export class SimplifiedAnalytics {
     // Supabase 추적
     if (this.config.enableSupabase) {
       try {
-        await supabase.from('page_analytics').insert({
+        const insertData = {
           session_id: this.sessionId,
           page_path: pathname,
           page_title: document.title,
@@ -76,7 +76,17 @@ export class SimplifiedAnalytics {
           screen_resolution: `${window.screen.width}x${window.screen.height}`,
           viewport_size: `${window.innerWidth}x${window.innerHeight}`,
           timestamp: new Date().toISOString()
-        });
+        };
+        
+        console.log('[Analytics] Tracking pageview:', insertData);
+        
+        const { data, error } = await supabase.from('page_analytics').insert(insertData);
+        
+        if (error) {
+          console.error('[Analytics] Supabase insert error:', error);
+        } else {
+          console.log('[Analytics] Pageview tracked successfully:', data);
+        }
       } catch (error) {
         console.error('Failed to track pageview in Supabase:', error);
       }

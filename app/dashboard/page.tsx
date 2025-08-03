@@ -98,6 +98,16 @@ interface OverallGuideStats {
   completed_with_click_data: number;
 }
 
+interface StepErrorRate {
+  step_number: number;
+  total_attempts: number;
+  error_sessions: number;
+  completed_sessions: number;
+  error_rate: number;
+  success_rate: number;
+}
+
+
 export default function DashboardPage() {
   const [sessions, setSessions] = useState<SessionData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -128,6 +138,7 @@ export default function DashboardPage() {
   const [actualGuideTimes, setActualGuideTimes] = useState<ActualGuideTime[]>([]);
   const [stepDurations, setStepDurations] = useState<StepDurationAnalysis[]>([]);
   const [overallStats, setOverallStats] = useState<OverallGuideStats | null>(null);
+  const [stepErrorRates, setStepErrorRates] = useState<StepErrorRate[]>([]);
 
   useEffect(() => {
     const initializeDashboard = async () => {
@@ -220,7 +231,8 @@ export default function DashboardPage() {
       fetchTotalVisitors(),
       fetchActualGuideTimes(),
       fetchStepDurations(),
-      fetchOverallStats()
+      fetchOverallStats(),
+      fetchStepErrorRates()
     ]);
   };
 
@@ -443,6 +455,20 @@ export default function DashboardPage() {
     } catch (error) {
       console.error('Error fetching overall stats:', error);
       setOverallStats(null);
+    }
+  };
+
+  const fetchStepErrorRates = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('step_error_rates')
+        .select('*');
+
+      if (error) throw error;
+      setStepErrorRates(data || []);
+    } catch (error) {
+      console.error('Error fetching step error rates:', error);
+      setStepErrorRates([]);
     }
   };
 
@@ -795,6 +821,107 @@ export default function DashboardPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {stepErrorRates.length > 0 && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>단계별 에러 분석</h2>
+          <table className={styles.table}>
+            <thead>
+              <tr className={styles.tableHeader}>
+                <th>단계</th>
+                <th>시도</th>
+                <th>에러 발생</th>
+                <th>완료</th>
+                <th>에러율</th>
+                <th>성공률</th>
+              </tr>
+            </thead>
+            <tbody className={styles.tableBody}>
+              {stepErrorRates.map((step) => (
+                <tr key={step.step_number} className={styles.tableRow}>
+                  <td className={styles.tableCell}>단계 {step.step_number}</td>
+                  <td className={styles.tableCell}>{step.total_attempts || 0}</td>
+                  <td className={styles.tableCell}>
+                    {step.error_sessions || 0}
+                    {step.error_sessions > 0 && (
+                      <span style={{ color: '#e74c3c', marginLeft: '5px' }}>
+                        ({step.error_rate || 0}%)
+                      </span>
+                    )}
+                  </td>
+                  <td className={styles.tableCell}>
+                    {step.completed_sessions || 0}
+                    {step.completed_sessions > 0 && (
+                      <span style={{ color: '#27ae60', marginLeft: '5px' }}>
+                        ({step.success_rate || 0}%)
+                      </span>
+                    )}
+                  </td>
+                  <td className={styles.tableCell}>
+                    <div style={{ 
+                      width: '100px', 
+                      height: '20px', 
+                      backgroundColor: '#ecf0f1',
+                      borderRadius: '10px',
+                      overflow: 'hidden',
+                      position: 'relative'
+                    }}>
+                      <div style={{
+                        width: `${step.error_rate || 0}%`,
+                        height: '100%',
+                        backgroundColor: '#e74c3c',
+                        position: 'absolute',
+                        left: 0
+                      }} />
+                    </div>
+                  </td>
+                  <td className={styles.tableCell}>
+                    <div style={{ 
+                      width: '100px', 
+                      height: '20px', 
+                      backgroundColor: '#ecf0f1',
+                      borderRadius: '10px',
+                      overflow: 'hidden',
+                      position: 'relative'
+                    }}>
+                      <div style={{
+                        width: `${step.success_rate || 0}%`,
+                        height: '100%',
+                        backgroundColor: '#27ae60',
+                        position: 'absolute',
+                        left: 0
+                      }} />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          
+          <div className={styles.insightBox} style={{ 
+            marginTop: '1.5rem', 
+            padding: '1.5rem', 
+            backgroundColor: '#f0f8ff', 
+            borderRadius: '8px', 
+            border: '1px solid #d0e5ff' 
+          }}>
+            <h3 style={{ marginBottom: '1rem', color: '#0066cc' }}>💡 에러 분석 인사이트</h3>
+            <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
+              {stepErrorRates.filter(s => s.error_rate > 10).map(step => (
+                <li key={step.step_number}>
+                  <strong>단계 {step.step_number}</strong>: 에러율 {step.error_rate}% - 
+                  {step.step_number === 2 && " Homebrew/Git 설치 가이드 강화 필요"}
+                  {step.step_number === 3 && " Node.js 버전 호환성 체크 필요"}
+                  {step.step_number === 4 && " Claude Code 설치 명령어 개선 필요"}
+                  {step.step_number === 5 && " 인증 프로세스 설명 보강 필요"}
+                  {step.step_number === 6 && " 첫 프로젝트 생성 예제 추가 필요"}
+                </li>
+              ))}
+              <li>에러 발생 후 평균 해결 시간 분석으로 트러블슈팅 가이드 개선 가능</li>
+            </ul>
           </div>
         </div>
       )}

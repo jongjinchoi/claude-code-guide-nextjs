@@ -124,7 +124,7 @@ export function useGuideTracking() {
   }, [tracker]);
 
   // 단계 클릭 추적 (새로운 함수)
-  const trackStepClick = useCallback((stepNumber: number, actionType: 'expand' | 'collapse' | 'complete') => {
+  const trackStepClick = useCallback((stepNumber: number, actionType: 'expand' | 'collapse' | 'complete' | 'error') => {
     fetch('/api/guide-tracking', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

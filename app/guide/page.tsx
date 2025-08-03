@@ -311,6 +311,9 @@ export default function GuidePage() {
                   if (buttonType === 'success' || buttonType === 'resolved') {
                     handleStepComplete(stepNumber);
                   } else if (buttonType === 'error') {
+                    // 에러 버튼 클릭 추적
+                    trackStepClick(stepNumber, 'error');
+                    
                     // 에러 발생 추적 - 버튼 텍스트를 에러 메시지로 사용
                     trackError(buttonText, {
                       step: stepNumber,
