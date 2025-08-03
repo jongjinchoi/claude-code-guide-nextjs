@@ -1000,7 +1000,7 @@ export default function DashboardPage() {
             <tbody className={styles.tableBody}>
               {stepErrorRates.map((step) => (
                 <tr key={step.step_number} className={styles.tableRow}>
-                  <td className={styles.tableCell}>단계 {step.step_number}</td>
+                  <td className={styles.tableCell}>단계 {step.step_number + 1}</td>
                   <td className={styles.tableCell}>{step.total_attempts || 0}</td>
                   <td className={styles.tableCell}>
                     {step.error_sessions || 0}
