@@ -88,7 +88,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'node-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: v22.18.0'
+      description: '예시: v24.5.0'
     },
     errorButton: {
       title: '"command not found" 오류',
@@ -112,7 +112,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'node-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: v22.18.0'
+      description: '예시: v24.5.0'
     },
     errorButton: {
       title: '"node"은(는) 인식되지 않습니다',
