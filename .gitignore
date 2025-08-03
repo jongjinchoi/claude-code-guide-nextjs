@@ -33,15 +33,13 @@ project-backup-*
 *~
 *.tmp
 
-# Development documentation
-CLAUDE.md
-*_REPORT.md
-*_SUMMARY.md
-*_GUIDE.md
-*_ANALYSIS.md
-*_SYSTEM.md
-*_REFERENCE.md
-table-structure-report.md
+# Development documentation and markdown files
+*.md
+!README.md
+
+# Python scripts
+*.py
+analyze_*.py
 
 # misc
 .DS_Store
