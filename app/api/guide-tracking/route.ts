@@ -16,6 +16,26 @@ function generateFingerprint(request: NextRequest): string {
   return `${userAgent}_${acceptLanguage}`.substring(0, 100);
 }
 
+// OS 이름 정규화
+function normalizeOS(os: string): string {
+  const osLower = os.toLowerCase();
+  
+  // macOS 관련
+  if (osLower === 'mac' || osLower === 'macos') return 'macOS';
+  
+  // Windows 관련  
+  if (osLower === 'windows' || osLower === 'win') return 'Windows';
+  
+  // Linux 관련
+  if (osLower === 'linux') return 'Linux';
+  
+  // 모바일 OS
+  if (osLower === 'android') return 'Android';
+  if (osLower === 'ios') return 'iOS';
+  
+  return os; // 알 수 없는 경우 원본 유지
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -27,7 +47,7 @@ export async function POST(request: NextRequest) {
         
         await supabase.from('guide_sessions').insert({
           session_id,
-          os: data.os,
+          os: normalizeOS(data.os),
           browser: data.browser,
           device_type: data.device_type,
           referrer_source: data.referrer_source,

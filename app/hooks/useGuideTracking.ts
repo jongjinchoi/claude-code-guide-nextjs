@@ -8,7 +8,7 @@ function detectOS(): string {
   
   const userAgent = window.navigator.userAgent.toLowerCase();
   
-  if (userAgent.includes('mac')) return 'Mac';
+  if (userAgent.includes('mac')) return 'macOS';
   if (userAgent.includes('win')) return 'Windows';
   if (userAgent.includes('linux')) return 'Linux';
   if (userAgent.includes('android')) return 'Android';
