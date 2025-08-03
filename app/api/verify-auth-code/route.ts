@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 30, // 30일
       path: '/',
-      domain: process.env.NODE_ENV === 'production' ? '.getclaudecode.com' : undefined
+      // domain 설정 제거 - Next.js가 자동으로 처리하도록
     });
     
     response.cookies.set('dashboard-email', email, {
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 30, // 30일
       path: '/',
-      domain: process.env.NODE_ENV === 'production' ? '.getclaudecode.com' : undefined
+      // domain 설정 제거 - Next.js가 자동으로 처리하도록
     });
     
     // API Route에서 확인하는 쿠키 설정
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
       sameSite: 'lax',  // strict -> lax로 변경
       maxAge: 60 * 60 * 24 * 30, // 30일
       path: '/',
-      domain: process.env.NODE_ENV === 'production' ? '.getclaudecode.com' : undefined
+      // domain 설정 제거 - Next.js가 자동으로 처리하도록
     });
     
     return response;
