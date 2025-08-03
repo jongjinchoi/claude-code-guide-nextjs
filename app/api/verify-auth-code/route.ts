@@ -45,26 +45,29 @@ export async function POST(request: NextRequest) {
     response.cookies.set('dashboard-auth', authToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 30, // 30일
-      path: '/'
+      path: '/',
+      domain: process.env.NODE_ENV === 'production' ? '.getclaudecode.com' : undefined
     });
     
     response.cookies.set('dashboard-email', email, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 30, // 30일
-      path: '/'
+      path: '/',
+      domain: process.env.NODE_ENV === 'production' ? '.getclaudecode.com' : undefined
     });
     
     // API Route에서 확인하는 쿠키 설정
     response.cookies.set('auth_code_verified', 'true', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'lax',  // strict -> lax로 변경
       maxAge: 60 * 60 * 24 * 30, // 30일
-      path: '/'
+      path: '/',
+      domain: process.env.NODE_ENV === 'production' ? '.getclaudecode.com' : undefined
     });
     
     return response;
