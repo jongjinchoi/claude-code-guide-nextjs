@@ -209,7 +209,16 @@ export default function DashboardPage() {
       // 통계 계산
       if (allSessionsData && allSessionsData.length > 0) {
         const completed = allSessionsData.filter(s => s.is_completed);
-        const withErrors = allSessionsData.filter(s => s.errors && s.errors.length > 0);
+        // errors는 JSON 문자열로 저장되므로, 실제 에러가 있는지 확인
+        const withErrors = allSessionsData.filter(s => {
+          if (!s.errors) return false;
+          try {
+            const errors = typeof s.errors === 'string' ? JSON.parse(s.errors) : s.errors;
+            return Array.isArray(errors) && errors.length > 0;
+          } catch {
+            return false;
+          }
+        });
         
         setStats({
           totalSessions: allSessionsData.length,
