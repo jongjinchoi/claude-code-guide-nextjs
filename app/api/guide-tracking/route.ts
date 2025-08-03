@@ -187,6 +187,27 @@ export async function POST(request: NextRequest) {
         }
         break;
 
+      case 'step_click':
+        // 단계 클릭 추적 (새로운 테이블에 저장)
+        await supabase.from('guide_step_tracking').insert({
+          session_id,
+          step_number: data.step_number,
+          action_type: data.action_type,
+          os: normalizeOS(data.os),
+          browser: data.browser
+        });
+        
+        // 6단계 완료 시 started_at 업데이트
+        if (data.step_number === 1 && data.action_type === 'expand') {
+          await supabase
+            .from('guide_sessions')
+            .update({
+              started_at: new Date().toISOString()
+            })
+            .eq('session_id', session_id);
+        }
+        break;
+
       default:
         // Unknown tracking action - ignore silently
     }

@@ -21,6 +21,7 @@ export default function GuidePage() {
   // 추적 시스템 초기화
   const { 
     trackStepProgress, 
+    trackStepClick,
     trackError, 
     trackCompletion,
     trackHelpView 
@@ -176,6 +177,9 @@ export default function GuidePage() {
     // 현재 단계 정보 가져오기
     const currentStepInfo = steps[completedStepNumber - 1];
     
+    // 단계 완료 클릭 추적
+    trackStepClick(completedStepNumber, 'complete');
+    
     // 단계 진행 추적
     trackStepProgress(completedStepNumber, currentStepInfo?.id || `step${completedStepNumber}`);
     
@@ -278,9 +282,17 @@ export default function GuidePage() {
                   const newExpandedStep = isExpanded ? 0 : stepNumber;
                   setExpandedStep(newExpandedStep);
                   
-                  // 단계를 펼칠 때 추적 (이미 완료된 단계는 제외)
-                  if (newExpandedStep > 0 && !isCompleted) {
-                    trackStepProgress(newExpandedStep, step.id);
+                  // 단계 클릭 추적
+                  if (isExpanded) {
+                    // 닫기
+                    trackStepClick(stepNumber, 'collapse');
+                  } else {
+                    // 열기
+                    trackStepClick(stepNumber, 'expand');
+                    // 단계를 펼칠 때 진행 추적 (이미 완료된 단계는 제외)
+                    if (!isCompleted) {
+                      trackStepProgress(stepNumber, step.id);
+                    }
                   }
                 }}
                 onButtonClick={(buttonType, buttonText) => {

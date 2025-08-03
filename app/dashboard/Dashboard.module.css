@@ -303,3 +303,16 @@
     color: #888;
   }
 }
+
+.noData {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  .noData {
+    color: #999;
+  }
+}

@@ -73,6 +73,31 @@ interface FeedbackByEmoji {
   avg_completion_time: number;
 }
 
+interface ActualGuideTime {
+  session_id: string;
+  os: string;
+  browser: string;
+  actual_minutes: number;
+  recorded_minutes: number;
+}
+
+interface StepDurationAnalysis {
+  step_number: number;
+  sessions_count: number;
+  avg_minutes_on_step: number;
+  min_minutes: number;
+  max_minutes: number;
+}
+
+interface OverallGuideStats {
+  total_sessions: number;
+  completed_sessions: number;
+  completion_rate: number;
+  avg_completion_minutes_actual: number;
+  avg_completion_minutes_session: number;
+  completed_with_click_data: number;
+}
+
 export default function DashboardPage() {
   const [sessions, setSessions] = useState<SessionData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -100,6 +125,9 @@ export default function DashboardPage() {
     errorRate: 0
   });
   const [totalVisitors, setTotalVisitors] = useState<number>(0);
+  const [actualGuideTimes, setActualGuideTimes] = useState<ActualGuideTime[]>([]);
+  const [stepDurations, setStepDurations] = useState<StepDurationAnalysis[]>([]);
+  const [overallStats, setOverallStats] = useState<OverallGuideStats | null>(null);
 
   useEffect(() => {
     const initializeDashboard = async () => {
@@ -189,7 +217,10 @@ export default function DashboardPage() {
       fetchButtonUsage(),
       fetchFeedbackSummary(),
       fetchFeedbackByEmoji(),
-      fetchTotalVisitors()
+      fetchTotalVisitors(),
+      fetchActualGuideTimes(),
+      fetchStepDurations(),
+      fetchOverallStats()
     ]);
   };
 
@@ -370,6 +401,51 @@ export default function DashboardPage() {
     }
   };
 
+  const fetchActualGuideTimes = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('actual_guide_times')
+        .select('*')
+        .order('actual_minutes', { ascending: false })
+        .limit(20);
+
+      if (error) throw error;
+      setActualGuideTimes(data || []);
+    } catch (error) {
+      console.error('Error fetching actual guide times:', error);
+      setActualGuideTimes([]);
+    }
+  };
+
+  const fetchStepDurations = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('step_duration_analysis')
+        .select('*');
+
+      if (error) throw error;
+      setStepDurations(data || []);
+    } catch (error) {
+      console.error('Error fetching step durations:', error);
+      setStepDurations([]);
+    }
+  };
+
+  const fetchOverallStats = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('overall_guide_stats')
+        .select('*')
+        .single();
+
+      if (error) throw error;
+      setOverallStats(data);
+    } catch (error) {
+      console.error('Error fetching overall stats:', error);
+      setOverallStats(null);
+    }
+  };
+
   if (loading) {
     return <div className={styles.loadingContainer}>로딩 중...</div>;
   }
@@ -428,7 +504,7 @@ export default function DashboardPage() {
         <div className={styles.metricsGrid}>
           <div className={styles.metricCard}>
             <h3>가이드 페이지 방문</h3>
-            <p className={styles.metricValue}>{stats.totalSessions}</p>
+            <p className={styles.metricValue}>{overallStats?.total_sessions || stats.totalSessions}</p>
             <p className={styles.metricSubtext}>전체 사이트 방문자 {totalVisitors}명 중</p>
           </div>
           <div className={styles.metricCard}>
@@ -438,12 +514,19 @@ export default function DashboardPage() {
           </div>
           <div className={styles.metricCard}>
             <h3>가이드 완료</h3>
-            <p className={styles.metricValue}>{stats.completedSessions}</p>
-            <p className={styles.metricSubtext}>완료율 {stats.completionRate.toFixed(1)}%</p>
+            <p className={styles.metricValue}>{overallStats?.completed_sessions || stats.completedSessions}</p>
+            <p className={styles.metricSubtext}>완료율 {overallStats?.completion_rate?.toFixed(1) || stats.completionRate.toFixed(1)}%</p>
           </div>
           <div className={styles.metricCard}>
             <h3>평균 완료 시간</h3>
-            <p className={styles.metricValue}>{stats.avgCompletionTime.toFixed(1)}분</p>
+            <p className={styles.metricValue}>
+              {overallStats?.avg_completion_minutes_actual?.toFixed(1) || stats.avgCompletionTime.toFixed(1)}분
+            </p>
+            {overallStats && overallStats.completed_with_click_data > 0 && (
+              <p className={styles.metricSubtext}>
+                버튼 클릭 기준 ({overallStats.completed_with_click_data}개 세션)
+              </p>
+            )}
           </div>
           <div className={styles.metricCard}>
             <h3>에러율</h3>
@@ -498,6 +581,64 @@ export default function DashboardPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>단계별 실제 소요 시간 (버튼 클릭 기준)</h2>
+        {stepDurations.length > 0 ? (
+          <table className={styles.table}>
+            <thead>
+              <tr className={styles.tableHeader}>
+                <th>단계</th>
+                <th>분석 세션 수</th>
+                <th>평균 소요시간</th>
+                <th>최소 시간</th>
+                <th>최대 시간</th>
+              </tr>
+            </thead>
+            <tbody className={styles.tableBody}>
+              {stepDurations.map((step) => (
+                <tr key={step.step_number} className={styles.tableRow}>
+                  <td className={styles.tableCell}>단계 {step.step_number}</td>
+                  <td className={styles.tableCell}>{step.sessions_count}</td>
+                  <td className={styles.tableCell}>{step.avg_minutes_on_step?.toFixed(1) || '-'}분</td>
+                  <td className={styles.tableCell}>{step.min_minutes?.toFixed(1) || '-'}분</td>
+                  <td className={styles.tableCell}>{step.max_minutes?.toFixed(1) || '-'}분</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className={styles.noData}>아직 단계별 클릭 데이터가 없습니다. 가이드를 진행하면 데이터가 표시됩니다.</p>
+        )}
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>실제 가이드 수행 시간 (1단계 완료 ~ 6단계 완료)</h2>
+        {actualGuideTimes.length > 0 ? (
+          <div className={styles.metricsGrid}>
+            <div className={styles.metricCard}>
+              <h3>평균 실제 시간</h3>
+              <p className={styles.metricValue}>
+                {actualGuideTimes.length > 0 
+                  ? (actualGuideTimes.reduce((sum, t) => sum + t.actual_minutes, 0) / actualGuideTimes.length).toFixed(1)
+                  : '-'}분
+              </p>
+              <p className={styles.metricSubtext}>버튼 클릭 기준</p>
+            </div>
+            <div className={styles.metricCard}>
+              <h3>기록된 평균 시간</h3>
+              <p className={styles.metricValue}>
+                {actualGuideTimes.length > 0 
+                  ? (actualGuideTimes.reduce((sum, t) => sum + t.recorded_minutes, 0) / actualGuideTimes.length).toFixed(1)
+                  : '-'}분
+              </p>
+              <p className={styles.metricSubtext}>세션 시간 기준</p>
+            </div>
+          </div>
+        ) : (
+          <p className={styles.noData}>아직 실제 수행 시간 데이터가 없습니다. 가이드를 완료하면 데이터가 표시됩니다.</p>
+        )}
       </div>
 
       {stepFunnel.length > 0 && (

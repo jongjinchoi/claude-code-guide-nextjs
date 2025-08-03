@@ -123,6 +123,26 @@ export function useGuideTracking() {
     tracker.stepStartTime = Date.now();
   }, [tracker]);
 
+  // 단계 클릭 추적 (새로운 함수)
+  const trackStepClick = useCallback((stepNumber: number, actionType: 'expand' | 'collapse' | 'complete') => {
+    fetch('/api/guide-tracking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'step_click',
+        session_id: tracker.sessionId,
+        data: {
+          step_number: stepNumber,
+          action_type: actionType,
+          os: detectOS(),
+          browser: detectBrowser()
+        }
+      })
+    }).catch(error => {
+      console.error('Failed to track step click:', error);
+    });
+  }, [tracker]);
+
   // 에러 추적
   const trackError = useCallback((error: string, context?: any) => {
     const errorData = {
@@ -198,6 +218,7 @@ export function useGuideTracking() {
 
   return {
     trackStepProgress,
+    trackStepClick,
     trackError,
     trackCompletion,
     trackHelpView,
