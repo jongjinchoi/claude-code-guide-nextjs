@@ -62,7 +62,7 @@ export async function GET(request: Request) {
       dailyActivityResult
     ] = await Promise.allSettled([
       // 1. 전체 세션 데이터
-      supabaseAdmin.from('guide_sessions').select('*'),
+      supabaseAdmin.from('guide_sessions').select('*').order('created_at', { ascending: false }),
       
       // 2. 오늘의 지표
       supabaseAdmin.from('today_metrics').select('*').single(),
