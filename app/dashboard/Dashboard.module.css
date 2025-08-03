@@ -232,3 +232,74 @@
     color: #aaa;
   }
 }
+
+/* 추가 스타일 */
+.metricSubtext {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.funnelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.funnelStep {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.funnelStep:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.funnelStep h4 {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.funnelValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0.5rem 0;
+}
+
+.funnelPercent {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* 다크모드 추가 */
+@media (prefers-color-scheme: dark) {
+  .metricSubtext {
+    color: #aaa;
+  }
+  
+  .funnelStep {
+    background: #2d2d2d;
+    border-color: #444;
+  }
+  
+  .funnelStep h4 {
+    color: #aaa;
+  }
+  
+  .funnelValue {
+    color: #f0f0f0;
+  }
+  
+  .funnelPercent {
+    color: #888;
+  }
+}

@@ -87,6 +87,13 @@ export default function DashboardPage() {
   const [isRealtime, setIsRealtime] = useState(false);
   const [stats, setStats] = useState({
     totalSessions: 0,
+    startedGuide: 0,
+    reachedStep1: 0,
+    reachedStep2: 0,
+    reachedStep3: 0,
+    reachedStep4: 0,
+    reachedStep5: 0,
+    reachedStep6: 0,
     completedSessions: 0,
     completionRate: 0,
     avgCompletionTime: 0,
@@ -220,8 +227,23 @@ export default function DashboardPage() {
           }
         });
         
+        // 단계별 도달 인원 계산
+        const reachedStep1 = allSessionsData.filter(s => s.highest_step_reached >= 1).length;
+        const reachedStep2 = allSessionsData.filter(s => s.highest_step_reached >= 2).length;
+        const reachedStep3 = allSessionsData.filter(s => s.highest_step_reached >= 3).length;
+        const reachedStep4 = allSessionsData.filter(s => s.highest_step_reached >= 4).length;
+        const reachedStep5 = allSessionsData.filter(s => s.highest_step_reached >= 5).length;
+        const reachedStep6 = allSessionsData.filter(s => s.highest_step_reached >= 6).length;
+        
         setStats({
           totalSessions: allSessionsData.length,
+          startedGuide: reachedStep1,
+          reachedStep1,
+          reachedStep2,
+          reachedStep3,
+          reachedStep4,
+          reachedStep5,
+          reachedStep6,
           completedSessions: completed.length,
           completionRate: (completed.length / allSessionsData.length) * 100,
           avgCompletionTime: completed.length > 0 
@@ -405,16 +427,19 @@ export default function DashboardPage() {
         <h2 className={styles.sectionTitle}>전체 통계</h2>
         <div className={styles.metricsGrid}>
           <div className={styles.metricCard}>
-            <h3>가이드 시작한 사람</h3>
+            <h3>가이드 페이지 방문</h3>
             <p className={styles.metricValue}>{stats.totalSessions}</p>
+            <p className={styles.metricSubtext}>전체 사이트 방문자 {totalVisitors}명 중</p>
           </div>
           <div className={styles.metricCard}>
-            <h3>가이드 완료한 사람</h3>
+            <h3>가이드 시작</h3>
+            <p className={styles.metricValue}>{stats.startedGuide}</p>
+            <p className={styles.metricSubtext}>1단계 이상 진행</p>
+          </div>
+          <div className={styles.metricCard}>
+            <h3>가이드 완료</h3>
             <p className={styles.metricValue}>{stats.completedSessions}</p>
-          </div>
-          <div className={styles.metricCard}>
-            <h3>완료율</h3>
-            <p className={styles.metricValue}>{stats.completionRate.toFixed(1)}%</p>
+            <p className={styles.metricSubtext}>완료율 {stats.completionRate.toFixed(1)}%</p>
           </div>
           <div className={styles.metricCard}>
             <h3>평균 완료 시간</h3>
@@ -423,6 +448,54 @@ export default function DashboardPage() {
           <div className={styles.metricCard}>
             <h3>에러율</h3>
             <p className={styles.metricValue}>{stats.errorRate.toFixed(1)}%</p>
+          </div>
+        </div>
+      </div>
+      
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>단계별 진행 현황</h2>
+        <div className={styles.funnelGrid}>
+          <div className={styles.funnelStep}>
+            <h4>1단계</h4>
+            <p className={styles.funnelValue}>{stats.reachedStep1}</p>
+            <p className={styles.funnelPercent}>
+              {stats.totalSessions > 0 ? ((stats.reachedStep1 / stats.totalSessions) * 100).toFixed(1) : 0}%
+            </p>
+          </div>
+          <div className={styles.funnelStep}>
+            <h4>2단계</h4>
+            <p className={styles.funnelValue}>{stats.reachedStep2}</p>
+            <p className={styles.funnelPercent}>
+              {stats.reachedStep1 > 0 ? ((stats.reachedStep2 / stats.reachedStep1) * 100).toFixed(1) : 0}%
+            </p>
+          </div>
+          <div className={styles.funnelStep}>
+            <h4>3단계</h4>
+            <p className={styles.funnelValue}>{stats.reachedStep3}</p>
+            <p className={styles.funnelPercent}>
+              {stats.reachedStep2 > 0 ? ((stats.reachedStep3 / stats.reachedStep2) * 100).toFixed(1) : 0}%
+            </p>
+          </div>
+          <div className={styles.funnelStep}>
+            <h4>4단계</h4>
+            <p className={styles.funnelValue}>{stats.reachedStep4}</p>
+            <p className={styles.funnelPercent}>
+              {stats.reachedStep3 > 0 ? ((stats.reachedStep4 / stats.reachedStep3) * 100).toFixed(1) : 0}%
+            </p>
+          </div>
+          <div className={styles.funnelStep}>
+            <h4>5단계</h4>
+            <p className={styles.funnelValue}>{stats.reachedStep5}</p>
+            <p className={styles.funnelPercent}>
+              {stats.reachedStep4 > 0 ? ((stats.reachedStep5 / stats.reachedStep4) * 100).toFixed(1) : 0}%
+            </p>
+          </div>
+          <div className={styles.funnelStep}>
+            <h4>6단계 (완료)</h4>
+            <p className={styles.funnelValue}>{stats.reachedStep6}</p>
+            <p className={styles.funnelPercent}>
+              {stats.reachedStep5 > 0 ? ((stats.reachedStep6 / stats.reachedStep5) * 100).toFixed(1) : 0}%
+            </p>
           </div>
         </div>
       </div>
