@@ -30,6 +30,7 @@ function httpsGet(url) {
 async function getLatestHomebrewVersion() {
   try {
     const data = await httpsGet('https://api.github.com/repos/Homebrew/brew/releases/latest');
+    // tag_name이 '4.5.13' 형태로 오므로 그대로 사용
     const version = data.tag_name ? data.tag_name : '4.5.13';
     return version;
   } catch (error) {
@@ -41,14 +42,10 @@ async function getLatestHomebrewVersion() {
 async function getLatestNodeLTSVersion() {
   try {
     const data = await httpsGet('https://api.github.com/repos/nodejs/node/releases');
-    // LTS 버전 찾기 (짝수 메이저 버전)
+    // LTS 버전 찾기 - v22.x.x 버전만 (현재 LTS)
     for (const release of data) {
-      if (!release.prerelease && release.tag_name.startsWith('v')) {
-        const version = release.tag_name;
-        const major = parseInt(version.substring(1).split('.')[0]);
-        if (major % 2 === 0) {
-          return version;
-        }
+      if (!release.prerelease && release.tag_name.startsWith('v22.')) {
+        return release.tag_name;
       }
     }
     return 'v22.18.0'; // 폴백 버전
@@ -177,8 +174,8 @@ async function main() {
       replacement: `'${nodejs}'` 
     },
     { 
-      pattern: `'\\d+\\.\\d+\\.\\d+'(.*npm)`, 
-      replacement: `'${npm}'$1` 
+      pattern: `content: '\\d+\\.\\d+\\.\\d+' },`, 
+      replacement: `content: '${npm}' },` 
     },
     { 
       pattern: `'@anthropic-ai/claude-code/[\\d\\.]+'`, 
