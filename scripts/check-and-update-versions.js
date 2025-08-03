@@ -192,10 +192,16 @@ async function main() {
 
   if (terminalExampleUpdated) filesUpdated = true;
 
-  // GitHub Actions 출력 설정
+  // GitHub Actions 출력 설정 (새로운 방식)
   if (filesUpdated && versionChanges.length > 0) {
     const changesOutput = versionChanges.join('\n');
-    console.log(`::set-output name=version_changes::${changesOutput}`);
+    // GitHub Actions 환경 파일 사용
+    if (process.env.GITHUB_OUTPUT) {
+      const fs = require('fs');
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `version_changes<<EOF\n${changesOutput}\nEOF\n`);
+    } else {
+      console.log('Version changes:', changesOutput);
+    }
   }
 
   console.log(filesUpdated ? 'Version updates completed!' : 'No version updates needed.');
