@@ -58,6 +58,15 @@ export async function POST(request: NextRequest) {
       path: '/'
     });
     
+    // API Route에서 확인하는 쿠키 설정
+    response.cookies.set('auth_code_verified', 'true', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 24 * 30, // 30일
+      path: '/'
+    });
+    
     return response;
     
   } catch (error) {
