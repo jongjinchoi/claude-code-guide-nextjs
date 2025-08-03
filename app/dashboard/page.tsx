@@ -569,6 +569,7 @@ export default function DashboardPage() {
             <p className={styles.funnelPercent}>
               {stats.totalSessions > 0 ? ((stats.reachedStep1 / stats.totalSessions) * 100).toFixed(1) : 0}%
             </p>
+            <p className={styles.funnelDescription}>방문자 대비</p>
           </div>
           <div className={styles.funnelStep}>
             <h4>2단계</h4>
@@ -576,6 +577,7 @@ export default function DashboardPage() {
             <p className={styles.funnelPercent}>
               {stats.reachedStep1 > 0 ? ((stats.reachedStep2 / stats.reachedStep1) * 100).toFixed(1) : 0}%
             </p>
+            <p className={styles.funnelDescription}>1단계 대비</p>
           </div>
           <div className={styles.funnelStep}>
             <h4>3단계</h4>
@@ -583,6 +585,7 @@ export default function DashboardPage() {
             <p className={styles.funnelPercent}>
               {stats.reachedStep2 > 0 ? ((stats.reachedStep3 / stats.reachedStep2) * 100).toFixed(1) : 0}%
             </p>
+            <p className={styles.funnelDescription}>2단계 대비</p>
           </div>
           <div className={styles.funnelStep}>
             <h4>4단계</h4>
@@ -590,6 +593,7 @@ export default function DashboardPage() {
             <p className={styles.funnelPercent}>
               {stats.reachedStep3 > 0 ? ((stats.reachedStep4 / stats.reachedStep3) * 100).toFixed(1) : 0}%
             </p>
+            <p className={styles.funnelDescription}>3단계 대비</p>
           </div>
           <div className={styles.funnelStep}>
             <h4>5단계</h4>
@@ -597,6 +601,7 @@ export default function DashboardPage() {
             <p className={styles.funnelPercent}>
               {stats.reachedStep4 > 0 ? ((stats.reachedStep5 / stats.reachedStep4) * 100).toFixed(1) : 0}%
             </p>
+            <p className={styles.funnelDescription}>4단계 대비</p>
           </div>
           <div className={styles.funnelStep}>
             <h4>6단계 (완료)</h4>
@@ -604,6 +609,7 @@ export default function DashboardPage() {
             <p className={styles.funnelPercent}>
               {stats.reachedStep5 > 0 ? ((stats.reachedStep6 / stats.reachedStep5) * 100).toFixed(1) : 0}%
             </p>
+            <p className={styles.funnelDescription}>5단계 대비</p>
           </div>
         </div>
       </div>
