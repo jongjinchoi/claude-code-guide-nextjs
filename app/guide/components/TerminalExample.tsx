@@ -168,7 +168,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'node --version' },
-        { type: 'output', content: os === 'mac' ? 'v22.17.1' : 'v20.15.0', className: 'node-version' },
+        { type: 'output', content: os === 'mac' ? 'v22.18.0' : 'v22.18.0', className: 'node-version' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
@@ -177,10 +177,10 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'node --version' },
-        { type: 'output', content: 'v22.17.1' },
+        { type: 'output', content: 'v22.18.0' },
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'npm --version' },
-        { type: 'output', content: '11.4.2' },
+        { type: 'output', content: '11.5.2' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
@@ -189,7 +189,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'claude --version' },
-        { type: 'output', content: '@anthropic-ai/claude-code/1.0.58', className: 'claude-version' },
+        { type: 'output', content: '@anthropic-ai/claude-code/1.0.67', className: 'claude-version' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
@@ -208,7 +208,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
         { type: 'output', content: `Last login: ${formatTerminalDate()} on ttys001` },
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'brew --version' },
-        { type: 'output', content: 'Homebrew 4.5.11', className: 'homebrew-version' },
+        { type: 'output', content: 'Homebrew 4.5.13', className: 'homebrew-version' },
         { type: 'output', content: 'Homebrew/homebrew-core (git revision 3d4f5; last commit 2024-01-20)' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
