@@ -107,6 +107,21 @@ interface StepErrorRate {
   success_rate: number;
 }
 
+interface HourlyActivity {
+  hour_of_day: number;
+  total_sessions: number;
+  completed_sessions: number;
+  completion_rate: number;
+}
+
+interface DailyActivity {
+  day_name: string;
+  day_of_week: number;
+  total_sessions: number;
+  completed_sessions: number;
+  completion_rate: number;
+}
+
 
 export default function DashboardPage() {
   const [sessions, setSessions] = useState<SessionData[]>([]);
@@ -139,6 +154,8 @@ export default function DashboardPage() {
   const [stepDurations, setStepDurations] = useState<StepDurationAnalysis[]>([]);
   const [overallStats, setOverallStats] = useState<OverallGuideStats | null>(null);
   const [stepErrorRates, setStepErrorRates] = useState<StepErrorRate[]>([]);
+  const [hourlyActivity, setHourlyActivity] = useState<HourlyActivity[]>([]);
+  const [dailyActivity, setDailyActivity] = useState<DailyActivity[]>([]);
 
   useEffect(() => {
     const initializeDashboard = async () => {
@@ -232,7 +249,9 @@ export default function DashboardPage() {
       fetchActualGuideTimes(),
       fetchStepDurations(),
       fetchOverallStats(),
-      fetchStepErrorRates()
+      fetchStepErrorRates(),
+      fetchHourlyActivity(),
+      fetchDailyActivity()
     ]);
   };
 
@@ -472,6 +491,34 @@ export default function DashboardPage() {
     }
   };
 
+  const fetchHourlyActivity = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('hourly_activity')
+        .select('*');
+
+      if (error) throw error;
+      setHourlyActivity(data || []);
+    } catch (error) {
+      console.error('Error fetching hourly activity:', error);
+      setHourlyActivity([]);
+    }
+  };
+
+  const fetchDailyActivity = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('daily_activity')
+        .select('*');
+
+      if (error) throw error;
+      setDailyActivity(data || []);
+    } catch (error) {
+      console.error('Error fetching daily activity:', error);
+      setDailyActivity([]);
+    }
+  };
+
   if (loading) {
     return <div className={styles.loadingContainer}>로딩 중...</div>;
   }
@@ -672,31 +719,95 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {stepFunnel.length > 0 && (
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>단계별 퍼널 (최근 7일)</h2>
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>시간대별 활동 분석 (최근 30일)</h2>
+        {hourlyActivity.length > 0 ? (
           <table className={styles.table}>
             <thead>
               <tr className={styles.tableHeader}>
-                <th>단계</th>
-                <th>도달 사용자</th>
-                <th>이탈자</th>
-                <th>이탈률</th>
+                <th>시간대</th>
+                <th>방문자 수</th>
+                <th>완료자 수</th>
+                <th>완료율</th>
               </tr>
             </thead>
             <tbody className={styles.tableBody}>
-              {stepFunnel.map((step) => (
-                <tr key={step.step} className={styles.tableRow}>
-                  <td className={styles.tableCell}>단계 {step.step}</td>
-                  <td className={styles.tableCell}>{step.users_reached}명</td>
-                  <td className={styles.tableCell}>{step.dropped_off ? `${step.dropped_off}명` : '-'}</td>
-                  <td className={styles.tableCell}>{step.dropout_rate || '-'}%</td>
+              {hourlyActivity.map((hour) => (
+                <tr key={hour.hour_of_day} className={styles.tableRow}>
+                  <td className={styles.tableCell}>{hour.hour_of_day}시</td>
+                  <td className={styles.tableCell}>{hour.total_sessions}명</td>
+                  <td className={styles.tableCell}>{hour.completed_sessions}명</td>
+                  <td className={styles.tableCell}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ 
+                        width: '60px', 
+                        height: '10px', 
+                        backgroundColor: '#ecf0f1',
+                        borderRadius: '5px',
+                        overflow: 'hidden'
+                      }}>
+                        <div style={{
+                          width: `${hour.completion_rate || 0}%`,
+                          height: '100%',
+                          backgroundColor: '#27ae60'
+                        }} />
+                      </div>
+                      <span>{hour.completion_rate || 0}%</span>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-      )}
+        ) : (
+          <p className={styles.noData}>시간대별 활동 데이터가 없습니다.</p>
+        )}
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>요일별 활동 분석 (최근 30일)</h2>
+        {dailyActivity.length > 0 ? (
+          <table className={styles.table}>
+            <thead>
+              <tr className={styles.tableHeader}>
+                <th>요일</th>
+                <th>방문자 수</th>
+                <th>완료자 수</th>
+                <th>완료율</th>
+              </tr>
+            </thead>
+            <tbody className={styles.tableBody}>
+              {dailyActivity.map((day) => (
+                <tr key={day.day_of_week} className={styles.tableRow}>
+                  <td className={styles.tableCell}>{day.day_name}</td>
+                  <td className={styles.tableCell}>{day.total_sessions}명</td>
+                  <td className={styles.tableCell}>{day.completed_sessions}명</td>
+                  <td className={styles.tableCell}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ 
+                        width: '60px', 
+                        height: '10px', 
+                        backgroundColor: '#ecf0f1',
+                        borderRadius: '5px',
+                        overflow: 'hidden'
+                      }}>
+                        <div style={{
+                          width: `${day.completion_rate || 0}%`,
+                          height: '100%',
+                          backgroundColor: '#27ae60'
+                        }} />
+                      </div>
+                      <span>{day.completion_rate || 0}%</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className={styles.noData}>요일별 활동 데이터가 없습니다.</p>
+        )}
+      </div>
 
       {osPerformance.length > 0 && (
         <div className={styles.section}>
