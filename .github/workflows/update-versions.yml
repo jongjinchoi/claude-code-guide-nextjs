@@ -66,6 +66,3 @@ jobs:
             *This PR was automatically created by GitHub Actions.*
           branch: update-versions-${{ github.run_number }}
           delete-branch: true
-          labels: |
-            dependencies
-            automated
