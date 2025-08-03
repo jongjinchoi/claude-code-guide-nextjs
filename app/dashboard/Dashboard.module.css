@@ -280,6 +280,12 @@
   color: #9ca3af;
 }
 
+.funnelDescription {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 0.2rem;
+}
+
 /* 다크모드 추가 */
 @media (prefers-color-scheme: dark) {
   .metricSubtext {
@@ -304,9 +310,9 @@
   }
   
   .funnelDescription {
-    font-size: 0.625rem;
+    font-size: 0.7rem;
     color: #999;
-    margin-top: 0.25rem;
+    margin-top: 0.2rem;
   }
 }
 
