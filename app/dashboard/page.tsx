@@ -599,8 +599,9 @@ export default function DashboardPage() {
               <p className={styles.metricSubtext}>1단계 이상 진행</p>
             </div>
             <div className={styles.metricCard}>
-              <h3>가이드 완료자 수</h3>
+              <h3>가이드 완료</h3>
               <p className={styles.metricValue}>{todayMetrics.completed_sessions || 0}명</p>
+              <p className={styles.metricSubtext}>축하 모달 표시</p>
             </div>
             <div className={styles.metricCard}>
               <h3>가이드 완료율</h3>
@@ -626,8 +627,8 @@ export default function DashboardPage() {
           </div>
           <div className={styles.metricCard}>
             <h3>가이드 완료</h3>
-            <p className={styles.metricValue}>{overallStats?.completed_sessions || stats.completedSessions}명</p>
-            <p className={styles.metricSubtext}>완료율 {overallStats?.completion_rate?.toFixed(1) || stats.completionRate.toFixed(1)}%</p>
+            <p className={styles.metricValue}>{stats.reachedStep6}명</p>
+            <p className={styles.metricSubtext}>완료율 {((stats.reachedStep6 / stats.totalSessions) * 100).toFixed(1)}%</p>
             <p className={styles.metricSubtext}>가이드 페이지 방문자 대비</p>
           </div>
           <div className={styles.metricCard}>
