@@ -35,6 +35,13 @@ export async function GET(request: Request) {
     }
 
     const supabaseAdmin = getSupabaseAdmin();
+    
+    // 프로덕션 디버깅용
+    console.log('ENV CHECK:', {
+      hasServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      hasAnonKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL
+    });
 
     // 병렬로 모든 데이터 가져오기
     const [
@@ -101,6 +108,10 @@ export async function GET(request: Request) {
     ]);
 
     // 결과 처리
+    if (sessionsResult.status === 'rejected') {
+      console.error('Sessions query failed:', sessionsResult.reason);
+    }
+    
     const sessions = sessionsResult.status === 'fulfilled' ? sessionsResult.value.data || [] : [];
     const recentSessions = sessions.slice(0, 15);
 
