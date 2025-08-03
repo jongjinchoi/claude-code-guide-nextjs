@@ -28,9 +28,9 @@ export default function GuidePage() {
   
   // 페이지 첫 로드 시 가이드 페이지 진입 추적
   useEffect(() => {
-    // 첫 단계 진입으로 추적
-    trackStepProgress(0, 'guide_page_loaded');
-  }, [trackStepProgress]);
+    // 페이지 진입은 추적하지 않음 - 실제 단계 진행 시에만 추적
+    // Step 0 에러 방지를 위해 제거
+  }, []);
   
   // 임시: localStorage 완전히 제거
   if (typeof window !== 'undefined') {
@@ -74,8 +74,14 @@ export default function GuidePage() {
     }
   }, [isCompleted]);
 
-  // URL 변경 시 expandedStep 업데이트
+  // URL 변경 시 단계 추적 및 expandedStep 업데이트
   useEffect(() => {
+    // 현재 단계가 1 이상이면 추적 (URL 직접 접근 또는 새로고침 대응)
+    if (current > 0 && current <= 6) {
+      const currentStepInfo = steps[current - 1];
+      trackStepProgress(current, currentStepInfo?.id || `step${current}`);
+    }
+    
     // done=1-6이고 current가 없으면 모든 단계를 닫은 상태로 유지
     if (doneParam === '1-6' && !searchParams.get('current')) {
       setExpandedStep(0);
@@ -268,7 +274,15 @@ export default function GuidePage() {
                 isExpanded={isExpanded}
                 isReadOnly={isCompleted}
                 selectedButton={selectedButtons[step.id]}
-                onToggleExpand={() => setExpandedStep(isExpanded ? 0 : stepNumber)}
+                onToggleExpand={() => {
+                  const newExpandedStep = isExpanded ? 0 : stepNumber;
+                  setExpandedStep(newExpandedStep);
+                  
+                  // 단계를 펼칠 때 추적 (이미 완료된 단계는 제외)
+                  if (newExpandedStep > 0 && !isCompleted) {
+                    trackStepProgress(newExpandedStep, step.id);
+                  }
+                }}
                 onButtonClick={(buttonType, buttonText) => {
                   // 버튼 선택 상태 저장
                   const newSelectedButtons = {
@@ -285,11 +299,12 @@ export default function GuidePage() {
                   if (buttonType === 'success' || buttonType === 'resolved') {
                     handleStepComplete(stepNumber);
                   } else if (buttonType === 'error') {
-                    // 에러 발생 추적
-                    trackError(`Step ${stepNumber} error: ${buttonText}`, {
+                    // 에러 발생 추적 - 버튼 텍스트를 에러 메시지로 사용
+                    trackError(buttonText, {
                       step: stepNumber,
                       stepId: step.id,
-                      errorButton: buttonText
+                      error_type: buttonText,
+                      button: 'error'
                     });
                   }
                 }}
