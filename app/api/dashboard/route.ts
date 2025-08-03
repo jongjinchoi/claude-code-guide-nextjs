@@ -28,11 +28,11 @@ async function checkAuthorization() {
 
 export async function GET(request: Request) {
   try {
-    // 인증 확인 (임시 비활성화)
-    // const isAuthorized = await checkAuthorization();
-    // if (!isAuthorized) {
-    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    // }
+    // 인증 확인
+    const isAuthorized = await checkAuthorization();
+    if (!isAuthorized) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
     const supabaseAdmin = getSupabaseAdmin();
 
