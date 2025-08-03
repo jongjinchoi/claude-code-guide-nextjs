@@ -328,3 +328,45 @@
     color: #999;
   }
 }
+
+/* 로그아웃 버튼 */
+.logoutButton {
+  padding: 8px 16px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: #dc2626;
+}
+
+.logoutButton i {
+  font-size: 0.875rem;
+}
+
+/* 헤더 왼쪽 영역 */
+.headerLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.headerLastUpdate {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .headerLastUpdate {
+    color: #999;
+  }
+}

@@ -15,6 +15,11 @@ export default function Navigation() {
   const [faqLink, setFaqLink] = useState('/faq');
   const [aboutLink, setAboutLink] = useState('/about');
   
+  // 대시보드 페이지에서는 네비게이션 숨기기
+  if (pathname.startsWith('/dashboard')) {
+    return null;
+  }
+  
   useEffect(() => {
     if (pathname.startsWith('/guide')) {
       // Guide 페이지에서만 return 파라미터 추가

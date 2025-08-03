@@ -547,6 +547,14 @@ export default function DashboardPage() {
   };
   */
 
+  const handleLogout = () => {
+    // 쿠키 삭제 후 로그인 페이지로 리다이렉트
+    document.cookie = 'dashboard-auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'dashboard-email=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'auth_code_verified=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    window.location.href = '/dashboard-login';
+  };
+
   if (loading) {
     return <div className={styles.loadingContainer}>로딩 중...</div>;
   }
@@ -555,20 +563,25 @@ export default function DashboardPage() {
     <>
       <div className={styles.dashboardContainer}>
       <div className={styles.dashboardHeader}>
-        <h1 className={styles.dashboardTitle}>대시보드</h1>
+        <div className={styles.headerLeft}>
+          <h1 className={styles.dashboardTitle}>대시보드</h1>
+          <span className={styles.headerLastUpdate}>
+            마지막 업데이트: {lastUpdate.toLocaleTimeString('ko-KR')}
+          </span>
+        </div>
         <div className={styles.headerRight}>
           <div className={styles.totalVisitors}>
             <span className={styles.visitorLabel}>전체 방문자</span>
             <span className={styles.visitorCount}>{totalVisitors.toLocaleString()}</span>
           </div>
+          <button onClick={handleLogout} className={styles.logoutButton}>
+            <i className="fas fa-sign-out-alt"></i> 로그아웃
+          </button>
           {isRealtime && (
             <span className={styles.realtimeIndicator}>
               🔄 실시간 업데이트
             </span>
           )}
-          <span className={styles.lastUpdate}>
-            마지막 업데이트: {lastUpdate.toLocaleTimeString('ko-KR')}
-          </span>
         </div>
       </div>
       
