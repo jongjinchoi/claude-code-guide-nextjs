@@ -480,7 +480,7 @@ export default function DashboardPage() {
     <>
       <div className={styles.dashboardContainer}>
       <div className={styles.dashboardHeader}>
-        <h1 className={styles.dashboardTitle}>가이드 추적 대시보드</h1>
+        <h1 className={styles.dashboardTitle}>대시보드</h1>
         <div className={styles.headerRight}>
           <div className={styles.totalVisitors}>
             <span className={styles.visitorLabel}>전체 방문자</span>
@@ -503,23 +503,20 @@ export default function DashboardPage() {
           <div className={styles.metricsGrid}>
             <div className={styles.metricCard}>
               <h3>가이드 페이지 방문</h3>
-              <p className={styles.metricValue}>{todayMetrics.total_sessions}</p>
+              <p className={styles.metricValue}>{todayMetrics.total_sessions}명</p>
+            </div>
+            <div className={styles.metricCard}>
+              <h3>가이드 시작한 사람</h3>
+              <p className={styles.metricValue}>{(todayMetrics.total_sessions - todayMetrics.immediate_bounces) || 0}명</p>
+              <p className={styles.metricSubtext}>1단계 이상 진행</p>
             </div>
             <div className={styles.metricCard}>
               <h3>가이드 완료자 수</h3>
-              <p className={styles.metricValue}>{todayMetrics.completed_sessions || 0}</p>
+              <p className={styles.metricValue}>{todayMetrics.completed_sessions || 0}명</p>
             </div>
             <div className={styles.metricCard}>
               <h3>가이드 완료율</h3>
               <p className={styles.metricValue}>{todayMetrics.completion_rate}%</p>
-            </div>
-            <div className={styles.metricCard}>
-              <h3>평균 소요시간</h3>
-              <p className={styles.metricValue}>{todayMetrics.avg_completion_minutes?.toFixed(1) || 0}분</p>
-            </div>
-            <div className={styles.metricCard}>
-              <h3>가이드 시작하지 않음</h3>
-              <p className={styles.metricValue}>{todayMetrics.immediate_bounces}</p>
             </div>
           </div>
         </div>
