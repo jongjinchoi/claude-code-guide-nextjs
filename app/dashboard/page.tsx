@@ -811,7 +811,7 @@ export default function DashboardPage() {
 
       {osPerformance.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>OS별 성능 (최근 7일)</h2>
+          <h2 className={styles.sectionTitle}>OS별 성능</h2>
           <table className={styles.table}>
             <thead>
               <tr className={styles.tableHeader}>
@@ -839,7 +839,7 @@ export default function DashboardPage() {
 
       {pagePerformance.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>페이지별 성과 (최근 7일)</h2>
+          <h2 className={styles.sectionTitle}>페이지별 성과</h2>
           <table className={styles.table}>
             <thead>
               <tr className={styles.tableHeader}>
@@ -869,7 +869,7 @@ export default function DashboardPage() {
 
       {buttonUsage.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>버튼 활용도 TOP 10 (최근 7일)</h2>
+          <h2 className={styles.sectionTitle}>버튼 활용도 TOP 10</h2>
           <table className={styles.table}>
             <thead>
               <tr className={styles.tableHeader}>
@@ -893,7 +893,7 @@ export default function DashboardPage() {
 
       {feedbackSummary && (
         <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>사용자 만족도 (최근 7일)</h2>
+          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>사용자 만족도</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
             <div style={{ padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
               <h3>전체 피드백</h3>
