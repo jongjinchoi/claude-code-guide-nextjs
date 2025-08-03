@@ -41,6 +41,9 @@ project-backup-*
 *.py
 analyze_*.py
 
+# SQL files (database queries and migrations)
+*.sql
+
 # misc
 .DS_Store
 *.pem
