@@ -168,7 +168,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'node --version' },
-        { type: 'output', content: os === 'mac' ? 'v22.18.0' : 'v22.18.0', className: 'node-version' },
+        { type: 'output', content: os === 'mac' ? 'v24.5.0' : 'v24.5.0', className: 'node-version' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
@@ -177,7 +177,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'node --version' },
-        { type: 'output', content: 'v22.18.0' },
+        { type: 'output', content: 'v24.5.0' },
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'npm --version' },
         { type: 'output', content: '11.5.2' },
