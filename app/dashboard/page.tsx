@@ -23,7 +23,7 @@ interface SessionData {
 
 interface TodayMetrics {
   total_sessions: number;
-  completions: number;
+  completed_sessions: number;
   completion_rate: number;
   avg_completion_minutes: number;
   immediate_bounces: number;
@@ -400,15 +400,15 @@ export default function DashboardPage() {
           <h2 className={styles.sectionTitle}>오늘의 지표</h2>
           <div className={styles.metricsGrid}>
             <div className={styles.metricCard}>
-              <h3>오늘 세션</h3>
+              <h3>가이드 페이지 방문</h3>
               <p className={styles.metricValue}>{todayMetrics.total_sessions}</p>
             </div>
             <div className={styles.metricCard}>
-              <h3>오늘 완료</h3>
-              <p className={styles.metricValue}>{todayMetrics.completions}</p>
+              <h3>가이드 완료자 수</h3>
+              <p className={styles.metricValue}>{todayMetrics.completed_sessions || 0}</p>
             </div>
             <div className={styles.metricCard}>
-              <h3>오늘 완료율</h3>
+              <h3>가이드 완료율</h3>
               <p className={styles.metricValue}>{todayMetrics.completion_rate}%</p>
             </div>
             <div className={styles.metricCard}>
@@ -416,7 +416,7 @@ export default function DashboardPage() {
               <p className={styles.metricValue}>{todayMetrics.avg_completion_minutes?.toFixed(1) || 0}분</p>
             </div>
             <div className={styles.metricCard}>
-              <h3>즉시 이탈</h3>
+              <h3>가이드 시작하지 않음</h3>
               <p className={styles.metricValue}>{todayMetrics.immediate_bounces}</p>
             </div>
           </div>
