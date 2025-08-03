@@ -178,12 +178,8 @@ export default function DashboardPage() {
           table: 'guide_sessions' 
         },
         (payload) => {
-          // 새로운 세션이나 완료 시 데이터 새로고침
-          fetchSessions();
-          fetchTodayMetrics();
-          fetchStepFunnel();
-          fetchOSPerformance();
-          setLastUpdate(new Date());
+          // 새로운 세션이나 완료 시 전체 데이터 새로고침
+          fetchAllData();
           setIsRealtime(true);
           setTimeout(() => setIsRealtime(false), 3000);
         }
@@ -197,8 +193,7 @@ export default function DashboardPage() {
           table: 'user_feedback' 
         },
         (payload) => {
-          fetchFeedbackSummary();
-          fetchFeedbackByEmoji();
+          fetchAllData();
         }
       )
       // page_analytics 테이블 변경 감지
@@ -210,7 +205,7 @@ export default function DashboardPage() {
           table: 'page_analytics' 
         },
         (payload) => {
-          fetchPagePerformance();
+          fetchAllData();
         }
       )
       // user_events 테이블 변경 감지 (버튼 클릭)
@@ -223,7 +218,7 @@ export default function DashboardPage() {
         },
         (payload) => {
           if (payload.new && (payload.new as any).event_type === 'button_click') {
-            fetchButtonUsage();
+            fetchAllData();
           }
         }
       )
@@ -236,25 +231,57 @@ export default function DashboardPage() {
   }, []);
 
   const fetchAllData = async () => {
-    await Promise.all([
-      fetchSessions(),
-      fetchTodayMetrics(),
-      fetchStepFunnel(),
-      fetchOSPerformance(),
-      fetchPagePerformance(),
-      fetchButtonUsage(),
-      fetchFeedbackSummary(),
-      fetchFeedbackByEmoji(),
-      fetchTotalVisitors(),
-      fetchActualGuideTimes(),
-      fetchStepDurations(),
-      fetchOverallStats(),
-      fetchStepErrorRates(),
-      fetchHourlyActivity(),
-      fetchDailyActivity()
-    ]);
+    try {
+      const response = await fetch('/api/dashboard');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      
+      if (result.success && result.data) {
+        const { data } = result;
+        
+        // 데이터 설정
+        setSessions(data.sessions || []);
+        setStats(data.stats || {
+          totalSessions: 0,
+          startedGuide: 0,
+          reachedStep1: 0,
+          reachedStep2: 0,
+          reachedStep3: 0,
+          reachedStep4: 0,
+          reachedStep5: 0,
+          reachedStep6: 0,
+          completedSessions: 0,
+          completionRate: 0,
+          avgCompletionTime: 0,
+          errorRate: 0
+        });
+        setTodayMetrics(data.todayMetrics);
+        setStepFunnel(data.stepFunnel || []);
+        setOSPerformance(data.osPerformance || []);
+        setPagePerformance(data.pagePerformance || []);
+        setButtonUsage(data.buttonUsage || []);
+        setFeedbackSummary(data.feedbackSummary);
+        setFeedbackByEmoji(data.feedbackByEmoji || []);
+        setTotalVisitors(data.totalVisitors || 0);
+        setActualGuideTimes(data.actualGuideTimes || []);
+        setStepDurations(data.stepDurations || []);
+        setOverallStats(data.overallStats);
+        setStepErrorRates(data.stepErrorRates || []);
+        setHourlyActivity(data.hourlyActivity || []);
+        setDailyActivity(data.dailyActivity || []);
+        
+        setLastUpdate(new Date());
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    }
   };
 
+  // 개별 fetch 함수들은 API Route로 이동됨
+  /*
   const fetchSessions = async () => {
     try {
       // Fetch recent sessions for display (limited to 15)
@@ -518,6 +545,7 @@ export default function DashboardPage() {
       setDailyActivity([]);
     }
   };
+  */
 
   if (loading) {
     return <div className={styles.loadingContainer}>로딩 중...</div>;
@@ -811,7 +839,7 @@ export default function DashboardPage() {
 
       {osPerformance.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>OS별 성능</h2>
+          <h2 className={styles.sectionTitle}>OS별 성능 (전체 기간)</h2>
           <table className={styles.table}>
             <thead>
               <tr className={styles.tableHeader}>
@@ -839,7 +867,7 @@ export default function DashboardPage() {
 
       {pagePerformance.length > 0 && (
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>페이지별 성과</h2>
+          <h2 className={styles.sectionTitle}>페이지별 성과 (전체 기간)</h2>
           <table className={styles.table}>
             <thead>
               <tr className={styles.tableHeader}>
