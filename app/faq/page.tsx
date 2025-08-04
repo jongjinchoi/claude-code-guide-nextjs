@@ -22,13 +22,12 @@ import {
 } from '../components/FAQTerminal'
 
 // Dynamic import for heavy component
-const ClaudeCodeREPL = dynamic(() => import('../components/ClaudeCodeREPL').then(mod => ({ default: mod.ClaudeCodeREPL })), {
-  loading: () => <div className="repl-loading">REPL 로딩 중...</div>,
+const FaqClaudeCodePreview = dynamic(() => import('../components/FaqClaudeCodePreview').then(mod => ({ default: mod.FaqClaudeCodePreview })), {
+  loading: () => <div className="repl-loading">Claude Code 미리보기 로딩 중...</div>,
   ssr: false
 })
 
-// 중앙화된 데이터 import
-import { faqSections } from '@/app/data/faq'
+// 중앙화된 데이터 import 제거 - 컴포넌트에 직접 작성
 import type { FAQTopic } from '@/app/types/faq'
 
 export default function FAQPage() {
@@ -72,29 +71,62 @@ export default function FAQPage() {
           </div>
 
           {/* FAQ Categories - 항상 모든 섹션 표시 */}
-          {faqSections.map((section) => (
-            <section
-              key={section.topic}
-              className="faq-section is-expanded"
-              data-topic={section.topic}
-            >
-              <div className="faq-header">
-                <div className="faq-header-left">
-                  <div className="faq-icon"><i className={section.icon}></i></div>
-                  <h2>{section.title}</h2>
-                </div>
-                <span className={`faq-tag ${section.tagClass}`}>
-                  <i className={section.tagIcon}></i> {section.tagText}
-                </span>
+          <section
+            className="faq-section is-expanded"
+            data-topic="urgent"
+          >
+            <div className="faq-header">
+              <div className="faq-header-left">
+                <div className="faq-icon"><i className="fas fa-exclamation-triangle"></i></div>
+                <h2>지금 막혔어요!</h2>
               </div>
-              
-              <div className="faq-content-section">
-                {section.topic === 'urgent' && <UrgentFAQContent currentOS={currentOS} />}
-                {section.topic === 'normal' && <NormalFAQContent currentOS={currentOS} />}
-                {section.topic === 'basics' && <BasicsFAQContent currentOS={currentOS} />}
+              <span className="faq-tag urgent">
+                <i className="fas fa-bolt"></i> 즉시 해결
+              </span>
+            </div>
+            
+            <div className="faq-content-section">
+              <UrgentFAQContent currentOS={currentOS} />
+            </div>
+          </section>
+
+          <section
+            className="faq-section is-expanded"
+            data-topic="normal"
+          >
+            <div className="faq-header">
+              <div className="faq-header-left">
+                <div className="faq-icon"><i className="fas fa-question-circle"></i></div>
+                <h2>이게 정상인가요?</h2>
               </div>
-            </section>
-          ))}
+              <span className="faq-tag comfort">
+                <i className="fas fa-heart"></i> 불안감 해소
+              </span>
+            </div>
+            
+            <div className="faq-content-section">
+              <NormalFAQContent currentOS={currentOS} />
+            </div>
+          </section>
+
+          <section
+            className="faq-section is-expanded"
+            data-topic="basics"
+          >
+            <div className="faq-header">
+              <div className="faq-header-left">
+                <div className="faq-icon"><i className="fas fa-book"></i></div>
+                <h2>시작 전 알아두기</h2>
+              </div>
+              <span className="faq-tag knowledge">
+                <i className="fas fa-graduation-cap"></i> 기초 지식
+              </span>
+            </div>
+            
+            <div className="faq-content-section">
+              <BasicsFAQContent currentOS={currentOS} />
+            </div>
+          </section>
 
           {/* Return to Guide Button */}
           <ReturnToGuide />
@@ -183,7 +215,7 @@ function UrgentFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
             <li><strong>방법 3:</strong> <kbd>Windows (Win) ⊞</kbd> + <kbd>X</kbd> 누르고 "명령 프롬프트" 선택</li>
           </SolutionSteps>
           
-          <FAQTerminal title="명령 프롬프트를 열면 이렇게 보입니다">
+          <FAQTerminal title="명령 프롬프트를 열면 이렇게 보입니다" os="windows">
             <FAQTerminalOutput>Microsoft Windows [Version 10.0.22631.4169]</FAQTerminalOutput>
             {'\n'}
             <FAQTerminalOutput>(c) Microsoft Corporation. All rights reserved.</FAQTerminalOutput>
@@ -216,7 +248,7 @@ function NormalFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
     <>
       <FAQItem title="설치가 너무 오래 걸려요 (5분 넘게 진행 중)">
         <p>프로그램 설치는 여러 파일을 다운로드하고 설정하는 과정이라 시간이 걸려요. 특히 처음 설치할 때는 더 그래요.</p>
-        <FAQTerminal title="설치 진행 중 화면 - 시간이 오래 걸리는 상황">
+        <FAQTerminal title="설치 진행 중 화면 - 시간이 오래 걸리는 상황" os={currentOS}>
           <div className={`os-specific ${currentOS === 'mac' ? 'active' : ''}`} data-os="mac">
             <FAQTerminalMacPrompt /> <FAQTerminalCommand>sudo npm install -g @anthropic-ai/claude-code</FAQTerminalCommand>
             {'\n'}
@@ -261,7 +293,7 @@ function NormalFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
 
       <FAQItem title="설치 중에 WARN 메시지가 여러 개 나왔어요">
         <p>npm은 설치 중에 다양한 경고를 보여주지만, 대부분은 무시해도 됩니다.</p>
-        <FAQTerminal title="설치 중 경고 메시지 - 정상적인 상황">
+        <FAQTerminal title="설치 중 경고 메시지 - 정상적인 상황" os={currentOS}>
           <div className={`os-specific ${currentOS === 'mac' ? 'active' : ''}`} data-os="mac">
             <FAQTerminalMacPrompt /> <FAQTerminalCommand>npm install some-package</FAQTerminalCommand>
           </div>
@@ -291,7 +323,7 @@ function NormalFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
 
       <FAQItem title={currentOS === 'windows' ? "명령 프롬프트에 이상한 기호나 색깔이 나와요" : "터미널에 이상한 기호나 색깔이 나와요"}>
         <p>{currentOS === 'windows' ? '명령 프롬프트는' : '터미널은'} 다양한 색상과 기호로 정보를 구분해서 보여줍니다.</p>
-        <FAQTerminal title={currentOS === 'windows' ? "명령 프롬프트 색상과 기호 예시" : "터미널 색상과 기호 예시"}>
+        <FAQTerminal title={currentOS === 'windows' ? "명령 프롬프트 색상과 기호 예시" : "터미널 색상과 기호 예시"} os={currentOS}>
           <div className={`os-specific ${currentOS === 'mac' ? 'active' : ''}`} data-os="mac">
             <FAQTerminalMacPrompt /> <FAQTerminalCommand>npm install express</FAQTerminalCommand>
           </div>
@@ -358,9 +390,9 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           <li><code>exit</code> 입력 : {currentOS === 'windows' ? '명령 프롬프트' : '터미널'} 종료</li>
           <li>최후의 수단: {currentOS === 'windows' ? '명령 프롬프트' : '터미널'} 창을 그냥 닫고 새로 열기</li>
         </SolutionSteps>
-        <ClaudeCodeREPL currentOS={currentOS} />
+        <FaqClaudeCodePreview currentOS={currentOS} />
         
-        <FAQTerminal title={currentOS === 'windows' ? "명령 프롬프트 완전히 종료하기" : "터미널 완전히 종료하기"}>
+        <FAQTerminal title={currentOS === 'windows' ? "명령 프롬프트 완전히 종료하기" : "터미널 완전히 종료하기"} os={currentOS}>
           <div className={`os-specific ${currentOS === 'mac' ? 'active' : ''}`} data-os="mac">
             <div>
               <FAQTerminalMacPrompt /> <FAQTerminalCommand>exit</FAQTerminalCommand>
@@ -394,7 +426,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           </FAQTerminal>
         </div>
         <div className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
-          <FAQTerminal title="cd - 현재 위치 확인하기">
+          <FAQTerminal title="cd - 현재 위치 확인하기" os="windows">
             <div>
               <FAQTerminalWindowsPrompt /> <FAQTerminalCommand>cd</FAQTerminalCommand>
             </div>
@@ -416,7 +448,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           </FAQTerminal>
         </div>
         <div className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
-          <FAQTerminal title="dir - 파일과 폴더 목록 보기">
+          <FAQTerminal title="dir - 파일과 폴더 목록 보기" os="windows">
             <div>
               <FAQTerminalWindowsPrompt /> <FAQTerminalCommand>dir</FAQTerminalCommand>
             </div>
@@ -445,7 +477,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           </FAQTerminal>
         </div>
         <div className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
-          <FAQTerminal title="cd - 다른 폴더로 이동하기">
+          <FAQTerminal title="cd - 다른 폴더로 이동하기" os="windows">
             <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>cd Desktop</FAQTerminalCommand></div>
             <div><FAQTerminalPrompt>C:\Users\사용자명\Desktop&gt;</FAQTerminalPrompt> <FAQTerminalCursor /></div>
             <FAQTerminalComment># → Desktop 폴더로 이동했어요! (프롬프트가 바뀐 걸 보세요)</FAQTerminalComment>
@@ -461,7 +493,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           </FAQTerminal>
         </div>
         <div className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
-          <FAQTerminal title="cd .. - 상위 폴더로 돌아가기">
+          <FAQTerminal title="cd .. - 상위 폴더로 돌아가기" os="windows">
             <div><FAQTerminalPrompt>C:\Users\사용자명\Desktop&gt;</FAQTerminalPrompt> <FAQTerminalCommand>cd ..</FAQTerminalCommand></div>
             <div><FAQTerminalWindowsPrompt /> <FAQTerminalCursor /></div>
             <FAQTerminalComment># → Desktop에서 사용자 폴더로 돌아왔어요</FAQTerminalComment>
@@ -479,7 +511,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           </FAQTerminal>
         </div>
         <div className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
-          <FAQTerminal title="mkdir - 새 폴더 만들기">
+          <FAQTerminal title="mkdir - 새 폴더 만들기" os="windows">
             <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>mkdir my-project</FAQTerminalCommand></div>
             <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>dir</FAQTerminalCommand></div>
             <FAQTerminalOutput>2025-07-16  오전 10:35    &lt;DIR&gt;          my-project</FAQTerminalOutput>
@@ -497,7 +529,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           <div><FAQTerminalMacPrompt /> <FAQTerminalCommand>clear</FAQTerminalCommand></div>
           <FAQTerminalComment># → 터미널 화면이 깨끗해져요! (이전 내용은 스크롤로 볼 수 있어요)</FAQTerminalComment>
         </FAQTerminal>
-        <FAQTerminal title="cls - 화면 정리하기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
+        <FAQTerminal title="cls - 화면 정리하기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows" os="windows">
           <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>cls</FAQTerminalCommand></div>
           <FAQTerminalComment># → 명령 프롬프트 화면이 깨끗해져요!</FAQTerminalComment>
         </FAQTerminal>
@@ -512,7 +544,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
 }`}</FAQTerminalOutput>
           <FAQTerminalComment># → 파일의 전체 내용이 보여요</FAQTerminalComment>
         </FAQTerminal>
-        <FAQTerminal title="type - 파일 내용 보기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
+        <FAQTerminal title="type - 파일 내용 보기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows" os="windows">
           <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>type package.json</FAQTerminalCommand></div>
           <FAQTerminalOutput>{`{
   "name": "my-project",
@@ -532,7 +564,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           {'\n'}
           <FAQTerminalComment># → Node.js와 npm이 제대로 설치되어 있네요!</FAQTerminalComment>
         </FAQTerminal>
-        <FAQTerminal title="where - 프로그램 설치 위치 확인" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
+        <FAQTerminal title="where - 프로그램 설치 위치 확인" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows" os="windows">
           <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>where node</FAQTerminalCommand></div>
           <FAQTerminalOutput>C:\Program Files\nodejs\node.exe</FAQTerminalOutput>
           {'\n'}
@@ -550,7 +582,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           {'\n'}
           <FAQTerminalComment># → README.md 파일의 복사본이 만들어졌어요</FAQTerminalComment>
         </FAQTerminal>
-        <FAQTerminal title="copy - 파일 복사하기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
+        <FAQTerminal title="copy - 파일 복사하기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows" os="windows">
           <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>copy README.md README-backup.md</FAQTerminalCommand></div>
           <FAQTerminalOutput>        1개 파일이 복사되었습니다.</FAQTerminalOutput>
           {'\n'}
@@ -570,7 +602,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           <div><FAQTerminalMacPrompt /> <FAQTerminalCommand>mv file.txt Desktop/</FAQTerminalCommand></div>
           <FAQTerminalComment># → file.txt가 Desktop 폴더로 이동했어요</FAQTerminalComment>
         </FAQTerminal>
-        <FAQTerminal title="move 또는 ren - 파일 이동하거나 이름 바꾸기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
+        <FAQTerminal title="move 또는 ren - 파일 이동하거나 이름 바꾸기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows" os="windows">
           <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>ren old-name.txt new-name.txt</FAQTerminalCommand></div>
           <FAQTerminalComment># → 파일 이름이 바뀌었어요</FAQTerminalComment>
           {'\n\n'}
@@ -588,7 +620,7 @@ function BasicsFAQContent({ currentOS }: { currentOS: 'mac' | 'windows' }) {
           {'\n'}
           <FAQTerminalComment># → 빈 index.js 파일이 만들어졌어요</FAQTerminalComment>
         </FAQTerminal>
-        <FAQTerminal title="echo > - 빈 파일 만들기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows">
+        <FAQTerminal title="echo > - 빈 파일 만들기" className={`os-specific ${currentOS === 'windows' ? 'active' : ''}`} data-os="windows" os="windows">
           <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>echo. &gt; index.js</FAQTerminalCommand></div>
           <div><FAQTerminalWindowsPrompt /> <FAQTerminalCommand>dir *.js</FAQTerminalCommand></div>
           <FAQTerminalOutput>2025-07-16  오전 10:45             2 index.js</FAQTerminalOutput>

@@ -4,7 +4,7 @@
     "home": "Home",
     "about": "About",
     "guide": "Get Started",
-    "help": "Help",
+    "help": "FAQ",
     "mobile_menu_open": "Open menu",
     "mobile_menu_close": "Close menu"
   },
@@ -39,5 +39,9 @@
       "switch_to_light": "Switch to light mode"
     }
   },
-  "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI"
+  "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI",
+  "code_block": {
+    "copy": "Copy",
+    "copied": "Copied"
+  }
 }

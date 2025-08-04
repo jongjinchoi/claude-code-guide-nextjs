@@ -57,17 +57,20 @@
       {
         "icon": "📝",
         "title": "코드 리뷰 & 개선",
-        "description": "작성한 코드의 품질을 분석하고 개선점을 제안합니다. best practices와 최신 패턴을 적용할 수 있습니다."
+        "description": "작성한 코드의 품질을 분석하고 개선점을 제안합니다. 가장 좋은 사례와 최신 패턴을 적용할 수 있습니다.",
+        "variant": "advanced"
       },
       {
         "icon": "🔧",
         "title": "리팩토링 도우미",
-        "description": "레거시 코드를 현대적인 패턴으로 개선하거나, 복잡한 코드를 더 읽기 쉽게 재구성합니다."
+        "description": "레거시 코드를 현대적인 패턴으로 개선하거나, 복잡한 코드를 더 읽기 쉽게 재구성합니다.",
+        "variant": "advanced"
       },
       {
         "icon": "🚀",
         "title": "테스트 코드 생성",
-        "description": "함수나 클래스에 대한 단위 테스트를 자동으로 생성합니다. 엣지 케이스까지 고려한 완벽한 테스트를 작성합니다."
+        "description": "함수나 클래스에 대한 단위 테스트를 자동으로 생성합니다. 엣지 케이스까지 고려한 완벽한 테스트를 작성합니다.",
+        "variant": "advanced"
       }
     ],
     "tooltips": {
@@ -81,27 +84,27 @@
     "section_title": "이런 분들께 추천해요",
     "users": [
       {
-        "icon": "👶",
+        "icon": "fas fa-check",
         "title": "프로그래밍을 처음 배우는 분",
         "description": "AI가 친절하게 설명하고 가이드해줍니다"
       },
       {
-        "icon": "💼",
+        "icon": "fas fa-check",
         "title": "엑셀 반복 작업에 지친 직장인",
         "description": "업무 자동화 프로그램을 쉽게 만들 수 있습니다"
       },
       {
-        "icon": "🎨",
+        "icon": "fas fa-check",
         "title": "포트폴리오 웹사이트가 필요한 분",
         "description": "HTML/CSS를 몰라도 멋진 사이트를 만들 수 있습니다"
       },
       {
-        "icon": "📚",
+        "icon": "fas fa-check",
         "title": "새로운 언어나 프레임워크를 배우는 개발자",
         "description": "빠르게 학습하고 실무에 적용할 수 있습니다"
       },
       {
-        "icon": "🚀",
+        "icon": "fas fa-check",
         "title": "코드 리뷰가 필요한 1인 개발자",
         "description": "24시간 언제든 피드백을 받을 수 있습니다"
       }
@@ -159,9 +162,11 @@
   "cta": {
     "title": "30분이면 충분해요",
     "subtitle": "지금 시작하면 30분 후엔 AI와 대화하며 코딩하고 있을 거예요",
-    "time_estimate": "Mac 20-30분 • Windows 30-40분",
-    "difficulty": "난이도: 쉬움",
-    "button": "지금 시작하기"
+    "info": [
+      { "text": "Mac 20-30분 • Windows 30-40분" },
+      { "text": "난이도: 쉬움" }
+    ],
+    "buttonText": "지금 시작하기"
   },
   "author": {
     "name": "최종진(Jongjin Choi) aka Jin",

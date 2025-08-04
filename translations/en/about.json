@@ -1,10 +1,10 @@
 {
   "title": "What is Claude Code?",
-  "subtitle": "AI coding tool that lets you code while chatting",
+  "subtitle": "Code with AI through natural conversation",
   "badge": "AI Coding Assistant",
   "header": {
     "title": "What is Claude Code?",
-    "subtitle": "AI coding tool that lets you code while chatting",
+    "subtitle": "Code with AI through natural conversation",
     "badge": "AI Coding Assistant"
   },
   "intro": {
@@ -14,7 +14,7 @@
       "Whether you're solving complex programming problems, learning new technologies, or improving existing code, Claude helps you in real-time. It's like having an experienced developer pair programming with you."
     ],
     "tip": {
-      "title": "In simple terms",
+      "title": "Simply put",
       "content": "Claude Code is a program that lets you code while chatting with AI like texting. Just ask \"How do I build this?\" and the AI will create code and explain it to you."
     },
     "tooltips": {
@@ -44,7 +44,7 @@
         "description": "Just show the error message and it will analyze the cause and suggest solutions. Even complex bugs can be tracked systematically.",
         "badge": "Beginner Friendly",
         "example": {
-          "label": "In simple terms",
+          "label": "How it works",
           "content": "Say \"My code isn't working\" and show the error screen, and it will explain why and fix it."
         }
       },
@@ -57,17 +57,20 @@
       {
         "icon": "📝",
         "title": "Code Review & Improvement",
-        "description": "Analyzes code quality and suggests improvements. Applies best practices and latest patterns."
+        "description": "Analyzes code quality and suggests improvements. Applies best_practices and latest patterns.",
+        "variant": "advanced"
       },
       {
         "icon": "🔧",
         "title": "Refactoring Assistant",
-        "description": "Improves legacy code to modern patterns or restructures complex code to be more readable."
+        "description": "Improves legacy code to modern patterns or restructures complex code to be more readable.",
+        "variant": "advanced"
       },
       {
         "icon": "🚀",
         "title": "Test Code Generation",
-        "description": "Automatically generates unit tests for functions and classes. Creates comprehensive tests considering edge cases."
+        "description": "Automatically generates unit tests for functions and classes. Creates comprehensive tests considering edge cases.",
+        "variant": "advanced"
       }
     ],
     "tooltips": {
@@ -81,28 +84,28 @@
     "section_title": "Recommended for",
     "users": [
       {
-        "icon": "👶",
-        "title": "First-time programmers",
+        "icon": "fas fa-check",
+        "title": "Programming beginners",
         "description": "AI provides friendly explanations and guidance"
       },
       {
-        "icon": "💼",
-        "title": "Office workers tired of repetitive Excel tasks",
+        "icon": "fas fa-check",
+        "title": "Professionals automating repetitive tasks",
         "description": "Easily create automation programs for your work"
       },
       {
-        "icon": "🎨",
-        "title": "Those who need a portfolio website",
+        "icon": "fas fa-check",
+        "title": "Anyone needing a portfolio website",
         "description": "Create beautiful sites without knowing HTML/CSS"
       },
       {
-        "icon": "📚",
+        "icon": "fas fa-check",
         "title": "Developers learning new languages or frameworks",
         "description": "Learn quickly and apply to real work"
       },
       {
-        "icon": "🚀",
-        "title": "Solo developers who need code reviews",
+        "icon": "fas fa-check",
+        "title": "Independent developers seeking code reviews",
         "description": "Get feedback anytime, 24/7"
       }
     ]
@@ -112,7 +115,7 @@
     "questions": [
       {
         "question": "Can I use it without knowing how to code at all?",
-        "answer": "Yes! Claude Code is designed to be used by people who don't know coding. Just request in everyday language like \"Build me a website\" or \"Make a program that reads Excel files\" and AI will create the necessary code and explain how to use it."
+        "answer": "Yes! Claude Code is designed to be used by people who don't know coding. Simply ask in plain English like \"Build me a website\" or \"Make a program that reads Excel files\" and AI will create the necessary code and explain how to use it."
       },
       {
         "question": "Is Claude Code free?",
@@ -127,7 +130,7 @@
       },
       {
         "question": "How long does installation take?",
-        "answer": "First-time installers usually take about 20-30 minutes. Anyone can install it by slowly following this guide. Don't worry if you get stuck - we provide solutions at each step!"
+        "answer": "First-time installers usually take about 20-30 minutes. Anyone can install it by following this step-by-step guide. Don't worry if you get stuck - we provide solutions at each step!"
       },
       {
         "question": "What can I build?",
@@ -139,7 +142,7 @@
           "📝 Work automation scripts",
           "🎮 Simple web games"
         ],
-        "note": "AI will create the code and explain how to use it!"
+        "note": "The AI creates the code and explains how to use it."
       },
       {
         "question": "What programming languages are supported?",
@@ -158,15 +161,17 @@
   },
   "cta": {
     "title": "30 minutes is all you need",
-    "subtitle": "Start now and in 30 minutes you'll be coding while chatting with AI",
-    "time_estimate": "Mac 20-30 min • Windows 30-40 min",
-    "difficulty": "Difficulty: Easy",
-    "button": "Start Now"
+    "subtitle": "Get started now - you'll be coding with AI in just 30 minutes",
+    "info": [
+      { "text": "Mac 20-30 min • Windows 30-40 min" },
+      { "text": "Difficulty: Easy" }
+    ],
+    "buttonText": "Start Now"
   },
   "author": {
     "name": "Jongjin Choi aka Jin",
-    "description": "Founder of Forbes-featured coworking space \"Hive Arena\"",
-    "story": "After 5 years of childcare, while exploring new opportunities, I fell in love with Claude Code and created a guide that anyone can easily start with. Made with ❤️",
+    "description": "Former founder of Forbes-featured coworking space \"Hive Arena\"",
+    "story": "Following a 5-year career pause for family, while exploring new opportunities, I fell in love with Claude Code and created a guide that anyone can easily start with. Made with ❤️",
     "links": {
       "visit": "Visit & Coffee Chat",
       "email": "Email"

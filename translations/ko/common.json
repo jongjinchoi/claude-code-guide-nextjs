@@ -39,5 +39,9 @@
       "switch_to_light": "라이트 모드로 변경"
     }
   },
-  "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI"
+  "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI",
+  "code_block": {
+    "copy": "복사",
+    "copied": "복사됨"
+  }
 }

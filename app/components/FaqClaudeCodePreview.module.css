@@ -1,4 +1,4 @@
-/* Claude Code REPL Component Styles */
+/* FAQ Claude Code Preview Component Styles */
 
 /* Main container */
 .replContainer {
@@ -221,68 +221,72 @@
 }
 
 /* Windows mode styles - 명령 프롬프트 스타일 */
-[data-current-os="windows"] .replContainer {
-    background: #000000;
-    border-color: #333333;
-    color: #ffffff;
+.replWindows {
+    background: #000000 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
 }
 
-[data-current-os="windows"] .replHeader {
-    border-bottom-color: #333333;
+.replWindows .replHeader {
+    border-bottom-color: #333333 !important;
 }
 
-[data-current-os="windows"] .replTitle {
-    color: #cccccc;
+.replWindows .replTitle {
+    color: #cccccc !important;
 }
 
-[data-current-os="windows"] .welcomeBox {
-    background: rgba(40, 40, 40, 0.8);
-    border-color: rgba(204, 204, 204, 0.3);
+.replWindows .welcomeBox {
+    background: rgba(40, 40, 40, 0.8) !important;
+    border-color: rgba(204, 204, 204, 0.3) !important;
 }
 
-[data-current-os="windows"] .replPrompt,
-[data-current-os="windows"] .replWelcome,
-[data-current-os="windows"] .replDescription,
-[data-current-os="windows"] .replInfo,
-[data-current-os="windows"] .replOutput {
-    color: #ffffff;
+.replWindows .replPrompt,
+.replWindows .replWelcome,
+.replWindows .replDescription,
+.replWindows .replInfo,
+.replWindows .replOutput {
+    color: #ffffff !important;
 }
 
-[data-current-os="windows"] .replDescription,
-[data-current-os="windows"] .replInfo {
-    color: #cccccc;
+.replWindows .replDescription,
+.replWindows .replInfo {
+    color: #cccccc !important;
 }
 
-[data-current-os="windows"] .commandInputBox {
-    background: rgba(40, 40, 40, 0.8);
-    border-color: #555555;
+.replWindows .commandInputBox {
+    background: rgba(40, 40, 40, 0.8) !important;
+    border-color: #555555 !important;
 }
 
-[data-current-os="windows"] .commandInputBox .replPrompt {
-    color: #ffffff;
+.replWindows .commandInputBox .replPrompt {
+    color: #ffffff !important;
 }
 
-[data-current-os="windows"] .replCommand {
-    color: #ffffff;
+.replWindows .replCommand {
+    color: #ffffff !important;
 }
 
-[data-current-os="windows"] .replCursor {
-    background: #ffffff;
+.replWindows .replCursor {
+    background: #ffffff !important;
 }
 
-[data-current-os="windows"] .commandName,
-[data-current-os="windows"] .commandDescription {
-    color: #cccccc;
+.replWindows .commandName,
+.replWindows .commandDescription {
+    color: #cccccc !important;
 }
 
-[data-current-os="windows"] .replTip {
-    color: #cccccc;
+.replWindows .replTip {
+    color: #cccccc !important;
 }
 
-[data-current-os="windows"] .replFooter {
-    color: #cccccc;
+.replWindows .replFooter {
+    color: #cccccc !important;
 }
 
-[data-current-os="windows"] .replComment {
-    color: #999999;
+.replWindows .replComment {
+    color: #999999 !important;
+}
+
+.replWindows .highlightedCommand {
+    color: #9d7aff !important;
 }

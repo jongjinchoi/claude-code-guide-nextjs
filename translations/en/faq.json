@@ -15,32 +15,29 @@
     },
     "description": "We'll help you solve any difficulties you might encounter while installing Claude Code"
   },
-  "sections": [
-    {
-      "topic": "urgent",
+  "section_headers": {
+    "urgent": {
       "title": "I'm stuck right now!",
-      "tag_text": "Quick Fix",
-      "icon": "fa-solid fa-circle-exclamation",
-      "tag_class": "urgent",
-      "tag_icon": "fa-solid fa-bolt"
+      "tagText": "Quick Fix",
+      "icon": "fas fa-exclamation-triangle",
+      "tagIcon": "fas fa-bolt",
+      "tagClass": "urgent"
     },
-    {
-      "topic": "normal",
+    "normal": {
       "title": "Is this normal?",
-      "tag_text": "Reassurance",
-      "icon": "fa-solid fa-circle-question",
-      "tag_class": "normal",
-      "tag_icon": "fa-solid fa-check"
+      "tagText": "Reassurance",
+      "icon": "fas fa-question-circle",
+      "tagIcon": "fas fa-heart",
+      "tagClass": "comfort"
     },
-    {
-      "topic": "basics",
+    "basics": {
       "title": "Before you start",
-      "tag_text": "Basic Knowledge",
-      "icon": "fa-solid fa-graduation-cap",
-      "tag_class": "basics",
-      "tag_icon": "fa-solid fa-book"
+      "tagText": "Basic Knowledge",
+      "icon": "fas fa-book",
+      "tagIcon": "fas fa-graduation-cap",
+      "tagClass": "knowledge"
     }
-  ],
+  },
   "urgent": {
     "mac": {
       "terminal_not_found": {
@@ -299,235 +296,131 @@
       },
       "commands": {
         "mac": {
-          "pwd": {
-            "name": "pwd",
-            "description": "Check current location",
-            "example": {
-              "command": "pwd",
-              "output": "/Users/yourname",
-              "comment": "→ Means you're in the /Users/yourname folder"
-            }
-          },
-          "ls": {
-            "name": "ls",
-            "description": "List files and folders",
-            "example": {
-              "command": "ls",
-              "output": "Desktop    Documents    Downloads    Pictures",
-              "comment": "→ Shows files and folders in current directory"
-            }
-          },
-          "cd": {
-            "name": "cd",
-            "description": "Move to another folder",
-            "example": {
-              "command": "cd Desktop",
-              "new_prompt": "username@MacBook-Pro Desktop %",
-              "comment": "→ Moved to Desktop folder! (notice the prompt changed)"
-            }
-          },
-          "cd_up": {
-            "name": "cd ..",
-            "description": "Go back to parent folder",
-            "example": {
-              "from_prompt": "username@MacBook-Pro Desktop %",
-              "command": "cd ..",
-              "to_prompt": "username@MacBook-Pro ~ %",
-              "comment": "→ Returned to home folder from Desktop"
-            }
-          },
-          "mkdir": {
-            "name": "mkdir",
-            "description": "Create new folder",
-            "example": {
-              "commands": ["mkdir my-project", "ls"],
-              "output": "Desktop    Documents    Downloads    Pictures    my-project",
-              "comment": "→ my-project folder was created!"
-            }
-          },
-          "clear": {
-            "name": "clear",
-            "description": "Clear the screen",
-            "example": {
-              "command": "clear",
-              "comment": "→ Terminal screen becomes clean! (previous content still available by scrolling)"
-            }
-          },
-          "cat": {
-            "name": "cat",
-            "description": "View file contents",
-            "example": {
-              "command": "cat package.json",
-              "output": "{\n  \"name\": \"my-project\",\n  \"version\": \"1.0.0\",\n  \"description\": \"My first project\"\n}",
-              "comment": "→ Shows the entire file contents"
-            }
-          },
-          "which": {
-            "name": "which",
-            "description": "Check program installation location",
-            "example": {
-              "commands": ["which node", "which npm"],
-              "outputs": ["/usr/local/bin/node", "/usr/local/bin/npm"],
-              "comment": "→ Node.js and npm are properly installed!"
-            }
-          },
-          "cp": {
-            "name": "cp",
-            "description": "Copy files",
-            "example": {
-              "commands": ["cp README.md README-backup.md", "ls *.md"],
-              "output": "README-backup.md    README.md",
-              "comment": "→ Copy of README.md was created"
-            }
-          },
-          "mv": {
-            "name": "mv",
-            "description": "Move or rename files",
-            "examples": [
-              {
-                "command": "mv old-name.txt new-name.txt",
-                "comment": "→ File was renamed"
-              },
-              {
-                "command": "mv file.txt Desktop/",
-                "comment": "→ file.txt was moved to Desktop folder"
-              }
-            ]
-          },
-          "touch": {
-            "name": "touch",
-            "description": "Create empty file",
-            "example": {
-              "commands": ["touch index.js", "ls *.js"],
-              "output": "index.js",
-              "comment": "→ Empty index.js file was created"
-            }
-          }
+          "pwd_name": "pwd",
+          "pwd_desc": "Check current location",
+          "pwd_command": "pwd",
+          "pwd_output": "/Users/yourname",
+          "pwd_comment": "→ Means you're in the /Users/yourname folder",
+          "ls_name": "ls",
+          "ls_desc": "List files and folders",
+          "ls_command": "ls",
+          "ls_output": "Desktop    Documents    Downloads    Pictures",
+          "ls_comment": "→ Shows files and folders in current directory",
+          "cd_name": "cd",
+          "cd_desc": "Move to another folder",
+          "cd_command": "cd Desktop",
+          "cd_prompt": "username@MacBook-Pro Desktop %",
+          "cd_comment": "→ Moved to Desktop folder! (notice the prompt changed)",
+          "cd_up_name": "cd ..",
+          "cd_up_desc": "Go back to parent folder",
+          "cd_up_from": "username@MacBook-Pro Desktop %",
+          "cd_up_command": "cd ..",
+          "cd_up_to": "username@MacBook-Pro ~ %",
+          "cd_up_comment": "→ Returned to home folder from Desktop",
+          "mkdir_name": "mkdir",
+          "mkdir_desc": "Create new folder",
+          "mkdir_command1": "mkdir my-project",
+          "mkdir_command2": "ls",
+          "mkdir_output": "Desktop    Documents    Downloads    Pictures    my-project",
+          "mkdir_comment": "→ my-project folder was created!",
+          "clear_name": "clear",
+          "clear_desc": "Clear the screen",
+          "clear_command": "clear",
+          "clear_comment": "→ Terminal screen becomes clean! (previous content still available by scrolling)",
+          "cat_name": "cat",
+          "cat_desc": "View file contents",
+          "cat_command": "cat package.json",
+          "cat_output": "{\n  \"name\": \"my-project\",\n  \"version\": \"1.0.0\",\n  \"description\": \"My first project\"\n}",
+          "cat_comment": "→ Shows the entire file contents",
+          "which_name": "which",
+          "which_desc": "Check program installation location",
+          "which_command1": "which node",
+          "which_command2": "which npm",
+          "which_output1": "/usr/local/bin/node",
+          "which_output2": "/usr/local/bin/npm",
+          "which_comment": "→ Node.js and npm are properly installed!",
+          "cp_name": "cp",
+          "cp_desc": "Copy files",
+          "cp_command1": "cp README.md README-backup.md",
+          "cp_command2": "ls *.md",
+          "cp_output": "README-backup.md    README.md",
+          "cp_comment": "→ Copy of README.md was created",
+          "mv_name": "mv",
+          "mv_desc": "Move or rename files",
+          "mv_rename_command": "mv old-name.txt new-name.txt",
+          "mv_rename_comment": "→ File was renamed",
+          "mv_move_command": "mv file.txt Desktop/",
+          "mv_move_comment": "→ file.txt was moved to Desktop folder",
+          "touch_name": "touch",
+          "touch_desc": "Create empty file",
+          "touch_command1": "touch index.js",
+          "touch_command2": "ls *.js",
+          "touch_output": "index.js",
+          "touch_comment": "→ Empty index.js file was created"
         },
         "windows": {
-          "cd": {
-            "name": "cd",
-            "description": "Check current location",
-            "example": {
-              "command": "cd",
-              "output": "C:\\Users\\username",
-              "comment": "→ Means you're in the C:\\Users\\username folder"
-            }
-          },
-          "dir": {
-            "name": "dir",
-            "description": "List files and folders",
-            "example": {
-              "command": "dir",
-              "output": [
-                "2025-07-16  10:30 AM    <DIR>          .",
-                "2025-07-16  10:30 AM    <DIR>          ..",
-                "2025-07-16  09:15 AM    <DIR>          Desktop",
-                "2025-07-15  02:30 PM    <DIR>          Documents",
-                "2025-07-14  05:45 PM    <DIR>          Downloads",
-                "2025-07-13  11:20 AM    <DIR>          Pictures"
-              ],
-              "comment": "→ Shows files and folders in current directory"
-            }
-          },
-          "cd_folder": {
-            "name": "cd",
-            "description": "Move to another folder",
-            "example": {
-              "command": "cd Desktop",
-              "new_prompt": "C:\\Users\\username\\Desktop>",
-              "comment": "→ Moved to Desktop folder! (notice the prompt changed)"
-            }
-          },
-          "cd_up": {
-            "name": "cd ..",
-            "description": "Go back to parent folder",
-            "example": {
-              "from_prompt": "C:\\Users\\username\\Desktop>",
-              "command": "cd ..",
-              "to_prompt": "C:\\Users\\username>",
-              "comment": "→ Returned to user folder from Desktop"
-            }
-          },
-          "mkdir": {
-            "name": "mkdir",
-            "description": "Create new folder",
-            "example": {
-              "commands": ["mkdir my-project", "dir"],
-              "output": [
-                "2025-07-16  10:35 AM    <DIR>          my-project",
-                "2025-07-16  10:30 AM    <DIR>          Desktop",
-                "2025-07-15  02:30 PM    <DIR>          Documents"
-              ],
-              "comment": "→ my-project folder was created!"
-            }
-          },
-          "cls": {
-            "name": "cls",
-            "description": "Clear the screen",
-            "example": {
-              "command": "cls",
-              "comment": "→ Command Prompt screen becomes clean!"
-            }
-          },
-          "type": {
-            "name": "type",
-            "description": "View file contents",
-            "example": {
-              "command": "type package.json",
-              "output": "{\n  \"name\": \"my-project\",\n  \"version\": \"1.0.0\",\n  \"description\": \"My first project\"\n}",
-              "comment": "→ Shows the entire file contents"
-            }
-          },
-          "where": {
-            "name": "where",
-            "description": "Check program installation location",
-            "example": {
-              "commands": ["where node", "where npm"],
-              "outputs": [
-                "C:\\Program Files\\nodejs\\node.exe",
-                "C:\\Program Files\\nodejs\\npm.cmd"
-              ],
-              "comment": "→ Node.js and npm are properly installed!"
-            }
-          },
-          "copy": {
-            "name": "copy",
-            "description": "Copy files",
-            "example": {
-              "commands": ["copy README.md README-backup.md", "dir *.md"],
-              "outputs": [
-                "        1 file(s) copied.",
-                "2025-07-16  10:40 AM         1,245 README-backup.md",
-                "2025-07-16  10:30 AM         1,245 README.md"
-              ],
-              "comment": "→ Copy of README.md was created"
-            }
-          },
-          "move_ren": {
-            "name": "move or ren",
-            "description": "Move or rename files",
-            "examples": [
-              {
-                "command": "ren old-name.txt new-name.txt",
-                "comment": "→ File was renamed"
-              },
-              {
-                "command": "move file.txt Desktop",
-                "output": "        1 file(s) moved.",
-                "comment": "→ file.txt was moved to Desktop folder"
-              }
-            ]
-          },
-          "echo": {
-            "name": "echo >",
-            "description": "Create empty file",
-            "example": {
-              "commands": ["echo. > index.js", "dir *.js"],
-              "output": "2025-07-16  10:45 AM             2 index.js",
-              "comment": "→ index.js file was created"
-            }
-          }
+          "cd_name": "cd",
+          "cd_desc": "Check current location",
+          "cd_command": "cd",
+          "cd_output": "C:\\Users\\username",
+          "cd_comment": "→ Means you're in the C:\\Users\\username folder",
+          "dir_name": "dir",
+          "dir_desc": "List files and folders",
+          "dir_command": "dir",
+          "dir_output": "2025-07-16  10:30 AM    <DIR>          .\n2025-07-16  10:30 AM    <DIR>          ..\n2025-07-16  09:15 AM    <DIR>          Desktop\n2025-07-15  02:30 PM    <DIR>          Documents\n2025-07-14  05:45 PM    <DIR>          Downloads\n2025-07-13  11:20 AM    <DIR>          Pictures",
+          "dir_comment": "→ Shows files and folders in current directory",
+          "cd_folder_name": "cd",
+          "cd_folder_desc": "Move to another folder",
+          "cd_folder_command": "cd Desktop",
+          "cd_folder_prompt": "C:\\Users\\username\\Desktop>",
+          "cd_folder_comment": "→ Moved to Desktop folder! (notice the prompt changed)",
+          "cd_up_name": "cd ..",
+          "cd_up_desc": "Go back to parent folder",
+          "cd_up_from": "C:\\Users\\username\\Desktop>",
+          "cd_up_command": "cd ..",
+          "cd_up_to": "C:\\Users\\username>",
+          "cd_up_comment": "→ Returned to user folder from Desktop",
+          "mkdir_name": "mkdir",
+          "mkdir_desc": "Create new folder",
+          "mkdir_command1": "mkdir my-project",
+          "mkdir_command2": "dir",
+          "mkdir_output": "2025-07-16  10:35 AM    <DIR>          my-project\n2025-07-16  10:30 AM    <DIR>          Desktop\n2025-07-15  02:30 PM    <DIR>          Documents",
+          "mkdir_comment": "→ my-project folder was created!",
+          "cls_name": "cls",
+          "cls_desc": "Clear the screen",
+          "cls_command": "cls",
+          "cls_comment": "→ Command Prompt screen becomes clean!",
+          "type_name": "type",
+          "type_desc": "View file contents",
+          "type_command": "type package.json",
+          "type_output": "{\n  \"name\": \"my-project\",\n  \"version\": \"1.0.0\",\n  \"description\": \"My first project\"\n}",
+          "type_comment": "→ Shows the entire file contents",
+          "where_name": "where",
+          "where_desc": "Check program installation location",
+          "where_command1": "where node",
+          "where_command2": "where npm",
+          "where_output1": "C:\\Program Files\\nodejs\\node.exe",
+          "where_output2": "C:\\Program Files\\nodejs\\npm.cmd",
+          "where_comment": "→ Node.js and npm are properly installed!",
+          "copy_name": "copy",
+          "copy_desc": "Copy files",
+          "copy_command1": "copy README.md README-backup.md",
+          "copy_command2": "dir *.md",
+          "copy_output": "        1 file(s) copied.\n2025-07-16  10:40 AM         1,245 README-backup.md\n2025-07-16  10:30 AM         1,245 README.md",
+          "copy_comment": "→ Copy of README.md was created",
+          "move_ren_name": "move or ren",
+          "move_ren_desc": "Move or rename files",
+          "ren_command": "ren old-name.txt new-name.txt",
+          "ren_comment": "→ File was renamed",
+          "move_command": "move file.txt Desktop",
+          "move_output": "        1 file(s) moved.",
+          "move_comment": "→ file.txt was moved to Desktop folder",
+          "echo_name": "echo >",
+          "echo_desc": "Create empty file",
+          "echo_command1": "echo. > index.js",
+          "echo_command2": "dir *.js",
+          "echo_output": "2025-07-16  10:45 AM             2 index.js",
+          "echo_comment": "→ index.js file was created"
         }
       }
     },
@@ -543,6 +436,34 @@
       ],
       "warning": "API Key is shown only once! Make sure to save it somewhere safe."
     }
+  },
+  "alerts": {
+    "terminal_dock_tip": {
+      "title": "Tip",
+      "content": "If you'll use it often, add Terminal to your Dock. Right-click the Terminal icon and select \"Options > Keep in Dock\"."
+    },
+    "cmd_taskbar_tip": {
+      "title": "Tip",
+      "content": "If you use Command Prompt often, pin it to your taskbar for easy access."
+    },
+    "installation_time": {
+      "title": "This is normal!",
+      "content": "Depending on internet speed, it can take 5-10 minutes. Go grab a coffee!"
+    },
+    "warn_vs_error": {
+      "title": "Good to know",
+      "content": "WARN is just a warning. If it's not ERROR, installation is proceeding normally!"
+    },
+    "api_key_warning": {
+      "title": "Important",
+      "content": "API Key is shown only once! Make sure to save it somewhere safe."
+    }
+  },
+  "common_issues": {
+    "password_tips": "If it says wrong password, try typing slowly again. Also check if Caps Lock is on!"
+  },
+  "additional_info": {
+    "sudo_explanation": "Adding sudo at the beginning runs the command with admin rights."
   },
   "repl": {
     "title": {

@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react';
-import styles from './ClaudeCodeREPL.module.css';
+import styles from './FaqClaudeCodePreview.module.css';
 
-interface ClaudeCodeREPLProps {
+interface FaqClaudeCodePreviewProps {
   currentOS: 'mac' | 'windows';
   showExitCommand?: boolean;
   className?: string;
@@ -23,9 +23,9 @@ const commands: Command[] = [
   { name: '/compact', description: 'Clear conversation history but keep a summary in context. Optional: /compact\n[instructions for summarization]' }
 ];
 
-export function ClaudeCodeREPL({ currentOS, showExitCommand = true, className }: ClaudeCodeREPLProps) {
+export function FaqClaudeCodePreview({ currentOS, showExitCommand = true, className }: FaqClaudeCodePreviewProps) {
   return (
-    <div className={`${styles.replContainer} ${className || ''}`}>
+    <div className={`${styles.replContainer} ${currentOS === 'windows' ? styles.replWindows : ''} ${className || ''}`}>
       <div className={styles.replHeader}>
         <span className={styles.replTitle}>
           {currentOS === 'windows' 
