@@ -2,6 +2,8 @@
 
 import React, { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useRouter, usePathname, useParams } from 'next/navigation';
+import { Link } from '@/src/i18n/navigation';
 import { useThemeStore } from '@/app/lib/stores/themeStore';
 import { HeaderControlsProps } from '@/app/types';
 import styles from './HeaderControls.module.css';
@@ -21,6 +23,12 @@ export default function HeaderControls({
   
   // Use currentOS prop
   const displayOS = currentOS || 'mac';
+  
+  // i18n routing
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
+  const locale = params?.locale as string || 'en';
 
   // OS Toggle Handler
   const handleOSToggle = (os: 'mac' | 'windows') => {
@@ -93,6 +101,18 @@ export default function HeaderControls({
           <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
         </button>
       )}
+
+      {/* Language Switcher */}
+      <Link
+        href={pathname.replace(`/${locale}`, '')}
+        locale={locale === 'ko' ? 'en' : 'ko'}
+        className={styles.languageToggle}
+        title={locale === 'ko' ? 'Switch to English' : '한국어로 전환'}
+      >
+        <span className={styles.flagIcon}>
+          {locale === 'ko' ? '🇺🇸' : '🇰🇷'}
+        </span>
+      </Link>
     </div>
   );
 }
