@@ -47,11 +47,14 @@ export async function POST(request: NextRequest) {
         
         await supabase.from('guide_sessions').insert({
           session_id,
+          locale: data.locale || 'en',
           os: normalizeOS(data.os),
           browser: data.browser,
           device_type: data.device_type,
           referrer_source: data.referrer_source,
           landing_page: data.landing_page,
+          browser_language: data.browser_language,
+          browser_languages: JSON.stringify(data.browser_languages || []),
           user_fingerprint: fingerprint
         });
         

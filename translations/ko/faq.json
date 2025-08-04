@@ -470,34 +470,7 @@
       "mac": "Claude Code 종료하기 - 터미널은 유지",
       "windows": "Claude Code 종료하기 - 명령 프롬프트는 유지"
     },
-    "description": "Enter를 누르면 Claude Code가 종료됩니다"
-  },
-  "structured_data": {
-    "questions": [
-      {
-        "q": "command not found: claude 오류가 나와요",
-        "a": "Claude Code가 아직 설치되지 않았거나 PATH 설정이 안 되어 있을 수 있습니다. 'npm install -g @anthropic-ai/claude-code' 명령어로 다시 설치해보세요."
-      },
-      {
-        "q": "permission denied 오류가 발생해요",
-        "a": "Mac/Linux에서는 'sudo npm install -g @anthropic-ai/claude-code'로 설치하세요. Windows에서는 관리자 권한으로 명령 프롬프트를 실행해야 합니다."
-      },
-      {
-        "q": "Claude Code를 무료로 사용할 수 있나요?",
-        "a": "Claude Code는 Claude Pro 구독($20/월)이 필요합니다. API 사용료는 별도로 청구되지 않습니다."
-      },
-      {
-        "q": "Windows에서도 사용할 수 있나요?",
-        "a": "네, Windows 10 이상에서 사용 가능합니다. Git for Windows를 먼저 설치하는 것을 권장합니다."
-      },
-      {
-        "q": "Node.js 버전이 낮다고 나와요",
-        "a": "Claude Code는 Node.js 18 이상이 필요합니다. 'node --version'으로 버전을 확인하고, nodejs.org에서 최신 LTS 버전을 설치하세요."
-      },
-      {
-        "q": "로그인이 안 돼요 (claude auth login)",
-        "a": "브라우저가 자동으로 열리지 않으면 터미널에 표시된 URL을 직접 복사해서 브라우저에 붙여넣으세요. Claude Pro 계정으로 로그인해야 합니다."
-      }
-    ]
+    "description": "Enter를 누르면 Claude Code가 종료됩니다",
+    "loading": "Claude Code 미리보기 로딩 중..."
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './ProjectStep.module.css';
 import CodeBlock from './CodeBlock';
 import ProjectStepTerminal from './ProjectStepTerminal';
@@ -26,6 +27,7 @@ export default function ProjectStep({
   hasError = false
 }: ProjectStepProps) {
   const [showTroubleshooting, setShowTroubleshooting] = useState(hasError || (isReadOnly && selectedButton === 'resolved'));
+  const t = useTranslations('guide');
   
   const handleButtonClick = (buttonType: string, buttonText: string) => {
     if (buttonType === 'error') {
@@ -48,12 +50,12 @@ export default function ProjectStep({
     <div className={`${styles.projectStep} ${showTroubleshooting ? styles.hasError : ''}`} data-os={os}>
       {/* 프로젝트 생성 섹션 */}
       <div className={styles.createSection}>
-        <h3>첫 프로젝트 폴더 만들기</h3>
-        <p>Claude Code를 사용할 프로젝트 폴더를 만들어보세요:</p>
+        <h3>{t('projectStep.createSection.title')}</h3>
+        <p>{t('projectStep.createSection.description')}</p>
         
         <div className={styles.commandGroup}>
           <div className={styles.commandBlock}>
-            <span className={styles.commandLabel}>1. 프로젝트 폴더 생성</span>
+            <span className={styles.commandLabel}>{t('projectStep.createSection.step1')}</span>
             <CodeBlock 
               onCopy={() => handleCodeCopy('project_creation', 'create_directory')}
             >
@@ -62,7 +64,7 @@ export default function ProjectStep({
           </div>
           
           <div className={styles.commandBlock}>
-            <span className={styles.commandLabel}>2. 폴더로 이동</span>
+            <span className={styles.commandLabel}>{t('projectStep.createSection.step2')}</span>
             <CodeBlock 
               onCopy={() => handleCodeCopy('navigation', 'change_directory')}
             >
@@ -71,15 +73,13 @@ export default function ProjectStep({
           </div>
         </div>
 
-        <p className={styles.tip}>
-          💡 폴더 이름은 원하는 대로 바꿀 수 있어요. 예: <code>my-website</code>, <code>todo-app</code>
-        </p>
+        <p className={styles.tip} dangerouslySetInnerHTML={{ __html: t.raw('projectStep.createSection.tip') }} />
       </div>
       
       {/* Claude Code 시작 섹션 */}
       <div className={styles.startSection}>
-        <h3>Claude Code 시작하기</h3>
-        <p>프로젝트 폴더에서 Claude Code를 시작해보세요:</p>
+        <h3>{t('projectStep.startSection.title')}</h3>
+        <p>{t('projectStep.startSection.description')}</p>
         
         <CodeBlock 
           onCopy={() => handleCodeCopy('claude_start', 'start_claude')}
@@ -87,9 +87,7 @@ export default function ProjectStep({
           claude
         </CodeBlock>
         
-        <p className={styles.securityNote}>
-          처음 실행하면 보안 확인 질문이 나타납니다. <kbd>1</kbd>을 입력하고 <kbd>Enter</kbd>를 눌러 계속 진행하세요:
-        </p>
+        <p className={styles.securityNote} dangerouslySetInnerHTML={{ __html: t.raw('projectStep.startSection.securityNote') }} />
         
         <ProjectStepTerminal os={os} />
         
@@ -97,13 +95,13 @@ export default function ProjectStep({
       
       {/* 결과 버튼 섹션 */}
       <div className="result-buttons">
-        <p><strong>Claude Code가 시작되었나요?</strong></p>
+        <p><strong>{t('projectStep.resultSection.question')}</strong></p>
         <ResultButton 
           step={stepId} 
           result="success"
           icon="fa-check-circle"
-          title="Claude Code가 시작됨"
-          description="대화를 시작할 수 있습니다!"
+          title={t('projectStep.resultSection.successTitle')}
+          description={t('projectStep.resultSection.successDescription')}
           selected={isReadOnly && selectedButton === 'success'}
           disabled={isReadOnly && selectedButton !== 'success'}
           onButtonClick={handleButtonClick}
@@ -113,8 +111,8 @@ export default function ProjectStep({
           step={stepId} 
           result="error"
           icon="fa-times-circle"
-          title="시작되지 않음 또는 오류"
-          description="아래 해결 방법을 확인하세요"
+          title={t('projectStep.resultSection.errorTitle')}
+          description={t('projectStep.resultSection.errorDescription')}
           selected={isReadOnly && (selectedButton === 'error' || selectedButton === 'resolved')}
           disabled={isReadOnly && selectedButton !== 'error' && selectedButton !== 'resolved'}
           onButtonClick={handleButtonClick}
@@ -129,7 +127,7 @@ export default function ProjectStep({
         isReadOnly={isReadOnly}
         isResolvedSelected={selectedButton === 'resolved'}
         onResolved={() => {
-          handleButtonClick('resolved', '문제 해결 완료!');
+          handleButtonClick('resolved', t('troubleshooting.common.completedTitle'));
         }}
       >
         <TroubleshootingContent stepId={stepId} />

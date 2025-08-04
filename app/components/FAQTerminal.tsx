@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import { useParams } from 'next/navigation';
 import styles from './FAQTerminal.module.css';
 
 interface FAQTerminalProps {
@@ -64,9 +65,15 @@ export function FAQTerminalCursor() {
 
 // OS별 프롬프트 헬퍼
 export function FAQTerminalMacPrompt() {
-  return <FAQTerminalPrompt>사용자명@MacBook-Pro ~ %</FAQTerminalPrompt>;
+  const params = useParams();
+  const locale = params?.locale as string || 'en';
+  const username = locale === 'en' ? 'username' : '사용자명';
+  return <FAQTerminalPrompt>{username}@MacBook-Pro ~ %</FAQTerminalPrompt>;
 }
 
 export function FAQTerminalWindowsPrompt() {
-  return <FAQTerminalPrompt>C:\Users\사용자명&gt;</FAQTerminalPrompt>;
+  const params = useParams();
+  const locale = params?.locale as string || 'en';
+  const username = locale === 'en' ? 'username' : '사용자명';
+  return <FAQTerminalPrompt>C:\Users\{username}&gt;</FAQTerminalPrompt>;
 }

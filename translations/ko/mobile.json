@@ -13,6 +13,10 @@
       "close": "닫기",
       "email_sent": "이메일 열림!"
     },
-    "hint": "링크를 복사하여 데스크톱 브라우저에서 열어보세요"
+    "hint": "링크를 복사하여 데스크톱 브라우저에서 열어보세요",
+    "email": {
+      "subject": "Claude Code 설치 가이드",
+      "body": "안녕하세요!\n\nClaude Code 설치 가이드를 공유합니다.\n\n데스크톱에서 아래 링크를 열어주세요:\n{url}\n\n- AI 코딩 도구 Claude Code 설치 가이드\n- 6단계로 쉽게 따라하기"
+    }
   }
 }

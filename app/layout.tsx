@@ -9,45 +9,12 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-export const metadata: Metadata = {
-  title: 'Claude Code Guide - 초보자를 위한 바이브 코딩의 시작',
-  description: '초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다. 6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요.',
-  keywords: 'Claude Code, AI 코딩, 바이브 코딩, Vibe Coding, 터미널, 코딩 입문, 프로그래밍, AI 개발 도구, Claude, Anthropic',
-  authors: [{ name: 'Jin' }],
-  robots: 'index, follow',
-  openGraph: {
-    type: 'website',
-    url: 'https://getclaudecode.com/',
-    title: 'Claude Code Guide - 초보자를 위한 바이브 코딩의 시작',
-    description: '초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다. 6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요.',
-    images: [
-      {
-        url: 'https://getclaudecode.com/images/claude-code-guide-og.png',
-        width: 1200,
-        height: 630,
-      }
-    ],
-    locale: 'ko_KR',
-    siteName: 'Claude Code Guide',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Claude Code Guide - 초보자를 위한 바이브 코딩의 시작',
-    description: '초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다.',
-    images: ['https://getclaudecode.com/images/claude-code-guide-og.png'],
-  },
-  metadataBase: new URL('https://getclaudecode.com'),
-  verification: {
-    google: 'sUU-tXbNB9yDZ-xWFJAHyQIeByDlCNyieez4FG91sTE',
-  },
-}
+// 메타데이터는 각 페이지에서 동적으로 생성됩니다
 
 import { SimplifiedAnalyticsProvider } from '@/app/lib/analytics/SimplifiedAnalytics';
 import { Suspense } from 'react';
 import { ThemeProvider } from '@/app/components/ThemeProvider';
 import { ToastProvider } from '@/app/components/Toast';
-import Navigation from '@/app/components/Navigation';
-import MobileDetector from '@/app/components/MobileDetector';
 import './styles/components/copyright.css';
 
 export default function RootLayout({
@@ -123,12 +90,6 @@ export default function RootLayout({
               <SimplifiedAnalyticsProvider>
                 {/* Copyright 사이드바 */}
                 <div className="copyright-sidebar">© 2025 Claude Code Guide By JONGJIN CHOI</div>
-                
-                {/* 네비게이션 */}
-                <Navigation />
-                
-                {/* 모바일 감지 */}
-                <MobileDetector />
               
               {children}
               </SimplifiedAnalyticsProvider>

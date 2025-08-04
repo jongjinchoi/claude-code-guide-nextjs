@@ -6,6 +6,7 @@ import faq from './faq.json';
 import toast from './toast.json';
 import mobile from './mobile.json';
 import notFound from './404.json';
+import metadata from './metadata.json';
 
 const messages = {
   common,
@@ -15,7 +16,8 @@ const messages = {
   faq,
   toast,
   mobile,
-  notFound
+  '404': notFound,
+  metadata
 };
 
 export default messages;

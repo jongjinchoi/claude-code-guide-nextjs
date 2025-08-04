@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-// Analytics removed - no longer needed
+import { usePathname, useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function MobileDetector() {
   const pathname = usePathname();
+  const params = useParams();
+  const t = useTranslations('mobile');
+  const locale = params?.locale as string || 'en';
 
   useEffect(() => {
     const mobileDetector = {
@@ -94,7 +97,9 @@ export default function MobileDetector() {
                                    link.classList.contains('btn-hero-primary') || 
                                    (link.textContent?.includes('가이드 시작') ?? false) || 
                                    (link.textContent?.includes('시작하기') ?? false) ||
-                                   (link.textContent?.includes('지금 시작하기') ?? false);
+                                   (link.textContent?.includes('지금 시작하기') ?? false) ||
+                                   (link.textContent?.includes('Get Started') ?? false) ||
+                                   (link.textContent?.includes('Start Now') ?? false);
           
           if (isRestrictedLink || isGuideStartButton) {
             e.preventDefault();
@@ -123,11 +128,11 @@ export default function MobileDetector() {
         const secondButton = isDirectAccess 
           ? `<button class="mobile-warning-button primary" id="mobile-home-btn">
                  <i class="fas fa-home"></i>
-                 <span>홈으로</span>
+                 <span>${t('warning.buttons.home')}</span>
              </button>`
           : `<button class="mobile-warning-button close" id="mobile-close-btn">
                  <i class="fas fa-times"></i>
-                 <span>닫기</span>
+                 <span>${t('warning.buttons.close')}</span>
              </button>`;
         
         modal.innerHTML = `
@@ -136,31 +141,30 @@ export default function MobileDetector() {
               <div class="mobile-warning-icon">
                   <i class="fas fa-desktop"></i>
               </div>
-              <h3 class="mobile-warning-title">데스크톱이 필요합니다</h3>
+              <h3 class="mobile-warning-title">${t('warning.title')}</h3>
               <p class="mobile-warning-message">
-                  Claude Code는 터미널 명령어를 실행해야 합니다.<br>
-                  데스크톱 이용을 추천합니다.
+                  ${t('warning.message').replace('\n', '<br>')}
               </p>
               <div class="mobile-warning-email-section">
                   <input type="email" 
                          id="email-input" 
                          class="mobile-warning-email-input" 
-                         placeholder="이메일 주소 입력"
+                         placeholder="${t('warning.email_input.placeholder')}"
                          autocomplete="email">
                   <button class="mobile-warning-button email-send" onclick="window.mobileDetector.sendEmail('${window.location.origin}${targetUrl}')">
                       <i class="fas fa-envelope"></i>
-                      <span>이메일로 보내기</span>
+                      <span>${t('warning.buttons.send_email')}</span>
                   </button>
               </div>
               <div class="mobile-warning-actions">
                   <button class="mobile-warning-button copy-link" onclick="window.mobileDetector.copyLinkToClipboard('${window.location.origin}${targetUrl}')">
                       <i class="fas fa-link"></i>
-                      <span>링크 복사</span>
+                      <span>${t('warning.buttons.copy_link')}</span>
                   </button>
                   ${secondButton}
               </div>
               <p class="mobile-warning-hint">
-                  링크를 복사하여 데스크톱 브라우저에서 열어보세요
+                  ${t('warning.hint')}
               </p>
           </div>
         `;
@@ -223,7 +227,7 @@ export default function MobileDetector() {
             const copyButton = document.querySelector('.mobile-warning-button.copy-link');
             if (copyButton) {
               const originalHTML = copyButton.innerHTML;
-              copyButton.innerHTML = '<i class="fas fa-check"></i> 복사됨!';
+              copyButton.innerHTML = `<i class="fas fa-check"></i> ${t('warning.buttons.copied')}`;
               copyButton.classList.add('copied');
               setTimeout(() => {
                 copyButton.innerHTML = originalHTML;
@@ -251,7 +255,7 @@ export default function MobileDetector() {
           const copyButton = document.querySelector('.mobile-warning-button.copy-link');
           if (copyButton) {
             const originalHTML = copyButton.innerHTML;
-            copyButton.innerHTML = '<i class="fas fa-check"></i><span>복사됨!</span>';
+            copyButton.innerHTML = `<i class="fas fa-check"></i><span>${t('warning.buttons.copied')}</span>`;
             copyButton.classList.add('copied');
             setTimeout(() => {
               copyButton.innerHTML = originalHTML;
@@ -286,8 +290,8 @@ export default function MobileDetector() {
         
         // Track button click
         
-        const subject = encodeURIComponent('Claude Code 설치 가이드');
-        const body = encodeURIComponent(`안녕하세요!\n\nClaude Code 설치 가이드를 공유합니다.\n\n데스크톱에서 아래 링크를 열어주세요:\n${url}\n\n- AI 코딩 도구 Claude Code 설치 가이드\n- 6단계로 쉽게 따라하기`);
+        const subject = encodeURIComponent(t('warning.email.subject'));
+        const body = encodeURIComponent(t('warning.email.body').replace('{url}', url));
         
         window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         
@@ -295,7 +299,7 @@ export default function MobileDetector() {
         const sendButton = document.querySelector('.mobile-warning-button.email-send');
         if (sendButton) {
           const originalHTML = sendButton.innerHTML;
-          sendButton.innerHTML = '<i class="fas fa-check"></i><span>이메일 열림!</span>';
+          sendButton.innerHTML = `<i class="fas fa-check"></i><span>${t('warning.buttons.email_sent')}</span>`;
           sendButton.classList.add('sent');
           setTimeout(() => {
             sendButton.innerHTML = originalHTML;

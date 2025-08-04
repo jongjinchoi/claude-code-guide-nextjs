@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useParams } from 'next/navigation';
 
 // 브라우저 감지 유틸리티
 function detectOS(): string {
@@ -50,6 +51,9 @@ interface GuideTracker {
 }
 
 export function useGuideTracking() {
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+  
   const [tracker] = useState<GuideTracker>(() => ({
     sessionId: `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
     startTime: Date.now(),
@@ -69,11 +73,14 @@ export function useGuideTracking() {
             action: 'start_session',
             session_id: tracker.sessionId,
             data: {
+              locale: locale,
               os: detectOS(),
               browser: detectBrowser(),
               device_type: detectDeviceType(),
               referrer_source: document.referrer || 'direct',
-              landing_page: window.location.pathname
+              landing_page: window.location.pathname,
+              browser_language: navigator.language,
+              browser_languages: navigator.languages
             }
           })
         });
