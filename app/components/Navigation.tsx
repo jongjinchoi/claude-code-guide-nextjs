@@ -19,11 +19,6 @@ export default function Navigation() {
   const [faqLink, setFaqLink] = useState('/faq');
   const [aboutLink, setAboutLink] = useState('/about');
   
-  // 대시보드 페이지에서는 네비게이션 숨기기
-  if (pathname.startsWith('/dashboard')) {
-    return null;
-  }
-  
   useEffect(() => {
     if (pathname.includes('/guide')) {
       // Guide 페이지에서만 return 파라미터 추가
@@ -107,8 +102,13 @@ export default function Navigation() {
     return pathname.startsWith(href);
   };
 
-  // 홈페이지에서는 Navigation 숨김
-  if (pathname === '/') {
+  // 대시보드 페이지에서는 네비게이션 숨기기
+  if (pathname.startsWith('/dashboard')) {
+    return null;
+  }
+  
+  // 메인 페이지에서도 네비게이션 숨기기 (locale 포함)
+  if (pathname === `/${locale}` || pathname === '/' || pathname === '/ko' || pathname === '/en') {
     return null;
   }
 
