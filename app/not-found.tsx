@@ -22,6 +22,22 @@ export default function NotFound() {
     
     // 현재 경로 설정
     setPathname(window.location.pathname);
+    
+    // 404 페이지에서 네비게이션과 다른 요소들 숨기기
+    const navigation = document.querySelector('nav') as HTMLElement;
+    const copyright = document.querySelector('.copyright-sidebar') as HTMLElement;
+    const logo = document.querySelector('.logo-wrapper') as HTMLElement;
+    
+    if (navigation) navigation.style.display = 'none';
+    if (copyright) copyright.style.display = 'none';
+    if (logo) logo.style.display = 'none';
+    
+    // cleanup: 페이지 이동 시 다시 보이게
+    return () => {
+      if (navigation) navigation.style.display = '';
+      if (copyright) copyright.style.display = '';
+      if (logo) logo.style.display = '';
+    };
   }, []);
 
   return (

@@ -1,6 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { guideSteps } from '@/app/data/guide';
 import GuideStep from './components/GuideStep';
 import PageHeader from '../components/PageHeader';
@@ -42,6 +43,14 @@ export default function GuidePage() {
   const os = (searchParams.get('os') || 'mac') as 'mac' | 'windows';
   const current = parseInt(searchParams.get('current') || '1');
   const doneParam = searchParams.get('done') || '';
+  
+  // 사용 가능한 단계 가져오기
+  const steps = guideSteps[os];
+  
+  // 잘못된 단계 접근 시 404 페이지로
+  if (current < 1 || current > steps.length) {
+    notFound();
+  }
   
   // 로컬 상태 (UI 전용)
   // done=1-6이고 current가 없으면 완료 모달을 표시
@@ -244,8 +253,6 @@ export default function GuidePage() {
   const handleCodeCopy = (stepId: string, codeType: string) => {
     // 코드 복사 추적 (analytics.js에서 처리)
   };
-  
-  const steps = guideSteps[os];
   
   return (
     <div className="page-wrapper page-wrapper--guide">

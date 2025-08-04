@@ -12,7 +12,7 @@
   justify-content: center;
   padding: 20px;
   font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
-  z-index: 9999;
+  z-index: 1;
 }
 
 /* Terminal Window */
