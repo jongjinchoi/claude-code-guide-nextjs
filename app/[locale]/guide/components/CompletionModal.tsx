@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import '../../styles/components/CompletionModal.css';
+import { useTranslations } from 'next-intl';
+import '../../../styles/components/CompletionModal.css';
 import { useToast } from '@/app/components/Toast';
 import { createClient } from '@supabase/supabase-js';
 
@@ -31,6 +32,7 @@ export default function CompletionModal({
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const { showToast } = useToast();
+  const t = useTranslations('guide.completion');
 
   const handleEmojiClick = (emoji: string) => {
     setSelectedEmoji(emoji);
@@ -126,7 +128,7 @@ export default function CompletionModal({
       setFeedbackSubmitted(true);
     } catch (error) {
       console.error('Error submitting feedback:', error);
-      showToast('피드백 제출에 실패했습니다. 다시 시도해주세요.', 'error');
+      showToast(t('feedback.submitError'), 'error');
     } finally {
       setIsSubmitting(false);
     }
@@ -138,13 +140,13 @@ export default function CompletionModal({
 
   const handleShareAction = (action: string) => {
     const url = 'https://getclaudecode.com/';
-    const title = 'Claude Code Guide - 초보자를 위한 바이브 코딩의 시작';
-    const text = 'Claude Code를 6단계로 간단하게 설치하세요. 터미널이 처음이어도 걱정 없습니다!';
+    const title = t('share.title');
+    const text = t('share.description');
     
     switch (action) {
       case 'copy':
         navigator.clipboard.writeText(url).then(() => {
-          showToast('링크가 복사되었습니다!', 'success');
+          showToast(t('share.copied'), 'success');
         });
         break;
       case 'twitter':
@@ -163,29 +165,29 @@ export default function CompletionModal({
 
   const getFeedbackTitle = () => {
     if (selectedEmoji === 'love') {
-      return '정말 기쁘네요! 한 마디 남겨주실래요?';
+      return t('feedback.titles.love');
     } else if (selectedEmoji === 'sad') {
-      return '아쉬우셨군요. 의견을 들려주실래요?';
+      return t('feedback.titles.sad');
     }
-    return '한 마디 남겨주실래요?';
+    return t('feedback.titles.default');
   };
 
   const getFeedbackSubtitle = () => {
     if (selectedEmoji === 'love') {
-      return '어떤 점이 가장 좋으셨나요?';
+      return t('feedback.subtitles.love');
     } else if (selectedEmoji === 'sad') {
-      return '어떤 점을 개선하면 좋을까요?';
+      return t('feedback.subtitles.sad');
     }
-    return '여러분의 소중한 의견이 큰 힘이 됩니다';
+    return t('feedback.subtitles.default');
   };
 
   const getFeedbackPlaceholder = () => {
     if (selectedEmoji === 'love') {
-      return '어떤 점이 좋았나요?';
+      return t('feedback.placeholders.love');
     } else if (selectedEmoji === 'sad') {
-      return '어떤 점이 아쉬웠나요?';
+      return t('feedback.placeholders.sad');
     }
-    return '어떤 점이 좋았나요? 또는 어떤 점이 아쉬웠나요?';
+    return t('feedback.placeholders.default');
   };
 
   return (
@@ -200,50 +202,50 @@ export default function CompletionModal({
         <div className="modal-split-layout">
           <div className="modal-left-section">
             <div className="modal-icon">🎉</div>
-            <h2>축하합니다!</h2>
-            <p>Claude Code 설치완료를 축하드립니다!</p>
-            <p className="modal-subtitle">터미널에 <code>claude</code> 입력하고 작게라도 만들어보세요!</p>
+            <h2>{t('title')}</h2>
+            <p>{t('subtitle')}</p>
+            <p className="modal-subtitle" dangerouslySetInnerHTML={{ __html: t.raw('instruction') }} />
             
             <button 
               className="btn-docs-link" 
               onClick={() => window.open('https://docs.anthropic.com/en/docs/claude-code', '_blank')}
             >
               <i className="fas fa-book"></i>
-              공식문서 보기
+              {t('officialDocs')}
             </button>
             
             <div className="feedback-emoji-section">
-              <p className="feedback-question">오늘 경험은 어떠셨나요?</p>
-              <p className="feedback-reason">💡 정말 도움이 되셨다면 <span className="highlight-text">'최고예요!'</span>를 눌러주세요!</p>
+              <p className="feedback-question">{t('feedback.question')}</p>
+              <p className="feedback-reason" dangerouslySetInnerHTML={{ __html: t.raw('feedback.reason') }} />
               <div className="emoji-options">
                 <button 
                   className={`btn-emoji ${selectedEmoji === 'love' ? 'is-selected' : ''}`}
                   onClick={() => handleEmojiClick('love')}
                 >
                   <span className="emoji">😍</span>
-                  <span className="emoji-label">최고예요</span>
-                  <span className="emoji-click-hint">↑ 클릭</span>
+                  <span className="emoji-label">{t('feedback.emojis.love')}</span>
+                  <span className="emoji-click-hint">{t('feedback.clickHint')}</span>
                 </button>
                 <button 
                   className={`btn-emoji ${selectedEmoji === 'good' ? 'is-selected' : ''}`}
                   onClick={() => handleEmojiClick('good')}
                 >
                   <span className="emoji">😊</span>
-                  <span className="emoji-label">좋아요</span>
+                  <span className="emoji-label">{t('feedback.emojis.good')}</span>
                 </button>
                 <button 
                   className={`btn-emoji ${selectedEmoji === 'neutral' ? 'is-selected' : ''}`}
                   onClick={() => handleEmojiClick('neutral')}
                 >
                   <span className="emoji">😐</span>
-                  <span className="emoji-label">보통이에요</span>
+                  <span className="emoji-label">{t('feedback.emojis.neutral')}</span>
                 </button>
                 <button 
                   className={`btn-emoji ${selectedEmoji === 'sad' ? 'is-selected' : ''}`}
                   onClick={() => handleEmojiClick('sad')}
                 >
                   <span className="emoji">😕</span>
-                  <span className="emoji-label">아쉬워요</span>
+                  <span className="emoji-label">{t('feedback.emojis.sad')}</span>
                 </button>
               </div>
             </div>
@@ -270,38 +272,35 @@ export default function CompletionModal({
                     {isSubmitting ? (
                       <>
                         <i className="fas fa-spinner fa-spin"></i>
-                        제출 중...
+                        {t('feedback.submitting')}
                       </>
                     ) : (
                       <>
                         <i className="fas fa-paper-plane"></i>
-                        제작자에게 피드백 남기기
+                        {t('feedback.submitButton')}
                       </>
                     )}
                   </button>
                   <div className="creator-mini-profile">
                     <Image 
                       src="/images/profile.jpg" 
-                      alt="제작자 프로필" 
+                      alt={t('feedback.creator.profileAlt')} 
                       className="creator-avatar"
                       width={60}
                       height={60}
                       loading="lazy"
                     />
                     <div className="creator-info">
-                      <div className="creator-name">👨‍💻 제작자: 진(Jin)</div>
-                      <div className="creator-message">
-                        이 가이드가 도움이 되었기를 바랍니다!<br />
-                        여러분의 피드백이 큰 힘이 됩니다 🙏
-                      </div>
+                      <div className="creator-name">{t('feedback.creator.name')}</div>
+                      <div className="creator-message" dangerouslySetInnerHTML={{ __html: t.raw('feedback.creator.message') }} />
                     </div>
                   </div>
                 </div>
               ) : (
                 <div className="feedback-success">
                   <i className="fas fa-check-circle"></i>
-                  <h3>감사합니다!</h3>
-                  <p>제작자 진(Jin)이 여러분의 소중한 의견을 받았습니다 💌</p>
+                  <h3>{t('feedback.success.title')}</h3>
+                  <p>{t('feedback.success.message')}</p>
                 </div>
               )}
             </div>
@@ -309,30 +308,30 @@ export default function CompletionModal({
         </div>
         
         <div className="modal-share-section">
-          <p className="share-question">이 사이트를 친구에게 추천하시겠어요?</p>
+          <p className="share-question">{t('share.question')}</p>
           <div className="share-content">
             <div className="share-url">https://getclaudecode.com/</div>
             <button className={`btn-share ${showShareMenu ? 'is-active' : ''}`} onClick={handleShare}>
               <i className="fas fa-share"></i>
-              공유하기
+              {t('share.button')}
             </button>
             {showShareMenu && (
               <div className="share-menu is-visible">
                 <div className="share-menu-item" onClick={() => handleShareAction('copy')}>
                   <i className="fas fa-copy"></i>
-                  <span>링크 복사</span>
+                  <span>{t('share.menu.copy')}</span>
                 </div>
                 <div className="share-menu-item" onClick={() => handleShareAction('twitter')}>
                   <i className="fab fa-twitter"></i>
-                  <span>트위터</span>
+                  <span>{t('share.menu.twitter')}</span>
                 </div>
                 <div className="share-menu-item" onClick={() => handleShareAction('facebook')}>
                   <i className="fab fa-facebook-f"></i>
-                  <span>페이스북</span>
+                  <span>{t('share.menu.facebook')}</span>
                 </div>
                 <div className="share-menu-item" onClick={() => handleShareAction('linkedin')}>
                   <i className="fab fa-linkedin-in"></i>
-                  <span>링크드인</span>
+                  <span>{t('share.menu.linkedin')}</span>
                 </div>
               </div>
             )}
@@ -340,7 +339,7 @@ export default function CompletionModal({
         </div>
         
         <button className="btn-text-secondary" onClick={onClose}>
-          나중에 하기
+          {t('laterButton')}
         </button>
       </div>
     </div>

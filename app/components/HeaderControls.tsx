@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { useThemeStore } from '@/app/lib/stores/themeStore';
 import { HeaderControlsProps } from '@/app/types';
 import styles from './HeaderControls.module.css';
@@ -12,6 +13,9 @@ export default function HeaderControls({
   currentOS,
   onOSChange
 }: HeaderControlsProps) {
+  // Translations
+  const t = useTranslations('common');
+  
   // Zustand stores
   const { theme, toggleTheme, fontSize, increaseFontSize, decreaseFontSize } = useThemeStore();
   
@@ -58,7 +62,7 @@ export default function HeaderControls({
           <button
             className={styles.fontSizeBtn}
             onClick={decreaseFontSize}
-            title="글자 작게"
+            title={t('header_controls.font_size.decrease')}
             disabled={fontSize <= 14}
           >
             <i className="fas fa-minus"></i>
@@ -67,7 +71,7 @@ export default function HeaderControls({
           <button
             className={styles.fontSizeBtn}
             onClick={increaseFontSize}
-            title="글자 크게"
+            title={t('header_controls.font_size.increase')}
             disabled={fontSize >= 20}
           >
             <i className="fas fa-plus"></i>
@@ -81,8 +85,10 @@ export default function HeaderControls({
           type="button"
           className={styles.themeToggle}
           onClick={toggleTheme}
-          aria-label={`테마 변경 (현재: ${theme === 'light' ? '라이트' : '다크'} 모드)`}
-          title={theme === 'light' ? '다크 모드로 변경' : '라이트 모드로 변경'}
+          aria-label={t('header_controls.theme.aria_label', { 
+            current: theme === 'light' ? t('header_controls.theme.light_mode') : t('header_controls.theme.dark_mode') 
+          })}
+          title={theme === 'light' ? t('header_controls.theme.switch_to_dark') : t('header_controls.theme.switch_to_light')}
         >
           <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
         </button>

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import '../../styles/components/CodeBlock.css';
+import { useTranslations } from 'next-intl';
+import '../../../styles/components/CodeBlock.css';
 import { useToast } from '@/app/components/Toast';
 import { SimplifiedAnalytics } from '@/app/lib/analytics/SimplifiedAnalytics';
 
@@ -14,6 +15,7 @@ interface CodeBlockProps {
 export default function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockProps) {
   const [isCopying, setIsCopying] = useState(false);
   const { showToast } = useToast();
+  const t = useTranslations('guide');
 
   const handleCopy = async () => {
     if (isCopying) return;
@@ -98,7 +100,7 @@ export default function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockPro
         step_title: stepTitle
       });
       
-      showToast('명령어가 복사되었습니다!', 'success');
+      showToast(t('codeBlock.copySuccess'), 'success');
     } catch (err) {
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
@@ -112,9 +114,9 @@ export default function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockPro
       
       try {
         document.execCommand('copy');
-        showToast('명령어가 복사되었습니다!', 'success');
+        showToast(t('codeBlock.copySuccess'), 'success');
       } catch (fallbackErr) {
-        showToast('복사에 실패했습니다', 'error');
+        showToast(t('codeBlock.copyError'), 'error');
       }
       
       document.body.removeChild(textArea);
@@ -131,7 +133,7 @@ export default function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockPro
         onClick={handleCopy}
       >
         <i className={`fas ${isCopying ? 'fa-check' : 'fa-copy'}`}></i>
-        <span>{isCopying ? '복사됨' : '복사'}</span>
+        <span>{isCopying ? t('codeBlock.copied') : t('codeBlock.copy')}</span>
       </button>
     </div>
   );

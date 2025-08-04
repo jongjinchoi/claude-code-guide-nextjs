@@ -2,9 +2,14 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import styles from './not-found.module.css';
 
 export default function NotFound() {
+  const params = useParams();
+  const locale = params?.locale as string || 'en';
+  const t = useTranslations('404');
   const [currentTime, setCurrentTime] = useState<string>('');
   const [pathname, setPathname] = useState<string>('/404');
   
@@ -49,13 +54,13 @@ export default function NotFound() {
             <span className={`${styles.dot} ${styles.yellow}`}></span>
             <span className={`${styles.dot} ${styles.green}`}></span>
           </div>
-          <div className={styles.terminalTitle}>404 — Terminal</div>
+          <div className={styles.terminalTitle}>{t('terminal_title')}</div>
         </div>
         <div className={styles.terminalBody}>
-          <p className={styles.lastLogin}>Last login: {currentTime} on ttys404</p>
+          <p className={styles.lastLogin}>{t('last_login', { time: currentTime })}</p>
           
           <div className={styles.commandLine}>
-            <span className={styles.prompt}>whereiam@getclaudecode.com ~ %</span>
+            <span className={styles.prompt}>{t('prompt')}</span>
             <span className={styles.command}> ls {pathname}</span>
           </div>
           
@@ -69,42 +74,36 @@ export default function NotFound() {
           </pre>
           
           <p className={styles.errorMsg}>
-            <span className={styles.errorPrefix}>zsh: no such file or directory:</span> 페이지를 찾을 수 없습니다
+            <span className={styles.errorPrefix}>{t('error_prefix')}</span> {t('error_message')}
           </p>
           
           <div className={styles.suggestions}>
-            <p className={styles.suggestionTitle}>💡 다음을 시도해보세요:</p>
+            <p className={styles.suggestionTitle}>{t('suggestions.title')}</p>
             <div className={styles.suggestionList}>
-              <div className={styles.suggestionItem}>
-                <code className={styles.code}>cd /</code>
-                <span className={styles.arrow}>→</span>
-                <Link href="/" className={styles.link}>홈으로 돌아가기</Link>
-              </div>
-              <div className={styles.suggestionItem}>
-                <code className={styles.code}>cd /guide</code>
-                <span className={styles.arrow}>→</span>
-                <Link href="/guide" className={styles.link}>가이드 시작하기</Link>
-              </div>
-              <div className={styles.suggestionItem}>
-                <code className={styles.code}>cd /about</code>
-                <span className={styles.arrow}>→</span>
-                <Link href="/about" className={styles.link}>프로젝트 소개</Link>
-              </div>
-              <div className={styles.suggestionItem}>
-                <code className={styles.code}>cd /faq</code>
-                <span className={styles.arrow}>→</span>
-                <Link href="/faq" className={styles.link}>자주 묻는 질문</Link>
-              </div>
+              {['item1', 'item2', 'item3', 'item4'].map((itemKey, index) => {
+                const item = t.raw(`suggestions.${itemKey}`);
+                return (
+                  <div key={itemKey} className={styles.suggestionItem}>
+                    <code className={styles.code}>{item.command}</code>
+                    <span className={styles.arrow}>{t('arrow')}</span>
+                    <Link href={item.command === 'cd /' ? '/' : item.command.replace('cd ', '')} className={styles.link}>
+                      {item.link}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           <div className={styles.helpText}>
-            <p>🔍 찾으시는 페이지가 이동되었거나 존재하지 않습니다.</p>
-            <p>📧 문제가 계속되면 <a href="mailto:me@jongjinchoi.com" className={styles.emailLink}>me@jongjinchoi.com</a>으로 알려주세요.</p>
+            <p>{t('help.moved_or_missing')}</p>
+            <p dangerouslySetInnerHTML={{ 
+              __html: t('help.contact', { email: `<a href="mailto:me@jongjinchoi.com" class="${styles.emailLink}">me@jongjinchoi.com</a>` })
+            }} />
           </div>
           
           <div className={styles.commandLine}>
-            <span className={styles.prompt}>whereiam@getclaudecode.com ~ %</span>
+            <span className={styles.prompt}>{t('prompt')}</span>
             <span className={styles.cursor}>▊</span>
           </div>
         </div>

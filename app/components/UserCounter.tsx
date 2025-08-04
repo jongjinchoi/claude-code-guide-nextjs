@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function UserCounter() {
+  const t = useTranslations('landing.counter');
   const [actualCount, setActualCount] = useState<number | null>(null);
   const [displayCount, setDisplayCount] = useState<string>('✨');
   const [isLoading, setIsLoading] = useState(true);
@@ -60,7 +62,7 @@ export default function UserCounter() {
       <div className="counter-number">
         {displayCount}
       </div>
-      <div className="counter-text">명이 여러분과 함께 하고 있어요</div>
+      <div className="counter-text">{t('text')}</div>
     </>
   );
 }

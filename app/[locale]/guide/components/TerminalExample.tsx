@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface TerminalLine {
   type: 'output' | 'prompt' | 'command' | 'cursor' | 'raw';
@@ -25,12 +26,18 @@ export default function TerminalExample({
   className = '',
   children
 }: TerminalExampleProps) {
-  // Determine the title based on OS and variant
-  const defaultTitle = variant === 'success' 
-    ? (os === 'mac' ? '터미널 - 성공적인 경우' : '명령 프롬프트 - 성공적인 경우')
-    : (os === 'mac' ? '터미널' : '명령 프롬프트');
+  const t = useTranslations('guide');
   
-  const displayTitle = title || defaultTitle;
+  // Determine the title based on OS and variant
+  const getDefaultTitle = () => {
+    if (variant === 'success') {
+      return os === 'mac' ? t('terminal.successTitle.mac') : t('terminal.successTitle.windows');
+    } else {
+      return os === 'mac' ? t('terminal.defaultTitle.mac') : t('terminal.defaultTitle.windows');
+    }
+  };
+  
+  const displayTitle = title || getDefaultTitle();
   
   // Build class names
   const containerClasses = [
@@ -145,9 +152,10 @@ function formatTerminalDate(): string {
 }
 
 // Helper function to create common terminal patterns
-export function createTerminalLines(os: 'mac' | 'windows', scenario: string): TerminalLine[] {
-  const macPrompt = '사용자명@MacBook-Pro ~ %';
-  const winPrompt = 'C:\\Users\\사용자명>';
+export function createTerminalLines(os: 'mac' | 'windows', scenario: string, locale: string = 'ko'): TerminalLine[] {
+  const username = locale === 'en' ? 'username' : '사용자명';
+  const macPrompt = `${username}@MacBook-Pro ~ %`;
+  const winPrompt = `C:\\Users\\${username}>`;
   const prompt = os === 'mac' ? macPrompt : winPrompt;
 
   switch (scenario) {
@@ -227,12 +235,12 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
       if (os === 'mac') {
         return [
           { type: 'output', content: `Last login: ${formatTerminalDate()} on ttys001` },
-          { type: 'prompt', content: '사용자명@MacBook-Pro ~ %' },
+          { type: 'prompt', content: `${username}@MacBook-Pro ~ %` },
           { type: 'command', content: 'claude' },
           { type: 'output', content: '' },
           { type: 'output', content: 'Do you trust the files in this folder?', className: 'permission-box hint' },
           { type: 'output', content: '', className: 'permission-box' },
-          { type: 'output', content: '/Users/username', className: 'permission-box' },
+          { type: 'output', content: `/Users/${username}`, className: 'permission-box' },
           { type: 'output', content: 'Claude Code may read files in this folder. Reading untrusted files may', className: 'permission-box' },
           { type: 'output', content: 'lead Claude Code to behave in unexpected ways.', className: 'permission-box' },
           { type: 'output', content: 'With your permission Claude Code may execute files in this folder.', className: 'permission-box' },
@@ -245,7 +253,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
           { type: 'output', content: '' },
           { type: 'output', content: '* Welcome to Claude Code!', className: 'welcome-box' },
           { type: 'output', content: '/help for help, /status for your current setup', className: 'welcome-box' },
-          { type: 'output', content: 'cmd: /Users/username', className: 'welcome-box' },
+          { type: 'output', content: `cmd: /Users/${username}`, className: 'welcome-box' },
           { type: 'output', content: '' },
           { type: 'output', content: "What's new:" },
           { type: 'output', content: '• Added support for native Windows (requires Git for Windows)' },
@@ -263,12 +271,12 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
           { type: 'output', content: 'Microsoft Windows [Version 10.0.19045.3693]' },
           { type: 'output', content: '(c) Microsoft Corporation. All rights reserved.' },
           { type: 'output', content: '' },
-          { type: 'prompt', content: 'C:\\Users\\사용자명\\my-first-project>' },
+          { type: 'prompt', content: `C:\\Users\\${username}\\my-first-project>` },
           { type: 'command', content: 'claude' },
           { type: 'output', content: '' },
           { type: 'output', content: 'Do you trust the files in this folder?', className: 'permission-box hint' },
           { type: 'output', content: '', className: 'permission-box' },
-          { type: 'output', content: 'C:\\Users\\username\\my-first-project', className: 'permission-box' },
+          { type: 'output', content: `C:\\Users\\${username}\\my-first-project`, className: 'permission-box' },
           { type: 'output', content: 'Claude Code may read files in this folder. Reading untrusted files may', className: 'permission-box' },
           { type: 'output', content: 'lead Claude Code to behave in unexpected ways.', className: 'permission-box' },
           { type: 'output', content: 'With your permission Claude Code may execute files in this folder.', className: 'permission-box' },
@@ -281,7 +289,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string): Te
           { type: 'output', content: '' },
           { type: 'output', content: '* Welcome to Claude Code!', className: 'welcome-box' },
           { type: 'output', content: '/help for help, /status for your current setup', className: 'welcome-box' },
-          { type: 'output', content: 'cwd: C:\\Users\\username\\my-first-project', className: 'welcome-box' },
+          { type: 'output', content: `cwd: C:\\Users\\${username}\\my-first-project`, className: 'welcome-box' },
           { type: 'output', content: '' },
           { type: 'output', content: "What's new:" },
           { type: 'output', content: '• Added support for native Windows (requires Git for Windows)' },

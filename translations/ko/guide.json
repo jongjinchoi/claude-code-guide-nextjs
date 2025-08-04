@@ -5,37 +5,35 @@
     "badge": "설치 가이드"
   },
   "progress": {
-    "step": "단계 {{current}}/{{total}}",
+    "step": "단계 {current}/{total}",
     "complete": "완료!",
-    "completed": "{{percentage}}% 완료 ({{completed}}/{{total}})",
+    "completed": "{percentage}% 완료 ({completed}/{total})",
     "current": "현재"
   },
   "intro": {
     "title": "시작하기 전 확인사항",
     "subtitle": "Claude Code 설치를 시작하기 전에 아래 항목들을 확인해주세요:",
+    "timeEstimate": {
+      "mac": "1분",
+      "windows": "2분"
+    },
     "requirements": {
-      "claudePro": "Claude Pro 계정 - Pro 플랜($20/월) 이상 구독 필수",
-      "time": "30분 정도의 시간 - 설치 및 설정 완료까지",
-      "internet": "인터넷 연결 - 안정적인 네트워크 환경"
+      "claudePro": "<strong>Claude Pro 계정</strong> - Pro 플랜($20/월) 이상 구독 필수",
+      "time": "<strong>30분 정도의 시간</strong> - 설치 및 설정 완료까지",
+      "internet": "<strong>인터넷 연결</strong> - 안정적인 네트워크 환경"
     },
     "terminalGuide": {
       "mac": {
         "title": "터미널 사용 가이드",
         "description": "터미널은 명령어를 입력하여 컴퓨터를 제어하는 프로그램입니다.",
         "howToOpen": "터미널 열기",
-        "methods": [
-          "Command (Cmd) ⌘ + Space를 누르고 \"terminal\" 입력",
-          "Applications → Utilities → Terminal"
-        ]
+        "methods": "<kbd>Command (Cmd) ⌘</kbd> + <kbd>Space</kbd>를 누르고 \"terminal\" 입력;Applications → Utilities → Terminal;Launchpad에서 \"terminal\" 검색"
       },
       "windows": {
         "title": "명령 프롬프트 사용 가이드",
         "description": "명령 프롬프트는 명령어를 입력하여 컴퓨터를 제어하는 프로그램입니다.",
         "howToOpen": "명령 프롬프트 열기",
-        "methods": [
-          "Windows + R을 누르고 \"cmd\" 입력",
-          "시작 메뉴에서 \"명령 프롬프트\" 검색"
-        ]
+        "methods": "<kbd>Windows 키</kbd> + <kbd>R</kbd>을 누르고 \"cmd\" 입력 후 <kbd>Enter ↵</kbd>;시작 메뉴에서 \"명령 프롬프트\" 또는 \"cmd\" 검색;시작 메뉴 → Windows 시스템 → 명령 프롬프트"
       }
     },
     "terminalExample": {
@@ -46,11 +44,19 @@
       "mac": "터미널 종료하기",
       "windows": "명령 프롬프트 종료하기"
     },
+    "closeMethods": {
+      "mac": "<kbd>Command (Cmd) ⌘</kbd> + <kbd>Q</kbd>로 완전 종료;<kbd>Command (Cmd) ⌘</kbd> + <kbd>W</kbd>로 창만 닫기;또는 <code>exit</code> 입력 후 <kbd>Enter ↵</kbd>",
+      "windows": "창의 X 버튼 클릭;또는 <code>exit</code> 입력 후 <kbd>Enter ↵</kbd>"
+    },
     "confirmPrompt": "내용을 확인했다면 완료 버튼을 클릭하세요:",
     "successButton": {
       "title": "이해했습니다 - 다음 단계로!",
       "mac": "터미널 사용법을 숙지했습니다",
       "windows": "명령 프롬프트 사용법을 숙지했습니다"
+    },
+    "timeEstimate": {
+      "mac": "1분",
+      "windows": "2분"
     }
   },
   "steps": {
@@ -68,12 +74,14 @@
       "errorButton": {
         "title": "\"command not found\" 오류",
         "description": "zsh: command not found: brew"
-      }
+      },
+      "timeEstimate": "5-10분"
     },
     "git-windows": {
       "title": "Git for Windows 설치",
       "description": "Git for Windows는 Windows에서 Git과 Unix 명령어를 사용할 수 있게 해줍니다.",
       "preCodeText": "아래 링크에서 Git for Windows를 다운로드하고 설치하세요:",
+      "downloadText": "Git for Windows 다운로드",
       "postCodeText": "💡 설치 중 모든 옵션은 기본값으로 두고 \"Next\"를 클릭하세요.",
       "verifyText": "설치가 완료되면 새 명령 프롬프트를 열고 이 명령어를 실행하세요:",
       "verifyCommand": "git --version",
@@ -84,10 +92,12 @@
       "errorButton": {
         "title": "\"git\"은(는) 인식되지 않습니다",
         "description": "명령어를 찾을 수 없음"
-      }
+      },
+      "timeEstimate": "5분"
     },
     "node": {
       "title": "Node.js 설치",
+      "timeEstimate": "3분",
       "description": "Node.js는 Claude Code가 작동하는 데 필요한 프로그램입니다.",
       "preCodeText": "터미널에서 이 명령어를 실행하세요:",
       "postCodeText": "💡 설치 중에 \"Downloading...\" 메시지가 나타날 수 있습니다. 잠시 기다려주세요.",
@@ -100,12 +110,14 @@
       "errorButton": {
         "title": "\"command not found\" 오류",
         "description": "zsh: command not found: node"
-      }
+      },
+      "timeEstimate": "3분"
     },
     "node-windows": {
       "title": "Node.js 설치",
       "description": "Node.js는 Claude Code가 작동하는 데 필요한 프로그램입니다.",
       "preCodeText": "아래 링크에서 Node.js LTS 버전을 다운로드하고 설치하세요:",
+      "downloadText": "Node.js LTS 다운로드",
       "postCodeText": "💡 \"LTS\" 버전을 선택하세요. 설치 중 모든 옵션은 기본값으로 두세요.",
       "verifyText": "설치가 완료되면 새 명령 프롬프트를 열고 이 명령어를 실행하세요:",
       "verifyCommand": "node --version",
@@ -116,22 +128,26 @@
       "errorButton": {
         "title": "\"node\"은(는) 인식되지 않습니다",
         "description": "명령어를 찾을 수 없음"
-      }
+      },
+      "timeEstimate": "3분"
     },
     "claude": {
       "title": "Claude Code 설치",
+      "timeEstimate": "2분",
       "description": "이제 Claude Code를 설치할 차례입니다.",
       "preCodeText": "이 명령어를 실행하세요:",
       "postCodeText": "💡 설치가 시작되면 완료까지 2-3분 정도 걸립니다.",
       "verifyText": "설치가 완료되면 이 명령어로 확인하세요:",
+      "verifyCommand": "claude --version",
       "successButton": {
         "title": "버전 번호가 나타남",
-        "description": "예시: Claude Code 0.7.7"
+        "description": "예시: @anthropic-ai/claude-code/1.0.67"
       },
       "errorButton": {
-        "title": "설치 오류 발생",
-        "description": "ERROR 메시지가 표시됨"
-      }
+        "title": "\"command not found\" 오류",
+        "description": "zsh: command not found: claude"
+      },
+      "timeEstimate": "2분"
     },
     "claude-windows": {
       "title": "Claude Code 설치",
@@ -142,15 +158,17 @@
       "verifyCommand": "claude --version",
       "successButton": {
         "title": "버전 번호가 나타남",
-        "description": "예시: Claude Code 0.7.7"
+        "description": "예시: @anthropic-ai/claude-code/1.0.67"
       },
       "errorButton": {
-        "title": "\"claude\"은(는) 인식되지 않습니다",
+        "title": "\"claude\"은(는) 인식되지 않승니다",
         "description": "명령어를 찾을 수 없음"
-      }
+      },
+      "timeEstimate": "2분"
     },
     "auth": {
       "title": "계정 연결",
+      "timeEstimate": "3분",
       "description": "Claude Pro 계정을 연결합니다.",
       "preCodeText": "터미널에서 이 명령어를 실행하세요:",
       "postCodeText": "💡 브라우저가 자동으로 열리고 Claude 로그인 페이지가 나타납니다.",
@@ -163,7 +181,8 @@
       "errorButton": {
         "title": "\"Not authenticated\" 메시지",
         "description": "인증되지 않음"
-      }
+      },
+      "timeEstimate": "3분"
     },
     "auth-windows": {
       "title": "계정 연결",
@@ -179,7 +198,8 @@
       "errorButton": {
         "title": "\"Not authenticated\" 메시지",
         "description": "인증되지 않음"
-      }
+      },
+      "timeEstimate": "3분"
     }
   },
   "summaries": {
@@ -196,6 +216,48 @@
     "project": "첫 프로젝트 생성 및 실행 완료",
     "project-windows": "첫 프로젝트 생성 및 실행 완료"
   },
+  "summaryButtons": {
+    "viewFullContent": "전체 내용 다시 보기",
+    "backToSummary": "요약으로 돌아가기"
+  },
+  "stepTags": {
+    "readOnly": "읽기전용",
+    "inProgress": "현재 진행 중",
+    "completed": "(완료)"
+  },
+  "codeBlock": {
+    "copy": "복사",
+    "copied": "복사됨",
+    "copySuccess": "명령어가 복사되었습니다!",
+    "copyError": "복사에 실패했습니다"
+  },
+  "troubleshooting": {
+    "resolved": "문제 해결 완료!"
+  },
+  "resultButton": {
+    "selected": "선택됨"
+  },
+  "projectStep": {
+    "createSection": {
+      "title": "첫 프로젝트 폴더 만들기",
+      "description": "Claude Code를 사용할 프로젝트 폴더를 만들어보세요:",
+      "step1": "1. 프로젝트 폴더 생성",
+      "step2": "2. 폴더로 이동",
+      "tip": "💡 폴더 이름은 원하는 대로 바꿀 수 있어요. 예: <code>my-website</code>, <code>todo-app</code>"
+    },
+    "startSection": {
+      "title": "Claude Code 시작하기",
+      "description": "프로젝트 폴더에서 Claude Code를 시작해보세요:",
+      "securityNote": "처음 실행하면 보안 확인 질문이 나타납니다. <kbd>1</kbd>을 입력하고 <kbd>Enter</kbd>를 눌러 계속 진행하세요:"
+    },
+    "resultSection": {
+      "question": "Claude Code가 시작되었나요?",
+      "successTitle": "Claude Code가 시작됨",
+      "successDescription": "대화를 시작할 수 있습니다!",
+      "errorTitle": "시작되지 않음 또는 오류",
+      "errorDescription": "아래 해결 방법을 확인하세요"
+    }
+  },
   "project": {
     "title": "Claude Code 시작하기",
     "description": "이제 Claude Code를 시작해보세요:",
@@ -209,33 +271,195 @@
     "errorButton": {
       "title": "시작 실패",
       "description": "오류 메시지가 표시됨"
-    }
+    },
+    "timeEstimate": "2분"
   },
   "completion": {
-    "title": "축하합니다! 🎉",
-    "subtitle": "Claude Code 설치를 완료했습니다!",
-    "tips": {
-      "title": "이제 무엇을 할 수 있나요?",
-      "items": [
-        "\"간단한 웹사이트 만들어줘\"라고 요청해보세요",
-        "\"Python으로 계산기 프로그램 만들어줘\"라고 시도해보세요",
-        "\"내 컴퓨터 시스템 정보를 알려줘\"라고 물어보세요"
-      ]
-    },
+    "title": "축하합니다!",
+    "subtitle": "Claude Code 설치완료를 축하드립니다!",
+    "instruction": "터미널에 <code>claude</code> 입력하고 작게라도 만들어보세요!",
+    "officialDocs": "공식문서 보기",
     "feedback": {
-      "title": "설치 과정은 어떠셨나요?",
-      "placeholder": "의견을 남겨주세요 (선택사항)"
+      "question": "오늘 경험은 어떠셨나요?",
+      "reason": "💡 정말 도움이 되셨다면 <span class=\"highlight-text\">'최고예요!'</span>를 눌러주세요!",
+      "clickHint": "↑ 클릭",
+      "emojis": {
+        "love": "최고예요",
+        "good": "좋아요",
+        "neutral": "보통이에요",
+        "sad": "아쉬워요"
+      },
+      "titles": {
+        "love": "정말 기쁘네요! 한 마디 남겨주실래요?",
+        "sad": "아쉬우셨군요. 의견을 들려주실래요?",
+        "default": "한 마디 남겨주실래요?"
+      },
+      "subtitles": {
+        "love": "어떤 점이 가장 좋으셨나요?",
+        "sad": "어떤 점을 개선하면 좋을까요?",
+        "default": "여러분의 소중한 의견이 큰 힘이 됩니다"
+      },
+      "placeholders": {
+        "love": "어떤 점이 좋았나요?",
+        "sad": "어떤 점이 아쉬웠나요?",
+        "default": "어떤 점이 좋았나요? 또는 어떤 점이 아쉬웠나요?"
+      },
+      "submitting": "제출 중...",
+      "submitButton": "제작자에게 피드백 남기기",
+      "submitError": "피드백 제출에 실패했습니다. 다시 시도해주세요.",
+      "creator": {
+        "name": "👨‍💻 제작자: 진(Jin)",
+        "message": "이 가이드가 도움이 되었기를 바랍니다!<br />여러분의 피드백이 큰 힘이 됩니다 🙏",
+        "profileAlt": "제작자 프로필"
+      },
+      "success": {
+        "title": "감사합니다!",
+        "message": "제작자 진(Jin)이 여러분의 소중한 의견을 받았습니다 💌"
+      }
     },
-    "actions": {
-      "home": "홈으로",
-      "restart": "다시 시작",
-      "share": "공유하기"
+    "share": {
+      "question": "이 사이트를 친구에게 추천하시겠어요?",
+      "button": "공유하기",
+      "title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
+      "description": "Claude Code를 6단계로 간단하게 설치하세요. 터미널이 처음이어도 걱정 없습니다!",
+      "copied": "링크가 복사되었습니다!",
+      "menu": {
+        "copy": "링크 복사",
+        "twitter": "트위터",
+        "facebook": "페이스북",
+        "linkedin": "링크드인"
+      }
+    },
+    "laterButton": "나중에 하기"
+  },
+  "common": {
+    "verifyInstallation": "설치 완료 확인",
+    "selectResult": "결과를 선택하세요:"
+  },
+  "terminal": {
+    "defaultTitle": {
+      "mac": "터미널",
+      "windows": "명령 프롬프트"
+    },
+    "successTitle": {
+      "mac": "터미널 - 성공적인 경우",
+      "windows": "명령 프롬프트 - 성공적인 경우"
     }
   },
   "troubleshooting": {
     "common": {
-      "title": "문제 해결 방법",
-      "description": "아래 해결 방법을 순서대로 시도해보세요:"
+      "title": "문제 해결",
+      "description": "아래 해결 방법을 순서대로 시도해보세요:",
+      "resolvedTitle": "문제가 해결되었다면:",
+      "completedTitle": "문제 해결 완료!"
+    },
+    "macTypeSelector": {
+      "title": "Mac 종류를 선택하세요:",
+      "appleSilicon": "Apple Silicon (M1/M2/M3/M4)",
+      "intel": "Intel Mac"
+    },
+    "resolutions": {
+      "homebrew": "Homebrew가 정상적으로 설치되었습니다",
+      "node": "Node.js가 정상적으로 설치되었습니다",
+      "claude": "Claude Code가 정상적으로 설치되었습니다",
+      "auth": "계정이 정상적으로 연결되었습니다",
+      "project": "Claude Code가 정상적으로 시작되었습니다",
+      "git-windows": "Git for Windows가 정상적으로 설치되었습니다",
+      "node-windows": "Node.js가 정상적으로 설치되었습니다",
+      "claude-windows": "Claude Code가 정상적으로 설치되었습니다",
+      "auth-windows": "계정 연결이 완료되었습니다",
+      "project-windows": "Claude Code가 정상적으로 시작되었습니다"
+    },
+    "homebrew": {
+      "appleSilicon": {
+        "title": "Apple Silicon Mac 해결 방법:",
+        "instruction": "아래 명령어를 <strong>순서대로</strong> 실행하세요:",
+        "step1": "1. PATH 설정을 파일에 저장:",
+        "step2": "2. 현재 터미널에 즉시 적용:",
+        "step3": "3. 다시 확인해보세요:"
+      },
+      "intel": {
+        "title": "Intel Mac 해결 방법:",
+        "instruction": "아래 명령어를 <strong>순서대로</strong> 실행하세요:",
+        "step1": "1. PATH 설정을 파일에 저장:",
+        "step2": "2. 현재 터미널에 즉시 적용:",
+        "step3": "3. 다시 확인해보세요:"
+      }
+    },
+    "node": {
+      "title": "Node.js가 인식되지 않는 경우:",
+      "step1": "1. 먼저 Node.js 설치 확인:",
+      "step2": "2. 설치되지 않았다면:",
+      "step3": "3. 이미 설치되어 있다면 재설치:",
+      "step4": "4. PATH 설정 문제일 수 있습니다:",
+      "step5": "5. 그래도 안 되면 터미널을 완전히 종료하고 다시 열어보세요.",
+      "appleSiliconNote": "💡 Apple Silicon Mac (M1/M2/M3/M4):",
+      "intelNote": "💡 Intel Mac:"
+    },
+    "claude": {
+      "title": "Claude Code가 인식되지 않는 경우:",
+      "step1": "1. 먼저 설치 확인:",
+      "step2": "2. npm 글로벌 경로 확인:",
+      "step3": "3. PATH에 npm 글로벌 경로 추가:",
+      "step4": "4. 그래도 안 되면 재설치:",
+      "step5": "5. 터미널을 완전히 종료하고 다시 열어보세요."
+    },
+    "claudeWindows": {
+      "title": "Claude Code가 인식되지 않는 경우:",
+      "step1": "1. 먼저 설치 확인:",
+      "step2": "2. 설치되어 있지 않다면 다시 설치:",
+      "step3": "3. 그래도 안 되면:",
+      "step3Description": "명령 프롬프트를 관리자 권한으로 실행하고 다시 설치해보세요.",
+      "step4": "4. 여전히 안 되면:",
+      "step4Description": "컴퓨터를 재시작하고 다시 시도해보세요."
+    },
+    "auth": {
+      "browserNotOpenTitle": "브라우저가 열리지 않는 경우:",
+      "browserNotOpenDesc": "터미널에 표시된 URL을 직접 복사해서 브라우저에 붙여넣으세요.",
+      "browserNotOpenNote": "👡 URL은 보통 <code>https://claude.ai/auth/...</code> 형태입니다.",
+      "loginNotCompleteTitle": "로그인이 완료되지 않는 경우:",
+      "loginNotCompleteStep1": "1. 로그아웃 후 다시 시도:",
+      "loginNotCompleteStep2": "2. 그래도 안 되면 브라우저에서 쿠키를 삭제하고 다시 시도하세요.",
+      "accountIssueTitle": "계정 관련 문제:",
+      "accountIssueDesc": "Claude 웹사이트(<a href=\"https://claude.ai\" target=\"_blank\">claude.ai</a>)에서 계정이 정상인지 확인하세요."
+    },
+    "project": {
+      "permissionTitle": "📁 \"Permission denied\" 오류가 나타날 때:",
+      "permissionDesc": "권한 문제입니다. 홈 폴더에서 시작하세요:",
+      "permissionNote": "💡 홈 폴더는 항상 권한이 있으니 거기서 시작하세요!",
+      "connectTitle": "🌐 \"Cannot connect\" 오류가 나타날 때:",
+      "connectDesc": "네트워크 연결 문제입니다. 아래 항목들을 확인하세요:",
+      "connectCheck1": "<strong>Wi-Fi 확인</strong> - 인터넷 연결되었나요?",
+      "connectCheck2": "<strong>브라우저 테스트</strong> - 구글 접속되나요?",
+      "connectCheck3Mac": "<strong>터미널 재시작</strong> - 터미널 닫고 다시 열어보세요",
+      "connectCheck3Windows": "<strong>명령 프롬프트 재시작</strong> - 창 닫고 다시 열어보세요",
+      "stillNotWorkTitle": "🔄 그래도 안 될 때:",
+      "stillNotWorkDesc": "가장 간단한 해결책을 시도해보세요:",
+      "stillNotWorkStep1Mac": "터미널 완전히 종료",
+      "stillNotWorkStep1Windows": "명령 프롬프트 완전히 종료",
+      "stillNotWorkStep2": "컴퓨터 재시작",
+      "stillNotWorkStep3Mac": "터미널 다시 열고 아래 명령어 실행",
+      "stillNotWorkStep3Windows": "명령 프롬프트 다시 열고 아래 명령어 실행"
+    },
+    "nodeWindows": {
+      "title": "Node.js가 인식되지 않는 경우:",
+      "step1Title": "1. 명령 프롬프트를 다시 시작하세요:",
+      "step1Description": "모든 명령 프롬프트 창을 닫고 새로 열어보세요.",
+      "step2Title": "2. 그래도 안 되면:",
+      "step2Description": "컴퓨터를 재시작하세요. Node.js 설치 후 환경 변수가 적용되려면 재시작이 필요할 수 있습니다.",
+      "step3Title": "3. 재시작 후에도 안 되면:",
+      "step3Description": "Node.js 설치 프로그램을 다시 실행하고, 설치 중 \"Automatically install the necessary tools\" 옵션이 선택되어 있는지 확인하세요."
+    },
+    "gitWindows": {
+      "title": "문제 해결",
+      "step1Title": "명령 프롬프트를 다시 시작했는데도 git을 찾을 수 없는 경우:",
+      "step1_1": "<strong>1단계:</strong> 모든 명령 프롬프트 창을 닫으세요",
+      "step1_2": "<strong>2단계:</strong> 시작 메뉴에서 \"명령 프롬프트\"를 다시 검색하여 실행",
+      "step1_3": "<strong>3단계:</strong> git --version 다시 입력",
+      "step2Title": "그래도 안 되면 컴퓨터를 재시작하세요:",
+      "step2Description": "설치는 정상적으로 됐지만 환경 변수가 적용되지 않은 경우입니다. 컴퓨터를 재시작하면 해결됩니다.",
+      "step3Title": "재시작 후에도 안 되면:",
+      "step3Description": "Git 설치 프로그램을 다시 실행하고, 설치 옵션 중 \"Git from the command line and also from 3rd-party software\" 옵션이 선택되어 있는지 확인하세요."
     }
   }
 }
