@@ -66,6 +66,7 @@ export function useGuideTracking() {
   useEffect(() => {
     const initSession = async () => {
       try {
+        // 1. 세션 생성
         await fetch('/api/guide-tracking', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -84,6 +85,24 @@ export function useGuideTracking() {
             }
           })
         });
+        
+        // 2. 즉시 step tracking에도 페이지 진입 기록
+        await fetch('/api/guide-tracking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'step_click',
+            session_id: tracker.sessionId,
+            data: {
+              step_number: 0,
+              action_type: 'page_view',
+              os: detectOS(),
+              browser: detectBrowser()
+            }
+          })
+        });
+        
+        console.log('Session started with immediate tracking:', tracker.sessionId);
       } catch (error) {
         console.error('Failed to start tracking session:', error);
       }

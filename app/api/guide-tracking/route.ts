@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { normalizeSessionId } from '@/app/utils/sessionIdUtils';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -39,7 +40,10 @@ function normalizeOS(os: string): string {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { action, session_id, data, total_time } = body;
+    const { action, session_id: rawSessionId, data, total_time } = body;
+    
+    // 세션 ID 정규화 (기존 형식도 지원)
+    const session_id = normalizeSessionId(rawSessionId);
 
     switch (action) {
       case 'start_session':
@@ -209,13 +213,19 @@ export async function POST(request: NextRequest) {
 
       case 'step_click':
         // 단계 클릭 추적 (새로운 테이블에 저장)
-        await supabase.from('guide_step_tracking').insert({
+        const trackingResult = await supabase.from('guide_step_tracking').insert({
           session_id,
           step_number: data.step_number,
           action_type: data.action_type,
           os: normalizeOS(data.os),
           browser: data.browser
         });
+        
+        if (trackingResult.error) {
+          console.error('Failed to insert step tracking:', trackingResult.error);
+        } else {
+          console.log(`Step tracking recorded: ${session_id} - Step ${data.step_number} - ${data.action_type}`);
+        }
         
         // 6단계 완료 시 started_at 업데이트
         if (data.step_number === 1 && data.action_type === 'expand') {
