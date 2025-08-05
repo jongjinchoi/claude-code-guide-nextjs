@@ -43,30 +43,20 @@ export async function GET(request: Request) {
       hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL
     });
 
-    // 병렬로 모든 데이터 가져오기
+    // 10개 핵심 뷰만 병렬로 가져오기 (성능 최적화)
     const [
       sessionsResult,
       todayMetricsResult,
       stepFunnelResult,
       osPerformanceResult,
-      pagePerformanceResult,
-      buttonUsageResult,
       feedbackSummaryResult,
-      feedbackByEmojiResult,
       totalVisitorsResult,
-      actualGuideTimesResult,
       stepDurationsResult,
       overallStatsResult,
       stepErrorRatesResult,
       hourlyActivityResult,
       dailyActivityResult,
-      // 16-21. 언어별 통계 뷰들
-      localeMetricsResult,
-      i18nImpactResult,
-      dailyLocaleTrendsResult,
-      localeStepFunnelResult,
-      browserLanguageMismatchResult,
-      hourlyLocaleActivityResult
+      i18nImpactResult
     ] = await Promise.allSettled([
       // 1. 전체 세션 데이터
       supabaseAdmin.from('guide_sessions').select('*').order('created_at', { ascending: false }),
@@ -80,56 +70,29 @@ export async function GET(request: Request) {
       // 4. OS별 성능
       supabaseAdmin.from('os_performance').select('*'),
       
-      // 5. 페이지별 성과
-      supabaseAdmin.from('page_performance').select('*'),
-      
-      // 6. 버튼 사용량
-      supabaseAdmin.from('button_usage').select('*'),
-      
-      // 7. 피드백 요약
+      // 5. 피드백 요약
       supabaseAdmin.from('feedback_summary').select('*').single(),
       
-      // 8. 이모지별 피드백
-      supabaseAdmin.from('feedback_by_emoji').select('*'),
-      
-      // 9. 전체 방문자 수
+      // 6. 전체 방문자 수
       supabaseAdmin.from('counters').select('value').eq('name', 'visitors').single(),
       
-      // 10. 실제 가이드 시간
-      supabaseAdmin.from('actual_guide_times').select('*').order('actual_minutes', { ascending: false }).limit(20),
-      
-      // 11. 단계별 소요 시간
+      // 7. 단계별 소요 시간
       supabaseAdmin.from('step_duration_analysis').select('*'),
       
-      // 12. 전체 가이드 통계
+      // 8. 전체 가이드 통계
       supabaseAdmin.from('overall_guide_stats').select('*').single(),
       
-      // 13. 단계별 에러율
+      // 9. 단계별 에러율
       supabaseAdmin.from('step_error_rates').select('*'),
       
-      // 14. 시간대별 활동
+      // 10. 시간대별 활동
       supabaseAdmin.from('hourly_activity').select('*'),
       
-      // 15. 요일별 활동
+      // 11. 요일별 활동
       supabaseAdmin.from('daily_activity').select('*'),
       
-      // 16. 언어별 메트릭
-      supabaseAdmin.from('locale_metrics').select('*'),
-      
-      // 17. 국제화 영향 분석
-      supabaseAdmin.from('i18n_impact_analysis').select('*').single(),
-      
-      // 18. 일별 언어 트렌드
-      supabaseAdmin.from('daily_locale_trends').select('*').order('date', { ascending: false }).limit(30),
-      
-      // 19. 언어별 단계 퍼널
-      supabaseAdmin.from('locale_step_funnel').select('*'),
-      
-      // 20. 브라우저 언어 불일치
-      supabaseAdmin.from('browser_language_mismatch').select('*'),
-      
-      // 21. 시간대별 언어 활동
-      supabaseAdmin.from('hourly_locale_activity').select('*')
+      // 12. 국제화 영향 분석
+      supabaseAdmin.from('i18n_impact_analysis').select('*').single()
     ]);
 
     // 결과 처리
@@ -143,7 +106,7 @@ export async function GET(request: Request) {
     // 통계 계산
     const stats = calculateStats(sessions);
 
-    // 응답 데이터 구성
+    // 10개 핵심 뷰 응답 데이터 구성 (성능 최적화)
     const responseData = {
       success: true,
       data: {
@@ -152,25 +115,15 @@ export async function GET(request: Request) {
         todayMetrics: todayMetricsResult.status === 'fulfilled' ? todayMetricsResult.value.data : null,
         stepFunnel: stepFunnelResult.status === 'fulfilled' ? stepFunnelResult.value.data || [] : [],
         osPerformance: osPerformanceResult.status === 'fulfilled' ? osPerformanceResult.value.data || [] : [],
-        pagePerformance: pagePerformanceResult.status === 'fulfilled' ? pagePerformanceResult.value.data || [] : [],
-        buttonUsage: buttonUsageResult.status === 'fulfilled' ? buttonUsageResult.value.data || [] : [],
         feedbackSummary: feedbackSummaryResult.status === 'fulfilled' ? feedbackSummaryResult.value.data : null,
-        feedbackByEmoji: feedbackByEmojiResult.status === 'fulfilled' ? feedbackByEmojiResult.value.data || [] : [],
         totalVisitors: totalVisitorsResult.status === 'fulfilled' && totalVisitorsResult.value.data 
           ? parseInt(totalVisitorsResult.value.data.value) : 0,
-        actualGuideTimes: actualGuideTimesResult.status === 'fulfilled' ? actualGuideTimesResult.value.data || [] : [],
         stepDurations: stepDurationsResult.status === 'fulfilled' ? stepDurationsResult.value.data || [] : [],
         overallStats: overallStatsResult.status === 'fulfilled' ? overallStatsResult.value.data : null,
         stepErrorRates: stepErrorRatesResult.status === 'fulfilled' ? stepErrorRatesResult.value.data || [] : [],
         hourlyActivity: hourlyActivityResult.status === 'fulfilled' ? hourlyActivityResult.value.data || [] : [],
         dailyActivity: dailyActivityResult.status === 'fulfilled' ? dailyActivityResult.value.data || [] : [],
-        // 언어별 통계 추가
-        localeMetrics: localeMetricsResult.status === 'fulfilled' ? localeMetricsResult.value.data || [] : [],
-        i18nImpact: i18nImpactResult.status === 'fulfilled' ? i18nImpactResult.value.data : null,
-        dailyLocaleTrends: dailyLocaleTrendsResult.status === 'fulfilled' ? dailyLocaleTrendsResult.value.data || [] : [],
-        localeStepFunnel: localeStepFunnelResult.status === 'fulfilled' ? localeStepFunnelResult.value.data || [] : [],
-        browserLanguageMismatch: browserLanguageMismatchResult.status === 'fulfilled' ? browserLanguageMismatchResult.value.data || [] : [],
-        hourlyLocaleActivity: hourlyLocaleActivityResult.status === 'fulfilled' ? hourlyLocaleActivityResult.value.data || [] : []
+        i18nImpact: i18nImpactResult.status === 'fulfilled' ? i18nImpactResult.value.data : null
       },
       timestamp: new Date().toISOString()
     };

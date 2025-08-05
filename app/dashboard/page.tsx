@@ -45,20 +45,6 @@ interface OSPerformance {
   avg_time_minutes: number;
 }
 
-interface PagePerformance {
-  page_path: string;
-  unique_sessions: number;
-  total_views: number;
-  avg_time_seconds: number;
-  bounce_count: number;
-}
-
-interface ButtonUsage {
-  button_category: string;
-  button_name: string;
-  click_count: number;
-}
-
 interface FeedbackSummary {
   total_feedback: number;
   avg_score: number;
@@ -66,20 +52,6 @@ interface FeedbackSummary {
   negative_count: number;
   with_text_count: number;
   satisfaction_rate: number;
-}
-
-interface FeedbackByEmoji {
-  emoji: string;
-  count: number;
-  avg_completion_time: number;
-}
-
-interface ActualGuideTime {
-  session_id: string;
-  os: string;
-  browser: string;
-  actual_minutes: number;
-  recorded_minutes: number;
 }
 
 interface StepDurationAnalysis {
@@ -123,18 +95,6 @@ interface DailyActivity {
   completion_rate: number;
 }
 
-// 언어별 통계 타입 정의
-interface LocaleMetrics {
-  locale: string;
-  total_sessions: number;
-  completed_sessions: number;
-  completion_rate: number;
-  avg_completion_minutes: number;
-  avg_highest_step: number;
-  sessions_with_errors: number;
-  error_rate: number;
-}
-
 interface I18nImpact {
   pre_launch_sessions: number;
   pre_launch_completion_rate: number;
@@ -145,38 +105,6 @@ interface I18nImpact {
   hours_since_launch: number;
 }
 
-interface DailyLocaleTrends {
-  date: string;
-  locale: string;
-  sessions: number;
-  completions: number;
-  completion_rate: number;
-}
-
-interface LocaleStepFunnel {
-  locale: string;
-  step_number: number;
-  users_reached: number;
-  reach_rate: number;
-  dropped_at_previous: number;
-  dropout_rate: number;
-}
-
-interface BrowserLanguageMismatch {
-  browser_language: string;
-  selected_locale: string;
-  session_count: number;
-  mismatch_type: string;
-}
-
-interface HourlyLocaleActivity {
-  hour_of_day: number;
-  locale: string;
-  total_sessions: number;
-  completed_sessions: number;
-  completion_rate: number;
-}
-
 
 export default function DashboardPage() {
   const [sessions, setSessions] = useState<SessionData[]>([]);
@@ -184,10 +112,7 @@ export default function DashboardPage() {
   const [todayMetrics, setTodayMetrics] = useState<TodayMetrics | null>(null);
   const [stepFunnel, setStepFunnel] = useState<StepFunnel[]>([]);
   const [osPerformance, setOSPerformance] = useState<OSPerformance[]>([]);
-  const [pagePerformance, setPagePerformance] = useState<PagePerformance[]>([]);
-  const [buttonUsage, setButtonUsage] = useState<ButtonUsage[]>([]);
   const [feedbackSummary, setFeedbackSummary] = useState<FeedbackSummary | null>(null);
-  const [feedbackByEmoji, setFeedbackByEmoji] = useState<FeedbackByEmoji[]>([]);
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
   const [isRealtime, setIsRealtime] = useState(false);
   const [stats, setStats] = useState({
@@ -205,19 +130,12 @@ export default function DashboardPage() {
     errorRate: 0
   });
   const [totalVisitors, setTotalVisitors] = useState<number>(0);
-  const [actualGuideTimes, setActualGuideTimes] = useState<ActualGuideTime[]>([]);
   const [stepDurations, setStepDurations] = useState<StepDurationAnalysis[]>([]);
   const [overallStats, setOverallStats] = useState<OverallGuideStats | null>(null);
   const [stepErrorRates, setStepErrorRates] = useState<StepErrorRate[]>([]);
   const [hourlyActivity, setHourlyActivity] = useState<HourlyActivity[]>([]);
   const [dailyActivity, setDailyActivity] = useState<DailyActivity[]>([]);
-  // 언어별 통계 state
-  const [localeMetrics, setLocaleMetrics] = useState<LocaleMetrics[]>([]);
   const [i18nImpact, setI18nImpact] = useState<I18nImpact | null>(null);
-  const [dailyLocaleTrends, setDailyLocaleTrends] = useState<DailyLocaleTrends[]>([]);
-  const [localeStepFunnel, setLocaleStepFunnel] = useState<LocaleStepFunnel[]>([]);
-  const [browserLanguageMismatch, setBrowserLanguageMismatch] = useState<BrowserLanguageMismatch[]>([]);
-  const [hourlyLocaleActivity, setHourlyLocaleActivity] = useState<HourlyLocaleActivity[]>([]);
 
   useEffect(() => {
     const initializeDashboard = async () => {
@@ -323,24 +241,14 @@ export default function DashboardPage() {
         setTodayMetrics(data.todayMetrics);
         setStepFunnel(data.stepFunnel || []);
         setOSPerformance(data.osPerformance || []);
-        setPagePerformance(data.pagePerformance || []);
-        setButtonUsage(data.buttonUsage || []);
         setFeedbackSummary(data.feedbackSummary);
-        setFeedbackByEmoji(data.feedbackByEmoji || []);
         setTotalVisitors(data.totalVisitors || 0);
-        setActualGuideTimes(data.actualGuideTimes || []);
         setStepDurations(data.stepDurations || []);
         setOverallStats(data.overallStats);
         setStepErrorRates(data.stepErrorRates || []);
         setHourlyActivity(data.hourlyActivity || []);
         setDailyActivity(data.dailyActivity || []);
-        // 언어별 통계 설정
-        setLocaleMetrics(data.localeMetrics || []);
         setI18nImpact(data.i18nImpact);
-        setDailyLocaleTrends(data.dailyLocaleTrends || []);
-        setLocaleStepFunnel(data.localeStepFunnel || []);
-        setBrowserLanguageMismatch(data.browserLanguageMismatch || []);
-        setHourlyLocaleActivity(data.hourlyLocaleActivity || []);
         
         setLastUpdate(new Date());
       }
@@ -718,53 +626,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* 언어별 통계 섹션 */}
-      {localeMetrics && localeMetrics.length > 0 && (
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            🌏 언어별 통계
-            <span className={styles.newBadge}>New</span>
-          </h2>
-          <div className={styles.metricsGrid}>
-            {localeMetrics.map((metric) => {
-              const localeInfo = metric.locale === 'ko' ? 
-                { flag: '🇰🇷', name: '한국어' } : 
-                { flag: '🇺🇸', name: '영어' };
-              
-              return (
-                <div key={metric.locale} className={styles.localeMetricCard}>
-                  <div className={styles.localeHeaderRow}>
-                    <span className={styles.localeFlag}>{localeInfo.flag}</span>
-                    <h3>{localeInfo.name}</h3>
-                  </div>
-                  
-                  <div className={styles.localePrimaryMetric}>
-                    <p className={styles.metricValue}>{metric.total_sessions}</p>
-                    <p className={styles.metricLabel}>세션</p>
-                  </div>
-                  
-                  <div className={styles.localeSecondaryMetrics}>
-                    <div className={styles.localeMetricItem}>
-                      <span className={styles.localeMetricLabel}>완료율</span>
-                      <span className={styles.localeMetricValue}>{metric.completion_rate.toFixed(2)}%</span>
-                    </div>
-                    <div className={styles.localeMetricItem}>
-                      <span className={styles.localeMetricLabel}>평균 시간</span>
-                      <span className={styles.localeMetricValue}>
-                        {metric.avg_completion_minutes > 0 ? `${metric.avg_completion_minutes.toFixed(2)}분` : '-'}
-                      </span>
-                    </div>
-                    <div className={styles.localeMetricItem}>
-                      <span className={styles.localeMetricLabel}>에러율</span>
-                      <span className={styles.localeMetricValue}>{metric.error_rate.toFixed(2)}%</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      {/* 제거됨: 언어별 상세 통계 (중복성, 적은 데이터) */}
 
       {/* 국제화 영향 분석 */}
       {i18nImpact && (
@@ -887,33 +749,7 @@ export default function DashboardPage() {
         )}
       </div>
 
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>실제 가이드 수행 시간 (1단계 완료 ~ 6단계 완료)</h2>
-        {actualGuideTimes.length > 0 ? (
-          <div className={styles.metricsGrid}>
-            <div className={styles.metricCard}>
-              <h3>평균 실제 시간</h3>
-              <p className={styles.metricValue}>
-                {actualGuideTimes.length > 0 
-                  ? (actualGuideTimes.reduce((sum, t) => sum + t.actual_minutes, 0) / actualGuideTimes.length).toFixed(1)
-                  : '-'}분
-              </p>
-              <p className={styles.metricSubtext}>버튼 클릭 기준</p>
-            </div>
-            <div className={styles.metricCard}>
-              <h3>기록된 평균 시간</h3>
-              <p className={styles.metricValue}>
-                {actualGuideTimes.length > 0 
-                  ? (actualGuideTimes.reduce((sum, t) => sum + t.recorded_minutes, 0) / actualGuideTimes.length).toFixed(1)
-                  : '-'}분
-              </p>
-              <p className={styles.metricSubtext}>세션 시간 기준</p>
-            </div>
-          </div>
-        ) : (
-          <p className={styles.noData}>아직 실제 수행 시간 데이터가 없습니다. 가이드를 완료하면 데이터가 표시됩니다.</p>
-        )}
-      </div>
+      {/* 제거됨: 실제 가이드 수행 시간 (데이터 없음) */}
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>시간대별 활동 분석 (최근 30일)</h2>
@@ -1033,59 +869,9 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {pagePerformance.length > 0 && (
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>페이지별 성과 (전체 기간)</h2>
-          <table className={styles.table}>
-            <thead>
-              <tr className={styles.tableHeader}>
-                <th>페이지</th>
-                <th>고유 세션</th>
-                <th>총 조회수</th>
-                <th>평균 체류시간</th>
-                <th>이탈 수</th>
-              </tr>
-            </thead>
-            <tbody className={styles.tableBody}>
-              {pagePerformance.map((page) => (
-                <tr key={page.page_path} className={styles.tableRow}>
-                  <td className={styles.tableCell}>{page.page_path}</td>
-                  <td className={styles.tableCell}>{page.unique_sessions}</td>
-                  <td className={styles.tableCell}>{page.total_views}</td>
-                  <td className={styles.tableCell}>
-                    {page.avg_time_seconds ? `${Math.round(page.avg_time_seconds)}초` : '-'}
-                  </td>
-                  <td className={styles.tableCell}>{page.bounce_count}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      {/* 제거됨: 페이지별 성과 (너무 상세함) */}
 
-      {buttonUsage.length > 0 && (
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>버튼 활용도 TOP 10</h2>
-          <table className={styles.table}>
-            <thead>
-              <tr className={styles.tableHeader}>
-                <th>카테고리</th>
-                <th>버튼 이름</th>
-                <th>클릭 수</th>
-              </tr>
-            </thead>
-            <tbody className={styles.tableBody}>
-              {buttonUsage.slice(0, 10).map((button, index) => (
-                <tr key={index} className={styles.tableRow}>
-                  <td className={styles.tableCell}>{button.button_category || '-'}</td>
-                  <td className={styles.tableCell}>{button.button_name}</td>
-                  <td className={styles.tableCell}>{button.click_count}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      {/* 제거됨: 버튼 활용도 (데이터 부족) */}
 
       {feedbackSummary && (
         <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
@@ -1115,27 +901,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {feedbackByEmoji.length > 0 && (
-        <div style={{ marginBottom: '3rem', backgroundColor: '#f8f9fa', padding: '2rem', borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ marginBottom: '1.5rem', fontSize: '1.75rem' }}>이모지별 피드백 분포</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.5rem' }}>
-            {feedbackByEmoji.map((feedback) => (
-              <div key={feedback.emoji} style={{ padding: '1rem', border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem' }}>
-                  {feedback.emoji === 'love' && '😍'}
-                  {feedback.emoji === 'good' && '😊'}
-                  {feedback.emoji === 'neutral' && '😐'}
-                  {feedback.emoji === 'sad' && '😢'}
-                </div>
-                <p style={{ margin: '0.5rem 0', fontWeight: 'bold' }}>{feedback.count}명</p>
-                <p style={{ margin: 0, fontSize: '0.875rem', color: '#666' }}>
-                  평균 {feedback.avg_completion_time?.toFixed(1) || 0}분
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* 제거됨: 이모지별 피드백 분포 (데이터 부족) */}
 
       {stepErrorRates.length > 0 && (
         <div className={styles.section}>
@@ -1237,6 +1003,8 @@ export default function DashboardPage() {
           </div>
         </div>
       )}
+
+      {/* 제거됨: 무의미한 새로 추가된 분석 섹션들 */}
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>최근 세션 (최근 15개)</h2>

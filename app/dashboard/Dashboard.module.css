@@ -709,3 +709,72 @@
     color: #6a9fdb;
   }
 }
+
+/* New Badge for new sections */
+.newBadge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #27ae60;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: normal;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+/* No Error Message */
+.noErrorMessage {
+  background-color: #f0f8f0;
+  border: 1px solid #d0e8d0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.noErrorMessage p {
+  margin: 0.5rem 0;
+  color: #2c5530;
+}
+
+.noErrorMessage ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: #2c5530;
+}
+
+.noErrorMessage li {
+  margin: 0.25rem 0;
+}
+
+/* Good News Badge */
+.goodNewsBadge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #2ecc71;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: normal;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+/* Warning Message */
+.warningMessage {
+  background-color: #fff8e1;
+  border: 1px solid #ffcc02;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 4px solid #ff9800;
+}
+
+.warningMessage p {
+  margin: 0.5rem 0;
+  color: #e65100;
+}
+
+.warningMessage strong {
+  color: #bf360c;
+}
