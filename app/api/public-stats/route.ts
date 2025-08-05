@@ -22,6 +22,7 @@ export async function GET() {
       i18nImpactResult,
       feedbackSummaryResult,
       totalVisitorsResult,
+      todayVisitorsResult,
       hourlyActivityResult
     ] = await Promise.allSettled([
       // 1. 전체 통계
@@ -45,7 +46,10 @@ export async function GET() {
       // 7. 전체 방문자 수
       supabaseAdmin.from('counters').select('value').eq('name', 'visitors').single(),
       
-      // 8. 시간대별 활동
+      // 8. 오늘 방문자 수
+      supabaseAdmin.from('counters').select('value').eq('name', 'visitors_today').single(),
+      
+      // 9. 시간대별 활동
       supabaseAdmin.from('hourly_activity').select('*')
     ]);
 
@@ -66,7 +70,11 @@ export async function GET() {
         },
         
         // 오늘의 현황
-        today: todayMetricsResult.status === 'fulfilled' ? todayMetricsResult.value.data : null,
+        today: todayMetricsResult.status === 'fulfilled' && todayMetricsResult.value.data ? {
+          ...todayMetricsResult.value.data,
+          today_total_visitors: todayVisitorsResult.status === 'fulfilled' && todayVisitorsResult.value.data 
+            ? parseInt(todayVisitorsResult.value.data.value) : 0
+        } : null,
         
         // 사용자 여정
         funnel: stepFunnelResult.status === 'fulfilled' ? stepFunnelResult.value.data || [] : [],

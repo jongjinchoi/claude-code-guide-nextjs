@@ -16,6 +16,7 @@ interface PublicStatsData {
     completed_sessions: number;
     completion_rate: number;
     started_guide: number;
+    today_total_visitors?: number;
   } | null;
   funnel: Array<{
     step: number;
@@ -219,13 +220,30 @@ export default function StatsClient({ locale }: StatsClientProps) {
 
           {/* Current Stats */}
           <div className={styles.section}>
-            <div className={styles.sectionTitle}>{t('sections.currentStats.title')}</div>
-            <div className={styles.heroStats}>
+            <div className={styles.sectionTitle}>
+              {t('sections.currentStats.title')}
+              <span className={styles.operationDays}>
+                {(() => {
+                  const startDate = new Date('2025-07-17');
+                  const today = new Date();
+                  const diffTime = Math.abs(today.getTime() - startDate.getTime());
+                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                  return locale === 'ko' ? `운영 ${diffDays}일째` : `Day ${diffDays} of Operation`;
+                })()}
+              </span>
+            </div>
+            <div className={styles.heroStats} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}>
               <div className={styles.heroStat}>
                 <div className={styles.heroStatValue}>
                   {data.overview.totalVisitors.toLocaleString()}
                 </div>
                 <div className={styles.heroStatLabel}>{t('sections.currentStats.totalVisitors')}</div>
+              </div>
+              <div className={styles.heroStat}>
+                <div className={styles.heroStatValue}>
+                  {data.overview.totalSessions.toLocaleString()}
+                </div>
+                <div className={styles.heroStatLabel}>{t('sections.currentStats.guidePageVisits')}</div>
               </div>
               <div className={styles.heroStat}>
                 <div className={styles.heroStatValue}>
@@ -235,15 +253,9 @@ export default function StatsClient({ locale }: StatsClientProps) {
               </div>
               <div className={styles.heroStat}>
                 <div className={styles.heroStatValue}>
-                  {(() => {
-                    const startDate = new Date('2025-07-17');
-                    const today = new Date();
-                    const diffTime = Math.abs(today.getTime() - startDate.getTime());
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1은 시작일 포함
-                    return `${diffDays} ${t('sections.currentStats.days')}`;
-                  })()}
+                  {data.funnel[data.funnel.length - 1]?.users_reached.toLocaleString() || 0}
                 </div>
-                <div className={styles.heroStatLabel}>{t('sections.currentStats.operationDays')}</div>
+                <div className={styles.heroStatLabel}>{t('sections.currentStats.guideCompleted')}</div>
               </div>
               <div className={styles.heroStat}>
                 <div className={styles.heroStatValue}>
@@ -262,12 +274,18 @@ export default function StatsClient({ locale }: StatsClientProps) {
           {/* Today's Activity */}
           <div className={styles.section}>
             <div className={styles.sectionTitle}>{t('sections.todayStats.title')}</div>
-            <div className={styles.dataGrid}>
+            <div className={styles.dataGrid} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))' }}>
+              <div className={styles.dataCard}>
+                <div className={styles.dataValue}>
+                  {data.today?.today_total_visitors || 0}
+                </div>
+                <div className={styles.dataLabel}>{t('sections.todayStats.totalVisitors')}</div>
+              </div>
               <div className={styles.dataCard}>
                 <div className={styles.dataValue}>
                   {data.today?.today_sessions || 0}
                 </div>
-                <div className={styles.dataLabel}>{t('sections.todayStats.totalVisitors')}</div>
+                <div className={styles.dataLabel}>{t('sections.todayStats.guidePageVisits')}</div>
               </div>
               <div className={styles.dataCard}>
                 <div className={styles.dataValue}>

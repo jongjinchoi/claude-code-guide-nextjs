@@ -138,6 +138,19 @@
   color: #E5E5E5;
 }
 
+/* Mobile responsive for command line */
+@media (max-width: 480px) {
+  .commandLine {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .commandLine .prompt {
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+}
+
 /* Stats Sections */
 .section {
   margin: 40px 0;
@@ -154,6 +167,15 @@
   margin-bottom: 20px;
   border-bottom: 1px solid rgba(204, 120, 92, 0.3);
   padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.operationDays {
+  font-size: 16px;
+  font-weight: 500;
+  color: #CC785C;
 }
 
 /* Hero Stats */
@@ -313,6 +335,23 @@
   font-weight: 600;
 }
 
+/* Mobile responsive for stats list */
+@media (max-width: 480px) {
+  .statsListItem {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0;
+  }
+  
+  .statsListLabel {
+    margin-bottom: 6px;
+  }
+  
+  .statsListValue {
+    font-size: 15px;
+  }
+}
+
 /* ASCII Art Style */
 .asciiArt {
   color: #CC785C;
@@ -323,6 +362,14 @@
   text-align: center;
   margin: 20px 0;
   font-family: monospace;
+  overflow-x: auto;
+}
+
+@media (max-width: 480px) {
+  .asciiArt {
+    font-size: 8px;
+    line-height: 1;
+  }
 }
 
 /* Footer */

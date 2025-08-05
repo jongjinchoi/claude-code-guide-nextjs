@@ -31,16 +31,19 @@
       }
     },
     "currentStats": {
-      "title": "# 📊 Current Statistics",
+      "title": "# 📊 Overall Statistics",
       "totalVisitors": "Total Visitors",
-      "guideStarters": "Guide Starters",
-      "operationDays": "Days in Operation",
+      "guidePageVisits": "Guide Page Visits",
+      "guideStarters": "Guide Started",
+      "guideCompleted": "Guide Completed",
       "completionRate": "Completion Rate",
+      "operationDays": "Day {{days}} of Operation",
       "days": "days"
     },
     "todayStats": {
       "title": "# 🔥 Today's Activity",
       "totalVisitors": "Total Visitors",
+      "guidePageVisits": "Guide Page Visits",
       "guideStart": "Guide Started",
       "completed": "Completed",
       "completionRate": "Completion Rate"

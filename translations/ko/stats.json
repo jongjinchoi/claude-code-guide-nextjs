@@ -31,18 +31,21 @@
       }
     },
     "currentStats": {
-      "title": "# 📊 현재 통계",
+      "title": "# 📊 전체 통계",
       "totalVisitors": "총 방문자",
-      "guideStarters": "가이드 시작자",
-      "operationDays": "사이트 운영기간",
+      "guidePageVisits": "가이드 페이지 방문",
+      "guideStarters": "가이드 시작",
+      "guideCompleted": "가이드 완료",
       "completionRate": "완료율",
+      "operationDays": "운영 {{days}}일째",
       "days": "일"
     },
     "todayStats": {
       "title": "# 🔥 오늘의 현황",
       "totalVisitors": "총 방문자",
+      "guidePageVisits": "가이드 페이지 방문",
       "guideStart": "가이드 시작",
-      "completed": "완료자",
+      "completed": "완료",
       "completionRate": "완료율"
     },
     "userJourney": {

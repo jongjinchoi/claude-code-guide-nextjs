@@ -25,12 +25,46 @@ export async function GET() {
 
 export async function POST() {
   try {
-    const { data, error } = await supabase
+    // 오늘 날짜 (YYYYMMDD 형식)
+    const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    
+    // 마지막 리셋 날짜 확인
+    const { data: resetData, error: resetError } = await supabase
+      .from('counters')
+      .select('value')
+      .eq('name', 'visitors_today_last_reset')
+      .single();
+      
+    if (resetError) throw resetError;
+    
+    const lastReset = resetData?.value || '0';
+    
+    // 날짜가 바뀌었으면 오늘 카운터 리셋
+    if (lastReset !== today) {
+      // visitors_today를 0으로 리셋
+      await supabase
+        .from('counters')
+        .update({ value: 0, updated_at: new Date().toISOString() })
+        .eq('name', 'visitors_today');
+        
+      // last_reset 날짜 업데이트
+      await supabase
+        .from('counters')
+        .update({ value: today, updated_at: new Date().toISOString() })
+        .eq('name', 'visitors_today_last_reset');
+    }
+    
+    // 전체 방문자 증가
+    const { data: totalData, error: totalError } = await supabase
       .rpc('increment_counter', { counter_name: 'visitors' });
       
-    if (error) throw error;
+    if (totalError) throw totalError;
     
-    return NextResponse.json({ count: data });
+    // 오늘 방문자 증가
+    await supabase
+      .rpc('increment_counter', { counter_name: 'visitors_today' });
+    
+    return NextResponse.json({ count: totalData });
   } catch (error) {
     console.error('Error incrementing counter:', error);
     return NextResponse.json({ error: 'Failed to increment counter' }, { status: 500 });
