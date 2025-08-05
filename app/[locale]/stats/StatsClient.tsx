@@ -507,7 +507,7 @@ export default function StatsClient({ locale }: StatsClientProps) {
           {/* Footer */}
           <div className={styles.footer}>
             <p>
-              {t('footer.realtime')} | {t('footer.lastUpdate')}: {new Date().toLocaleString(locale === 'ko' ? 'ko-KR' : 'en-US')}
+              {t('footer.realtime')} | {t('footer.lastUpdate')}: {new Date().toLocaleString(locale === 'ko' ? 'ko-KR' : 'en-US')} | <a href={`/${locale}`}>{t('footer.backToHome')}</a>
             </p>
           </div>
         </div>

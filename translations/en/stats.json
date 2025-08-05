@@ -108,7 +108,8 @@
   "footer": {
     "realtime": "Real-time Data Updates",
     "lastUpdate": "Last Updated",
-    "adminDashboard": "Admin Dashboard"
+    "adminDashboard": "Admin Dashboard",
+    "backToHome": "Back to Home"
   },
   "comparison": {
     "higher": "higher!",

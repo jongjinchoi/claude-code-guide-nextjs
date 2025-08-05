@@ -108,7 +108,8 @@
   "footer": {
     "realtime": "실시간 데이터 업데이트",
     "lastUpdate": "마지막 업데이트",
-    "adminDashboard": "관리자 대시보드"
+    "adminDashboard": "관리자 대시보드",
+    "backToHome": "홈으로"
   },
   "comparison": {
     "higher": "높음!",
