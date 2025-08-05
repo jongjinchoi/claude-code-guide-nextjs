@@ -13,6 +13,10 @@
       "close": "Close",
       "email_sent": "Email opened!"
     },
-    "hint": "Copy the link and open in your desktop browser"
+    "hint": "Copy the link and open in your desktop browser",
+    "email": {
+      "subject": "Claude Code Installation Guide",
+      "body": "Hello!\n\nSharing the Claude Code installation guide with you.\n\nPlease open this link on your desktop:\n{url}\n\n- AI coding tool Claude Code installation guide\n- Easy 6-step tutorial"
+    }
   }
 }

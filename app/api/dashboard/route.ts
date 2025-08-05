@@ -59,7 +59,14 @@ export async function GET(request: Request) {
       overallStatsResult,
       stepErrorRatesResult,
       hourlyActivityResult,
-      dailyActivityResult
+      dailyActivityResult,
+      // 16-21. 언어별 통계 뷰들
+      localeMetricsResult,
+      i18nImpactResult,
+      dailyLocaleTrendsResult,
+      localeStepFunnelResult,
+      browserLanguageMismatchResult,
+      hourlyLocaleActivityResult
     ] = await Promise.allSettled([
       // 1. 전체 세션 데이터
       supabaseAdmin.from('guide_sessions').select('*').order('created_at', { ascending: false }),
@@ -104,7 +111,25 @@ export async function GET(request: Request) {
       supabaseAdmin.from('hourly_activity').select('*'),
       
       // 15. 요일별 활동
-      supabaseAdmin.from('daily_activity').select('*')
+      supabaseAdmin.from('daily_activity').select('*'),
+      
+      // 16. 언어별 메트릭
+      supabaseAdmin.from('locale_metrics').select('*'),
+      
+      // 17. 국제화 영향 분석
+      supabaseAdmin.from('i18n_impact_analysis').select('*').single(),
+      
+      // 18. 일별 언어 트렌드
+      supabaseAdmin.from('daily_locale_trends').select('*').order('date', { ascending: false }).limit(30),
+      
+      // 19. 언어별 단계 퍼널
+      supabaseAdmin.from('locale_step_funnel').select('*'),
+      
+      // 20. 브라우저 언어 불일치
+      supabaseAdmin.from('browser_language_mismatch').select('*'),
+      
+      // 21. 시간대별 언어 활동
+      supabaseAdmin.from('hourly_locale_activity').select('*')
     ]);
 
     // 결과 처리
@@ -138,7 +163,14 @@ export async function GET(request: Request) {
         overallStats: overallStatsResult.status === 'fulfilled' ? overallStatsResult.value.data : null,
         stepErrorRates: stepErrorRatesResult.status === 'fulfilled' ? stepErrorRatesResult.value.data || [] : [],
         hourlyActivity: hourlyActivityResult.status === 'fulfilled' ? hourlyActivityResult.value.data || [] : [],
-        dailyActivity: dailyActivityResult.status === 'fulfilled' ? dailyActivityResult.value.data || [] : []
+        dailyActivity: dailyActivityResult.status === 'fulfilled' ? dailyActivityResult.value.data || [] : [],
+        // 언어별 통계 추가
+        localeMetrics: localeMetricsResult.status === 'fulfilled' ? localeMetricsResult.value.data || [] : [],
+        i18nImpact: i18nImpactResult.status === 'fulfilled' ? i18nImpactResult.value.data : null,
+        dailyLocaleTrends: dailyLocaleTrendsResult.status === 'fulfilled' ? dailyLocaleTrendsResult.value.data || [] : [],
+        localeStepFunnel: localeStepFunnelResult.status === 'fulfilled' ? localeStepFunnelResult.value.data || [] : [],
+        browserLanguageMismatch: browserLanguageMismatchResult.status === 'fulfilled' ? browserLanguageMismatchResult.value.data || [] : [],
+        hourlyLocaleActivity: hourlyLocaleActivityResult.status === 'fulfilled' ? hourlyLocaleActivityResult.value.data || [] : []
       },
       timestamp: new Date().toISOString()
     };

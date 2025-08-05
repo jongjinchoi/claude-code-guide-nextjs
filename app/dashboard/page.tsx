@@ -23,10 +23,11 @@ interface SessionData {
 
 interface TodayMetrics {
   total_sessions: number;
+  started_guide: number;
   completed_sessions: number;
   completion_rate: number;
   avg_completion_minutes: number;
-  immediate_bounces: number;
+  immediate_bounces?: number;
 }
 
 interface StepFunnel {
@@ -122,6 +123,60 @@ interface DailyActivity {
   completion_rate: number;
 }
 
+// 언어별 통계 타입 정의
+interface LocaleMetrics {
+  locale: string;
+  total_sessions: number;
+  completed_sessions: number;
+  completion_rate: number;
+  avg_completion_minutes: number;
+  avg_highest_step: number;
+  sessions_with_errors: number;
+  error_rate: number;
+}
+
+interface I18nImpact {
+  pre_launch_sessions: number;
+  pre_launch_completion_rate: number;
+  post_launch_sessions: number;
+  post_launch_completion_rate: number;
+  english_sessions: number;
+  english_ratio: number;
+  hours_since_launch: number;
+}
+
+interface DailyLocaleTrends {
+  date: string;
+  locale: string;
+  sessions: number;
+  completions: number;
+  completion_rate: number;
+}
+
+interface LocaleStepFunnel {
+  locale: string;
+  step_number: number;
+  users_reached: number;
+  reach_rate: number;
+  dropped_at_previous: number;
+  dropout_rate: number;
+}
+
+interface BrowserLanguageMismatch {
+  browser_language: string;
+  selected_locale: string;
+  session_count: number;
+  mismatch_type: string;
+}
+
+interface HourlyLocaleActivity {
+  hour_of_day: number;
+  locale: string;
+  total_sessions: number;
+  completed_sessions: number;
+  completion_rate: number;
+}
+
 
 export default function DashboardPage() {
   const [sessions, setSessions] = useState<SessionData[]>([]);
@@ -156,6 +211,13 @@ export default function DashboardPage() {
   const [stepErrorRates, setStepErrorRates] = useState<StepErrorRate[]>([]);
   const [hourlyActivity, setHourlyActivity] = useState<HourlyActivity[]>([]);
   const [dailyActivity, setDailyActivity] = useState<DailyActivity[]>([]);
+  // 언어별 통계 state
+  const [localeMetrics, setLocaleMetrics] = useState<LocaleMetrics[]>([]);
+  const [i18nImpact, setI18nImpact] = useState<I18nImpact | null>(null);
+  const [dailyLocaleTrends, setDailyLocaleTrends] = useState<DailyLocaleTrends[]>([]);
+  const [localeStepFunnel, setLocaleStepFunnel] = useState<LocaleStepFunnel[]>([]);
+  const [browserLanguageMismatch, setBrowserLanguageMismatch] = useState<BrowserLanguageMismatch[]>([]);
+  const [hourlyLocaleActivity, setHourlyLocaleActivity] = useState<HourlyLocaleActivity[]>([]);
 
   useEffect(() => {
     const initializeDashboard = async () => {
@@ -272,6 +334,13 @@ export default function DashboardPage() {
         setStepErrorRates(data.stepErrorRates || []);
         setHourlyActivity(data.hourlyActivity || []);
         setDailyActivity(data.dailyActivity || []);
+        // 언어별 통계 설정
+        setLocaleMetrics(data.localeMetrics || []);
+        setI18nImpact(data.i18nImpact);
+        setDailyLocaleTrends(data.dailyLocaleTrends || []);
+        setLocaleStepFunnel(data.localeStepFunnel || []);
+        setBrowserLanguageMismatch(data.browserLanguageMismatch || []);
+        setHourlyLocaleActivity(data.hourlyLocaleActivity || []);
         
         setLastUpdate(new Date());
       }
@@ -595,7 +664,7 @@ export default function DashboardPage() {
             </div>
             <div className={styles.metricCard}>
               <h3>가이드 시작한 사람</h3>
-              <p className={styles.metricValue}>{(todayMetrics.total_sessions - todayMetrics.immediate_bounces) || 0}명</p>
+              <p className={styles.metricValue}>{todayMetrics.started_guide || 0}명</p>
               <p className={styles.metricSubtext}>1단계 이상 진행</p>
             </div>
             <div className={styles.metricCard}>
@@ -648,6 +717,91 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* 언어별 통계 섹션 */}
+      {localeMetrics && localeMetrics.length > 0 && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>
+            🌏 언어별 통계
+            <span className={styles.newBadge}>New</span>
+          </h2>
+          <div className={styles.metricsGrid}>
+            {localeMetrics.map((metric) => {
+              const localeInfo = metric.locale === 'ko' ? 
+                { flag: '🇰🇷', name: '한국어' } : 
+                { flag: '🇺🇸', name: '영어' };
+              
+              return (
+                <div key={metric.locale} className={styles.localeMetricCard}>
+                  <div className={styles.localeHeaderRow}>
+                    <span className={styles.localeFlag}>{localeInfo.flag}</span>
+                    <h3>{localeInfo.name}</h3>
+                  </div>
+                  
+                  <div className={styles.localePrimaryMetric}>
+                    <p className={styles.metricValue}>{metric.total_sessions}</p>
+                    <p className={styles.metricLabel}>세션</p>
+                  </div>
+                  
+                  <div className={styles.localeSecondaryMetrics}>
+                    <div className={styles.localeMetricItem}>
+                      <span className={styles.localeMetricLabel}>완료율</span>
+                      <span className={styles.localeMetricValue}>{metric.completion_rate.toFixed(2)}%</span>
+                    </div>
+                    <div className={styles.localeMetricItem}>
+                      <span className={styles.localeMetricLabel}>평균 시간</span>
+                      <span className={styles.localeMetricValue}>
+                        {metric.avg_completion_minutes > 0 ? `${metric.avg_completion_minutes.toFixed(2)}분` : '-'}
+                      </span>
+                    </div>
+                    <div className={styles.localeMetricItem}>
+                      <span className={styles.localeMetricLabel}>에러율</span>
+                      <span className={styles.localeMetricValue}>{metric.error_rate.toFixed(2)}%</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* 국제화 영향 분석 */}
+      {i18nImpact && (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>
+            📈 국제화 영향 분석
+            <span className={styles.subtitle} style={{ 
+              fontSize: '0.875rem', 
+              fontWeight: 'normal', 
+              marginLeft: '12px', 
+              color: '#666' 
+            }}>2025년 8월 5일 오전 2시 런칭</span>
+          </h2>
+          <div className={styles.metricsGrid}>
+            <div className={styles.metricCard}>
+              <h3>런칭 전</h3>
+              <p className={styles.metricValue}>{i18nImpact.pre_launch_sessions} 세션</p>
+              <p className={styles.metricSubtext}>완료율: {i18nImpact.pre_launch_completion_rate}%</p>
+            </div>
+            <div className={styles.metricCard}>
+              <h3>런칭 후</h3>
+              <p className={styles.metricValue}>{i18nImpact.post_launch_sessions} 세션</p>
+              <p className={styles.metricSubtext}>완료율: {i18nImpact.post_launch_completion_rate}%</p>
+            </div>
+            <div className={styles.metricCard}>
+              <h3>영어 사용자</h3>
+              <p className={styles.metricValue}>{i18nImpact.english_sessions} 세션</p>
+              <p className={styles.metricSubtext}>전체의 {i18nImpact.english_ratio}%</p>
+            </div>
+            <div className={styles.metricCard}>
+              <h3>경과 시간</h3>
+              <p className={styles.metricValue}>{Math.round(i18nImpact.hours_since_launch)} 시간</p>
+              <p className={styles.metricSubtext}>런칭 이후</p>
+            </div>
+          </div>
+        </div>
+      )}
       
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>단계별 진행 현황</h2>

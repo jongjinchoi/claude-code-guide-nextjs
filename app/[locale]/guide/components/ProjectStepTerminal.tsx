@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import styles from './ProjectStepTerminal.module.css';
 
 interface ProjectStepTerminalProps {
@@ -9,14 +10,17 @@ interface ProjectStepTerminalProps {
 
 export default function ProjectStepTerminal({ os = 'mac' }: ProjectStepTerminalProps) {
   const isMac = os === 'mac';
-  const folderPath = isMac ? '/Users/username/my-first-project' : 'C:\\Users\\username\\my-first-project';
-  const cwdPath = isMac ? 'cmd: /Users/username' : 'cwd: C:\\Users\\username\\my-first-project';
+  const t = useTranslations('guide');
+  const locale = useLocale();
+  const username = locale === 'en' ? 'username' : '사용자명';
+  const folderPath = isMac ? `/Users/${username}/my-first-project` : `C:\\Users\\${username}\\my-first-project`;
+  const cwdPath = isMac ? `cmd: /Users/${username}` : `cwd: C:\\Users\\${username}\\my-first-project`;
   
   return (
     <div className={`${styles.terminal} ${styles[os]}`}>
       <div className={styles.terminalHeader}>
         <span className={styles.terminalTitle}>
-          {isMac ? '터미널 - 성공적인 경우' : '명령 프롬프트 - 성공적인 경우'}
+          {isMac ? t('terminal.successTitle.mac') : t('terminal.successTitle.windows')}
         </span>
       </div>
       <div className={styles.terminalContent}>
@@ -36,7 +40,7 @@ export default function ProjectStepTerminal({ os = 'mac' }: ProjectStepTerminalP
         {/* Prompt and command */}
         <div className={styles.commandLine}>
           <span className={styles.prompt}>
-            {isMac ? '사용자명@MacBook-Pro ~ %' : 'C:\\Users\\사용자명\\my-first-project>'}
+            {isMac ? `${username}@MacBook-Pro ~ %` : `C:\\Users\\${username}\\my-first-project>`}
           </span>
           <span className={styles.command}> claude</span>
         </div>

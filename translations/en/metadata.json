@@ -1,10 +1,33 @@
 {
-  "title": "Claude Code Guide - Start Vibe Coding for Beginners",
-  "description": "Easy-to-follow Claude Code installation guide for beginners. New to terminal? No worries. Just follow 6 steps to start coding with AI.",
-  "keywords": "Claude Code, AI coding, Vibe Coding, Terminal, Coding for beginners, Programming, AI development tools, Claude, Anthropic",
-  "og_title": "Claude Code Guide - Start Vibe Coding for Beginners",
-  "og_description": "Easy-to-follow Claude Code installation guide for beginners. New to terminal? No worries. Just follow 6 steps to start coding with AI.",
-  "twitter_title": "Claude Code Guide - Start Vibe Coding for Beginners",
-  "twitter_description": "Easy-to-follow Claude Code installation guide for beginners. New to terminal? No worries.",
-  "structured_data_description": "Easy-to-follow Claude Code installation guide for beginners"
+  "site": {
+    "title": "Claude Code Guide - Your AI Coding Companion Made Simple",
+    "description": "Install Claude Code in just 6 easy steps. No technical experience needed - we'll guide you through everything with simple explanations and helpful screenshots.",
+    "keywords": "Claude Code, AI assistant, coding made easy, beginner friendly, step by step guide, no experience needed, Claude AI, Anthropic"
+  },
+  "pages": {
+    "home": {
+      "title": "Claude Code Guide - Your AI Coding Companion Made Simple",
+      "description": "Install Claude Code in just 6 easy steps. No technical experience needed - we'll guide you through everything with simple explanations and helpful screenshots.",
+      "og_title": "Claude Code Guide - Your AI Coding Companion Made Simple",
+      "og_description": "Install Claude Code in just 6 easy steps. No technical experience needed - we'll guide you through everything with simple explanations and helpful screenshots."
+    },
+    "guide": {
+      "title": "Install Claude Code - Complete Guide in 6 Simple Steps",
+      "description": "Follow our beginner-friendly guide to install Claude Code. Works on both Mac and Windows. No coding experience required - we explain everything in plain English.",
+      "og_title": "Install Claude Code - Complete Guide in 6 Simple Steps",
+      "og_description": "Follow our beginner-friendly guide to install Claude Code. Works on both Mac and Windows. No coding experience required - we explain everything in plain English."
+    },
+    "about": {
+      "title": "About Claude Code Guide - Making AI Accessible to Everyone",
+      "description": "We believe everyone should have access to AI coding assistance. Learn how Claude Code Guide helps complete beginners start their journey with AI.",
+      "og_title": "About Claude Code Guide - Making AI Accessible to Everyone",
+      "og_description": "We believe everyone should have access to AI coding assistance. Learn how Claude Code Guide helps complete beginners start their journey with AI."
+    },
+    "faq": {
+      "title": "Claude Code Help - Answers to Your Questions",
+      "description": "Stuck? Don't worry! Find simple solutions to common questions about Claude Code. We explain everything in plain language - no technical jargon.",
+      "og_title": "Claude Code Help - Answers to Your Questions",
+      "og_description": "Stuck? Don't worry! Find simple solutions to common questions about Claude Code. We explain everything in plain language - no technical jargon."
+    }
+  }
 }

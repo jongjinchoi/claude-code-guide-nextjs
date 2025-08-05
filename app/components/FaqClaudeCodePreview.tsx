@@ -1,6 +1,8 @@
 'use client'
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import styles from './FaqClaudeCodePreview.module.css';
 
 interface FaqClaudeCodePreviewProps {
@@ -24,13 +26,12 @@ const commands: Command[] = [
 ];
 
 export function FaqClaudeCodePreview({ currentOS, showExitCommand = true, className }: FaqClaudeCodePreviewProps) {
+  const t = useTranslations('faq');
   return (
     <div className={`${styles.replContainer} ${currentOS === 'windows' ? styles.replWindows : ''} ${className || ''}`}>
       <div className={styles.replHeader}>
         <span className={styles.replTitle}>
-          {currentOS === 'windows' 
-            ? 'Claude Code 종료하기 - 명령 프롬프트는 유지' 
-            : 'Claude Code 종료하기 - 터미널은 유지'}
+          {t(`repl.title.${currentOS}`)}
         </span>
       </div>
       
@@ -45,13 +46,18 @@ export function FaqClaudeCodePreview({ currentOS, showExitCommand = true, classN
       <REPLCommandList commands={commands} />
       
       <div className={styles.replFooter}>
-        <span className={styles.replComment}># → Enter를 누르면 Claude Code가 종료됩니다</span>
+        <span className={styles.replComment}>{t('repl.description')}</span>
       </div>
     </div>
   );
 }
 
 function REPLWelcomeBox() {
+  const t = useTranslations('faq');
+  const params = useParams();
+  const locale = params?.locale as string || 'en';
+  const username = locale === 'en' ? 'username' : '사용자명';
+  
   return (
     <div className={styles.welcomeBox}>
       <div className={styles.replLine}>
@@ -64,7 +70,7 @@ function REPLWelcomeBox() {
         <span className={styles.replDescription}>/help for help, /status for your current setup</span>
       </div>
       <div className={styles.replLine}>
-        <span className={styles.replInfo}>cwd: /Users/username</span>
+        <span className={styles.replInfo}>cwd: /Users/{username}</span>
       </div>
     </div>
   );

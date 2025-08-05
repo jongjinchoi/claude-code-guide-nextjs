@@ -2,22 +2,24 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import { notFound } from 'next/navigation';
-import { guideSteps } from '@/app/data/guide';
+import { useTranslations } from 'next-intl';
+import { createStepId } from '@/app/types/guide';
 import GuideStep from './components/GuideStep';
-import PageHeader from '../components/PageHeader';
-import HeaderControls from '../components/HeaderControls';
+import PageHeader from '../../components/PageHeader';
+import HeaderControls from '../../components/HeaderControls';
 import ProgressBar from './components/ProgressBar';
 import CompletionModal from './components/CompletionModal';
 import { useState, useEffect } from 'react';
 import { useGuideTracking } from '@/app/hooks/useGuideTracking';
 
 // 스타일 imports
-import '../styles/pages/guide.css';
-import '../styles/components/guide-step-imports.css';
+import '../../styles/pages/guide.css';
+import '../../styles/components/guide-step-imports.css';
 
-export default function GuidePage() {
+export default function GuidePageClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const t = useTranslations('guide');
   
   // 추적 시스템 초기화
   const { 
@@ -30,8 +32,15 @@ export default function GuidePage() {
   
   // 페이지 첫 로드 시 가이드 페이지 진입 추적
   useEffect(() => {
-    // 페이지 진입은 추적하지 않음 - 실제 단계 진행 시에만 추적
-    // Step 0 에러 방지를 위해 제거
+    // 가이드 페이지 첫 진입 시 1단계로 추적
+    const timer = setTimeout(() => {
+      if (current === 1 || (!searchParams.get('current') && !doneParam)) {
+        console.log('Tracking initial guide page visit - step 1');
+        trackStepProgress(1, 'step1');
+      }
+    }, 100); // 약간의 지연을 주어 세션이 먼저 생성되도록 함
+    
+    return () => clearTimeout(timer);
   }, []);
   
   // 임시: localStorage 완전히 제거
@@ -44,8 +53,104 @@ export default function GuidePage() {
   const current = parseInt(searchParams.get('current') || '1');
   const doneParam = searchParams.get('done') || '';
   
-  // 사용 가능한 단계 가져오기
-  const steps = guideSteps[os];
+  // 번역된 단계 데이터 생성
+  const getSteps = (osType: 'mac' | 'windows') => {
+    if (osType === 'mac') {
+      return [
+        {
+          id: createStepId('start'),
+          number: 1,
+          title: t('intro.title'),
+          startTag: t('intro.title'),
+          timeEstimate: t('intro.timeEstimate.mac'),
+          content: 'start'
+        },
+        {
+          id: createStepId('homebrew'),
+          number: 2,
+          title: t('steps.homebrew.title'),
+          timeEstimate: t('steps.homebrew.timeEstimate'),
+          content: 'homebrew'
+        },
+        {
+          id: createStepId('node'),
+          number: 3,
+          title: t('steps.node.title'),
+          timeEstimate: t('steps.node.timeEstimate'),
+          content: 'node'
+        },
+        {
+          id: createStepId('claude'),
+          number: 4,
+          title: t('steps.claude.title'),
+          timeEstimate: t('steps.claude.timeEstimate'),
+          content: 'claude'
+        },
+        {
+          id: createStepId('auth'),
+          number: 5,
+          title: t('steps.auth.title'),
+          timeEstimate: t('steps.auth.timeEstimate'),
+          content: 'auth'
+        },
+        {
+          id: createStepId('project'),
+          number: 6,
+          title: t('project.title'),
+          timeEstimate: t('project.timeEstimate'),
+          content: 'project'
+        }
+      ];
+    } else {
+      return [
+        {
+          id: createStepId('start-windows'),
+          number: 1,
+          title: t('intro.title'),
+          startTag: t('intro.title'),
+          timeEstimate: t('intro.timeEstimate.windows'),
+          content: 'start-windows'
+        },
+        {
+          id: createStepId('git-windows'),
+          number: 2,
+          title: t('steps.git-windows.title'),
+          timeEstimate: t('steps.git-windows.timeEstimate'),
+          content: 'git-windows'
+        },
+        {
+          id: createStepId('node-windows'),
+          number: 3,
+          title: t('steps.node-windows.title'),
+          timeEstimate: t('steps.node-windows.timeEstimate'),
+          content: 'node-windows'
+        },
+        {
+          id: createStepId('claude-windows'),
+          number: 4,
+          title: t('steps.claude-windows.title'),
+          timeEstimate: t('steps.claude-windows.timeEstimate'),
+          content: 'claude-windows'
+        },
+        {
+          id: createStepId('auth-windows'),
+          number: 5,
+          title: t('steps.auth-windows.title'),
+          timeEstimate: t('steps.auth-windows.timeEstimate'),
+          content: 'auth-windows'
+        },
+        {
+          id: createStepId('project-windows'),
+          number: 6,
+          title: t('project.title'),
+          timeEstimate: t('project.timeEstimate'),
+          content: 'project-windows'
+        }
+      ];
+    }
+  };
+  
+  const steps = getSteps(os);
   
   // 잘못된 단계 접근 시 404 페이지로
   if (current < 1 || current > steps.length) {
@@ -133,8 +238,7 @@ export default function GuidePage() {
     if (expandedStep > 0 && typeof window !== 'undefined') {
       // 약간의 지연을 주어 DOM 업데이트가 완료된 후 스크롤
       const timer = setTimeout(() => {
-        const currentSteps = guideSteps[os];
-        const stepElement = document.getElementById(`step-${currentSteps[expandedStep - 1].id}`);
+        const stepElement = document.getElementById(`step-${steps[expandedStep - 1].id}`);
         if (stepElement) {
           // 헤더 높이를 고려한 오프셋
           const headerOffset = 80; // 헤더 높이
@@ -259,9 +363,9 @@ export default function GuidePage() {
       <div className="container">
         <PageHeader
           variant="hero"
-          title="Claude Code Guide"
-          subtitle="6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요"
-          badge="설치 가이드"
+          title={t('header.title')}
+          subtitle={t('header.subtitle')}
+          badge={t('header.badge')}
         >
           <HeaderControls 
             currentOS={os}

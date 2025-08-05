@@ -12,7 +12,7 @@
     "start_now": "Start Now",
     "what_is_claude_code": "What is Claude Code?",
     "return_to_guide": "Return to Guide",
-    "currently_on_step": "Currently on step {{step}}",
+    "currently_on_step": "On step {step}",
     "close": "Close",
     "restart": "Restart",
     "home": "Home",
@@ -32,7 +32,7 @@
       "increase": "Increase font size"
     },
     "theme": {
-      "aria_label": "Change theme (current: {{current}} mode)",
+      "aria_label": "Change theme (current: {current} mode)",
       "light_mode": "light",
       "dark_mode": "dark",
       "switch_to_dark": "Switch to dark mode",

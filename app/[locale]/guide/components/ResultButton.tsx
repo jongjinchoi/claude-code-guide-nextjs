@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import '../../styles/components/guide/step-buttons.css';
+import { useTranslations } from 'next-intl';
+import '../../../styles/components/guide/step-buttons.css';
 
 interface ResultButtonProps {
   step: string;
@@ -25,6 +26,7 @@ export default function ResultButton({
   onButtonClick
 }: ResultButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const t = useTranslations('guide');
   
   const handleClick = () => {
     if (!disabled) {
@@ -117,7 +119,7 @@ export default function ResultButton({
       {selected && (
         <>
           <div className="selected-indicator">✓</div>
-          <span className="selected-label">선택됨</span>
+          <span className="selected-label">{t('resultButton.selected')}</span>
         </>
       )}
     </button>

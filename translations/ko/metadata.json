@@ -1,10 +1,33 @@
 {
-  "title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
-  "description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다. 6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요.",
-  "keywords": "Claude Code, AI 코딩, 바이브 코딩, Vibe Coding, 터미널, 코딩 입문, 프로그래밍, AI 개발 도구, Claude, Anthropic",
-  "og_title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
-  "og_description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다. 6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요.",
-  "twitter_title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
-  "twitter_description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다.",
-  "structured_data_description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드"
+  "site": {
+    "title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
+    "description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다. 6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요.",
+    "keywords": "Claude Code, AI 코딩, 바이브 코딩, Vibe Coding, 터미널, 코딩 입문, 프로그래밍, AI 개발 도구, Claude, Anthropic"
+  },
+  "pages": {
+    "home": {
+      "title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
+      "description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다. 6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요.",
+      "og_title": "Claude Code Guide - 초보자를 위한 바이브 코딩의 시작",
+      "og_description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드. 터미널이 처음이어도 걱정 없습니다. 6단계만 따라하면 AI와 함께 코딩을 시작할 수 있어요."
+    },
+    "guide": {
+      "title": "Claude Code 설치 가이드 - 6단계로 완성하는 AI 코딩 환경",
+      "description": "Claude Code 설치를 6단계로 쉽게 완성하세요. Mac과 Windows 모두 지원하며, 터미널이 처음이어도 스크린샷과 함께 차근차근 설명합니다.",
+      "og_title": "Claude Code 설치 가이드 - 6단계로 완성하는 AI 코딩 환경",
+      "og_description": "Claude Code 설치를 6단계로 쉽게 완성하세요. Mac과 Windows 모두 지원하며, 터미널이 처음이어도 스크린샷과 함께 차근차근 설명합니다."
+    },
+    "about": {
+      "title": "Claude Code Guide 소개 - AI와 함께하는 코딩의 시작",
+      "description": "Claude Code Guide 프로젝트의 목적과 비전을 소개합니다. 초보자도 AI의 도움을 받아 쉽게 코딩을 시작할 수 있도록 돕습니다.",
+      "og_title": "Claude Code Guide 소개 - AI와 함께하는 코딩의 시작",
+      "og_description": "Claude Code Guide 프로젝트의 목적과 비전을 소개합니다. 초보자도 AI의 도움을 받아 쉽게 코딩을 시작할 수 있도록 돕습니다."
+    },
+    "faq": {
+      "title": "Claude Code FAQ - 자주 묻는 질문과 해결책",
+      "description": "Claude Code 설치와 사용 중 자주 발생하는 문제들을 해결합니다. 터미널 사용법부터 API 키 설정까지 상세히 안내합니다.",
+      "og_title": "Claude Code FAQ - 자주 묻는 질문과 해결책",
+      "og_description": "Claude Code 설치와 사용 중 자주 발생하는 문제들을 해결합니다. 터미널 사용법부터 API 키 설정까지 상세히 안내합니다."
+    }
+  }
 }

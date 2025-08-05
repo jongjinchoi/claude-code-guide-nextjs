@@ -1,241 +1,458 @@
 {
   "header": {
     "title": "Claude Code Guide",
-    "subtitle": "Just 6 steps to start coding with AI",
+    "subtitle": "Just 6 easy steps to start your AI coding journey",
     "badge": "Installation Guide"
   },
   "progress": {
-    "step": "Step {{current}}/{{total}}",
-    "complete": "Complete!",
-    "completed": "{{percentage}}% complete ({{completed}}/{{total}})",
+    "step": "Step {current} of {total}",
+    "complete": "All done! 🎉",
+    "completed": "{percentage}% complete ({completed}/{total})",
     "current": "Current"
   },
   "intro": {
-    "title": "Before You Start",
-    "subtitle": "Please check the following items before installing Claude Code:",
+    "title": "Before We Begin",
+    "subtitle": "Let's make sure you have everything ready. Don't worry, we'll guide you through each step!",
     "requirements": {
-      "claudePro": "Claude Pro Account - Pro plan ($20/month) subscription required",
-      "time": "About 30 minutes - for complete installation and setup",
-      "internet": "Internet Connection - stable network environment"
+      "claudePro": "<strong>Claude Pro Account</strong> - You'll need the Pro plan ($20/month)",
+      "time": "<strong>About 20-30 minutes</strong> - Take your time, there's no rush!",
+      "internet": "<strong>Internet Connection</strong> - Just like you're using now"
     },
     "terminalGuide": {
       "mac": {
-        "title": "Terminal Usage Guide",
-        "description": "Terminal is a program that controls your computer by entering commands.",
-        "howToOpen": "How to Open Terminal",
-        "methods": [
-          "Press Command (Cmd) ⌘ + Space and type \"terminal\"",
-          "Applications → Utilities → Terminal"
-        ]
+        "title": "Getting to Know Terminal",
+        "description": "Terminal is like texting with your computer - you type commands and it responds. Don't worry, it's easier than it looks!",
+        "howToOpen": "Let's open Terminal (it's already on your Mac!)",
+        "methods": "Press <kbd>Command (Cmd) ⌘</kbd> + <kbd>Space</kbd> and type \"terminal\";Go to Applications → Utilities → Terminal;Search \"terminal\" in Launchpad"
       },
       "windows": {
-        "title": "Command Prompt Usage Guide",
-        "description": "Command Prompt is a program that controls your computer by entering commands.",
-        "howToOpen": "How to Open Command Prompt",
-        "methods": [
-          "Press Windows + R and type \"cmd\"",
-          "Search for \"Command Prompt\" in Start menu"
-        ]
+        "title": "Getting to Know Command Prompt",
+        "description": "Command Prompt is like texting with your computer - you type commands and it responds. It might look intimidating, but you'll get the hang of it!",
+        "howToOpen": "Let's open Command Prompt (it's already on your PC!)",
+        "methods": "Press <kbd>Windows</kbd> + <kbd>R</kbd>, type \"cmd\" and hit <kbd>Enter ↵</kbd>;Search for \"Command Prompt\" or \"cmd\" in Start menu;Start menu → Windows System → Command Prompt"
       }
     },
     "terminalExample": {
-      "mac": "This is what you see when you open Terminal",
-      "windows": "This is what you see when you open Command Prompt"
+      "mac": "Great! This is Terminal - your new command center",
+      "windows": "Perfect! This is Command Prompt - your new command center"
     },
     "closeTerminal": {
-      "mac": "Close Terminal",
-      "windows": "Close Command Prompt"
+      "mac": "How to close Terminal when you're done",
+      "windows": "How to close Command Prompt when you're done"
     },
-    "confirmPrompt": "If you've confirmed the content, click the complete button:",
+    "closeMethods": {
+      "mac": "<kbd>Command (Cmd) ⌘</kbd> + <kbd>Q</kbd> to quit completely;<kbd>Command (Cmd) ⌘</kbd> + <kbd>W</kbd> to close just this window;Type <code>exit</code> and press <kbd>Enter ↵</kbd>",
+      "windows": "Click the X button in the top-right corner;Type <code>exit</code> and press <kbd>Enter ↵</kbd>"
+    },
+    "confirmPrompt": "Ready to move on? Click below when you've opened Terminal/Command Prompt:",
     "successButton": {
-      "title": "Got it - Next step!",
-      "mac": "I understand how to use Terminal",
-      "windows": "I understand how to use Command Prompt"
+      "title": "I've got Terminal open! ✓",
+      "mac": "Terminal is open and ready",
+      "windows": "Command Prompt is open and ready"
+    },
+    "timeEstimate": {
+      "mac": "1 minute",
+      "windows": "2 minutes"
     }
   },
   "steps": {
     "homebrew": {
       "title": "Install Homebrew",
-      "description": "Homebrew is the easiest way to install programs on Mac.",
-      "preCodeText": "Paste this command in Terminal and press Enter:",
-      "postCodeText": "💡 When prompted for password, enter your Mac login password. It's normal that it doesn't appear on screen.",
-      "verifyText": "When installation is complete, run this command in Terminal:",
+      "description": "Think of Homebrew as the App Store for your Terminal - it makes installing developer tools super easy!",
+      "preCodeText": "Let's install Homebrew. Copy this entire line:",
+      "postCodeText": "💡 Heads up: Your Mac will ask for your password. Type it and press Enter (you won't see it as you type - that's normal for security!)",
+      "verifyText": "Great! Let's make sure Homebrew installed correctly:",
       "verifyCommand": "brew --version",
       "successButton": {
-        "title": "Version number appears",
+        "title": "I see version numbers! ✓",
         "description": "Example: Homebrew 4.5.13"
       },
       "errorButton": {
-        "title": "\"command not found\" error",
+        "title": "I'm getting an error",
         "description": "zsh: command not found: brew"
-      }
+      },
+      "timeEstimate": "5-10 minutes"
     },
     "git-windows": {
       "title": "Install Git for Windows",
-      "description": "Git for Windows allows you to use Git and Unix commands on Windows.",
-      "preCodeText": "Download and install Git for Windows from the link below:",
-      "postCodeText": "💡 During installation, keep all options as default and click \"Next\".",
-      "verifyText": "When installation is complete, open a new Command Prompt and run this command:",
+      "description": "Git for Windows gives your PC superpowers - it's what lets us install Claude Code and other developer tools!",
+      "preCodeText": "Click the link below to download Git for Windows:",
+      "downloadText": "Download Git for Windows",
+      "postCodeText": "💡 Pro tip: During installation, just keep clicking \"Next\" - the default options are perfect!",
+      "verifyText": "Awesome! Now let's check if Git installed properly (open a new Command Prompt first):",
       "verifyCommand": "git --version",
       "successButton": {
-        "title": "Version number appears",
+        "title": "I see version numbers! ✓",
         "description": "Example: git version 2.43.0.windows.1"
       },
       "errorButton": {
-        "title": "\"git\" is not recognized",
+        "title": "I'm getting an error",
         "description": "Command not found"
-      }
+      },
+      "timeEstimate": "5 minutes"
     },
     "node": {
       "title": "Install Node.js",
-      "description": "Node.js is required for Claude Code to work.",
-      "preCodeText": "Run this command in Terminal:",
-      "postCodeText": "💡 You may see \"Downloading...\" message during installation. Please wait.",
-      "verifyText": "When installation is complete, verify with this command:",
+      "description": "Node.js is what makes Claude Code run - it's like the engine in a car!",
+      "preCodeText": "Now let's install Node.js. Copy and paste this:",
+      "postCodeText": "💡 This might take a minute or two. You'll see \"Downloading...\" - that's perfectly normal!",
+      "verifyText": "Nice work! Let's verify Node.js is ready:",
       "verifyCommand": "node --version",
       "successButton": {
-        "title": "Version number appears",
+        "title": "I see version numbers! ✓",
         "description": "Example: v22.18.0"
       },
       "errorButton": {
-        "title": "\"command not found\" error",
+        "title": "I'm getting an error",
         "description": "zsh: command not found: node"
-      }
+      },
+      "timeEstimate": "3 minutes"
     },
     "node-windows": {
       "title": "Install Node.js",
-      "description": "Node.js is required for Claude Code to work.",
-      "preCodeText": "Download and install Node.js LTS version from the link below:",
-      "postCodeText": "💡 Choose the \"LTS\" version. Keep all options as default during installation.",
-      "verifyText": "When installation is complete, open a new Command Prompt and run this command:",
+      "description": "Node.js is what makes Claude Code run - it's like the engine in a car!",
+      "preCodeText": "Click below to download Node.js (we want the LTS version):",
+      "downloadText": "Download Node.js LTS",
+      "postCodeText": "💡 During setup: Choose \"LTS\" (Long Term Support) and keep clicking \"Next\" - the defaults are perfect!",
+      "verifyText": "Excellent! Let's check if Node.js is ready (open a new Command Prompt first):",
       "verifyCommand": "node --version",
       "successButton": {
-        "title": "Version number appears",
+        "title": "I see version numbers! ✓",
         "description": "Example: v22.18.0"
       },
       "errorButton": {
-        "title": "\"node\" is not recognized",
+        "title": "I'm getting an error",
         "description": "Command not found"
-      }
+      },
+      "timeEstimate": "5 minutes"
     },
     "claude": {
       "title": "Install Claude Code",
-      "description": "Now it's time to install Claude Code.",
-      "preCodeText": "Run this command:",
-      "postCodeText": "💡 Once installation starts, it takes about 2-3 minutes to complete.",
-      "verifyText": "When installation is complete, verify with this command:",
+      "description": "This is the moment we've been waiting for - let's install Claude Code itself!",
+      "preCodeText": "Almost there! Copy and run this command:",
+      "postCodeText": "💡 This takes about 2-3 minutes. You'll see lots of text scrolling by - that's normal!",
+      "verifyText": "Fantastic! Let's confirm Claude Code is installed:",
+      "verifyCommand": "claude --version",
       "successButton": {
-        "title": "Version number appears",
-        "description": "Example: Claude Code 0.7.7"
+        "title": "I see version numbers! ✓",
+        "description": "Example: @anthropic-ai/claude-code/1.0.67"
       },
       "errorButton": {
-        "title": "Installation error",
-        "description": "ERROR message displayed"
-      }
+        "title": "I'm getting an error",
+        "description": "zsh: command not found: claude"
+      },
+      "timeEstimate": "2 minutes"
     },
     "claude-windows": {
       "title": "Install Claude Code",
-      "description": "Install Claude Code CLI.",
-      "preCodeText": "Run this command in Command Prompt:",
-      "postCodeText": "💡 You may see warning messages during installation, but you can ignore them.",
-      "verifyText": "When installation is complete, verify with this command:",
+      "description": "This is it - let's install Claude Code and start your AI coding journey!",
+      "preCodeText": "We're almost done! Copy and run this command:",
+      "postCodeText": "💡 Don't worry if you see some warning messages - they're totally normal and safe to ignore!",
+      "verifyText": "Wonderful! Let's make sure Claude Code is ready:",
       "verifyCommand": "claude --version",
       "successButton": {
-        "title": "Version number appears",
-        "description": "Example: Claude Code 0.7.7"
+        "title": "I see version numbers! ✓",
+        "description": "Example: @anthropic-ai/claude-code/1.0.67"
       },
       "errorButton": {
-        "title": "\"claude\" is not recognized",
+        "title": "I'm getting an error",
         "description": "Command not found"
-      }
+      },
+      "timeEstimate": "3 minutes"
     },
     "auth": {
-      "title": "Connect Account",
-      "description": "Connect your Claude Pro account.",
-      "preCodeText": "Run this command in Terminal:",
-      "postCodeText": "💡 Your browser will open automatically and show Claude login page.",
-      "verifyText": "When login is complete, verify with this command:",
+      "title": "Connect Your Account",
+      "description": "Time to connect Claude Code to your Claude Pro account!",
+      "preCodeText": "Let's link your account. Run this:",
+      "postCodeText": "💡 Your browser will pop up with a login page - just sign in with your Claude Pro account!",
+      "verifyText": "Perfect! Let's check if you're connected:",
       "verifyCommand": "claude auth status",
       "successButton": {
-        "title": "Email address appears",
+        "title": "I see my email! ✓",
         "description": "Example: your.email@example.com"
       },
       "errorButton": {
-        "title": "\"Not authenticated\" message",
+        "title": "It says not authenticated",
         "description": "Not authenticated"
-      }
+      },
+      "timeEstimate": "3 minutes"
     },
     "auth-windows": {
-      "title": "Connect Account",
-      "description": "Connect your Claude Pro account.",
-      "preCodeText": "Run this command in Command Prompt:",
-      "postCodeText": "💡 Your browser will open automatically and show Claude login page.",
-      "verifyText": "When login is complete, verify with this command:",
+      "title": "Connect Your Account",
+      "description": "Time to connect Claude Code to your Claude Pro account!",
+      "preCodeText": "Let's link your account. Run this:",
+      "postCodeText": "💡 Your browser will pop up with a login page - just sign in with your Claude Pro account!",
+      "verifyText": "Excellent! Let's verify you're connected:",
       "verifyCommand": "claude auth status",
       "successButton": {
-        "title": "Email address appears",
+        "title": "I see my email! ✓",
         "description": "Example: your.email@example.com"
       },
       "errorButton": {
-        "title": "\"Not authenticated\" message",
+        "title": "It says not authenticated",
         "description": "Not authenticated"
-      }
+      },
+      "timeEstimate": "3 minutes"
     }
   },
   "summaries": {
-    "start": "Terminal usage understood • Basic commands learned",
-    "start-windows": "Command Prompt usage understood • Basic commands learned",
-    "homebrew": "Homebrew package manager installed",
-    "git-windows": "Git for Windows installed",
-    "node": "Node.js and npm installed",
-    "node-windows": "Node.js and npm installed",
-    "claude": "Claude Code CLI installed",
-    "claude-windows": "Claude Code CLI installed",
-    "auth": "Anthropic API key configured",
-    "auth-windows": "Anthropic API key configured",
-    "project": "First project created and running",
-    "project-windows": "First project created and running"
+    "start": "Terminal basics mastered • Ready to install! 🚀",
+    "start-windows": "Command Prompt basics mastered • Ready to install! 🚀",
+    "homebrew": "Homebrew installed successfully! 🎉",
+    "git-windows": "Git for Windows installed successfully! 🎉",
+    "node": "Node.js & npm ready to go! ⚡",
+    "node-windows": "Node.js & npm ready to go! ⚡",
+    "claude": "Claude Code installed! Almost there! 🎯",
+    "claude-windows": "Claude Code installed! Almost there! 🎯",
+    "auth": "Account connected successfully! ✅",
+    "auth-windows": "Account connected successfully! ✅",
+    "project": "You're all set! Time to build amazing things! 🎊",
+    "project-windows": "You're all set! Time to build amazing things! 🎊"
+  },
+  "summaryButtons": {
+    "viewFullContent": "View Full Content",
+    "backToSummary": "Back to Summary"
+  },
+  "stepTags": {
+    "readOnly": "Read Only",
+    "inProgress": "In Progress",
+    "completed": "(Completed)"
+  },
+  "codeBlock": {
+    "copy": "Copy",
+    "copied": "Copied",
+    "copySuccess": "Command copied!",
+    "copyError": "Failed to copy"
+  },
+  "troubleshooting": {
+    "resolved": "Problem solved! ✓"
+  },
+  "resultButton": {
+    "selected": "Selected"
+  },
+  "projectStep": {
+    "createSection": {
+      "title": "Create Your First Project Folder",
+      "description": "Let's make a home for your first AI-powered project:",
+      "step1": "1. Create project folder",
+      "step2": "2. Navigate to folder",
+      "tip": "💡 Name it anything you want! Popular choices: <code>my-awesome-app</code>, <code>hello-claude</code>, <code>test-project</code>"
+    },
+    "startSection": {
+      "title": "Start Claude Code",
+      "description": "Here we go - let's launch Claude Code in your new project folder:",
+      "securityNote": "Quick note: The first time you run Claude Code, it'll ask for permission (just like installing an app). Type <kbd>1</kbd> and press <kbd>Enter</kbd> to proceed:"
+    },
+    "resultSection": {
+      "question": "How did it go? Is Claude Code running?",
+      "successTitle": "Claude Code is running!",
+      "successDescription": "Time to start building!",
+      "errorTitle": "Hmm, something's not right",
+      "errorDescription": "Let's fix this together"
+    }
   },
   "project": {
     "title": "Start Claude Code",
-    "description": "Now let's start Claude Code:",
-    "preCodeText": "Create a working folder and run Claude Code:",
-    "securityPrompt": "On first run, a security confirmation will appear. Type 1 and press Enter to continue:",
-    "postCodeText": "💡 When security prompt appears, type 1 and press Enter. Then you can start chatting with Claude Code!",
+    "description": "This is it - the moment you've been waiting for! Let's create your first project and see Claude Code in action!",
+    "preCodeText": "Let's create a project folder and fire up Claude Code:",
+    "securityPrompt": "First time only: Claude Code will ask for permission. Just type 1 and press Enter - it's like accepting terms & conditions!",
+    "postCodeText": "💡 When you see the security prompt, type 1 and hit Enter. Then... welcome to your AI coding journey! 🎉",
     "successButton": {
-      "title": "Claude Code started",
+      "title": "Claude Code is running! ✓",
       "description": "Human: prompt appears"
     },
     "errorButton": {
-      "title": "Start failed",
+      "title": "Something went wrong",
       "description": "Error message displayed"
-    }
+    },
+    "timeEstimate": "2 minutes"
   },
   "completion": {
     "title": "Congratulations! 🎉",
-    "subtitle": "You've completed Claude Code installation!",
-    "tips": {
-      "title": "What can you do now?",
-      "items": [
-        "Try asking \"Create a simple website\"",
-        "Try \"Make a calculator program in Python\"",
-        "Ask \"Show me my computer system information\""
-      ]
-    },
+    "subtitle": "You did it! Claude Code is installed and ready to help you build amazing things!",
+    "instruction": "Ready to start? Just type <code>claude</code> in your terminal and ask it to build something - even something simple like \"create a to-do list app\"!",
+    "officialDocs": "Explore What Claude Can Do",
     "feedback": {
-      "title": "How was the installation process?",
-      "placeholder": "Leave your feedback (optional)"
+      "question": "How was your installation experience?",
+      "reason": "💡 If this guide helped you, we'd love to hear it! Click <span class=\"highlight-text\">'Amazing!'</span> below",
+      "clickHint": "↑ Click here",
+      "emojis": {
+        "love": "Amazing",
+        "good": "Good",
+        "neutral": "Okay",
+        "sad": "Needs work"
+      },
+      "titles": {
+        "love": "That's wonderful to hear! Any specific feedback?",
+        "sad": "Oh no! Please tell us what went wrong",
+        "default": "Care to share more details?"
+      },
+      "subtitles": {
+        "love": "What made your experience great?",
+        "sad": "How can we make this better?",
+        "default": "Your feedback helps us improve"
+      },
+      "placeholders": {
+        "love": "What worked well for you?",
+        "sad": "What challenges did you face?",
+        "default": "Share your thoughts..."
+      },
+      "submitting": "Sending...",
+      "submitButton": "Send Feedback",
+      "submitError": "Oops! Couldn't send feedback. Please try again.",
+      "creator": {
+        "name": "👨‍💻 Created by Jin",
+        "message": "Thanks for using this guide!<br />Your feedback helps me make it better for everyone 🙏",
+        "profileAlt": "Creator profile"
+      },
+      "success": {
+        "title": "Thanks so much!",
+        "message": "Jin received your feedback and really appreciates it! 💌"
+      }
     },
-    "actions": {
-      "home": "Go Home",
-      "restart": "Start Over",
-      "share": "Share"
+    "share": {
+      "question": "Know someone who'd love Claude Code?",
+      "button": "Share this guide",
+      "title": "Claude Code Guide - Start Your AI Coding Journey",
+      "description": "Install Claude Code in just 6 easy steps. Perfect for beginners - no coding experience needed!",
+      "copied": "Link copied to clipboard!",
+      "menu": {
+        "copy": "Copy Link",
+        "twitter": "Share on Twitter",
+        "facebook": "Share on Facebook",
+        "linkedin": "Share on LinkedIn"
+      }
+    },
+    "laterButton": "Maybe Later"
+  },
+  "common": {
+    "verifyInstallation": "Verify Installation",
+    "selectResult": "Select your result:"
+  },
+  "terminal": {
+    "defaultTitle": {
+      "mac": "Terminal",
+      "windows": "Command Prompt"
+    },
+    "successTitle": {
+      "mac": "Terminal - Success",
+      "windows": "Command Prompt - Success"
     }
   },
   "troubleshooting": {
     "common": {
+      "title": "Let's Fix This Together",
+      "description": "Don't worry - this happens sometimes! Try these solutions:",
+      "resolvedTitle": "Did that work? If yes:",
+      "completedTitle": "Great job! You fixed it! 🎉"
+    },
+    "macTypeSelector": {
+      "title": "First, which type of Mac do you have?",
+      "appleSilicon": "Apple Silicon (M1/M2/M3/M4)",
+      "intel": "Intel Mac (older models)"
+    },
+    "resolutions": {
+      "homebrew": "Homebrew has been successfully installed",
+      "node": "Node.js has been successfully installed",
+      "claude": "Claude Code has been successfully installed",
+      "auth": "Account has been successfully connected",
+      "project": "Claude Code has been successfully started",
+      "git-windows": "Git for Windows has been successfully installed",
+      "node-windows": "Node.js has been successfully installed",
+      "claude-windows": "Claude Code has been successfully installed",
+      "auth-windows": "Account connection completed",
+      "project-windows": "Claude Code has been successfully started"
+    },
+    "homebrew": {
+      "appleSilicon": {
+        "title": "For Apple Silicon Macs:",
+        "instruction": "Let's fix this step by step. Copy and run these commands <strong>one at a time</strong>:",
+        "step1": "1. First, let's save the PATH setting:",
+        "step2": "2. Now activate it for this terminal:",
+        "step3": "3. Let's check if it worked:"
+      },
+      "intel": {
+        "title": "For Intel Macs:",
+        "instruction": "No problem! Copy and run these commands <strong>one at a time</strong>:",
+        "step1": "1. First, save the PATH setting:",
+        "step2": "2. Now activate it:",
+        "step3": "3. Let's verify it worked:"
+      }
+    },
+    "node": {
+      "title": "Let's get Node.js working:",
+      "step1": "1. First, let's see what's installed:",
+      "step2": "2. If nothing shows up, install it:",
+      "step3": "3. If it's already there, let's reinstall:",
+      "step4": "4. Sometimes it's just a PATH issue. Try this:",
+      "step5": "5. Still not working? Close Terminal completely and open a fresh one.",
+      "appleSiliconNote": "💡 For Apple Silicon Macs (M1/M2/M3/M4):",
+      "intelNote": "💡 For Intel Macs:"
+    },
+    "claude": {
+      "title": "Let's fix Claude Code:",
+      "step1": "1. First, let's check what's installed:",
+      "step2": "2. Let's find where npm installs things:",
+      "step3": "3. Now add that location to your PATH:",
+      "step4": "4. Not working? Let's reinstall fresh:",
+      "step5": "5. Final step: Close Terminal completely and open a new one."
+    },
+    "claudeWindows": {
+      "title": "Let's get Claude Code working:",
+      "step1": "1. First, let's check if it's installed:",
+      "step2": "2. Not there? Let's install it again:",
+      "step3": "3. Still having issues? Try this:",
+      "step3Description": "Right-click Command Prompt and choose \"Run as administrator\", then install again.",
+      "step4": "4. Last resort (but often works!):",
+      "step4Description": "Save your work, restart your computer, and try the command again."
+    },
+    "auth": {
+      "browserNotOpenTitle": "Browser didn't pop up?",
+      "browserNotOpenDesc": "No problem! Just copy the URL from your terminal and paste it in any browser.",
+      "browserNotOpenNote": "💡 The URL looks like: <code>https://claude.ai/auth/...</code>",
+      "loginNotCompleteTitle": "Login not working?",
+      "loginNotCompleteStep1": "1. Let's log out and try fresh:",
+      "loginNotCompleteStep2": "2. Still stuck? Clear your browser cookies for claude.ai and try again.",
+      "accountIssueTitle": "Account issues?",
+      "accountIssueDesc": "Make sure you can log into Claude normally at <a href=\"https://claude.ai\" target=\"_blank\">claude.ai</a>"
+    },
+    "project": {
+      "permissionTitle": "📁 Getting \"Permission denied\"?",
+      "permissionDesc": "This just means we need to start somewhere else. Try your home folder:",
+      "permissionNote": "💡 Your home folder is always safe to use - it's your personal space!",
+      "connectTitle": "🌐 Seeing \"Cannot connect\"?",
+      "connectDesc": "Let's check your internet connection:",
+      "connectCheck1": "<strong>Check Wi-Fi/Ethernet</strong> - Are you online?",
+      "connectCheck2": "<strong>Quick test</strong> - Can you open google.com?",
+      "connectCheck3Mac": "<strong>Restart Terminal</strong> - Sometimes a fresh start helps",
+      "connectCheck3Windows": "<strong>Restart Command Prompt</strong> - Close window and reopen",
+      "stillNotWorkTitle": "🔄 If it still doesn't work:",
+      "stillNotWorkDesc": "Try the simplest solution:",
+      "stillNotWorkStep1Mac": "Completely close Terminal",
+      "stillNotWorkStep1Windows": "Completely close Command Prompt",
+      "stillNotWorkStep2": "Restart computer",
+      "stillNotWorkStep3Mac": "Reopen Terminal and run the command below",
+      "stillNotWorkStep3Windows": "Reopen Command Prompt and run the command below"
+    },
+    "nodeWindows": {
+      "title": "If Node.js is not recognized:",
+      "step1Title": "1. Restart Command Prompt:",
+      "step1Description": "Close all Command Prompt windows and open a new one.",
+      "step2Title": "2. If it still doesn't work:",
+      "step2Description": "Restart your computer. Environment variables may need a restart to take effect after Node.js installation.",
+      "step3Title": "3. If it still doesn't work after restart:",
+      "step3Description": "Run the Node.js installer again and make sure the \"Automatically install the necessary tools\" option is selected during installation."
+    },
+    "gitWindows": {
       "title": "Troubleshooting",
-      "description": "Try these solutions in order:"
+      "step1Title": "If git is not found even after restarting Command Prompt:",
+      "step1_1": "<strong>Step 1:</strong> Close all Command Prompt windows",
+      "step1_2": "<strong>Step 2:</strong> Search for \"Command Prompt\" in Start menu and run it again",
+      "step1_3": "<strong>Step 3:</strong> Type git --version again",
+      "step2Title": "If it still doesn't work, restart your computer:",
+      "step2Description": "Installation was successful but environment variables were not applied. Restarting your computer will fix this.",
+      "step3Title": "If it still doesn't work after restart:",
+      "step3Description": "Run the Git installer again and make sure the \"Git from the command line and also from 3rd-party software\" option is selected during installation."
     }
   }
 }

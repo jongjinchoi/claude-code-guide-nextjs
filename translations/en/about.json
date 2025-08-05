@@ -1,21 +1,21 @@
 {
   "title": "What is Claude Code?",
-  "subtitle": "Code with AI through natural conversation",
+  "subtitle": "An AI coding assistant that works through natural conversation",
   "badge": "AI Coding Assistant",
   "header": {
     "title": "What is Claude Code?",
-    "subtitle": "Code with AI through natural conversation",
+    "subtitle": "An AI coding assistant that works through natural conversation",
     "badge": "AI Coding Assistant"
   },
   "intro": {
     "section_title": "What is Claude Code?",
     "paragraphs": [
-      "Claude Code is the official CLI tool that lets you use Anthropic's AI assistant Claude in the terminal. You can get AI help throughout the entire development process, from writing code to debugging and refactoring.",
-      "Whether you're solving complex programming problems, learning new technologies, or improving existing code, Claude helps you in real-time. It's like having an experienced developer pair programming with you."
+      "Claude Code is the official <span class=\"tooltip\">CLI<span class=\"tooltip-text\">Short for Command Line Interface. A program you use by typing commands with your keyboard instead of clicking with a mouse.</span></span> tool that lets you use Anthropic's AI assistant Claude in the <span class=\"tooltip\">terminal<span class=\"tooltip-text\">The black screen on your computer where you type commands. Called Terminal on Mac and Command Prompt on Windows.</span></span>. You can get AI help throughout the entire development process, from writing code to <span class=\"tooltip\">debugging<span class=\"tooltip-text\">The process of finding and fixing errors (bugs) in a program.</span></span> and <span class=\"tooltip\">refactoring<span class=\"tooltip-text\">The process of reorganizing working code to make it cleaner and more efficient.</span></span>.",
+      "Whether you're solving complex programming problems, learning new technologies, or improving existing code, Claude helps you in real-time. It's like having an experienced developer <span class=\"tooltip\">pair programming<span class=\"tooltip-text\">A method where two people write code together on one computer. One person writes code while the other reviews, helping each other develop.</span></span> with you."
     ],
     "tip": {
       "title": "Simply put",
-      "content": "Claude Code is a program that lets you code while chatting with AI like texting. Just ask \"How do I build this?\" and the AI will create code and explain it to you."
+      "content": "Claude Code lets you chat with AI like texting a friend, but instead of sending memes, you're building cool stuff! Just ask \"How do I build this?\" and Claude creates the code and explains everything in simple terms."
     },
     "tooltips": {
       "terminal": "The black screen on your computer where you type commands. Called Terminal on Mac and Command Prompt on Windows.",
@@ -30,8 +30,8 @@
     "cards": [
       {
         "icon": "💬",
-        "title": "Conversational Coding",
-        "description": "Describe code in natural language and Claude will understand and implement it. You can even request things like \"Make this function more efficient.\"",
+        "title": "Natural Language Coding",
+        "description": "Describe your requirements in plain English, and Claude will understand and implement the code. You can make requests like \"Make this function more efficient\" or \"Add error handling here.\"",
         "badge": "Beginner Friendly",
         "example": {
           "label": "Example",
@@ -41,35 +41,35 @@
       {
         "icon": "🐛",
         "title": "Smart Debugging",
-        "description": "Just show the error message and it will analyze the cause and suggest solutions. Even complex bugs can be tracked systematically.",
+        "description": "When something breaks (and trust us, it happens to everyone!), just copy and paste the error message. Claude will explain what went wrong in plain English and tell you exactly how to fix it.",
         "badge": "Beginner Friendly",
         "example": {
           "label": "How it works",
-          "content": "Say \"My code isn't working\" and show the error screen, and it will explain why and fix it."
+          "content": "Say \"My code isn't working\" and show the error screen. Claude will explain the issue and provide a solution."
         }
       },
       {
         "icon": "📚",
         "title": "Automated Documentation",
-        "description": "Automatically generates code explanations, comments, and README files. Creates documentation that's easy for team members to understand.",
+        "description": "Don't know how to explain your code to others? No problem! Claude automatically writes clear explanations and instructions that anyone can follow.",
         "badge": "Beginner Friendly"
       },
       {
         "icon": "📝",
         "title": "Code Review & Improvement",
-        "description": "Analyzes code quality and suggests improvements. Applies best_practices and latest patterns.",
+        "description": "Claude looks at your code and suggests ways to make it better. It knows all the <span class=\"tooltip\">best practices<span class=\"tooltip-text\">The most proven good coding methods that work well</span></span> so you don't have to worry about doing things the \"wrong\" way.",
         "variant": "advanced"
       },
       {
         "icon": "🔧",
         "title": "Refactoring Assistant",
-        "description": "Improves legacy code to modern patterns or restructures complex code to be more readable.",
+        "description": "Got some <span class=\"tooltip\">old messy code<span class=\"tooltip-text\">Code that works but could be organized better</span></span>? Claude can clean it up and make it easier to understand and work with.",
         "variant": "advanced"
       },
       {
         "icon": "🚀",
         "title": "Test Code Generation",
-        "description": "Automatically generates unit tests for functions and classes. Creates comprehensive tests considering edge cases.",
+        "description": "Claude creates <span class=\"tooltip\">automatic tests<span class=\"tooltip-text\">Programs that check if your code works correctly</span></span> to make sure your code works properly. It even thinks of <span class=\"tooltip\">weird scenarios<span class=\"tooltip-text\">Unusual situations that might break your code</span></span> you might not have considered.",
         "variant": "advanced"
       }
     ],
@@ -86,12 +86,12 @@
       {
         "icon": "fas fa-check",
         "title": "Programming beginners",
-        "description": "AI provides friendly explanations and guidance"
+        "description": "Claude explains everything in simple terms and cheers you on"
       },
       {
         "icon": "fas fa-check",
-        "title": "Professionals automating repetitive tasks",
-        "description": "Easily create automation programs for your work"
+        "title": "Professionals tired of repetitive Excel tasks",
+        "description": "Say goodbye to boring copy-paste tasks! Claude helps you create smart programs that do the work for you"
       },
       {
         "icon": "fas fa-check",
@@ -101,7 +101,7 @@
       {
         "icon": "fas fa-check",
         "title": "Developers learning new languages or frameworks",
-        "description": "Learn quickly and apply to real work"
+        "description": "Accelerate your learning and immediately apply it to real projects"
       },
       {
         "icon": "fas fa-check",
@@ -115,7 +115,7 @@
     "questions": [
       {
         "question": "Can I use it without knowing how to code at all?",
-        "answer": "Yes! Claude Code is designed to be used by people who don't know coding. Simply ask in plain English like \"Build me a website\" or \"Make a program that reads Excel files\" and AI will create the necessary code and explain how to use it."
+        "answer": "Absolutely! Don't worry if you've never coded before - Claude Code is your friendly coding buddy. Just tell Claude what you want in everyday language like \"I need a website for my business\" or \"Help me organize my Excel data.\" Claude will create everything you need and explain each step like you're chatting with a helpful friend."
       },
       {
         "question": "Is Claude Code free?",
@@ -130,47 +130,41 @@
       },
       {
         "question": "How long does installation take?",
-        "answer": "First-time installers usually take about 20-30 minutes. Anyone can install it by following this step-by-step guide. Don't worry if you get stuck - we provide solutions at each step!"
+        "answer": "Don't stress about setup! Most people get everything running in 20-30 minutes. We'll walk you through every single step with screenshots, and if something goes wrong, we've got your back with easy fixes for common hiccups."
       },
       {
         "question": "What can I build?",
-        "answer": "Things beginners can build:",
-        "examples": [
-          "📱 Personal websites or portfolios",
-          "📊 Excel automation programs",
-          "🤖 Simple chatbots or Discord bots",
-          "📝 Work automation scripts",
-          "🎮 Simple web games"
-        ],
-        "note": "The AI creates the code and explains how to use it."
+        "answer": "Examples of what beginners can build:",
+        "examples": "📱 Personal websites or portfolios;📊 Excel automation programs;🤖 Simple chatbots or Discord bots;📝 Work automation scripts;🎮 Simple web games",
+        "note": "Claude generates all the code and provides step-by-step instructions."
       },
       {
         "question": "What programming languages are supported?",
-        "answer": "Supports most major programming languages including Python, JavaScript, TypeScript, Java, C++, Go, Rust, and more. Also handles markup languages and query languages like HTML, CSS, SQL.",
-        "tip": "Beginner tip: HTML/CSS/JavaScript is easy for websites, Python is easy for automation!"
+        "answer": "Claude speaks every coding language fluently! Whether it's Python, JavaScript, Java, or dozens of others - Claude has got you covered. Think of Claude as your multilingual coding assistant who never gets tired of translating your ideas into working code.",
+        "tip": "New to coding? Start with HTML/CSS/JavaScript for websites (super visual and fun!), or Python for automating boring tasks"
       },
       {
         "question": "Do I need an internet connection?",
-        "answer": "Yes, Claude Code needs an internet connection to communicate with the Claude API. It cannot be used offline."
+        "answer": "Yes, you'll need internet since Claude lives in the cloud and helps you in real-time. Think of it like texting a super-smart friend who happens to be amazing at coding!"
       },
       {
         "question": "Is my code safe?",
-        "answer": "Anthropic takes user privacy and security seriously. Code sent through the API is not used for model training and is managed according to strict security policies."
+        "answer": "Your code is safe with Claude! Anthropic (Claude's creator) treats your projects like private diary entries - they're never used to train other AI models and are protected with top-level security. Your creative work stays yours."
       }
     ]
   },
   "cta": {
-    "title": "30 minutes is all you need",
-    "subtitle": "Get started now - you'll be coding with AI in just 30 minutes",
+    "title": "Your Coding Journey Starts in 30 Minutes! 🚀",
+    "subtitle": "Ready to feel like a coding wizard? Let's get you set up and creating amazing things!",
     "info": [
       { "text": "Mac 20-30 min • Windows 30-40 min" },
-      { "text": "Difficulty: Easy" }
+      { "text": "Difficulty: Easier than ordering coffee online!" }
     ],
-    "buttonText": "Start Now"
+    "button": "Let's Do This!"
   },
   "author": {
     "name": "Jongjin Choi aka Jin",
-    "description": "Former founder of Forbes-featured coworking space \"Hive Arena\"",
+    "description": "Founded Forbes-featured coworking space \"Hive Arena\", currently exploring new opportunities",
     "story": "Following a 5-year career pause for family, while exploring new opportunities, I fell in love with Claude Code and created a guide that anyone can easily start with. Made with ❤️",
     "links": {
       "visit": "Visit & Coffee Chat",

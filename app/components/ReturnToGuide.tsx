@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import styles from './ReturnToGuide.module.css';
 
 export default function ReturnToGuide() {
@@ -10,6 +11,7 @@ export default function ReturnToGuide() {
   const [shouldShow, setShouldShow] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const t = useTranslations('common');
 
   useEffect(() => {
     // return 파라미터가 있는지 확인
@@ -79,11 +81,11 @@ export default function ReturnToGuide() {
           <svg className={styles.returnToGuideIcon} width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
             <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
           </svg>
-          <span className={styles.returnToGuideText}>가이드로 돌아가기</span>
+          <span className={styles.returnToGuideText}>{t('buttons.return_to_guide')}</span>
         </div>
         {currentStep && (
           <div className={styles.currentStepInfo}>
-            현재 {currentStep}단계 진행 중
+            {t('buttons.currently_on_step', { step: currentStep })}
           </div>
         )}
       </div>

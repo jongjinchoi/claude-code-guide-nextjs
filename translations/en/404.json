@@ -1,31 +1,31 @@
 {
   "terminal_title": "404 — Terminal",
-  "last_login": "Last login: {{time}} on ttys404",
+  "last_login": "Last login: {time} on ttys404",
   "prompt": "whereiam@getclaudecode.com ~ %",
-  "error_message": "zsh: no such file or directory: Page not found",
+  "error_prefix": "zsh: no such file or directory:",
+  "error_message": "page not found",
+  "arrow": "→",
   "suggestions": {
     "title": "💡 Try these:",
-    "items": [
-      {
-        "command": "cd /",
-        "link": "Go to Home"
-      },
-      {
-        "command": "cd /guide",
-        "link": "Start Guide"
-      },
-      {
-        "command": "cd /about",
-        "link": "About Project"
-      },
-      {
-        "command": "cd /faq",
-        "link": "FAQ"
-      }
-    ]
+    "item1": {
+      "command": "cd /",
+      "link": "Go to home page"
+    },
+    "item2": {
+      "command": "cd /guide",
+      "link": "Go to guide page"
+    },
+    "item3": {
+      "command": "cd /about",
+      "link": "Go to about page"
+    },
+    "item4": {
+      "command": "cd /faq",
+      "link": "Go to FAQ page"
+    }
   },
   "help": {
     "moved_or_missing": "🔍 The page you're looking for has moved or doesn't exist.",
-    "contact": "📧 If the problem persists, let us know at {{email}}."
+    "contact": "📧 If this keeps happening, please let us know at {email}."
   }
 }

@@ -1,6 +1,9 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import { useRouter, usePathname, useParams } from 'next/navigation';
+import { Link } from '@/src/i18n/navigation';
 import { useThemeStore } from '@/app/lib/stores/themeStore';
 import { HeaderControlsProps } from '@/app/types';
 import styles from './HeaderControls.module.css';
@@ -12,11 +15,20 @@ export default function HeaderControls({
   currentOS,
   onOSChange
 }: HeaderControlsProps) {
+  // Translations
+  const t = useTranslations('common');
+  
   // Zustand stores
   const { theme, toggleTheme, fontSize, increaseFontSize, decreaseFontSize } = useThemeStore();
   
   // Use currentOS prop
   const displayOS = currentOS || 'mac';
+  
+  // i18n routing
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
+  const locale = params?.locale as string || 'en';
 
   // OS Toggle Handler
   const handleOSToggle = (os: 'mac' | 'windows') => {
@@ -58,7 +70,7 @@ export default function HeaderControls({
           <button
             className={styles.fontSizeBtn}
             onClick={decreaseFontSize}
-            title="글자 작게"
+            title={t('header_controls.font_size.decrease')}
             disabled={fontSize <= 14}
           >
             <i className="fas fa-minus"></i>
@@ -67,7 +79,7 @@ export default function HeaderControls({
           <button
             className={styles.fontSizeBtn}
             onClick={increaseFontSize}
-            title="글자 크게"
+            title={t('header_controls.font_size.increase')}
             disabled={fontSize >= 20}
           >
             <i className="fas fa-plus"></i>
@@ -81,12 +93,26 @@ export default function HeaderControls({
           type="button"
           className={styles.themeToggle}
           onClick={toggleTheme}
-          aria-label={`테마 변경 (현재: ${theme === 'light' ? '라이트' : '다크'} 모드)`}
-          title={theme === 'light' ? '다크 모드로 변경' : '라이트 모드로 변경'}
+          aria-label={t('header_controls.theme.aria_label', { 
+            current: theme === 'light' ? t('header_controls.theme.light_mode') : t('header_controls.theme.dark_mode') 
+          })}
+          title={theme === 'light' ? t('header_controls.theme.switch_to_dark') : t('header_controls.theme.switch_to_light')}
         >
           <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
         </button>
       )}
+
+      {/* Language Switcher */}
+      <Link
+        href={pathname.replace(`/${locale}`, '')}
+        locale={locale === 'ko' ? 'en' : 'ko'}
+        className={styles.languageToggle}
+        title={locale === 'ko' ? 'Switch to English' : '한국어로 전환'}
+      >
+        <span className={styles.flagIcon}>
+          {locale === 'ko' ? '🇺🇸' : '🇰🇷'}
+        </span>
+      </Link>
     </div>
   );
 }

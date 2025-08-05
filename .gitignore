@@ -67,3 +67,6 @@ nohup.out
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Analysis folder - internal use only
+/analysis/

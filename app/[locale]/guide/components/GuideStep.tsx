@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import StepContent from './steps/StepContent';
 
 interface GuideStepProps {
@@ -39,6 +40,7 @@ export default function GuideStep({
 }: GuideStepProps) {
   const [showFullContent, setShowFullContent] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations('guide');
   
   // 클라이언트에서만 실행
   useEffect(() => {
@@ -60,22 +62,7 @@ export default function GuideStep({
   };
 
   const getSummaryText = () => {
-    const summaries: Record<string, string> = {
-      'start': '터미널 사용법 숙지 완료 • 기본 명령어 이해',
-      'start-windows': '터미널 사용법 숙지 완료 • 기본 명령어 이해',
-      'homebrew': 'Homebrew 패키지 관리자 설치 완료',
-      'git-windows': 'Git for Windows 설치 완료',
-      'node': 'Node.js 및 npm 설치 완료',
-      'node-windows': 'Node.js 및 npm 설치 완료',
-      'claude': 'Claude Code CLI 설치 완료',
-      'claude-windows': 'Claude Code CLI 설치 완료',
-      'auth': 'Anthropic API 키 설정 완료',
-      'auth-windows': 'Anthropic API 키 설정 완료',
-      'project': '첫 프로젝트 생성 및 실행 완료',
-      'project-windows': '첫 프로젝트 생성 및 실행 완료'
-    };
-    
-    return summaries[step.id] || '';
+    return t(`summaries.${step.id}` as any) || '';
   };
 
   const sectionClasses = [
@@ -121,15 +108,15 @@ export default function GuideStep({
           <span className="step-tag">{step.startTag}</span>
         )}
         {isActive && step.number > 1 && !isCompleted && (
-          <span className="step-tag progress-tag">현재 진행 중</span>
+          <span className="step-tag progress-tag">{t('stepTags.inProgress')}</span>
         )}
         <h2>
           {step.title}
-          {isCompleted && <span className="completed-text">(완료)</span>}
+          {isCompleted && <span className="completed-text">{t('stepTags.completed')}</span>}
         </h2>
         <span className="time-estimate">
           {isCompleted ? (
-            <button type="button" className="btn-read-only">읽기전용</button>
+            <button type="button" className="btn-read-only">{t('stepTags.readOnly')}</button>
           ) : (
             <>
               <i className="fas fa-clock"></i> {step.timeEstimate}
@@ -152,7 +139,7 @@ export default function GuideStep({
             }}
           >
             <i className="fas fa-expand"></i>
-            전체 내용 다시 보기
+            {t('summaryButtons.viewFullContent')}
           </button>
         </div>
       )}
@@ -168,7 +155,7 @@ export default function GuideStep({
               }}
             >
               <i className="fas fa-compress"></i>
-              요약으로 돌아가기
+              {t('summaryButtons.backToSummary')}
             </button>
           )}
           {(!isCompleted || showFullContent) && (

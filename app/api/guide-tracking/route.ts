@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
 // 브라우저 핑거프린트 생성
@@ -43,17 +43,26 @@ export async function POST(request: NextRequest) {
 
     switch (action) {
       case 'start_session':
+        console.log('Starting session:', session_id);
         const fingerprint = generateFingerprint(request);
         
-        await supabase.from('guide_sessions').insert({
+        const insertResult = await supabase.from('guide_sessions').insert({
           session_id,
+          locale: data.locale || 'en',
           os: normalizeOS(data.os),
           browser: data.browser,
           device_type: data.device_type,
           referrer_source: data.referrer_source,
           landing_page: data.landing_page,
+          browser_language: data.browser_language,
+          browser_languages: JSON.stringify(data.browser_languages || []),
           user_fingerprint: fingerprint
         });
+        
+        if (insertResult.error) {
+          console.error('Failed to insert session:', insertResult.error);
+          return NextResponse.json({ error: 'Failed to create session' }, { status: 500 });
+        }
         
         // 상세 이벤트 로깅 (선택사항)
         if (process.env.ENABLE_DETAILED_LOGGING === 'true') {
@@ -66,12 +75,19 @@ export async function POST(request: NextRequest) {
         break;
 
       case 'step_progress':
+        console.log('Step progress tracking:', { session_id, step_number: data.step_number });
+        
         // 이전 step_times 가져오기
-        const { data: session } = await supabase
+        const { data: session, error: sessionError } = await supabase
           .from('guide_sessions')
           .select('step_times, highest_step_reached')
           .eq('session_id', session_id)
           .single();
+          
+        if (sessionError) {
+          console.error('Failed to fetch session:', sessionError);
+          return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+        }
 
         const stepTimes = session?.step_times || {};
         
@@ -80,7 +96,7 @@ export async function POST(request: NextRequest) {
           stepTimes[`step${data.step_number - 1}`] = data.time_on_previous_step;
         }
 
-        await supabase
+        const updateResult = await supabase
           .from('guide_sessions')
           .update({
             current_step: data.step_number,
@@ -89,6 +105,10 @@ export async function POST(request: NextRequest) {
             last_activity_at: new Date().toISOString()
           })
           .eq('session_id', session_id);
+          
+        if (updateResult.error) {
+          console.error('Failed to update step progress:', updateResult.error);
+        }
         
         // 상세 이벤트 로깅
         if (process.env.ENABLE_DETAILED_LOGGING === 'true') {

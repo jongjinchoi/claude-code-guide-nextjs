@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import '../../styles/components/troubleshooting.css';
+import { useTranslations } from 'next-intl';
+import '../../../styles/components/troubleshooting.css';
 
 interface TroubleshootingProps {
   id: string;
@@ -23,6 +24,7 @@ export default function Troubleshooting({
   isResolvedSelected = false 
 }: TroubleshootingProps) {
   const [isResolved, setIsResolved] = useState(false);
+  const t = useTranslations('guide');
 
   const handleResolution = () => {
     if (!isResolved && !isReadOnly) {
@@ -39,12 +41,12 @@ export default function Troubleshooting({
 
   return (
     <div className={`troubleshooting ${active ? 'is-active' : ''}`} id={id}>
-      <h3><i className="fas fa-wrench"></i> 문제 해결</h3>
+      <h3><i className="fas fa-wrench"></i> {t('troubleshooting.common.title')}</h3>
       <div className="troubleshooting-content">
         {children}
         
         <div className="troubleshooting-resolution">
-          <h4>문제가 해결되었다면:</h4>
+          <h4>{t('troubleshooting.common.resolvedTitle')}</h4>
           <button 
             className={`resolution-check ${shouldShowAsResolved ? 'is-resolved' : ''}`}
             onClick={handleResolution}
@@ -55,18 +57,9 @@ export default function Troubleshooting({
               {shouldShowAsResolved && <i className="fas fa-check"></i>}
             </div>
             <div className="resolution-check-content">
-              <div className="resolution-check-title">문제 해결 완료!</div>
+              <div className="resolution-check-title">{t('troubleshooting.common.completedTitle')}</div>
               <div className="resolution-check-desc">
-                {step === 'homebrew' && 'Homebrew가 정상적으로 설치되었습니다'}
-                {step === 'node' && 'Node.js가 정상적으로 설치되었습니다'}
-                {step === 'claude' && 'Claude Code가 정상적으로 설치되었습니다'}
-                {step === 'auth' && '계정이 정상적으로 연결되었습니다'}
-                {step === 'project' && 'Claude Code가 정상적으로 시작되었습니다'}
-                {step === 'git-windows' && 'Git for Windows가 정상적으로 설치되었습니다'}
-                {step === 'node-windows' && 'Node.js가 정상적으로 설치되었습니다'}
-                {step === 'claude-windows' && 'Claude Code가 정상적으로 설치되었습니다'}
-                {step === 'auth-windows' && '계정 연결이 완료되었습니다'}
-                {step === 'project-windows' && 'Claude Code가 정상적으로 시작되었습니다'}
+                {t(`troubleshooting.resolutions.${step}`)}
               </div>
             </div>
           </button>

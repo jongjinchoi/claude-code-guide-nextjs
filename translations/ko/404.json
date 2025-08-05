@@ -1,33 +1,31 @@
 {
   "terminal_title": "404 — Terminal",
-  "last_login": "Last login: {{time}} on ttys404",
+  "last_login": "Last login: {time} on ttys404",
   "prompt": "whereiam@getclaudecode.com ~ %",
   "error_prefix": "zsh: no such file or directory:",
   "error_message": "페이지를 찾을 수 없습니다",
   "arrow": "→",
   "suggestions": {
     "title": "💡 다음을 시도해보세요:",
-    "items": [
-      {
-        "command": "cd /",
-        "link": "홈으로 돌아가기"
-      },
-      {
-        "command": "cd /guide",
-        "link": "가이드 시작하기"
-      },
-      {
-        "command": "cd /about",
-        "link": "프로젝트 소개"
-      },
-      {
-        "command": "cd /faq",
-        "link": "자주 묻는 질문"
-      }
-    ]
+    "item1": {
+      "command": "cd /",
+      "link": "홈으로 돌아가기"
+    },
+    "item2": {
+      "command": "cd /guide",
+      "link": "가이드 시작하기"
+    },
+    "item3": {
+      "command": "cd /about",
+      "link": "프로젝트 소개"
+    },
+    "item4": {
+      "command": "cd /faq",
+      "link": "자주 묻는 질문"
+    }
   },
   "help": {
     "moved_or_missing": "🔍 찾으시는 페이지가 이동되었거나 존재하지 않습니다.",
-    "contact": "📧 문제가 계속되면 {{email}}으로 알려주세요."
+    "contact": "📧 문제가 계속되면 {email}으로 알려주세요."
   }
 }

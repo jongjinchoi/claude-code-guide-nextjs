@@ -12,7 +12,7 @@
     "start_now": "지금 시작하기",
     "what_is_claude_code": "Claude Code가 뭔가요?",
     "return_to_guide": "가이드로 돌아가기",
-    "currently_on_step": "현재 {{step}}단계 진행 중",
+    "currently_on_step": "현재 {step}단계 진행 중",
     "close": "닫기",
     "restart": "다시 시작",
     "home": "홈으로",
@@ -32,7 +32,7 @@
       "increase": "글자 크게"
     },
     "theme": {
-      "aria_label": "테마 변경 (현재: {{current}} 모드)",
+      "aria_label": "테마 변경 (현재: {current} 모드)",
       "light_mode": "라이트",
       "dark_mode": "다크",
       "switch_to_dark": "다크 모드로 변경",
