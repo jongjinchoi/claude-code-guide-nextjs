@@ -9,13 +9,24 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata.pages.stats' });
 
+  // 6월 26일부터 오늘까지의 일수 계산
+  const startDate = new Date('2025-06-26');
+  const today = new Date();
+  const diffTime = Math.abs(today.getTime() - startDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  // 동적 설명 생성
+  const dynamicDescription = locale === 'ko' 
+    ? `${diffDays}일간의 발전 과정과 실시간 사용자 현황을 투명하게 공개합니다. HTML에서 Next.js까지의 진화 스토리.`
+    : `${diffDays} days of progress and real-time user activity transparently shared. The evolution story from HTML to Next.js.`;
+
   return {
     title: t('title'),
-    description: t('description'),
+    description: dynamicDescription,
     keywords: t('keywords').split(', '),
     openGraph: {
       title: t('title'),
-      description: t('description'),
+      description: dynamicDescription,
       url: `https://getclaudecode.com/${locale}/stats`,
       type: 'website',
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
@@ -23,7 +34,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
-      description: t('description'),
+      description: dynamicDescription,
     },
   };
 }
