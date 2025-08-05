@@ -10,6 +10,11 @@ export default function MobileDetector() {
   const t = useTranslations('mobile');
   const locale = params?.locale as string || 'en';
 
+  // Stats 페이지에서는 MobileDetector를 렌더링하지 않음
+  if (pathname.includes('/stats')) {
+    return null;
+  }
+
   useEffect(() => {
     const mobileDetector = {
       isDirectAccessModal: false,

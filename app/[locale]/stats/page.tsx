@@ -30,11 +30,20 @@ export async function generateMetadata({
       url: `https://getclaudecode.com/${locale}/stats`,
       type: 'website',
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
+      images: [
+        {
+          url: 'https://getclaudecode.com/images/claude-code-guide-og.png',
+          width: 1200,
+          height: 630,
+        }
+      ],
+      siteName: 'Claude Code Guide',
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: dynamicDescription,
+      images: ['https://getclaudecode.com/images/claude-code-guide-og.png'],
     },
   };
 }
