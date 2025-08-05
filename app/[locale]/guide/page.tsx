@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     keywords: t('site.keywords'),
     openGraph: {
       type: 'website',
+      url: `https://getclaudecode.com/${locale}/guide`,
       title: t('pages.guide.og_title'),
       description: t('pages.guide.og_description'),
       images: [
