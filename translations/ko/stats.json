@@ -1,0 +1,117 @@
+{
+  "title": "실시간 통계",
+  "terminal": {
+    "title": "Claude Code Guide Stats — Terminal",
+    "loading": "실시간 데이터를 불러오는 중...",
+    "error": "일시적 오류",
+    "errorMessage": "데이터를 불러올 수 없습니다.",
+    "networkError": "네트워크 오류가 발생했습니다.",
+    "retry": "다시 시도",
+    "prompt": "stats@getclaudecode.com ~ %",
+    "commands": {
+      "cat": "cat claude-code-guide-stats.txt",
+      "echo": "echo \"Thanks for visiting!\"",
+      "message": "Thanks for visiting!"
+    }
+  },
+  "sections": {
+    "timeline": {
+      "title": "# 📅 프로젝트 진화 과정",
+      "dates": {
+        "june26": "6월 26일",
+        "july17": "7월 17일", 
+        "august1": "8월 1일",
+        "august5": "8월 5일"
+      },
+      "events": {
+        "firstHtml": "첫 HTML 파일 생성",
+        "launch": "공식 런칭 🚀",
+        "migration": "Next.js 15 마이그레이션",
+        "i18n": "다국어 지원 추가 🌍"
+      }
+    },
+    "currentStats": {
+      "title": "# 📊 현재 통계",
+      "totalVisitors": "총 방문자",
+      "guideStarters": "가이드 시작자",
+      "operationDays": "사이트 운영기간",
+      "completionRate": "완료율",
+      "days": "일"
+    },
+    "todayStats": {
+      "title": "# 🔥 오늘의 현황",
+      "totalVisitors": "총 방문자",
+      "guideStart": "가이드 시작",
+      "completed": "완료자",
+      "completionRate": "완료율"
+    },
+    "userJourney": {
+      "title": "# 👥 단계별 진행 현황",
+      "step": "Step",
+      "people": "명"
+    },
+    "conversionAnalysis": {
+      "title": "# 🎯 가이드 시작률 (실제 전환율)",
+      "totalVisitors": "전체 방문자",
+      "guidePageVisits": "가이드 페이지 방문",
+      "actualGuideStarts": "실제 가이드 시작",
+      "guidePageVisitRate": "가이드 페이지 방문률",
+      "guideStartRate": "가이드 시작률 (1단계를 완료한 비율)",
+      "overallConversionRate": "전체 전환율 (전체 방문자 중)",
+      "people": "명"
+    },
+    "growthRate": {
+      "title": "# 📈 일평균 성장률",
+      "dailyAvgVisitors": "일평균 전체 방문자",
+      "dailyAvgGuidePage": "일평균 가이드 페이지",
+      "dailyAvgGuideStart": "일평균 가이드 시작",
+      "calculation": "{{total}}명 ÷ {{days}}일 = {{daily}}명/일",
+      "people": "명",
+      "days": "일",
+      "peoplePerDay": "명/일"
+    },
+    "todayPerformance": {
+      "title": "# 🔥 오늘의 성과",
+      "todayGuidePage": "오늘 가이드 페이지",
+      "todayGuideStart": "오늘 가이드 시작",
+      "todayStartRate": "오늘 시작률",
+      "people": "명",
+      "comparison": "(평소 {{normal}}%보다 {{diff}} {{status}})"
+    },
+    "i18nImpact": {
+      "title": "# 🌍 다국어 지원 영향",
+      "beforeLaunch": "다국어 지원 전",
+      "afterLaunch": "다국어 지원 후",
+      "englishUsers": "영어 사용자",
+      "operationTime": "서비스 운영 시간",
+      "sessions": "세션",
+      "people": "명",
+      "hours": "시간"
+    },
+    "techEvolution": {
+      "title": "# 🚀 기술 진화 (4단계)",
+      "phase": "Phase",
+      "phases": {
+        "mvp": "MVP 개발",
+        "launch": "런칭 & 최적화",
+        "modernization": "현대화",
+        "globalization": "글로벌화"
+      },
+      "duration": {
+        "days20": "20일",
+        "days8": "8일",
+        "days3": "3일",
+        "ongoing": "진행중"
+      }
+    }
+  },
+  "footer": {
+    "realtime": "실시간 데이터 업데이트",
+    "lastUpdate": "마지막 업데이트",
+    "adminDashboard": "관리자 대시보드"
+  },
+  "comparison": {
+    "higher": "높음!",
+    "lower": "낮음"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "title": "Real-time Statistics",
+  "terminal": {
+    "title": "Claude Code Guide Stats — Terminal",
+    "loading": "Loading real-time data...",
+    "error": "Temporary Error",
+    "errorMessage": "Unable to load data.",
+    "networkError": "A network error occurred.",
+    "retry": "Retry",
+    "prompt": "stats@getclaudecode.com ~ %",
+    "commands": {
+      "cat": "cat claude-code-guide-stats.txt",
+      "echo": "echo \"Thanks for visiting!\"",
+      "message": "Thanks for visiting!"
+    }
+  },
+  "sections": {
+    "timeline": {
+      "title": "# 📅 Project Evolution",
+      "dates": {
+        "june26": "June 26",
+        "july17": "July 17",
+        "august1": "August 1",
+        "august5": "August 5"
+      },
+      "events": {
+        "firstHtml": "First HTML file created",
+        "launch": "Official Launch 🚀",
+        "migration": "Next.js 15 Migration",
+        "i18n": "Internationalization Added 🌍"
+      }
+    },
+    "currentStats": {
+      "title": "# 📊 Current Statistics",
+      "totalVisitors": "Total Visitors",
+      "guideStarters": "Guide Starters",
+      "operationDays": "Days in Operation",
+      "completionRate": "Completion Rate",
+      "days": "days"
+    },
+    "todayStats": {
+      "title": "# 🔥 Today's Activity",
+      "totalVisitors": "Total Visitors",
+      "guideStart": "Guide Started",
+      "completed": "Completed",
+      "completionRate": "Completion Rate"
+    },
+    "userJourney": {
+      "title": "# 👥 Step-by-Step Progress",
+      "step": "Step",
+      "people": "users"
+    },
+    "conversionAnalysis": {
+      "title": "# 🎯 Guide Start Rate (Actual Conversion)",
+      "totalVisitors": "Total Visitors",
+      "guidePageVisits": "Guide Page Visits",
+      "actualGuideStarts": "Actual Guide Starts",
+      "guidePageVisitRate": "Guide Page Visit Rate",
+      "guideStartRate": "Guide Start Rate (Completed Step 1)",
+      "overallConversionRate": "Total Conversion Rate (From All Visitors)",
+      "people": "users"
+    },
+    "growthRate": {
+      "title": "# 📈 Daily Average Growth",
+      "dailyAvgVisitors": "Daily Average Visitors",
+      "dailyAvgGuidePage": "Daily Guide Page Visits",
+      "dailyAvgGuideStart": "Daily Guide Starts",
+      "calculation": "{{total}} users ÷ {{days}} days = {{daily}} users/day",
+      "people": " users",
+      "days": " days",
+      "peoplePerDay": " users/day"
+    },
+    "todayPerformance": {
+      "title": "# 🔥 Today's Performance",
+      "todayGuidePage": "Today's Guide Page Visits",
+      "todayGuideStart": "Today's Guide Starts",
+      "todayStartRate": "Today's Start Rate",
+      "people": "users",
+      "comparison": "usual {{normal}}% {{diff}} {{status}}"
+    },
+    "i18nImpact": {
+      "title": "# 🌍 Internationalization Impact",
+      "beforeLaunch": "Before i18n",
+      "afterLaunch": "After i18n",
+      "englishUsers": "English Users",
+      "operationTime": "Service Uptime",
+      "sessions": "sessions",
+      "people": "users",
+      "hours": "hours"
+    },
+    "techEvolution": {
+      "title": "# 🚀 Technology Evolution (4 Phases)",
+      "phase": "Phase",
+      "phases": {
+        "mvp": "MVP Development",
+        "launch": "Launch & Optimization",
+        "modernization": "Modernization",
+        "globalization": "Globalization"
+      },
+      "duration": {
+        "days20": "20 days",
+        "days8": "8 days",
+        "days3": "3 days",
+        "ongoing": "Ongoing"
+      }
+    }
+  },
+  "footer": {
+    "realtime": "Real-time Data Updates",
+    "lastUpdate": "Last Updated",
+    "adminDashboard": "Admin Dashboard"
+  },
+  "comparison": {
+    "higher": "higher!",
+    "lower": "lower"
+  }
+}

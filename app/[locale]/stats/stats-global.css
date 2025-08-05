@@ -1,0 +1,5 @@
+/* Global styles for stats page */
+body.statsPageActive nav,
+body.statsPageActive header {
+  display: none !important;
+}

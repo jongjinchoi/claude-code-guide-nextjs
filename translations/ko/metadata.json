@@ -28,6 +28,11 @@
       "description": "Claude Code 설치와 사용 중 자주 발생하는 문제들을 해결합니다. 터미널 사용법부터 API 키 설정까지 상세히 안내합니다.",
       "og_title": "Claude Code FAQ - 자주 묻는 질문과 해결책",
       "og_description": "Claude Code 설치와 사용 중 자주 발생하는 문제들을 해결합니다. 터미널 사용법부터 API 키 설정까지 상세히 안내합니다."
+    },
+    "stats": {
+      "title": "Claude Code Guide - 실시간 통계",
+      "description": "40일간의 발전 과정과 실시간 사용자 현황을 투명하게 공개합니다. HTML에서 Next.js까지의 진화 스토리.",
+      "keywords": "Claude Code, 설치 가이드, 통계, 개발 도구, Next.js, 사용자 현황"
     }
   }
 }

@@ -28,6 +28,11 @@
       "description": "Stuck? Don't worry! Find simple solutions to common questions about Claude Code. We explain everything in plain language - no technical jargon.",
       "og_title": "Claude Code Help - Answers to Your Questions",
       "og_description": "Stuck? Don't worry! Find simple solutions to common questions about Claude Code. We explain everything in plain language - no technical jargon."
+    },
+    "stats": {
+      "title": "Claude Code Guide - Real-time Statistics",
+      "description": "40 days of progress and real-time user activity transparently shared. The evolution story from HTML to Next.js.",
+      "keywords": "Claude Code, installation guide, statistics, developer tools, Next.js, user activity"
     }
   }
 }
