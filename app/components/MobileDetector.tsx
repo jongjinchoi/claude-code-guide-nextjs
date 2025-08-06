@@ -33,8 +33,10 @@ export default function MobileDetector() {
       checkAndBlock() {
         if (this.isMobileDevice()) {
           // Check if current page is allowed for mobile
+          // Remove locale prefix for comparison
+          const pathWithoutLocale = pathname.replace(/^\/(ko|en)/, '') || '/';
           const allowedPages = ['/', '/about'];
-          const isAllowedPage = allowedPages.includes(pathname);
+          const isAllowedPage = allowedPages.includes(pathWithoutLocale);
           
           if (!isAllowedPage) {
             // Show modal instead of full overlay
