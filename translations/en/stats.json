@@ -42,7 +42,7 @@
     },
     "todayStats": {
       "title": "# 🔥 Today's Activity",
-      "totalVisitors": "Total Visitors",
+      "totalVisitors": "Homepage Visits",
       "guidePageVisits": "Guide Page Visits",
       "guideStart": "Guide Started",
       "completed": "Completed",
