@@ -235,22 +235,42 @@ export default function GuidePageClient() {
 
   // 단계 변경 시 스크롤
   useEffect(() => {
+    console.log('[Scroll Debug] Effect triggered, expandedStep:', expandedStep);
+    
     if (expandedStep > 0 && typeof window !== 'undefined') {
       // 약간의 지연을 주어 DOM 업데이트가 완료된 후 스크롤
       const timer = setTimeout(() => {
-        const stepElement = document.getElementById(`step-${steps[expandedStep - 1].id}`);
+        const stepId = `step-${steps[expandedStep - 1].id}`;
+        console.log('[Scroll Debug] Looking for element with ID:', stepId);
+        console.log('[Scroll Debug] Step object:', steps[expandedStep - 1]);
+        
+        const stepElement = document.getElementById(stepId);
+        console.log('[Scroll Debug] Element found:', stepElement);
+        
         if (stepElement) {
           // 헤더 높이를 고려한 오프셋
           const headerOffset = 80; // 헤더 높이
           const elementPosition = stepElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
           
+          console.log('[Scroll Debug] Scroll calculations:', {
+            elementTop: elementPosition,
+            pageYOffset: window.pageYOffset,
+            finalOffset: offsetPosition
+          });
+          
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth'
           });
+          
+          console.log('[Scroll Debug] Scroll command executed');
+        } else {
+          console.warn('[Scroll Debug] Element not found! Available IDs:', 
+            Array.from(document.querySelectorAll('[id^="step-"]')).map(el => el.id)
+          );
         }
-      }, 100); // DOM 업데이트를 위한 짧은 지연
+      }, 300); // DOM 업데이트를 위한 지연 시간 증가
 
       return () => clearTimeout(timer);
     }
