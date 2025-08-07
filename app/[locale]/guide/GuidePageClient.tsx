@@ -235,49 +235,29 @@ export default function GuidePageClient() {
 
   // 단계 변경 시 스크롤
   useEffect(() => {
-    console.log('[Scroll Debug] Effect triggered, expandedStep:', expandedStep);
-    
     if (expandedStep > 0 && typeof window !== 'undefined') {
-      // 약간의 지연을 주어 DOM 업데이트가 완료된 후 스크롤
+      // DOM 업데이트를 위한 지연 (프로덕션 환경 고려)
       const timer = setTimeout(() => {
-        const stepId = `step-${steps[expandedStep - 1].id}`;
-        console.log('[Scroll Debug] Looking for element with ID:', stepId);
-        console.log('[Scroll Debug] Step object:', steps[expandedStep - 1]);
-        
-        const stepElement = document.getElementById(stepId);
-        console.log('[Scroll Debug] Element found:', stepElement);
-        
+        const stepElement = document.getElementById(`step-${steps[expandedStep - 1].id}`);
         if (stepElement) {
           // 헤더 높이를 고려한 오프셋
           const headerOffset = 80; // 헤더 높이
           const elementPosition = stepElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
           
-          console.log('[Scroll Debug] Scroll calculations:', {
-            elementTop: elementPosition,
-            pageYOffset: window.pageYOffset,
-            finalOffset: offsetPosition
-          });
-          
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth'
           });
-          
-          console.log('[Scroll Debug] Scroll command executed');
-        } else {
-          console.warn('[Scroll Debug] Element not found! Available IDs:', 
-            Array.from(document.querySelectorAll('[id^="step-"]')).map(el => el.id)
-          );
         }
-      }, 300); // DOM 업데이트를 위한 지연 시간 증가
+      }, 300); // 프로덕션 환경에서 DOM 렌더링 완료를 위한 충분한 지연
 
       return () => clearTimeout(timer);
     }
     
     // 조건이 false인 경우에도 cleanup function 반환
     return () => {};
-  }, [expandedStep, os]);
+  }, [expandedStep, os, steps]);
   
   // done 파라미터 파싱 (예: "1-5" → [1,2,3,4,5])
   const getCompletedSteps = (done: string): number[] => {
