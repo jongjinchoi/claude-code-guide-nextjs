@@ -89,8 +89,26 @@ export async function POST(request: NextRequest) {
           .single();
           
         if (sessionError) {
-          console.error('Failed to fetch session:', sessionError);
-          return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+          // 세션이 없으면 새로 생성
+          console.log('Session not found, creating new session:', session_id);
+          const insertResult = await supabase.from('guide_sessions').insert({
+            session_id,
+            locale: 'ko',
+            os: 'Unknown',
+            browser: 'Unknown',
+            device_type: 'Unknown',
+            user_fingerprint: generateFingerprint(request),
+            highest_step_reached: data.step_number,
+            current_step: data.step_number
+          });
+          
+          if (insertResult.error) {
+            console.error('Failed to create session:', insertResult.error);
+            return NextResponse.json({ error: 'Failed to create session' }, { status: 500 });
+          }
+          
+          // 새로 생성된 세션으로 계속 진행
+          break; // 세션 생성 후 종료 (step_times 업데이트는 다음 요청에서)
         }
 
         const stepTimes = session?.step_times || {};
