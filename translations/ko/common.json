@@ -35,8 +35,11 @@
       "aria_label": "테마 변경 (현재: {current} 모드)",
       "light_mode": "라이트",
       "dark_mode": "다크",
+      "auto_mode": "자동",
       "switch_to_dark": "다크 모드로 변경",
-      "switch_to_light": "라이트 모드로 변경"
+      "switch_to_light": "라이트 모드로 변경",
+      "switch_to_auto": "자동 모드로 변경 (시스템 설정 따르기)",
+      "auto_mode_desc": "시스템 설정 따르기 (현재: {current})"
     }
   },
   "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI",

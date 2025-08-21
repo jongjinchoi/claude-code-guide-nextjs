@@ -117,10 +117,7 @@ export default function ResultButton({
         <div className="sub-text">{description}</div>
       </div>
       {selected && (
-        <>
-          <div className="selected-indicator">✓</div>
-          <span className="selected-label">{t('resultButton.selected')}</span>
-        </>
+        <span className="selected-label">{t('resultButton.selected')}</span>
       )}
     </button>
   );

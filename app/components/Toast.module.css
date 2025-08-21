@@ -11,16 +11,17 @@
 .toast {
   background: white;
   color: #333;
-  padding: 12px 20px;
+  padding: 10px 16px;
   border-radius: 8px;
   margin-bottom: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  max-width: 400px;
+  max-width: 360px;
   word-wrap: break-word;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
   pointer-events: auto;
+  font-size: 14px;
 }
 
 .toast.isVisible {
@@ -30,7 +31,7 @@
 
 /* Toast Types */
 .toast.info {
-  background: #3498db;
+  background: var(--primary-color);
   color: white;
 }
 
@@ -57,7 +58,7 @@
 }
 
 :global([data-theme="dark"]) .toast.info {
-  background: #2980b9;
+  background: var(--primary-color);
 }
 
 :global([data-theme="dark"]) .toast.success {
@@ -72,6 +73,59 @@
   background: #c0392b;
 }
 
+/* Toast Message */
+.toastMessage {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+/* Toast Actions */
+.toastActions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.toastButton {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 65px;
+}
+
+.toastButton.primary {
+  background: white;
+  color: var(--primary-color);
+}
+
+.toastButton.primary:hover {
+  background: #f5f5f5;
+}
+
+.toastButton.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.toastButton.secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Dark mode button styles */
+:global([data-theme="dark"]) .toastButton.primary {
+  background: #333;
+  color: var(--primary-color);
+}
+
+:global([data-theme="dark"]) .toastButton.primary:hover {
+  background: #444;
+}
+
 /* Mobile responsive */
 @media (max-width: 480px) {
   .toastContainer {
@@ -84,5 +138,13 @@
     max-width: 100%;
     margin-bottom: 8px;
     font-size: 14px;
+  }
+  
+  .toastActions {
+    flex-direction: column;
+  }
+  
+  .toastButton {
+    width: 100%;
   }
 }

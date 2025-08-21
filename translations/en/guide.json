@@ -224,11 +224,13 @@
     "copySuccess": "Command copied!",
     "copyError": "Failed to copy"
   },
-  "troubleshooting": {
-    "resolved": "Issue Resolved!"
-  },
   "resultButton": {
     "selected": "Selected"
+  },
+  "reviewToast": {
+    "message": "You completed Step {step} quickly!\nWould you like to review Step {step} again?",
+    "reviewButton": "Review",
+    "continueButton": "Continue"
   },
   "projectStep": {
     "createSection": {
@@ -340,6 +342,7 @@
     }
   },
   "troubleshooting": {
+    "resolved": "Issue Resolved!",
     "common": {
       "title": "Let's Fix This Together",
       "description": "Don't worry - this happens sometimes! Try these solutions:",

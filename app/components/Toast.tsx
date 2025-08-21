@@ -6,15 +6,21 @@ import styles from './Toast.module.css';
 
 type ToastType = 'info' | 'success' | 'warning' | 'error';
 
+interface ToastAction {
+  label: string;
+  onClick: () => void;
+}
+
 interface Toast {
   id: string;
   message: string;
   type: ToastType;
   duration: number;
+  actions?: ToastAction[];
 }
 
 interface ToastContextType {
-  showToast: (message: string, type?: ToastType, duration?: number) => void;
+  showToast: (message: string, type?: ToastType, duration?: number, actions?: ToastAction[]) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -39,16 +45,17 @@ export function ToastProvider({ children }: ToastProviderProps) {
     setMounted(true);
   }, []);
 
-  const showToast = useCallback((message: string, type: ToastType = 'info', duration: number = 3000) => {
+  const showToast = useCallback((message: string, type: ToastType = 'info', duration: number = 3000, actions?: ToastAction[]) => {
     const id = Date.now().toString();
-    const newToast: Toast = { id, message, type, duration };
+    const newToast: Toast = { id, message, type, duration, actions };
     
     setToasts(prev => [...prev, newToast]);
 
-    // 자동 제거
+    // 자동 제거 (액션 버튼이 있으면 시간 연장)
+    const autoCloseDuration = actions ? Math.max(duration, 10000) : duration;
     setTimeout(() => {
       setToasts(prev => prev.filter(toast => toast.id !== id));
-    }, duration + 300); // 애니메이션 시간 포함
+    }, autoCloseDuration + 300); // 애니메이션 시간 포함
   }, []);
 
   // 전역 함수로도 노출 (레거시 코드 호환성)
@@ -77,9 +84,10 @@ export function ToastProvider({ children }: ToastProviderProps) {
 
 interface ToastItemProps {
   toast: Toast;
+  onRemove: () => void;
 }
 
-function ToastItem({ toast }: ToastItemProps) {
+function ToastItem({ toast, onRemove }: ToastItemProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -88,19 +96,43 @@ function ToastItem({ toast }: ToastItemProps) {
       setIsVisible(true);
     });
 
-    // 제거 전 페이드아웃
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, toast.duration);
+    // 액션 버튼이 없을 때만 자동 페이드아웃
+    if (!toast.actions) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, toast.duration);
 
-    return () => clearTimeout(timer);
-  }, [toast.duration]);
+      return () => clearTimeout(timer);
+    }
+    
+    // 액션 버튼이 있을 때는 cleanup 함수 필요 없음
+    return undefined;
+  }, [toast.duration, toast.actions]);
+
+  const handleActionClick = (action: ToastAction) => {
+    action.onClick();
+    setIsVisible(false);
+    setTimeout(onRemove, 300); // 애니메이션 후 제거
+  };
 
   const className = `${styles.toast} ${styles[toast.type]} ${isVisible ? styles.isVisible : ''}`;
 
   return (
     <div className={className}>
-      {toast.message}
+      <div className={styles.toastMessage}>{toast.message}</div>
+      {toast.actions && (
+        <div className={styles.toastActions}>
+          {toast.actions.map((action, index) => (
+            <button
+              key={index}
+              className={`${styles.toastButton} ${index === 0 ? styles.primary : styles.secondary}`}
+              onClick={() => handleActionClick(action)}
+            >
+              {action.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -110,10 +142,24 @@ interface ToastContainerProps {
 }
 
 function ToastContainer({ toasts }: ToastContainerProps) {
+  const [localToasts, setLocalToasts] = useState(toasts);
+
+  useEffect(() => {
+    setLocalToasts(toasts);
+  }, [toasts]);
+
+  const handleRemove = (id: string) => {
+    setLocalToasts(prev => prev.filter(toast => toast.id !== id));
+  };
+
   return (
     <div className={styles.toastContainer}>
-      {toasts.map(toast => (
-        <ToastItem key={toast.id} toast={toast} />
+      {localToasts.map(toast => (
+        <ToastItem 
+          key={toast.id} 
+          toast={toast} 
+          onRemove={() => handleRemove(toast.id)}
+        />
       ))}
     </div>
   );

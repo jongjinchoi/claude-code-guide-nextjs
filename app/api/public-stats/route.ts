@@ -13,10 +13,16 @@ export async function GET() {
       }
     });
 
+    // 오늘 날짜 (한국 시간 기준)
+    const today = new Date();
+    const koreaTime = new Date(today.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const todayStr = koreaTime.toISOString().split('T')[0];
+    
     // 공개용으로 필요한 핵심 데이터만 가져오기
     const [
       overallStatsResult,
       todayMetricsResult,
+      todaySessionsResult,
       stepFunnelResult,
       osPerformanceResult,
       i18nImpactResult,
@@ -28,8 +34,15 @@ export async function GET() {
       // 1. 전체 통계
       supabaseAdmin.from('overall_guide_stats').select('*').single(),
       
-      // 2. 오늘의 지표
+      // 2. 오늘의 지표 (뷰가 없을 경우를 대비)
       supabaseAdmin.from('today_metrics').select('*').single(),
+      
+      // 2-1. 오늘 세션 직접 조회 (백업)
+      supabaseAdmin
+        .from('guide_sessions')
+        .select('*')
+        .gte('created_at', `${todayStr}T00:00:00`)
+        .lt('created_at', `${todayStr}T23:59:59`),
       
       // 3. 단계별 퍼널
       supabaseAdmin.from('step_funnel').select('*'),
@@ -53,6 +66,33 @@ export async function GET() {
       supabaseAdmin.from('hourly_activity').select('*')
     ]);
 
+    // 오늘 데이터 처리 - today_metrics 뷰 또는 직접 조회 데이터 사용
+    let todayData = null;
+    
+    if (todayMetricsResult.status === 'fulfilled' && todayMetricsResult.value.data) {
+      // today_metrics 뷰에서 데이터 가져오기
+      todayData = todayMetricsResult.value.data;
+    } else if (todaySessionsResult.status === 'fulfilled' && todaySessionsResult.value.data) {
+      // 직접 조회한 세션 데이터로 계산
+      const sessions = todaySessionsResult.value.data;
+      const startedGuide = sessions.filter((s: any) => s.last_step >= 1);
+      const completed = sessions.filter((s: any) => s.last_step === 6);
+      
+      todayData = {
+        today_sessions: sessions.length,
+        started_guide: startedGuide.length,
+        completed_sessions: completed.length,
+        completion_rate: sessions.length > 0 ? (completed.length / sessions.length) * 100 : 0,
+        avg_completion_minutes: null
+      };
+    }
+    
+    // 오늘 방문자 수 추가
+    if (todayData) {
+      todayData.today_total_visitors = todayVisitorsResult.status === 'fulfilled' && todayVisitorsResult.value.data 
+        ? parseInt(todayVisitorsResult.value.data.value) : 0;
+    }
+    
     // 공개용 데이터 구성
     const publicStats = {
       success: true,
@@ -70,11 +110,7 @@ export async function GET() {
         },
         
         // 오늘의 현황
-        today: todayMetricsResult.status === 'fulfilled' && todayMetricsResult.value.data ? {
-          ...todayMetricsResult.value.data,
-          today_total_visitors: todayVisitorsResult.status === 'fulfilled' && todayVisitorsResult.value.data 
-            ? parseInt(todayVisitorsResult.value.data.value) : 0
-        } : null,
+        today: todayData,
         
         // 사용자 여정
         funnel: stepFunnelResult.status === 'fulfilled' ? stepFunnelResult.value.data || [] : [],

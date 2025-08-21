@@ -348,25 +348,38 @@
     position: relative;
 }
 
-.result-btn.is-selected:hover {
-    background: #FECDD3 !important;
-    color: #7C4A3A !important;
+/* 선택된 버튼도 원래 색상 유지 */
+.result-btn.success.is-selected {
+    color: var(--success-color) !important;
 }
 
-.result-btn.is-selected .selected-indicator {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    width: 24px;
-    height: 24px;
-    background: #CC785C;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
+.result-btn.error.is-selected {
+    color: var(--error-color) !important;
+}
+
+/* 선택된 버튼의 호버 효과 차단 */
+.result-btn.success.is-selected:hover {
+    background: #FEE2E2 !important;
+    border-color: #CC785C !important;
+    color: var(--success-color) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.result-btn.error.is-selected:hover {
+    background: #FEE2E2 !important;
+    border-color: #CC785C !important;
+    color: var(--error-color) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.result-btn.success.is-selected:hover .icon {
+    color: var(--success-color) !important;
+}
+
+.result-btn.error.is-selected:hover .icon {
+    color: var(--error-color) !important;
 }
 
 .result-btn.is-selected .selected-label {

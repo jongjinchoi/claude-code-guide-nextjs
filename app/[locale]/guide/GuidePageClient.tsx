@@ -9,8 +9,10 @@ import PageHeader from '../../components/PageHeader';
 import HeaderControls from '../../components/HeaderControls';
 import ProgressBar from './components/ProgressBar';
 import CompletionModal from './components/CompletionModal';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useGuideTracking } from '@/app/hooks/useGuideTracking';
+import { scrollToElement } from '@/app/utils/smoothScroll';
+import { useToast } from '@/app/components/Toast';
 
 // 스타일 imports
 import '../../styles/pages/guide.css';
@@ -20,6 +22,10 @@ export default function GuidePageClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const t = useTranslations('guide');
+  const { showToast } = useToast();
+  
+  // 단계 진입 시간 추적
+  const stepStartTimeRef = useRef<number>(Date.now());
   
   // 추적 시스템 초기화
   const { 
@@ -53,9 +59,9 @@ export default function GuidePageClient() {
   const current = parseInt(searchParams.get('current') || '1');
   const doneParam = searchParams.get('done') || '';
   
-  // 번역된 단계 데이터 생성
-  const getSteps = (osType: 'mac' | 'windows') => {
-    if (osType === 'mac') {
+  // 번역된 단계 데이터 생성 - 메모이제이션으로 불필요한 재생성 방지
+  const steps = useMemo(() => {
+    if (os === 'mac') {
       return [
         {
           id: createStepId('start'),
@@ -148,9 +154,7 @@ export default function GuidePageClient() {
         }
       ];
     }
-  };
-  
-  const steps = getSteps(os);
+  }, [os, t]);
   
   // 잘못된 단계 접근 시 404 페이지로
   if (current < 1 || current > steps.length) {
@@ -195,6 +199,9 @@ export default function GuidePageClient() {
     if (current > 0 && current <= 6) {
       const currentStepInfo = steps[current - 1];
       trackStepProgress(current, currentStepInfo?.id || `step${current}`);
+      
+      // 단계 진입 시간 초기화
+      stepStartTimeRef.current = Date.now();
     }
     
     // done=1-6이고 current가 없으면 모든 단계를 닫은 상태로 유지
@@ -206,14 +213,7 @@ export default function GuidePageClient() {
         // 먼저 스크롤하여 전체 여정 보여주기
         const firstStep = document.querySelector('.step-section');
         if (firstStep) {
-          const headerOffset = 20; // 헤더 아래 약간의 여백
-          const elementPosition = firstStep.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
+          scrollToElement(firstStep as HTMLElement, 20, 1200); // 1.2초 동안 천천히 스크롤
         }
         
         // 스크롤 완료 후 모달 표시
@@ -238,17 +238,14 @@ export default function GuidePageClient() {
     if (expandedStep > 0 && typeof window !== 'undefined') {
       // DOM 업데이트를 위한 지연 (프로덕션 환경 고려)
       const timer = setTimeout(() => {
-        const stepElement = document.getElementById(`step-${steps[expandedStep - 1].id}`);
-        if (stepElement) {
-          // 헤더 높이를 고려한 오프셋
-          const headerOffset = 80; // 헤더 높이
-          const elementPosition = stepElement.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
+        // steps는 메모이제이션되어 있으므로 안전하게 참조 가능
+        const currentStep = steps[expandedStep - 1];
+        if (currentStep) {
+          const stepElement = document.getElementById(`step-${currentStep.id}`);
+          if (stepElement) {
+            // 헤더 높이를 고려하여 부드럽게 스크롤
+            scrollToElement(stepElement, 80, 800); // 0.8초 동안 스크롤
+          }
         }
       }, 300); // 프로덕션 환경에서 DOM 렌더링 완료를 위한 충분한 지연
 
@@ -257,7 +254,8 @@ export default function GuidePageClient() {
     
     // 조건이 false인 경우에도 cleanup function 반환
     return () => {};
-  }, [expandedStep, os, steps]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expandedStep]); // steps는 메모이제이션되어 있고 변경되지 않으므로 의존성에서 제외
   
   // done 파라미터 파싱 (예: "1-5" → [1,2,3,4,5])
   const getCompletedSteps = (done: string): number[] => {
@@ -296,6 +294,9 @@ export default function GuidePageClient() {
     // 단계 진행 추적
     trackStepProgress(completedStepNumber, currentStepInfo?.id || `step${completedStepNumber}`);
     
+    // 현재 단계에서 보낸 시간 계산
+    const timeSpentOnStep = Date.now() - stepStartTimeRef.current;
+    
     // 완료된 단계를 추가하고 다음 단계로 이동
     const newCompleted = [...completedSteps];
     if (!newCompleted.includes(completedStepNumber)) {
@@ -315,6 +316,39 @@ export default function GuidePageClient() {
     if (nextStep <= 6) {
       router.push(`/guide?os=${os}&current=${nextStep}&done=${doneStr}`);
       setExpandedStep(nextStep);
+      
+      // 빠른 클릭(10초 이내) 감지 및 토스트 표시
+      // 2단계 이상 완료 시 표시 (1단계는 버튼이 없으므로 제외)
+      if (timeSpentOnStep < 10000 && completedStepNumber >= 2 && nextStep <= 6) {
+        setTimeout(() => {
+          const message = t('reviewToast.message', { step: String(completedStepNumber) });
+          const prevDoneStr = completedStepNumber > 1 ? `1-${completedStepNumber - 1}` : '';
+          
+          showToast(
+            message, 
+            'info', 
+            10000,
+            [
+              {
+                label: t('reviewToast.reviewButton'),
+                onClick: () => {
+                  // 이전 단계로 돌아가기 (다시 활성화)
+                  router.push(`/guide?os=${os}&current=${completedStepNumber}&done=${prevDoneStr}`);
+                }
+              },
+              {
+                label: t('reviewToast.continueButton'),
+                onClick: () => {
+                  // 토스트 닫기 (자동 처리됨)
+                }
+              }
+            ]
+          );
+        }, 500); // 페이지 전환 후 표시
+      }
+      
+      // 다음 단계 시작 시간 초기화
+      stepStartTimeRef.current = Date.now();
       
       // URL 업데이트 이벤트 발생
       setTimeout(() => {
@@ -336,20 +370,13 @@ export default function GuidePageClient() {
       setTimeout(() => {
         const firstStep = document.querySelector('.step-section');
         if (firstStep) {
-          const headerOffset = 20; // 헤더 아래 약간의 여백
-          const elementPosition = firstStep.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
+          scrollToElement(firstStep as HTMLElement, 20, 1000); // 1초 동안 천천히 스크롤
         }
         
         // 스크롤 완료 후 모달 표시
         setTimeout(() => {
           setShowCompletionModal(true);
-        }, 700); // 스크롤 애니메이션 완료 후 모달 표시
+        }, 1100); // 스크롤 애니메이션 완료 후 모달 표시
       }, 100); // URL 업데이트 후 약간의 지연
     }
   };

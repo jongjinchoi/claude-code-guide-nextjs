@@ -19,7 +19,7 @@ export default function HeaderControls({
   const t = useTranslations('common');
   
   // Zustand stores
-  const { theme, toggleTheme, fontSize, increaseFontSize, decreaseFontSize } = useThemeStore();
+  const { theme, actualTheme, toggleTheme, fontSize, increaseFontSize, decreaseFontSize } = useThemeStore();
   
   // Use currentOS prop
   const displayOS = currentOS || 'mac';
@@ -60,7 +60,6 @@ export default function HeaderControls({
               <><i className="fab fa-windows"></i> Windows</>
             )}
           </span>
-          <i className="fas fa-chevron-down"></i>
         </button>
       )}
 
@@ -75,7 +74,7 @@ export default function HeaderControls({
           >
             <i className="fas fa-minus"></i>
           </button>
-          <span className={styles.fontSizeLabel}>A</span>
+          <span className={styles.fontSizeLabel}>Aa {fontSize}px</span>
           <button
             className={styles.fontSizeBtn}
             onClick={increaseFontSize}
@@ -94,11 +93,28 @@ export default function HeaderControls({
           className={styles.themeToggle}
           onClick={toggleTheme}
           aria-label={t('header_controls.theme.aria_label', { 
-            current: theme === 'light' ? t('header_controls.theme.light_mode') : t('header_controls.theme.dark_mode') 
+            current: theme === 'auto' 
+              ? t('header_controls.theme.auto_mode') 
+              : theme === 'light' 
+                ? t('header_controls.theme.light_mode') 
+                : t('header_controls.theme.dark_mode') 
           })}
-          title={theme === 'light' ? t('header_controls.theme.switch_to_dark') : t('header_controls.theme.switch_to_light')}
+          title={
+            theme === 'auto' 
+              ? t('header_controls.theme.auto_mode_desc', { current: actualTheme })
+              : theme === 'light' 
+                ? t('header_controls.theme.switch_to_dark') 
+                : t('header_controls.theme.switch_to_auto')
+          }
         >
-          <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
+          {theme === 'auto' ? (
+            <span className={styles.autoIcon}>
+              <i className={`fas fa-${actualTheme === 'light' ? 'sun' : 'moon'}`}></i>
+              <span className={styles.autoIndicator}>A</span>
+            </span>
+          ) : (
+            <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
+          )}
         </button>
       )}
 
@@ -107,10 +123,10 @@ export default function HeaderControls({
         href={pathname.replace(`/${locale}`, '')}
         locale={locale === 'ko' ? 'en' : 'ko'}
         className={styles.languageToggle}
-        title={locale === 'ko' ? 'Switch to English' : '한국어로 전환'}
+        title={locale === 'ko' ? '현재: 한국어 (Switch to English)' : 'Current: English (한국어로 전환)'}
       >
         <span className={styles.flagIcon}>
-          {locale === 'ko' ? '🇺🇸' : '🇰🇷'}
+          {locale === 'ko' ? '🇰🇷' : '🇺🇸'}
         </span>
       </Link>
     </div>

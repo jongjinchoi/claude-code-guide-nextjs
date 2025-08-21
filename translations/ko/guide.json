@@ -231,11 +231,13 @@
     "copySuccess": "명령어가 복사되었습니다!",
     "copyError": "복사에 실패했습니다"
   },
-  "troubleshooting": {
-    "resolved": "문제 해결 완료!"
-  },
   "resultButton": {
     "selected": "선택됨"
+  },
+  "reviewToast": {
+    "message": "{step}단계를 빠르게 완료하셨네요!\n혹시 {step}단계를 다시 확인하시겠어요?",
+    "reviewButton": "검토하기",
+    "continueButton": "계속 진행"
   },
   "projectStep": {
     "createSection": {
@@ -347,6 +349,7 @@
     }
   },
   "troubleshooting": {
+    "resolved": "문제 해결 완료!",
     "common": {
       "title": "문제 해결",
       "description": "아래 해결 방법을 순서대로 시도해보세요:",

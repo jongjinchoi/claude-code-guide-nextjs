@@ -13,6 +13,11 @@
     transition: var(--transition);
 }
 
+/* 마지막 단계에 추가 여백 - 프로그레스바와 겹치지 않도록 */
+.step-section:last-child {
+    margin-bottom: 100px;
+}
+
 /* ============================= */
 /* Step Header */
 /* ============================= */
