@@ -142,7 +142,7 @@ async function main() {
   let filesUpdated = false;
 
   // stepContentData.ts 업데이트
-  const stepContentUpdated = updateFile('app/guide/utils/stepContentData.ts', [
+  const stepContentUpdated = updateFile('app/[locale]/guide/utils/stepContentData.ts', [
     { 
       pattern: `예시: Homebrew \\d+\\.\\d+\\.\\d+`, 
       replacement: `예시: Homebrew ${homebrew}` 
@@ -164,7 +164,7 @@ async function main() {
   if (stepContentUpdated) filesUpdated = true;
 
   // TerminalExample.tsx 업데이트
-  const terminalExampleUpdated = updateFile('app/guide/components/TerminalExample.tsx', [
+  const terminalExampleUpdated = updateFile('app/[locale]/guide/components/TerminalExample.tsx', [
     { 
       pattern: `'Homebrew \\d+\\.\\d+\\.\\d+'`, 
       replacement: `'Homebrew ${homebrew}'` 

@@ -176,7 +176,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string, loc
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'node --version' },
-        { type: 'output', content: os === 'mac' ? 'v22.18.0' : 'v22.18.0', className: 'node-version' },
+        { type: 'output', content: os === 'mac' ? 'v22.21.1' : 'v22.21.1', className: 'node-version' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
@@ -185,10 +185,10 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string, loc
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'node --version' },
-        { type: 'output', content: 'v22.18.0' },
+        { type: 'output', content: 'v22.21.1' },
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'npm --version' },
-        { type: 'output', content: '11.5.2' },
+        { type: 'output', content: '11.6.2' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
@@ -197,7 +197,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string, loc
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'claude --version' },
-        { type: 'output', content: '@anthropic-ai/claude-code/1.0.67', className: 'claude-version' },
+        { type: 'output', content: '@anthropic-ai/claude-code/2.0.31', className: 'claude-version' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];
@@ -216,7 +216,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string, loc
         { type: 'output', content: `Last login: ${formatTerminalDate()} on ttys001` },
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'brew --version' },
-        { type: 'output', content: 'Homebrew 4.5.13', className: 'homebrew-version' },
+        { type: 'output', content: 'Homebrew 4.6.19', className: 'homebrew-version' },
         { type: 'output', content: 'Homebrew/homebrew-core (git revision 3d4f5; last commit 2024-01-20)' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
@@ -226,7 +226,7 @@ export function createTerminalLines(os: 'mac' | 'windows', scenario: string, loc
       return [
         { type: 'prompt', content: prompt },
         { type: 'command', content: 'git --version' },
-        { type: 'output', content: 'git version 2.50.1.windows.1' },
+        { type: 'output', content: 'git version 2.51.2.windows.1' },
         { type: 'prompt', content: prompt },
         { type: 'cursor', content: '' }
       ];

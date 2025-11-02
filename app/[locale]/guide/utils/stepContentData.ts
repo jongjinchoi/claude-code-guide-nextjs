@@ -40,7 +40,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'homebrew-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: Homebrew 4.5.13'
+      description: '예시: Homebrew 4.6.19'
     },
     errorButton: {
       title: '"command not found" 오류',
@@ -64,7 +64,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'git-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: git version 2.50.1.windows.1'
+      description: '예시: git version 2.51.2.windows.1'
     },
     errorButton: {
       title: '"git"은(는) 인식되지 않습니다',
@@ -88,7 +88,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'node-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: v22.18.0'
+      description: '예시: v22.21.1'
     },
     errorButton: {
       title: '"command not found" 오류',
@@ -112,7 +112,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'node-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: v22.18.0'
+      description: '예시: v22.21.1'
     },
     errorButton: {
       title: '"node"은(는) 인식되지 않습니다',
@@ -136,7 +136,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'claude-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: @anthropic-ai/claude-code/1.0.67'
+      description: '예시: @anthropic-ai/claude-code/2.0.31'
     },
     errorButton: {
       title: '"command not found" 오류',
@@ -160,7 +160,7 @@ export const stepContentMap: Record<string, StepContentData> = {
     terminalExample: 'claude-version',
     successButton: {
       title: '버전 번호가 나타남',
-      description: '예시: @anthropic-ai/claude-code/1.0.67'
+      description: '예시: @anthropic-ai/claude-code/2.0.31'
     },
     errorButton: {
       title: '"claude"은(는) 인식되지 않습니다',
