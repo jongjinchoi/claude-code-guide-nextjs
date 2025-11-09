@@ -1,27 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+    <!-- 홈페이지 - 한국어 -->
     <url>
-        <loc>https://getclaudecode.com/</loc>
-        <lastmod>2025-08-01</lastmod>
+        <loc>https://getclaudecode.com/ko</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en"/>
+        <lastmod>2025-11-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
+
+    <!-- 홈페이지 - 영어 -->
     <url>
-        <loc>https://getclaudecode.com/guide</loc>
-        <lastmod>2025-08-01</lastmod>
+        <loc>https://getclaudecode.com/en</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en"/>
+        <lastmod>2025-11-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Guide 페이지 - 한국어 -->
+    <url>
+        <loc>https://getclaudecode.com/ko/guide</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/guide"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/guide"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/guide"/>
+        <lastmod>2025-11-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
+
+    <!-- Guide 페이지 - 영어 -->
     <url>
-        <loc>https://getclaudecode.com/about</loc>
-        <lastmod>2025-08-01</lastmod>
+        <loc>https://getclaudecode.com/en/guide</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/guide"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/guide"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/guide"/>
+        <lastmod>2025-11-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- About 페이지 - 한국어 -->
+    <url>
+        <loc>https://getclaudecode.com/ko/about</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/about"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/about"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/about"/>
+        <lastmod>2025-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+
+    <!-- About 페이지 - 영어 -->
     <url>
-        <loc>https://getclaudecode.com/faq</loc>
-        <lastmod>2025-08-01</lastmod>
+        <loc>https://getclaudecode.com/en/about</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/about"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/about"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/about"/>
+        <lastmod>2025-11-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- FAQ 페이지 - 한국어 -->
+    <url>
+        <loc>https://getclaudecode.com/ko/faq</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/faq"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/faq"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/faq"/>
+        <lastmod>2025-11-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
+
+    <!-- FAQ 페이지 - 영어 -->
+    <url>
+        <loc>https://getclaudecode.com/en/faq</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/faq"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/faq"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/faq"/>
+        <lastmod>2025-11-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Stats 페이지 - 한국어 -->
+    <url>
+        <loc>https://getclaudecode.com/ko/stats</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/stats"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/stats"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/stats"/>
+        <lastmod>2025-11-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Stats 페이지 - 영어 -->
+    <url>
+        <loc>https://getclaudecode.com/en/stats</loc>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://getclaudecode.com/ko/stats"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://getclaudecode.com/en/stats"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://getclaudecode.com/en/stats"/>
+        <lastmod>2025-11-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>
