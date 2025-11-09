@@ -10,6 +10,21 @@
       ],
       "destination": "https://getclaudecode.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/en/about",
+      "permanent": true
+    },
+    {
+      "source": "/faq.html",
+      "destination": "/en/faq",
+      "permanent": true
+    },
+    {
+      "source": "/guide.html",
+      "destination": "/en/guide",
+      "permanent": true
     }
   ],
   "headers": [
