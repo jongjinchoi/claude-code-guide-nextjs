@@ -3,13 +3,18 @@ import { Inter } from 'next/font/google'
 import './styles/globals.css'
 import Script from 'next/script'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-inter',
 })
 
-// 메타데이터는 각 페이지에서 동적으로 생성됩니다
+// 전역 메타데이터 베이스 URL 설정
+export const metadata: Metadata = {
+  metadataBase: new URL('https://getclaudecode.com'),
+}
+
+// 나머지 메타데이터는 각 페이지에서 동적으로 생성됩니다
 
 import { SimplifiedAnalyticsProvider } from '@/app/lib/analytics/SimplifiedAnalytics';
 import { Suspense } from 'react';

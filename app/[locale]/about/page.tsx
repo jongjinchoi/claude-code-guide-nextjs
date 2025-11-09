@@ -10,6 +10,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('pages.about.title'),
     description: t('pages.about.description'),
     keywords: t('site.keywords'),
+    alternates: {
+      canonical: `https://getclaudecode.com/${locale}/about`,
+      languages: {
+        'ko': 'https://getclaudecode.com/ko/about',
+        'en': 'https://getclaudecode.com/en/about',
+        'x-default': 'https://getclaudecode.com/en/about',
+      }
+    },
     openGraph: {
       type: 'website',
       url: `https://getclaudecode.com/${locale}/about`,

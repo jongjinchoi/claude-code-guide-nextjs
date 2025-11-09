@@ -12,6 +12,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     keywords: t('site.keywords'),
     authors: [{ name: 'Jin' }],
     robots: 'index, follow',
+    alternates: {
+      canonical: `https://getclaudecode.com/${locale}`,
+      languages: {
+        'ko': 'https://getclaudecode.com/ko',
+        'en': 'https://getclaudecode.com/en',
+        'x-default': 'https://getclaudecode.com/en',
+      }
+    },
     openGraph: {
       type: 'website',
       url: `https://getclaudecode.com/${locale}`,

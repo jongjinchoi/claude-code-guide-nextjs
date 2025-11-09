@@ -1,30 +1,4 @@
-import type { Metadata } from 'next';
 import Script from 'next/script';
-
-export const metadata: Metadata = {
-  title: 'Claude Code Guide - 6단계로 완성하는 Claude Code 설치',
-  description: 'Claude Code 설치 가이드. 6단계로 간단하게 Claude Code를 설치하고 AI와 함께 코딩을 시작하세요. Mac, Windows, Linux 모두 지원합니다.',
-  keywords: 'Claude Code 설치, Claude Code 가이드, 바이브 코딩, Vibe Coding, AI 코딩 설치, Claude 설치 방법, Node.js 설치',
-  openGraph: {
-    type: 'article',
-    url: 'https://getclaudecode.com/guide',
-    title: 'Claude Code Guide - 6단계로 완성하는 Claude Code 설치',
-    description: 'Claude Code를 6단계로 간단하게 설치하세요. 터미널이 처음이어도 걱정 없습니다.',
-    images: [
-      {
-        url: 'https://getclaudecode.com/images/claude-code-guide-og.png',
-        width: 1200,
-        height: 630,
-      }
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Claude Code Guide - 6단계로 완성하는 Claude Code 설치',
-    description: 'Claude Code를 6단계로 간단하게 설치하세요. 터미널이 처음이어도 걱정 없습니다.',
-    images: ['https://getclaudecode.com/images/claude-code-guide-og.png'],
-  },
-};
 
 const structuredData = {
   "@context": "https://schema.org",
