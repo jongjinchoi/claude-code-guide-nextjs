@@ -1,5 +1,5 @@
 # robots.txt for Claude Code Guide
-# Last updated: 2025-08-01
+# Last updated: 2025-11-26
 
 # Allow all crawlers
 User-agent: *
@@ -20,6 +20,11 @@ Allow: /_next/image
 Disallow: /.git/
 Disallow: /.env
 Disallow: /node_modules/
+
+# Block phantom/invalid URLs
+Disallow: /usr/
+Disallow: /bin/
+Disallow: /etc/
 
 # Block bad bots that cause high server load
 User-agent: AhrefsBot
