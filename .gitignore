@@ -64,6 +64,9 @@ nohup.out
 # vercel
 .vercel
 
+# direnv
+.envrc
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

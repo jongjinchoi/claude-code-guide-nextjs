@@ -1,13 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase/client';
 import styles from './Dashboard.module.css';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+const supabase = createClient();
 
 interface SessionData {
   session_id: string;
@@ -524,11 +521,8 @@ export default function DashboardPage() {
   };
   */
 
-  const handleLogout = () => {
-    // 쿠키 삭제 후 로그인 페이지로 리다이렉트
-    document.cookie = 'dashboard-auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    document.cookie = 'dashboard-email=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    document.cookie = 'auth_code_verified=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     window.location.href = '/dashboard-login';
   };
 

@@ -1,93 +1,43 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 import styles from './dashboard-login.module.css';
 
 export default function DashboardLoginPage() {
-  const [email, setEmail] = useState('');
-  const [code, setCode] = useState('');
-  const [step, setStep] = useState<'email' | 'code'>('email');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [output, setOutput] = useState<Array<{ text: string; type: 'normal' | 'success' | 'error' }>>([]);
-  const router = useRouter();
+  const [error, setError] = useState('');
+  const supabase = createClient();
+  const searchParams = useSearchParams();
 
-  const addOutput = (text: string, type: 'normal' | 'success' | 'error' = 'normal') => {
-    setOutput(prev => [...prev, { text, type }]);
-  };
-
-  const handleSendCode = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-    
-    addOutput(`$ claude-auth send-code --email ${email}`, 'normal');
-    
-    try {
-      const response = await fetch('/api/send-auth-code', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        setStep('code');
-        addOutput('✓ 인증 코드가 발송되었습니다', 'success');
-        addOutput('→ 이메일을 확인하고 6자리 코드를 입력하세요', 'normal');
-      } else {
-        setError(data.error || '인증 코드 발송에 실패했습니다.');
-        addOutput(`✗ Error: ${data.error || '인증 코드 발송 실패'}`, 'error');
-      }
-    } catch (err) {
-      setError('인증 코드 발송 중 오류가 발생했습니다.');
-      addOutput('✗ Error: 네트워크 오류', 'error');
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    const errorParam = searchParams.get('error');
+    if (errorParam === 'unauthorized') {
+      setError('허용되지 않은 이메일입니다. me@jongjinchoi.com으로 로그인해주세요.');
+    } else if (errorParam === 'auth_failed') {
+      setError('인증에 실패했습니다. 다시 시도해주세요.');
     }
-  };
+  }, [searchParams]);
 
-  const handleVerifyCode = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
+  const handleGitHubLogin = async () => {
     setLoading(true);
-    
-    addOutput(`$ claude-auth verify --code ${code}`, 'normal');
-    
+    setError('');
+
     try {
-      const response = await fetch('/api/verify-auth-code', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, code })
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: `${window.location.origin}/api/auth/callback`,
+        },
       });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        addOutput('✓ 인증 성공!', 'success');
-        addOutput('→ 대시보드로 이동합니다...', 'normal');
-        
-        // 세션 저장
-        sessionStorage.setItem('dashboardAuth', JSON.stringify({
-          email,
-          authenticated: true,
-          timestamp: Date.now()
-        }));
-        
-        // 약간의 딜레이 후 대시보드로 이동
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 1000);
-      } else {
-        setError(data.error || '인증에 실패했습니다.');
-        addOutput(`✗ Error: ${data.error || '잘못된 인증 코드'}`, 'error');
+
+      if (error) {
+        setError(error.message);
+        setLoading(false);
       }
     } catch (err) {
-      setError('인증 중 오류가 발생했습니다.');
-      addOutput('✗ Error: 네트워크 오류', 'error');
-    } finally {
+      setError('로그인 중 오류가 발생했습니다.');
       setLoading(false);
     }
   };
@@ -103,22 +53,12 @@ export default function DashboardLoginPage() {
           </div>
           <span className={styles.terminalTitle}>Dashboard Login — Terminal</span>
         </div>
-        
+
         <div className={styles.terminalBody}>
           <div className={styles.prompt}>Welcome to Claude Code Dashboard</div>
           <div className={styles.command}>
             <span className={styles.commandPrefix}>$</span>
-            <span className={styles.commandText}>claude-auth login</span>
-          </div>
-
-          <div className={styles.stepIndicator}>
-            <span className={`${styles.step} ${step === 'email' ? styles.active : ''}`}>
-              1. 이메일
-            </span>
-            <span className={styles.stepArrow}>→</span>
-            <span className={`${styles.step} ${step === 'code' ? styles.active : ''}`}>
-              2. 인증 코드
-            </span>
+            <span className={styles.commandText}>claude-auth login --provider github</span>
           </div>
 
           {error && (
@@ -127,107 +67,42 @@ export default function DashboardLoginPage() {
             </div>
           )}
 
-          {step === 'email' ? (
-            <form onSubmit={handleSendCode} className={styles.form}>
-              <div className={styles.inputGroup}>
-                <label htmlFor="email" className={styles.label}>
-                  관리자 이메일 주소를 입력하세요:
-                </label>
-                <div className={styles.inputWrapper}>
-                  <span className={styles.inputPrefix}>📧</span>
-                  <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@example.com"
-                    className={styles.input}
-                    required
-                    autoFocus
-                  />
-                  {email && <span className={styles.cursor} />}
-                </div>
-              </div>
-              
-              <button 
-                type="submit" 
-                disabled={loading || !email}
-                className={styles.button}
-              >
-                {loading ? (
-                  <>
-                    <span className={styles.loading} />
-                    발송 중...
-                  </>
-                ) : (
-                  '인증 코드 받기'
-                )}
-              </button>
-            </form>
-          ) : (
-            <form onSubmit={handleVerifyCode} className={styles.form}>
-              <div className={styles.inputGroup}>
-                <label htmlFor="code" className={styles.label}>
-                  이메일로 받은 6자리 코드를 입력하세요:
-                </label>
-                <div className={styles.inputWrapper}>
-                  <span className={styles.inputPrefix}>🔑</span>
-                  <input
-                    type="text"
-                    id="code"
-                    value={code}
-                    onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                    placeholder="123456"
-                    className={styles.input}
-                    maxLength={6}
-                    pattern="[0-9]{6}"
-                    required
-                    autoFocus
-                  />
-                  {code && <span className={styles.cursor} />}
-                </div>
-              </div>
-              
-              <button 
-                type="submit" 
-                disabled={loading || code.length !== 6}
-                className={styles.button}
-              >
-                {loading ? (
-                  <>
-                    <span className={styles.loading} />
-                    확인 중...
-                  </>
-                ) : (
-                  '로그인'
-                )}
-              </button>
-              
-              <button
-                type="button"
-                onClick={() => {
-                  setStep('email');
-                  setCode('');
-                  setError('');
-                  addOutput('$ claude-auth restart', 'normal');
-                }}
-                className={`${styles.button} ${styles.secondary}`}
-                style={{ marginTop: '0.5rem', backgroundColor: '#666' }}
-              >
-                다시 시작
-              </button>
-            </form>
-          )}
-
-          {output.length > 0 && (
-            <div className={styles.output}>
-              {output.map((line, index) => (
-                <div key={index} className={`${styles.outputLine} ${styles[line.type]}`}>
-                  {line.text}
-                </div>
-              ))}
+          <div className={styles.form}>
+            <div className={styles.inputGroup}>
+              <p className={styles.label}>
+                GitHub 계정으로 로그인하세요.
+              </p>
+              <p className={styles.subLabel}>
+                허용된 이메일: me@jongjinchoi.com
+              </p>
             </div>
-          )}
+
+            <button
+              onClick={handleGitHubLogin}
+              disabled={loading}
+              className={styles.githubButton}
+            >
+              {loading ? (
+                <>
+                  <span className={styles.loading} />
+                  로그인 중...
+                </>
+              ) : (
+                <>
+                  <svg className={styles.githubIcon} viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  GitHub으로 로그인
+                </>
+              )}
+            </button>
+          </div>
+
+          <div className={styles.output}>
+            <div className={styles.outputLine}>
+              → GitHub 계정의 이메일이 허용 목록에 있어야 합니다.
+            </div>
+          </div>
         </div>
       </div>
     </div>
