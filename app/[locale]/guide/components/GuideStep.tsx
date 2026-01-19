@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useTranslations } from 'next-intl';
 import StepContent from './steps/StepContent';
 
@@ -25,7 +25,8 @@ interface GuideStepProps {
   hasError?: boolean;
 }
 
-export default function GuideStep({ 
+// React.memo로 불필요한 리렌더링 방지
+const GuideStep = memo(function GuideStep({ 
   step, 
   os, 
   isActive, 
@@ -172,4 +173,6 @@ export default function GuideStep({
       )}
     </section>
   );
-}
+});
+
+export default GuideStep;

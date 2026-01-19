@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import '../../../styles/components/CodeBlock.css';
 import { useToast } from '@/app/components/Toast';
@@ -12,7 +12,8 @@ interface CodeBlockProps {
   onCopy?: (code: string) => void;
 }
 
-export default function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockProps) {
+// React.memo로 불필요한 리렌더링 방지
+const CodeBlock = memo(function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockProps) {
   const [isCopying, setIsCopying] = useState(false);
   const { showToast } = useToast();
   const t = useTranslations('guide');
@@ -137,4 +138,6 @@ export default function CodeBlock({ children, onCodeCopy, onCopy }: CodeBlockPro
       </button>
     </div>
   );
-}
+});
+
+export default CodeBlock;

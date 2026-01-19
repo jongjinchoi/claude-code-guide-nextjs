@@ -2,7 +2,7 @@
   "title": "Real-time Statistics",
   "terminal": {
     "title": "Claude Code Guide Stats — Terminal",
-    "loading": "Loading real-time data...",
+    "loading": "Loading real-time data…",
     "error": "Temporary Error",
     "errorMessage": "Unable to load data.",
     "networkError": "A network error occurred.",

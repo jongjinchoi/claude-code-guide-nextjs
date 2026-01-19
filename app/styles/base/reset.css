@@ -11,6 +11,17 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 120px;
   -webkit-text-size-adjust: 100%;
+  /* Web Interface Guidelines: color-scheme for native controls */
+  color-scheme: light dark;
+}
+
+/* Dark mode override for color-scheme */
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 body {

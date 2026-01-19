@@ -55,9 +55,9 @@ export default function HeaderControls({
         <button className={styles.osToggle} onClick={() => handleOSToggle(displayOS === 'mac' ? 'windows' : 'mac')}>
           <span className={styles.osText}>
             {displayOS === 'mac' ? (
-              <><i className="fab fa-apple"></i> macOS</>
+              <><i className="fab fa-apple" aria-hidden="true"></i> macOS</>
             ) : (
-              <><i className="fab fa-windows"></i> Windows</>
+              <><i className="fab fa-windows" aria-hidden="true"></i> Windows</>
             )}
           </span>
         </button>
@@ -70,18 +70,20 @@ export default function HeaderControls({
             className={styles.fontSizeBtn}
             onClick={decreaseFontSize}
             title={t('header_controls.font_size.decrease')}
+            aria-label={t('header_controls.font_size.decrease')}
             disabled={fontSize <= 14}
           >
-            <i className="fas fa-minus"></i>
+            <i className="fas fa-minus" aria-hidden="true"></i>
           </button>
           <span className={styles.fontSizeLabel}>Aa {fontSize}px</span>
           <button
             className={styles.fontSizeBtn}
             onClick={increaseFontSize}
             title={t('header_controls.font_size.increase')}
+            aria-label={t('header_controls.font_size.increase')}
             disabled={fontSize >= 20}
           >
-            <i className="fas fa-plus"></i>
+            <i className="fas fa-plus" aria-hidden="true"></i>
           </button>
         </div>
       )}
@@ -109,11 +111,11 @@ export default function HeaderControls({
         >
           {theme === 'auto' ? (
             <span className={styles.autoIcon}>
-              <i className={`fas fa-${actualTheme === 'light' ? 'sun' : 'moon'}`}></i>
-              <span className={styles.autoIndicator}>A</span>
+              <i className={`fas fa-${actualTheme === 'light' ? 'sun' : 'moon'}`} aria-hidden="true"></i>
+              <span className={styles.autoIndicator} aria-hidden="true">A</span>
             </span>
           ) : (
-            <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`}></i>
+            <i className={`fas fa-${theme === 'light' ? 'moon' : 'sun'}`} aria-hidden="true"></i>
           )}
         </button>
       )}

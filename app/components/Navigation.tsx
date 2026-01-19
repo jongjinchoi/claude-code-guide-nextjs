@@ -60,25 +60,30 @@ export default function Navigation() {
       // popstate 이벤트 리스너 추가 (브라우저 뒤로/앞으로 버튼)
       const handlePopState = () => updateLinks();
       window.addEventListener('popstate', handlePopState);
-      
+
       // Guide 페이지의 URL 업데이트를 감지하기 위한 커스텀 이벤트 리스너
       const handleGuideUpdate = () => updateLinks();
       window.addEventListener('guideURLUpdated', handleGuideUpdate);
-      
-      // URL 변경을 주기적으로 체크 (실시간 감지가 안될 경우 대비)
-      let lastUrl = window.location.href;
-      const intervalId = setInterval(() => {
-        const currentUrl = window.location.href;
-        if (currentUrl !== lastUrl) {
-          lastUrl = currentUrl;
-          updateLinks();
-        }
-      }, 500); // 0.5초마다 체크
-      
+
+      // pushState/replaceState 감지를 위한 history 래핑
+      const originalPushState = history.pushState;
+      const originalReplaceState = history.replaceState;
+
+      history.pushState = function(...args) {
+        originalPushState.apply(this, args);
+        updateLinks();
+      };
+
+      history.replaceState = function(...args) {
+        originalReplaceState.apply(this, args);
+        updateLinks();
+      };
+
       return () => {
         window.removeEventListener('popstate', handlePopState);
         window.removeEventListener('guideURLUpdated', handleGuideUpdate);
-        clearInterval(intervalId);
+        history.pushState = originalPushState;
+        history.replaceState = originalReplaceState;
       };
     } else {
       // Guide 페이지가 아닌 경우 기본 링크 사용 (return 파라미터 없음)
@@ -120,7 +125,7 @@ export default function Navigation() {
           className={styles.navLogo}
           onClick={handleLogoClick}
         >
-          <i className="fas fa-robot"></i>
+          <i className="fas fa-robot" aria-hidden="true"></i>
           <span>{t('navigation.logo')}</span>
         </Link>
         <div className={styles.navItems}>

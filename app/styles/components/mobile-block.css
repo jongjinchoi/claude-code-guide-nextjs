@@ -253,7 +253,7 @@ body.mobile-blocked footer {
     font-size: 0.875rem;
     background: var(--bg-primary);
     color: var(--text-primary);
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mobile-warning-email-input:focus {
@@ -311,7 +311,7 @@ body.mobile-blocked footer {
     font-weight: 500;
     font-size: 0.875rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     border: none;
     display: flex;
     flex-direction: column;

@@ -4,6 +4,25 @@ import { useEffect } from 'react';
 import { usePathname, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+// 규칙 7.9: RegExp를 모듈 레벨로 호이스팅하여 매 렌더링마다 재생성 방지
+const MOBILE_PATTERNS = [
+  /mobile/i,
+  /android/i,
+  /iphone/i,
+  /ipad/i,
+  /ipod/i,
+  /blackberry/i,
+  /windows phone/i,
+  /webos/i,
+  /bada/i,
+  /tizen/i,
+  /kindle/i,
+  /silk/i,
+  /mobile safari/i,
+  /opera mini/i,
+  /opera mobi/i
+] as const;
+
 export default function MobileDetector() {
   const pathname = usePathname();
   const params = useParams();
@@ -51,27 +70,9 @@ export default function MobileDetector() {
       },
 
       isMobileDevice() {
-        // Method 1: User Agent detection
+        // Method 1: User Agent detection (using hoisted MOBILE_PATTERNS)
         const userAgent = navigator.userAgent.toLowerCase();
-        const mobilePatterns = [
-          /mobile/i,
-          /android/i,
-          /iphone/i,
-          /ipad/i,
-          /ipod/i,
-          /blackberry/i,
-          /windows phone/i,
-          /webos/i,
-          /bada/i,
-          /tizen/i,
-          /kindle/i,
-          /silk/i,
-          /mobile safari/i,
-          /opera mini/i,
-          /opera mobi/i
-        ];
-
-        const isMobileUserAgent = mobilePatterns.some(pattern => pattern.test(userAgent));
+        const isMobileUserAgent = MOBILE_PATTERNS.some(pattern => pattern.test(userAgent));
 
         // Method 2: Screen size detection (as backup)
         const isMobileScreen = window.innerWidth <= 768 && window.innerHeight <= 1024;
@@ -153,11 +154,12 @@ export default function MobileDetector() {
                   ${t('warning.message').replace('\n', '<br>')}
               </p>
               <div class="mobile-warning-email-section">
-                  <input type="email" 
-                         id="email-input" 
-                         class="mobile-warning-email-input" 
+                  <input type="email"
+                         id="email-input"
+                         class="mobile-warning-email-input"
                          placeholder="${t('warning.email_input.placeholder')}"
-                         autocomplete="email">
+                         autocomplete="email"
+                         spellcheck="false">
                   <button class="mobile-warning-button email-send" onclick="window.mobileDetector.sendEmail('${window.location.origin}${targetUrl}')">
                       <i class="fas fa-envelope"></i>
                       <span>${t('warning.buttons.send_email')}</span>

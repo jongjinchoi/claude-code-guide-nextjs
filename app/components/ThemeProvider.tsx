@@ -41,27 +41,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     };
   }, [theme, setTheme]);
 
-  // 테마 초기화
-  useEffect(() => {
-    // Zustand에 저장된 테마가 있으면 사용
-    const storedTheme = localStorage.getItem('theme-storage');
-    if (storedTheme) {
-      try {
-        const parsed = JSON.parse(storedTheme);
-        if (parsed.state?.theme) {
-          setTheme(parsed.state.theme);
-          return;
-        }
-      } catch (e) {
-        console.error('Error parsing stored theme:', e);
-      }
-    }
-    
-    // 기본값은 auto (시스템 설정 따르기)
-    setTheme('auto');
-  }, [setTheme]);
-
   // 레거시 코드 호환성을 위한 전역 함수 등록
+  // (Zustand persist 미들웨어가 localStorage에서 자동으로 테마 복원)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // ThemeManager 전역 객체

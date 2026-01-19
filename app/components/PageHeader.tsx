@@ -21,13 +21,13 @@ export default function PageHeader({
       <header className={`${styles.pageHeader} ${styles.hero}`}>
         {badge && (
           <div className={styles.badge}>
-            <i className="fas fa-robot"></i> {badge}
+            <i className="fas fa-robot" aria-hidden="true"></i> {badge}
           </div>
         )}
         
         <div className={styles.content}>
           <h1 className={styles.title}>
-            <i className="fas fa-robot"></i> {title}
+            <i className="fas fa-robot" aria-hidden="true"></i> {title}
           </h1>
           
           {subtitle && (

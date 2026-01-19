@@ -30,6 +30,16 @@ export default function RootLayout({
   return (
     <html lang="ko" className={inter.variable} suppressHydrationWarning>
       <head>
+        {/* Theme Color - matches page background */}
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+        {/* Preconnect for external resources */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="anonymous" />
+
         {/* Domain Redirect */}
         <Script id="domain-redirect" strategy="beforeInteractive">
           {`
@@ -38,16 +48,16 @@ export default function RootLayout({
             }
           `}
         </Script>
-        
+
         {/* Supabase */}
-        <Script 
+        <Script
           src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
           strategy="beforeInteractive"
         />
-        
+
         {/* Font Awesome */}
-        <link 
-          rel="stylesheet" 
+        <link
+          rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
         

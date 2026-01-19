@@ -41,11 +41,12 @@ export default function TargetUsersSection({
     <section className={`${sectionClass} ${className}`}>
       <h2>
         {icon && (
-          <i 
+          <i
             className={icon.name}
-            style={{ 
-              color: icon.color || 'var(--primary-color)', 
-              marginRight: icon.marginRight || 'var(--space-2)' 
+            aria-hidden="true"
+            style={{
+              color: icon.color || 'var(--primary-color)',
+              marginRight: icon.marginRight || 'var(--space-2)'
             }}
           ></i>
         )}
@@ -57,7 +58,7 @@ export default function TargetUsersSection({
           {users.map((user, index) => (
             <li key={index} className={`${styles.targetUserItem} ${itemClassName}`}>
               <div className={styles.targetUserIcon}>
-                <i className={user.icon}></i>
+                <i className={user.icon} aria-hidden="true"></i>
               </div>
               <div className={styles.targetUserText}>
                 <strong>{user.title}</strong> - {user.description}

@@ -123,7 +123,7 @@
   },
   "normal": {
     "installation_slow": {
-      "title": "It's been 5+ minutes... did it freeze?",
+      "title": "It's been 5+ minutes… did it freeze?",
       "description": "Nope, it's still working! Think of it like downloading a really big movie - Claude Code needs to grab lots of files from the internet and set them all up properly.",
       "terminal_example": {
         "title": "Installation in progress - Taking a while",
@@ -471,6 +471,6 @@
       "windows": "Exit Claude Code - Keep Command Prompt open"
     },
     "description": "Press Enter to exit Claude Code",
-    "loading": "Loading Claude Code preview..."
+    "loading": "Loading Claude Code preview…"
   }
 }

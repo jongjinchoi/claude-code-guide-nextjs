@@ -10,20 +10,20 @@
       "label": "Enter admin email address:",
       "placeholder": "admin@example.com",
       "button": "Get Auth Code",
-      "loading": "Sending..."
+      "loading": "Sending…"
     },
     "code_step": {
       "label": "Enter the 6-digit code from your email:",
       "placeholder": "123456",
       "button": "Login",
-      "loading": "Verifying...",
+      "loading": "Verifying…",
       "restart": "Start Over"
     },
     "messages": {
       "code_sent": "✓ Auth code sent",
       "check_email": "→ Check your email and enter the 6-digit code",
       "auth_success": "✓ Authentication successful!",
-      "redirecting": "→ Redirecting to dashboard..."
+      "redirecting": "→ Redirecting to dashboard…"
     }
   },
   "main": {
@@ -31,7 +31,7 @@
     "visitor_label": "Total Visitors",
     "realtime_indicator": "🔄 Real-time Updates",
     "last_update": "Last update: {{time}}",
-    "loading": "Loading...",
+    "loading": "Loading…",
     "sections": {
       "today_metrics": {
         "title": "Today's Metrics",

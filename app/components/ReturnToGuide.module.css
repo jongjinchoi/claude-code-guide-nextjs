@@ -14,7 +14,7 @@
     font-weight: 500;
     font-size: 0.95rem;
     font-family: inherit;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 1000;
     opacity: 0;
     transform: translateY(20px);

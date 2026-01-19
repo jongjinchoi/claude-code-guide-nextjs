@@ -64,7 +64,7 @@ export function Button({
 
   const content = (
     <>
-      {icon && <span className={styles.btnIcon}>{icon}</span>}
+      {icon && <span className={styles.btnIcon} aria-hidden="true">{icon}</span>}
       {children}
     </>
   );

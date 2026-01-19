@@ -95,7 +95,7 @@
       "title": "Install Node.js",
       "description": "Node.js is what makes Claude Code run - it's like the engine in a car!",
       "preCodeText": "Now let's install Node.js. Copy and paste this:",
-      "postCodeText": "💡 This might take a minute or two. You'll see \"Downloading...\" - that's perfectly normal!",
+      "postCodeText": "💡 This might take a minute or two. You'll see \"Downloading…\" - that's perfectly normal!",
       "verifyText": "Nice work! Let's verify Node.js is ready:",
       "verifyCommand": "node --version",
       "successButton": {
@@ -258,7 +258,7 @@
     "description": "This is it - the moment you've been waiting for! Let's create your first project and see Claude Code in action!",
     "preCodeText": "Let's create a project folder and fire up Claude Code:",
     "securityPrompt": "First time only: Claude Code will ask for permission. Just type 1 and press Enter - it's like accepting terms & conditions!",
-    "postCodeText": "💡 When you see the security prompt, type 1 and hit Enter. Then... welcome to your AI coding journey! 🎉",
+    "postCodeText": "💡 When you see the security prompt, type 1 and hit Enter. Then… welcome to your AI coding journey! 🎉",
     "successButton": {
       "title": "Claude Code is running! ✓",
       "description": "Human: prompt appears"
@@ -297,9 +297,9 @@
       "placeholders": {
         "love": "What worked well for you?",
         "sad": "What challenges did you face?",
-        "default": "Share your thoughts..."
+        "default": "Share your thoughts…"
       },
-      "submitting": "Sending...",
+      "submitting": "Sending…",
       "submitButton": "Send Feedback",
       "submitError": "Oops! Couldn't send feedback. Please try again.",
       "creator": {
@@ -412,7 +412,7 @@
     "auth": {
       "browserNotOpenTitle": "Browser didn't pop up?",
       "browserNotOpenDesc": "No problem! Just copy the URL from your terminal and paste it in any browser.",
-      "browserNotOpenNote": "💡 The URL looks like: <code>https://claude.ai/auth/...</code>",
+      "browserNotOpenNote": "💡 The URL looks like: <code>https://claude.ai/auth/…</code>",
       "loginNotCompleteTitle": "Login not working?",
       "loginNotCompleteStep1": "1. Let's log out and try fresh:",
       "loginNotCompleteStep2": "2. Still stuck? Clear your browser cookies for claude.ai and try again.",

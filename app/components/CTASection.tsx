@@ -48,7 +48,7 @@ export default function CTASection({
         variant={variant}
         size="large"
         hero
-        icon={buttonIcon ? <i className={buttonIcon}></i> : undefined}
+        icon={buttonIcon ? <i className={buttonIcon} aria-hidden="true"></i> : undefined}
       >
         {buttonText}
       </Button>

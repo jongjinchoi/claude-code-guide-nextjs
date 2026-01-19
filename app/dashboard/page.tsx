@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import styles from './Dashboard.module.css';
 
@@ -134,78 +134,97 @@ export default function DashboardPage() {
   const [dailyActivity, setDailyActivity] = useState<DailyActivity[]>([]);
   const [i18nImpact, setI18nImpact] = useState<I18nImpact | null>(null);
 
+  // Debounce ref to prevent multiple rapid API calls
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Debounced fetch function to prevent API hammering
+  const debouncedFetch = useCallback(() => {
+    // Clear any pending debounce timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // Set new timer - consolidate multiple rapid events into single fetch
+    debounceTimerRef.current = setTimeout(() => {
+      fetchAllData();
+      setIsRealtime(true);
+      setTimeout(() => setIsRealtime(false), 3000);
+    }, 500); // 500ms debounce
+  }, []);
+
   useEffect(() => {
     const initializeDashboard = async () => {
       await fetchAllData();
       setLoading(false);
     };
-    
+
     initializeDashboard();
-    
+
     // Supabase Realtime 구독 설정
     const channel = supabase.channel('dashboard-updates');
-    
+
     // guide_sessions 테이블 변경 감지
     channel
       .on(
         'postgres_changes',
-        { 
-          event: '*', 
-          schema: 'public', 
-          table: 'guide_sessions' 
+        {
+          event: '*',
+          schema: 'public',
+          table: 'guide_sessions'
         },
-        (payload) => {
-          // 새로운 세션이나 완료 시 전체 데이터 새로고침
-          fetchAllData();
-          setIsRealtime(true);
-          setTimeout(() => setIsRealtime(false), 3000);
+        () => {
+          // 새로운 세션이나 완료 시 전체 데이터 새로고침 (debounced)
+          debouncedFetch();
         }
       )
       // user_feedback 테이블 변경 감지
       .on(
         'postgres_changes',
-        { 
-          event: 'INSERT', 
-          schema: 'public', 
-          table: 'user_feedback' 
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'user_feedback'
         },
-        (payload) => {
-          fetchAllData();
+        () => {
+          debouncedFetch();
         }
       )
       // page_analytics 테이블 변경 감지
       .on(
         'postgres_changes',
-        { 
-          event: 'INSERT', 
-          schema: 'public', 
-          table: 'page_analytics' 
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'page_analytics'
         },
-        (payload) => {
-          fetchAllData();
+        () => {
+          debouncedFetch();
         }
       )
       // user_events 테이블 변경 감지 (버튼 클릭)
       .on(
         'postgres_changes',
-        { 
-          event: 'INSERT', 
-          schema: 'public', 
-          table: 'user_events' 
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'user_events'
         },
         (payload) => {
           if (payload.new && (payload.new as any).event_type === 'button_click') {
-            fetchAllData();
+            debouncedFetch();
           }
         }
       )
       .subscribe();
-    
-    // 컴포넌트 언마운트 시 구독 해제
+
+    // 컴포넌트 언마운트 시 구독 해제 및 타이머 정리
     return () => {
       channel.unsubscribe();
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
     };
-  }, []);
+  }, [debouncedFetch]);
 
   const fetchAllData = async () => {
     try {

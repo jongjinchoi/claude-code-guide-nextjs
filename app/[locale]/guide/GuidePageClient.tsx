@@ -9,7 +9,7 @@ import PageHeader from '../../components/PageHeader';
 import HeaderControls from '../../components/HeaderControls';
 import ProgressBar from './components/ProgressBar';
 import CompletionModal from './components/CompletionModal';
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGuideTracking } from '@/app/hooks/useGuideTracking';
 import { scrollToElement } from '@/app/utils/smoothScroll';
 import { useToast } from '@/app/components/Toast';
@@ -18,12 +18,42 @@ import { useToast } from '@/app/components/Toast';
 import '../../styles/pages/guide.css';
 import '../../styles/components/guide-step-imports.css';
 
+// sessionStorage 키 상수
+const STORAGE_KEYS = {
+  MODAL_CLOSED: 'completion-modal-closed',
+  SELECTED_BUTTONS: 'guide-selected-buttons',
+  START_TIME: 'guide-start-time',
+} as const;
+
+// sessionStorage 캐시 헬퍼 (js-cache-storage)
+const storageCache = {
+  _cache: new Map<string, string | null>(),
+
+  get(key: string): string | null {
+    if (!this._cache.has(key)) {
+      this._cache.set(key, typeof window !== 'undefined' ? sessionStorage.getItem(key) : null);
+    }
+    return this._cache.get(key) ?? null;
+  },
+
+  set(key: string, value: string): void {
+    this._cache.set(key, value);
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem(key, value);
+    }
+  },
+
+  invalidate(key: string): void {
+    this._cache.delete(key);
+  }
+};
+
 export default function GuidePageClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const t = useTranslations('guide');
   const { showToast } = useToast();
-  
+
   // 단계 진입 시간 추적
   const stepStartTimeRef = useRef<number>(Date.now());
   
@@ -173,17 +203,17 @@ export default function GuidePageClient() {
   // 각 단계별로 선택한 버튼을 추적하는 state
   const [selectedButtons, setSelectedButtons] = useState<Record<string, string>>({});
   
-  // 클라이언트에서만 sessionStorage 확인
+  // 클라이언트에서만 sessionStorage 확인 (캐시된 접근 사용)
   useEffect(() => {
     if (isCompleted) {
-      const modalClosed = sessionStorage.getItem('completion-modal-closed') === 'true';
+      const modalClosed = storageCache.get(STORAGE_KEYS.MODAL_CLOSED) === 'true';
       if (!modalClosed) {
         setShowCompletionModal(true);
       }
     }
-    
-    // sessionStorage에서 선택한 버튼 상태 복원
-    const savedButtons = sessionStorage.getItem('guide-selected-buttons');
+
+    // sessionStorage에서 선택한 버튼 상태 복원 (캐시된 접근)
+    const savedButtons = storageCache.get(STORAGE_KEYS.SELECTED_BUTTONS);
     if (savedButtons) {
       try {
         setSelectedButtons(JSON.parse(savedButtons));
@@ -207,8 +237,8 @@ export default function GuidePageClient() {
     // done=1-6이고 current가 없으면 모든 단계를 닫은 상태로 유지
     if (doneParam === '1-6' && !searchParams.get('current')) {
       setExpandedStep(0);
-      // 6단계 모두 완료 시 스크롤
-      const modalClosed = sessionStorage.getItem('completion-modal-closed') === 'true';
+      // 6단계 모두 완료 시 스크롤 (캐시된 접근)
+      const modalClosed = storageCache.get(STORAGE_KEYS.MODAL_CLOSED) === 'true';
       if (!modalClosed) {
         // 먼저 스크롤하여 전체 여정 보여주기
         const firstStep = document.querySelector('.step-section');
@@ -298,11 +328,12 @@ export default function GuidePageClient() {
     const timeSpentOnStep = Date.now() - stepStartTimeRef.current;
     
     // 완료된 단계를 추가하고 다음 단계로 이동
-    const newCompleted = [...completedSteps];
+    let newCompleted = [...completedSteps];
     if (!newCompleted.includes(completedStepNumber)) {
       newCompleted.push(completedStepNumber);
     }
-    newCompleted.sort((a, b) => a - b);
+    // 규칙 7.5: toSorted()를 사용하여 원본 배열을 변경하지 않음
+    newCompleted = newCompleted.toSorted((a, b) => a - b);
     
     // done 파라미터 생성
     let doneStr = '';
@@ -381,10 +412,70 @@ export default function GuidePageClient() {
     }
   };
   
-  const handleCodeCopy = (stepId: string, codeType: string) => {
+  const handleCodeCopy = useCallback((stepId: string, codeType: string) => {
     // 코드 복사 추적 (analytics.js에서 처리)
-  };
-  
+  }, []);
+
+  // useCallback으로 핸들러 최적화 - 매 렌더링마다 새 함수 생성 방지
+  const handleToggleExpand = useCallback((
+    stepNumber: number,
+    isExpanded: boolean,
+    isCompleted: boolean,
+    stepId: string
+  ) => {
+    const newExpandedStep = isExpanded ? 0 : stepNumber;
+    setExpandedStep(newExpandedStep);
+
+    // 단계 클릭 추적
+    if (isExpanded) {
+      trackStepClick(stepNumber, 'collapse');
+    } else {
+      trackStepClick(stepNumber, 'expand');
+      if (!isCompleted) {
+        trackStepProgress(stepNumber, stepId);
+      }
+    }
+  }, [trackStepClick, trackStepProgress]);
+
+  const handleGuideButtonClick = useCallback((
+    stepNumber: number,
+    stepId: string,
+    buttonType: string,
+    buttonText: string
+  ) => {
+    // 버튼 선택 상태 저장 (캐시된 접근)
+    setSelectedButtons(prev => {
+      const newSelectedButtons = { ...prev, [stepId]: buttonType };
+      storageCache.set(STORAGE_KEYS.SELECTED_BUTTONS, JSON.stringify(newSelectedButtons));
+      return newSelectedButtons;
+    });
+
+    if (buttonType === 'success' || buttonType === 'resolved') {
+      handleStepComplete(stepNumber);
+    } else if (buttonType === 'error') {
+      trackStepClick(stepNumber, 'error');
+      trackError(buttonText, {
+        step: stepNumber,
+        stepId: stepId,
+        error_type: buttonText,
+        button: 'error'
+      });
+    }
+  }, [handleStepComplete, trackStepClick, trackError]);
+
+  const handleModalClose = useCallback(() => {
+    setShowCompletionModal(false);
+    storageCache.set(STORAGE_KEYS.MODAL_CLOSED, 'true');
+  }, []);
+
+  const handleEmojiSelect = useCallback((emoji: string) => {
+    // 이모지 선택 처리
+  }, []);
+
+  const handleFeedbackSubmit = useCallback((feedback: { emoji: string; text?: string; completionTime: number }) => {
+    // 피드백 제출 처리
+  }, []);
+
   return (
     <div className="page-wrapper page-wrapper--guide">
       <div className="container">
@@ -416,51 +507,8 @@ export default function GuidePageClient() {
                 isExpanded={isExpanded}
                 isReadOnly={isCompleted}
                 selectedButton={selectedButtons[step.id]}
-                onToggleExpand={() => {
-                  const newExpandedStep = isExpanded ? 0 : stepNumber;
-                  setExpandedStep(newExpandedStep);
-                  
-                  // 단계 클릭 추적
-                  if (isExpanded) {
-                    // 닫기
-                    trackStepClick(stepNumber, 'collapse');
-                  } else {
-                    // 열기
-                    trackStepClick(stepNumber, 'expand');
-                    // 단계를 펼칠 때 진행 추적 (이미 완료된 단계는 제외)
-                    if (!isCompleted) {
-                      trackStepProgress(stepNumber, step.id);
-                    }
-                  }
-                }}
-                onButtonClick={(buttonType, buttonText) => {
-                  // 버튼 선택 상태 저장
-                  const newSelectedButtons = {
-                    ...selectedButtons,
-                    [step.id]: buttonType
-                  };
-                  setSelectedButtons(newSelectedButtons);
-                  
-                  // sessionStorage에 저장
-                  if (typeof window !== 'undefined') {
-                    sessionStorage.setItem('guide-selected-buttons', JSON.stringify(newSelectedButtons));
-                  }
-                  
-                  if (buttonType === 'success' || buttonType === 'resolved') {
-                    handleStepComplete(stepNumber);
-                  } else if (buttonType === 'error') {
-                    // 에러 버튼 클릭 추적
-                    trackStepClick(stepNumber, 'error');
-                    
-                    // 에러 발생 추적 - 버튼 텍스트를 에러 메시지로 사용
-                    trackError(buttonText, {
-                      step: stepNumber,
-                      stepId: step.id,
-                      error_type: buttonText,
-                      button: 'error'
-                    });
-                  }
-                }}
+                onToggleExpand={() => handleToggleExpand(stepNumber, isExpanded, isCompleted, step.id)}
+                onButtonClick={(buttonType, buttonText) => handleGuideButtonClick(stepNumber, step.id, buttonType, buttonText)}
                 onCodeCopy={handleCodeCopy}
               />
             );
@@ -475,24 +523,17 @@ export default function GuidePageClient() {
         />
       </div>
       
-      {showCompletionModal && (
+      {showCompletionModal ? (
         <CompletionModal
-          onClose={() => {
-            setShowCompletionModal(false);
-            // 세션에 모달 닫힘 상태 저장
-            if (typeof window !== 'undefined') {
-              sessionStorage.setItem('completion-modal-closed', 'true');
-            }
-          }}
-          onEmojiSelect={(emoji) => {
-            // 이모지 선택 처리
-          }}
-          onFeedbackSubmit={(feedback) => {
-            // 피드백 제출 처리
-          }}
-          totalTime={Math.round((Date.now() - (typeof window !== 'undefined' && sessionStorage.getItem('guide-start-time') ? parseInt(sessionStorage.getItem('guide-start-time')!) : Date.now())) / 60000) || 10}
+          onClose={handleModalClose}
+          onEmojiSelect={handleEmojiSelect}
+          onFeedbackSubmit={handleFeedbackSubmit}
+          totalTime={(() => {
+            const startTime = storageCache.get(STORAGE_KEYS.START_TIME);
+            return Math.round((Date.now() - (startTime ? parseInt(startTime) : Date.now())) / 60000) || 10;
+          })()}
         />
-      )}
+      ) : null}
     </div>
   );
 }

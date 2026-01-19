@@ -195,8 +195,8 @@ export default function CompletionModal({
       if (e.target === e.currentTarget) onClose();
     }}>
       <div className={`modal-content modal-content-split ${showFeedbackSection ? 'is-expanded' : ''}`}>
-        <button className="btn-modal-close" onClick={onClose}>
-          <i className="fas fa-times"></i>
+        <button className="btn-modal-close" onClick={onClose} aria-label={t('closeButton')}>
+          <i className="fas fa-times" aria-hidden="true"></i>
         </button>
         
         <div className="modal-split-layout">
@@ -206,11 +206,11 @@ export default function CompletionModal({
             <p>{t('subtitle')}</p>
             <p className="modal-subtitle" dangerouslySetInnerHTML={{ __html: t.raw('instruction') }} />
             
-            <button 
-              className="btn-docs-link" 
+            <button
+              className="btn-docs-link"
               onClick={() => window.open('https://docs.anthropic.com/en/docs/claude-code', '_blank')}
             >
-              <i className="fas fa-book"></i>
+              <i className="fas fa-book" aria-hidden="true"></i>
               {t('officialDocs')}
             </button>
             
@@ -257,12 +257,13 @@ export default function CompletionModal({
                 <div className="feedback-detail">
                   <h3>{getFeedbackTitle()}</h3>
                   <p>{getFeedbackSubtitle()}</p>
-                  <textarea 
+                  <textarea
                     id="feedbackText"
                     value={feedbackText}
                     onChange={(e) => setFeedbackText(e.target.value)}
                     placeholder={getFeedbackPlaceholder()}
                     rows={6}
+                    spellCheck={false}
                   />
                   <button 
                     className="btn-feedback-submit" 
@@ -271,12 +272,12 @@ export default function CompletionModal({
                   >
                     {isSubmitting ? (
                       <>
-                        <i className="fas fa-spinner fa-spin"></i>
+                        <i className="fas fa-spinner fa-spin" aria-hidden="true"></i>
                         {t('feedback.submitting')}
                       </>
                     ) : (
                       <>
-                        <i className="fas fa-paper-plane"></i>
+                        <i className="fas fa-paper-plane" aria-hidden="true"></i>
                         {t('feedback.submitButton')}
                       </>
                     )}
@@ -298,7 +299,7 @@ export default function CompletionModal({
                 </div>
               ) : (
                 <div className="feedback-success">
-                  <i className="fas fa-check-circle"></i>
+                  <i className="fas fa-check-circle" aria-hidden="true"></i>
                   <h3>{t('feedback.success.title')}</h3>
                   <p>{t('feedback.success.message')}</p>
                 </div>
@@ -312,27 +313,27 @@ export default function CompletionModal({
           <div className="share-content">
             <div className="share-url">https://getclaudecode.com/</div>
             <button className={`btn-share ${showShareMenu ? 'is-active' : ''}`} onClick={handleShare}>
-              <i className="fas fa-share"></i>
+              <i className="fas fa-share" aria-hidden="true"></i>
               {t('share.button')}
             </button>
             {showShareMenu && (
-              <div className="share-menu is-visible">
-                <div className="share-menu-item" onClick={() => handleShareAction('copy')}>
-                  <i className="fas fa-copy"></i>
+              <div className="share-menu is-visible" role="menu">
+                <button type="button" className="share-menu-item" onClick={() => handleShareAction('copy')} role="menuitem">
+                  <i className="fas fa-copy" aria-hidden="true"></i>
                   <span>{t('share.menu.copy')}</span>
-                </div>
-                <div className="share-menu-item" onClick={() => handleShareAction('twitter')}>
-                  <i className="fab fa-twitter"></i>
+                </button>
+                <button type="button" className="share-menu-item" onClick={() => handleShareAction('twitter')} role="menuitem">
+                  <i className="fab fa-twitter" aria-hidden="true"></i>
                   <span>{t('share.menu.twitter')}</span>
-                </div>
-                <div className="share-menu-item" onClick={() => handleShareAction('facebook')}>
-                  <i className="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" className="share-menu-item" onClick={() => handleShareAction('facebook')} role="menuitem">
+                  <i className="fab fa-facebook-f" aria-hidden="true"></i>
                   <span>{t('share.menu.facebook')}</span>
-                </div>
-                <div className="share-menu-item" onClick={() => handleShareAction('linkedin')}>
-                  <i className="fab fa-linkedin-in"></i>
+                </button>
+                <button type="button" className="share-menu-item" onClick={() => handleShareAction('linkedin')} role="menuitem">
+                  <i className="fab fa-linkedin-in" aria-hidden="true"></i>
                   <span>{t('share.menu.linkedin')}</span>
-                </div>
+                </button>
               </div>
             )}
           </div>

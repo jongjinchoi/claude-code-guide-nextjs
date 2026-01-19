@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { useTranslations } from 'next-intl';
 import '../../../styles/components/ProgressBar.css';
 
@@ -10,7 +11,8 @@ interface ProgressBarProps {
   currentOS: 'mac' | 'windows';
 }
 
-export default function ProgressBar({ 
+// React.memo로 불필요한 리렌더링 방지
+const ProgressBar = memo(function ProgressBar({ 
   currentStep, 
   completedSteps, 
   totalSteps, 
@@ -56,4 +58,6 @@ export default function ProgressBar({
       </div>
     </div>
   );
-}
+});
+
+export default ProgressBar;

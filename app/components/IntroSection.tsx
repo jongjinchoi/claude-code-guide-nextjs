@@ -30,7 +30,7 @@ export default function IntroSection({
   return (
     <section className={`${sectionClass} ${className}`}>
       <h2 className={showIcon ? styles.withIcon : ''}>
-        {icon && <i className={icon}></i>}
+        {icon && <i className={icon} aria-hidden="true"></i>}
         {title}
       </h2>
       <div className={styles.introContent}>

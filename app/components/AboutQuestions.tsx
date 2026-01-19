@@ -39,7 +39,7 @@ export default function AboutQuestions({
   return (
     <section className={`${styles.aboutQuestions} ${className}`}>
       <h2>
-        {showIcon && <i className="fas fa-question-circle" style={{ color: 'var(--primary-color)', marginRight: 'var(--space-2)' }}></i>}
+        {showIcon && <i className="fas fa-question-circle" aria-hidden="true" style={{ color: 'var(--primary-color)', marginRight: 'var(--space-2)' }}></i>}
         {title}
       </h2>
       <div className={styles.aboutQuestionsContainer}>
@@ -50,7 +50,7 @@ export default function AboutQuestions({
               onClick={() => setExpandedQuestion(expandedQuestion === index ? null : index)}
             >
               <span><strong className={styles.questionQ}>Q.</strong> {item.question}</span>
-              <i className={`fas fa-chevron-${expandedQuestion === index ? 'up' : 'down'}`}></i>
+              <i className={`fas fa-chevron-${expandedQuestion === index ? 'up' : 'down'}`} aria-hidden="true"></i>
             </button>
             <div className={`${styles.aboutAnswer} ${expandedQuestion === index ? styles.isActive : ''}`}>
               <div className={styles.aboutAnswerContent}>
