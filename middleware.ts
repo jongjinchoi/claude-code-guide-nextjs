@@ -15,7 +15,6 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith('/_next') ||
     pathname.startsWith('/_vercel') ||
     pathname.startsWith('/api') ||
-    pathname === '/favicon.svg' ||
     pathname === '/favicon.ico' ||
     pathname === '/icon.svg' ||
     pathname.includes('.')

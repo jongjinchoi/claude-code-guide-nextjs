@@ -98,9 +98,6 @@ export default async function RootLayout({
           `}
         </Script>
         
-        {/* Favicon */}
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        
         {/* Schema.org structured data */}
         <Script
           id="schema-org"
