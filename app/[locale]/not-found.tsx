@@ -1,8 +1,9 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/src/i18n/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { SITE_CONFIG } from '@/app/config/site';
 import { useParams } from 'next/navigation';
 import styles from './not-found.module.css';
 
@@ -98,7 +99,7 @@ export default function NotFound() {
           <div className={styles.helpText}>
             <p>{t('help.moved_or_missing')}</p>
             <p dangerouslySetInnerHTML={{ 
-              __html: t('help.contact', { email: `<a href="mailto:me@jongjinchoi.com" class="${styles.emailLink}">me@jongjinchoi.com</a>` })
+              __html: t('help.contact', { email: `<a href="mailto:${SITE_CONFIG.email}" class="${styles.emailLink}">${SITE_CONFIG.email}</a>` })
             }} />
           </div>
           

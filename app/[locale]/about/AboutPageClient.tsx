@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
+import { SITE_CONFIG } from '@/app/config/site';
 import '../../styles/pages/about.css';
 import '../../styles/components/tooltips.css';
 import HeaderControls from '../../components/HeaderControls';
@@ -184,10 +185,7 @@ export default function AboutPageClient() {
         <CTASection
           title={t('cta.title')}
           subtitle={t('cta.subtitle')}
-          info={[
-            { text: "Mac 20-30분 • Windows 30-40분" },
-            { text: "난이도: 쉬움" }
-          ]}
+          info={(t.raw('cta.info') as Array<{ text: string }>)}
           buttonText={t('cta.button')}
           buttonIcon="fas fa-rocket"
           buttonHref="/guide"
@@ -210,7 +208,7 @@ export default function AboutPageClient() {
           }}
           socialLinks={[
             { 
-              href: "mailto:me@jongjinchoi.com", 
+              href: `mailto:${SITE_CONFIG.email}`,
               icon: "fas fa-envelope", 
               ariaLabel: t('author.links.email')
             },

@@ -41,28 +41,26 @@ export async function POST() {
     
     // 날짜가 바뀌었으면 오늘 카운터 리셋
     if (lastReset !== today) {
-      // visitors_today를 0으로 리셋
-      await supabase
-        .from('counters')
-        .update({ value: 0, updated_at: new Date().toISOString() })
-        .eq('name', 'visitors_today');
-        
-      // last_reset 날짜 업데이트
-      await supabase
-        .from('counters')
-        .update({ value: today, updated_at: new Date().toISOString() })
-        .eq('name', 'visitors_today_last_reset');
+      // visitors_today 리셋과 last_reset 업데이트를 병렬 실행
+      await Promise.all([
+        supabase
+          .from('counters')
+          .update({ value: 0, updated_at: new Date().toISOString() })
+          .eq('name', 'visitors_today'),
+        supabase
+          .from('counters')
+          .update({ value: today, updated_at: new Date().toISOString() })
+          .eq('name', 'visitors_today_last_reset')
+      ]);
     }
-    
-    // 전체 방문자 증가
-    const { data: totalData, error: totalError } = await supabase
-      .rpc('increment_counter', { counter_name: 'visitors' });
-      
+
+    // 전체 방문자와 오늘 방문자 증가를 병렬 실행
+    const [{ data: totalData, error: totalError }] = await Promise.all([
+      supabase.rpc('increment_counter', { counter_name: 'visitors' }),
+      supabase.rpc('increment_counter', { counter_name: 'visitors_today' })
+    ]);
+
     if (totalError) throw totalError;
-    
-    // 오늘 방문자 증가
-    await supabase
-      .rpc('increment_counter', { counter_name: 'visitors_today' });
     
     return NextResponse.json({ count: totalData });
   } catch (error) {

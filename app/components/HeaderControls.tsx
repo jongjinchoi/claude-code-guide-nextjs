@@ -125,7 +125,7 @@ export default function HeaderControls({
         href={pathname.replace(`/${locale}`, '')}
         locale={locale === 'ko' ? 'en' : 'ko'}
         className={styles.languageToggle}
-        title={locale === 'ko' ? '현재: 한국어 (Switch to English)' : 'Current: English (한국어로 전환)'}
+        title={t('header_controls.language.switch_title')}
       >
         <span className={styles.flagIcon}>
           {locale === 'ko' ? '🇰🇷' : '🇺🇸'}

@@ -163,39 +163,43 @@ function calculateStats(sessions: any[]) {
     };
   }
 
-  const completed = sessions.filter(s => s.is_completed);
-  const withErrors = sessions.filter(s => {
-    if (!s.errors) return false;
-    try {
-      const errors = typeof s.errors === 'string' ? JSON.parse(s.errors) : s.errors;
-      return Array.isArray(errors) && errors.length > 0;
-    } catch {
-      return false;
+  let completedCount = 0;
+  let totalCompletionTime = 0;
+  let withErrorsCount = 0;
+  const stepsReached = [0, 0, 0, 0, 0, 0];
+
+  for (const s of sessions) {
+    if (s.is_completed) {
+      completedCount++;
+      totalCompletionTime += s.total_time_seconds || 0;
     }
-  });
-  
-  // 단계별 도달 인원 계산
-  const reachedStep1 = sessions.filter(s => s.highest_step_reached >= 1).length;
-  const reachedStep2 = sessions.filter(s => s.highest_step_reached >= 2).length;
-  const reachedStep3 = sessions.filter(s => s.highest_step_reached >= 3).length;
-  const reachedStep4 = sessions.filter(s => s.highest_step_reached >= 4).length;
-  const reachedStep5 = sessions.filter(s => s.highest_step_reached >= 5).length;
-  const reachedStep6 = sessions.filter(s => s.highest_step_reached >= 6).length;
-  
+
+    if (s.errors) {
+      try {
+        const errors = typeof s.errors === 'string' ? JSON.parse(s.errors) : s.errors;
+        if (Array.isArray(errors) && errors.length > 0) withErrorsCount++;
+      } catch { /* ignore */ }
+    }
+
+    for (let i = 0; i < 6; i++) {
+      if (s.highest_step_reached >= i + 1) stepsReached[i]++;
+    }
+  }
+
   return {
     totalSessions: sessions.length,
-    startedGuide: reachedStep1,
-    reachedStep1,
-    reachedStep2,
-    reachedStep3,
-    reachedStep4,
-    reachedStep5,
-    reachedStep6,
-    completedSessions: completed.length,
-    completionRate: (completed.length / sessions.length) * 100,
-    avgCompletionTime: completed.length > 0 
-      ? completed.reduce((sum, s) => sum + (s.total_time_seconds || 0), 0) / completed.length / 60
+    startedGuide: stepsReached[0],
+    reachedStep1: stepsReached[0],
+    reachedStep2: stepsReached[1],
+    reachedStep3: stepsReached[2],
+    reachedStep4: stepsReached[3],
+    reachedStep5: stepsReached[4],
+    reachedStep6: stepsReached[5],
+    completedSessions: completedCount,
+    completionRate: (completedCount / sessions.length) * 100,
+    avgCompletionTime: completedCount > 0
+      ? totalCompletionTime / completedCount / 60
       : 0,
-    errorRate: (withErrors.length / sessions.length) * 100
+    errorRate: (withErrorsCount / sessions.length) * 100
   };
 }

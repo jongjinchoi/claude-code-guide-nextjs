@@ -13,21 +13,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     authors: [{ name: 'Jin' }],
     robots: 'index, follow',
     alternates: {
-      canonical: `https://getclaudecode.com/${locale}`,
+      canonical: `/${locale}`,
       languages: {
-        'ko': 'https://getclaudecode.com/ko',
-        'en': 'https://getclaudecode.com/en',
-        'x-default': 'https://getclaudecode.com/en',
+        'ko': '/ko',
+        'en': '/en',
+        'x-default': '/en',
       }
     },
     openGraph: {
       type: 'website',
-      url: `https://getclaudecode.com/${locale}`,
+      url: `/${locale}`,
       title: t('pages.home.og_title'),
       description: t('pages.home.og_description'),
       images: [
         {
-          url: 'https://getclaudecode.com/images/claude-code-guide-og.png',
+          url: '/images/claude-code-guide-og.png',
           width: 1200,
           height: 630,
         }
@@ -39,9 +39,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title: t('pages.home.og_title'),
       description: t('pages.home.description'),
-      images: ['https://getclaudecode.com/images/claude-code-guide-og.png'],
+      images: ['/images/claude-code-guide-og.png'],
     },
-    metadataBase: new URL('https://getclaudecode.com'),
     verification: {
       google: 'sUU-tXbNB9yDZ-xWFJAHyQIeByDlCNyieez4FG91sTE',
     },

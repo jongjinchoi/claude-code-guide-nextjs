@@ -8,8 +8,10 @@ import GuideStep from './components/GuideStep';
 import PageHeader from '../../components/PageHeader';
 import HeaderControls from '../../components/HeaderControls';
 import ProgressBar from './components/ProgressBar';
-import CompletionModal from './components/CompletionModal';
+import dynamic from 'next/dynamic';
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+
+const CompletionModal = dynamic(() => import('./components/CompletionModal'), { ssr: false });
 import { useGuideTracking } from '@/app/hooks/useGuideTracking';
 import { scrollToElement } from '@/app/utils/smoothScroll';
 import { useToast } from '@/app/components/Toast';
@@ -301,8 +303,13 @@ export default function GuidePageClient() {
   };
   
   const completedSteps = getCompletedSteps(doneParam);
-  
-  
+
+  // completedSteps Set 메모이제이션 (매 렌더마다 새 Set 생성 방지)
+  const completedStepIds = useMemo(
+    () => new Set(completedSteps.map(n => steps[n - 1]?.id).filter(Boolean)),
+    [completedSteps, steps]
+  );
+
   // OS 전환
   const handleOSChange = (newOS: 'mac' | 'windows') => {
     router.push(`/guide?os=${newOS}&current=1`);
@@ -517,7 +524,7 @@ export default function GuidePageClient() {
         
         <ProgressBar
           currentStep={isCompleted ? steps.length - 1 : current - 1}
-          completedSteps={new Set(completedSteps.map(n => steps[n - 1]?.id).filter(Boolean))}
+          completedSteps={completedStepIds}
           totalSteps={steps.length}
           currentOS={os}
         />

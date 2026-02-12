@@ -139,7 +139,7 @@ export default function CompletionModal({
   };
 
   const handleShareAction = (action: string) => {
-    const url = 'https://getclaudecode.com/';
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://getclaudecode.com'}/`;
     const title = t('share.title');
     const text = t('share.description');
     
@@ -311,7 +311,7 @@ export default function CompletionModal({
         <div className="modal-share-section">
           <p className="share-question">{t('share.question')}</p>
           <div className="share-content">
-            <div className="share-url">https://getclaudecode.com/</div>
+            <div className="share-url">{process.env.NEXT_PUBLIC_BASE_URL || 'https://getclaudecode.com'}/</div>
             <button className={`btn-share ${showShareMenu ? 'is-active' : ''}`} onClick={handleShare}>
               <i className="fas fa-share" aria-hidden="true"></i>
               {t('share.button')}

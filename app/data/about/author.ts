@@ -1,4 +1,5 @@
 import { AuthorInfo } from '@/app/types/about';
+import { SITE_CONFIG } from '@/app/config/site';
 
 export const authorInfo: AuthorInfo = {
   avatar: {
@@ -16,7 +17,7 @@ export const authorInfo: AuthorInfo = {
   },
   socialLinks: [
     { 
-      href: "mailto:me@jongjinchoi.com", 
+      href: `mailto:${SITE_CONFIG.email}`,
       icon: "fas fa-envelope", 
       ariaLabel: "이메일" 
     },

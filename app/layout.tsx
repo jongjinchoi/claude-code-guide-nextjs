@@ -11,24 +11,36 @@ const inter = Inter({
 
 // 전역 메타데이터 베이스 URL 설정
 export const metadata: Metadata = {
-  metadataBase: new URL('https://getclaudecode.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://getclaudecode.com'),
 }
 
 // 나머지 메타데이터는 각 페이지에서 동적으로 생성됩니다
 
-import { SimplifiedAnalyticsProvider } from '@/app/lib/analytics/SimplifiedAnalytics';
+import dynamic from 'next/dynamic';
+import { getLocale } from 'next-intl/server';
 import { Suspense } from 'react';
+
+const SimplifiedAnalyticsProvider = dynamic(
+  () => import('@/app/lib/analytics/SimplifiedAnalytics').then(mod => ({ default: mod.SimplifiedAnalyticsProvider }))
+);
 import { ThemeProvider } from '@/app/components/ThemeProvider';
 import { ToastProvider } from '@/app/components/Toast';
 import './styles/components/copyright.css';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  let locale: string;
+  try {
+    locale = await getLocale();
+  } catch {
+    locale = 'ko';
+  }
+
   return (
-    <html lang="ko" className={inter.variable} suppressHydrationWarning>
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <head>
         {/* Theme Color - matches page background */}
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -44,7 +56,7 @@ export default function RootLayout({
         <Script id="domain-redirect" strategy="beforeInteractive">
           {`
             if (window.location.hostname === 'claude-code-guide-sooty.vercel.app') {
-              window.location.replace('https://getclaudecode.com' + window.location.pathname + window.location.search + window.location.hash);
+              window.location.replace('${process.env.NEXT_PUBLIC_BASE_URL || 'https://getclaudecode.com'}' + window.location.pathname + window.location.search + window.location.hash);
             }
           `}
         </Script>
@@ -63,7 +75,7 @@ export default function RootLayout({
         
         {/* Google Analytics */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-2XGK1CF366"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -71,7 +83,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-2XGK1CF366');
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
           `}
         </Script>
         
@@ -82,7 +94,7 @@ export default function RootLayout({
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "sy2ncy6rl1");
+            })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}");
           `}
         </Script>
         
@@ -99,10 +111,10 @@ export default function RootLayout({
               "@type": "WebSite",
               "name": "Claude Code Guide",
               "description": "초보자도 쉽게 따라하는 Claude Code 설치 가이드",
-              "url": "https://getclaudecode.com/",
+              "url": "${process.env.NEXT_PUBLIC_BASE_URL || 'https://getclaudecode.com'}/",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://getclaudecode.com/search?q={search_term_string}",
+                "target": "${process.env.NEXT_PUBLIC_BASE_URL || 'https://getclaudecode.com'}/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })

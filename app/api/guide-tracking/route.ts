@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, after } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { normalizeSessionId } from '@/app/utils/sessionIdUtils';
 
@@ -70,10 +70,12 @@ export async function POST(request: NextRequest) {
         
         // 상세 이벤트 로깅 (선택사항)
         if (process.env.ENABLE_DETAILED_LOGGING === 'true') {
-          await supabase.from('guide_events').insert({
-            session_id,
-            event_type: 'session_start',
-            event_data: data
+          after(async () => {
+            await supabase.from('guide_events').insert({
+              session_id,
+              event_type: 'session_start',
+              event_data: data
+            });
           });
         }
         break;
@@ -134,10 +136,12 @@ export async function POST(request: NextRequest) {
         
         // 상세 이벤트 로깅
         if (process.env.ENABLE_DETAILED_LOGGING === 'true') {
-          await supabase.from('guide_events').insert({
-            session_id,
-            event_type: 'step_progress',
-            event_data: data
+          after(async () => {
+            await supabase.from('guide_events').insert({
+              session_id,
+              event_type: 'step_progress',
+              event_data: data
+            });
           });
         }
         break;
@@ -163,10 +167,12 @@ export async function POST(request: NextRequest) {
         
         // 상세 이벤트 로깅
         if (process.env.ENABLE_DETAILED_LOGGING === 'true') {
-          await supabase.from('guide_events').insert({
-            session_id,
-            event_type: 'error',
-            event_data: data
+          after(async () => {
+            await supabase.from('guide_events').insert({
+              session_id,
+              event_type: 'error',
+              event_data: data
+            });
           });
         }
         break;
@@ -200,10 +206,12 @@ export async function POST(request: NextRequest) {
         
         // 상세 이벤트 로깅
         if (process.env.ENABLE_DETAILED_LOGGING === 'true') {
-          await supabase.from('guide_events').insert({
-            session_id,
-            event_type: 'guide_complete',
-            event_data: data
+          after(async () => {
+            await supabase.from('guide_events').insert({
+              session_id,
+              event_type: 'guide_complete',
+              event_data: data
+            });
           });
         }
         break;
@@ -221,10 +229,12 @@ export async function POST(request: NextRequest) {
       case 'view_help':
         // 상세 이벤트만 로깅
         if (process.env.ENABLE_DETAILED_LOGGING === 'true') {
-          await supabase.from('guide_events').insert({
-            session_id,
-            event_type: 'help_view',
-            event_data: data
+          after(async () => {
+            await supabase.from('guide_events').insert({
+              session_id,
+              event_type: 'help_view',
+              event_data: data
+            });
           });
         }
         break;

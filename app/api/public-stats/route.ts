@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { SITE_CONFIG } from '@/app/config/site';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -117,9 +118,9 @@ export async function GET() {
         
         // 기술 스택 정보
         platform: {
-          launchDate: '2025-07-17',
-          migrationDate: '2025-08-01',
-          i18nLaunchDate: '2025-08-05',
+          launchDate: SITE_CONFIG.dates.launch,
+          migrationDate: SITE_CONFIG.dates.migration,
+          i18nLaunchDate: SITE_CONFIG.dates.i18nLaunch,
           techStack: ['Next.js 15', 'React 19', 'TypeScript', 'Supabase'],
           performanceImprovement: '920x faster (92s → 100ms)'
         },
@@ -151,10 +152,10 @@ export async function GET() {
       timestamp: new Date().toISOString(),
       // 38일간의 발전 스토리
       story: {
-        startDate: '2025-06-26',
-        launchDate: '2025-07-17', 
-        migrationDate: '2025-08-01',
-        globalDate: '2025-08-05',
+        startDate: SITE_CONFIG.dates.projectStart,
+        launchDate: SITE_CONFIG.dates.launch,
+        migrationDate: SITE_CONFIG.dates.migration,
+        globalDate: SITE_CONFIG.dates.i18nLaunch,
         totalDays: 40,
         phases: [
           { name: 'MVP 개발', duration: '20일', tech: 'HTML/CSS/JS' },

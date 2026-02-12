@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { SITE_CONFIG } from '@/app/config/site';
 
 export default function AboutLayout({
   children,
@@ -18,8 +19,8 @@ export default function AboutLayout({
             "alternateName": "Jongjin Choi",
             "additionalName": "Jin",
             "url": "https://jongjinchoi.com",
-            "image": "https://getclaudecode.com/src/images/profile.jpg",
-            "email": "mailto:me@jongjinchoi.com",
+            "image": `${SITE_CONFIG.url}/src/images/profile.jpg`,
+            "email": `mailto:${SITE_CONFIG.email}`,
             "sameAs": [
               "https://www.linkedin.com/in/jongjinchoi/",
               "https://x.com/jongjin_choi_kr",

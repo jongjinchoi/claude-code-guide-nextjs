@@ -11,6 +11,8 @@
     margin-bottom: var(--space-3);
     overflow: hidden;
     transition: var(--transition);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 105px;
 }
 
 /* 마지막 단계에 추가 여백 - 프로그레스바와 겹치지 않도록 */

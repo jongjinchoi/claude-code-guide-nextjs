@@ -1,11 +1,12 @@
 import Script from 'next/script';
+import { SITE_CONFIG } from '@/app/config/site';
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "HowTo",
   "name": "Claude Code 설치 가이드",
   "description": "AI 코딩 어시스턴트 Claude Code를 Mac 또는 Windows에 설치하는 6단계 가이드",
-  "image": "https://getclaudecode.com/images/claude-code-guide-og.png",
+  "image": `${SITE_CONFIG.url}${SITE_CONFIG.ogImage}`,
   "totalTime": "PT5M",
   "estimatedCost": {
     "@type": "MonetaryAmount",
@@ -18,7 +19,7 @@ const structuredData = {
       "name": "Claude Pro 구독 ($20/월)"
     },
     {
-      "@type": "HowToSupply", 
+      "@type": "HowToSupply",
       "name": "Node.js 18 이상"
     },
     {
@@ -41,38 +42,38 @@ const structuredData = {
       "@type": "HowToStep",
       "name": "Claude Pro 구독",
       "text": "Claude Pro 계정을 구독합니다. 월 $20의 비용이 발생합니다.",
-      "url": "https://getclaudecode.com/guide#start",
-      "image": "https://getclaudecode.com/images/claude-code-guide-og.png"
+      "url": `${SITE_CONFIG.url}/guide#start`,
+      "image": `${SITE_CONFIG.url}${SITE_CONFIG.ogImage}`
     },
     {
       "@type": "HowToStep",
       "name": "패키지 매니저 설치",
       "text": "Mac은 Homebrew를 설치하고, Windows는 Git for Windows를 설치합니다.",
-      "url": "https://getclaudecode.com/guide#homebrew"
+      "url": `${SITE_CONFIG.url}/guide#homebrew`
     },
     {
       "@type": "HowToStep",
       "name": "Node.js 설치",
       "text": "Node.js 18 이상 버전을 설치합니다. Mac은 brew install node, Windows는 공식 사이트에서 다운로드합니다.",
-      "url": "https://getclaudecode.com/guide#node"
+      "url": `${SITE_CONFIG.url}/guide#node`
     },
     {
       "@type": "HowToStep",
       "name": "Claude Code 설치",
       "text": "npm install -g @anthropic-ai/claude-code 명령으로 Claude Code를 설치합니다.",
-      "url": "https://getclaudecode.com/guide#claude"
+      "url": `${SITE_CONFIG.url}/guide#claude`
     },
     {
       "@type": "HowToStep",
       "name": "로그인",
       "text": "claude auth login 명령으로 Claude Pro 계정에 로그인합니다.",
-      "url": "https://getclaudecode.com/guide#auth"
+      "url": `${SITE_CONFIG.url}/guide#auth`
     },
     {
       "@type": "HowToStep",
       "name": "프로젝트 시작",
       "text": "프로젝트 폴더에서 claude 명령을 실행하여 AI 코딩 어시스턴트를 시작합니다.",
-      "url": "https://getclaudecode.com/guide#project"
+      "url": `${SITE_CONFIG.url}/guide#project`
     }
   ]
 };

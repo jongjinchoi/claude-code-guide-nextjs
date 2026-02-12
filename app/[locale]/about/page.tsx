@@ -11,21 +11,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t('pages.about.description'),
     keywords: t('site.keywords'),
     alternates: {
-      canonical: `https://getclaudecode.com/${locale}/about`,
+      canonical: `/${locale}/about`,
       languages: {
-        'ko': 'https://getclaudecode.com/ko/about',
-        'en': 'https://getclaudecode.com/en/about',
-        'x-default': 'https://getclaudecode.com/en/about',
+        'ko': '/ko/about',
+        'en': '/en/about',
+        'x-default': '/en/about',
       }
     },
     openGraph: {
       type: 'website',
-      url: `https://getclaudecode.com/${locale}/about`,
+      url: `/${locale}/about`,
       title: t('pages.about.og_title'),
       description: t('pages.about.og_description'),
       images: [
         {
-          url: 'https://getclaudecode.com/images/claude-code-guide-og.png',
+          url: '/images/claude-code-guide-og.png',
           width: 1200,
           height: 630,
         }
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title: t('pages.about.og_title'),
       description: t('pages.about.description'),
-      images: ['https://getclaudecode.com/images/claude-code-guide-og.png'],
+      images: ['/images/claude-code-guide-og.png'],
     },
   };
 }

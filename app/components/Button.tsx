@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@/src/i18n/navigation';
 import styles from './Button.module.css';
 import { SimplifiedAnalytics } from '@/app/lib/analytics/SimplifiedAnalytics';
 

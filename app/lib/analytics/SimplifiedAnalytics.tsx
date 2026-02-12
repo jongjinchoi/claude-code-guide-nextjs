@@ -199,7 +199,7 @@ export function useSimplifiedAnalytics(config?: Partial<SimplifiedConfig>) {
   useEffect(() => {
     if (!analyticsRef.current) {
       analyticsRef.current = new SimplifiedAnalytics({
-        measurementId: 'G-2XGK1CF366',
+        measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-2XGK1CF366',
         ...config
       });
     }

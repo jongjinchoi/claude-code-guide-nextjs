@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/src/i18n/navigation';
+import { Link, usePathname } from '@/src/i18n/navigation';
 import { useLogo } from '@/app/hooks/useLogo';
 import styles from './Navigation.module.css';
 
@@ -112,8 +112,8 @@ export default function Navigation() {
     return null;
   }
   
-  // 메인 페이지에서도 네비게이션 숨기기 (locale 포함)
-  if (pathname === `/${locale}` || pathname === '/' || pathname === '/ko' || pathname === '/en') {
+  // 메인 페이지에서도 네비게이션 숨기기
+  if (pathname === '/') {
     return null;
   }
 

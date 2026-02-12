@@ -40,6 +40,9 @@
       "switch_to_light": "라이트 모드로 변경",
       "switch_to_auto": "자동 모드로 변경 (시스템 설정 따르기)",
       "auto_mode_desc": "시스템 설정 따르기 (현재: {current})"
+    },
+    "language": {
+      "switch_title": "현재: 한국어 (Switch to English)"
     }
   },
   "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI",

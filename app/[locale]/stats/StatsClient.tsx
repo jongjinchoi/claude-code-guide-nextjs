@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { SITE_CONFIG } from '@/app/config/site';
 import styles from './Stats.module.css';
 
 interface PublicStatsData {
@@ -224,7 +225,7 @@ export default function StatsClient({ locale }: StatsClientProps) {
               {t('sections.currentStats.title')}
               <span className={styles.operationDays}>
                 {(() => {
-                  const startDate = new Date('2025-07-17');
+                  const startDate = new Date(SITE_CONFIG.dates.launch);
                   const today = new Date();
                   const diffTime = Math.abs(today.getTime() - startDate.getTime());
                   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
@@ -387,7 +388,7 @@ export default function StatsClient({ locale }: StatsClientProps) {
                 <span className={styles.statsListLabel}>{t('sections.growthRate.dailyAvgVisitors')}</span>
                 <span className={styles.statsListValue}>
                   {(() => {
-                    const startDate = new Date('2025-07-17');
+                    const startDate = new Date(SITE_CONFIG.dates.launch);
                     const today = new Date();
                     const diffTime = Math.abs(today.getTime() - startDate.getTime());
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
@@ -400,7 +401,7 @@ export default function StatsClient({ locale }: StatsClientProps) {
                 <span className={styles.statsListLabel}>{t('sections.growthRate.dailyAvgGuidePage')}</span>
                 <span className={styles.statsListValue}>
                   {(() => {
-                    const startDate = new Date('2025-07-17');
+                    const startDate = new Date(SITE_CONFIG.dates.launch);
                     const today = new Date();
                     const diffTime = Math.abs(today.getTime() - startDate.getTime());
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
@@ -414,7 +415,7 @@ export default function StatsClient({ locale }: StatsClientProps) {
                 <span className={styles.statsListValue}>
                   {(() => {
                     const starters = data.funnel[0]?.users_reached || 0;
-                    const startDate = new Date('2025-07-17');
+                    const startDate = new Date(SITE_CONFIG.dates.launch);
                     const today = new Date();
                     const diffTime = Math.abs(today.getTime() - startDate.getTime());
                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;

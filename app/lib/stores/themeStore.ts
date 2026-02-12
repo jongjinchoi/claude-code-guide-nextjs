@@ -100,6 +100,17 @@ export const useThemeStore = create<ThemeState>()(
     }),
     {
       name: 'theme-storage',
+      version: 1,
+      migrate: (persistedState: any, version: number) => {
+        if (version === 0) {
+          return {
+            ...persistedState,
+            theme: persistedState?.theme || 'auto',
+            fontSize: persistedState?.fontSize || DEFAULT_FONT_SIZE
+          };
+        }
+        return persistedState as ThemeState;
+      },
       onRehydrateStorage: () => (state) => {
         // 저장된 상태 복원 시 DOM 업데이트
         if (state && typeof document !== 'undefined') {

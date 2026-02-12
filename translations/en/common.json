@@ -40,6 +40,9 @@
       "switch_to_light": "Switch to light mode",
       "switch_to_auto": "Switch to auto mode (follow system)",
       "auto_mode_desc": "Following system settings (current: {current})"
+    },
+    "language": {
+      "switch_title": "Current: English (한국어로 전환)"
     }
   },
   "copyright": "© 2025 Claude Code Guide By JONGJIN CHOI",
